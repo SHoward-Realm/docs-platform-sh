@@ -107,7 +107,24 @@ try! realm.write {
 {% endtab %}
 
 {% tab title="Objective-C" %}
-Your content goes here.
+```objectivec
+// Example creating a new role with only read access to the Realm
+ 
+// Permissions must be modified inside a write transaction
+[realm transactionWithBlock:^{
+    // Create the role
+    RLMPermissionRole *readOnlyRole = [RLMPermissionRole createInRealm:realm withValue:@[@"read-only"]];
+
+    // Add the user to the role
+    RLMPermissionUser *user = getUser();
+    [readOnlyRole.users addObject:user];
+
+    // Create a new permission object for the role and add it to the Realm permissions
+    RLMPermission *permission = [RLMPermission permissionForRoleNamed:readOnlyRole.name onRealm:realm];
+    permission.canRead = YES;
+    permission.canQuery = YES;
+}];
+```
 {% endtab %}
 
 {% tab title="Java" %}
