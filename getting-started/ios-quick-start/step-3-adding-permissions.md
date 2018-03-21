@@ -23,61 +23,13 @@ To address this issue we will instead use Realm's permission system to limit acc
 Want to get started right away with the complete source code? [Clone the demo app repository from GitHub](https://github.com/realm/my-first-realm-app), then follow the instructions in [`ios/ObjectPermissions/README.md`](https://github.com/realm/my-first-realm-app/blob/master/ios/ObjectPermissions/README.md) to get started. Don't forget to update the `Constants.swift` file with your Realm Cloud instance URL before running the app.
 {% endhint %}
 
-## Setting up a new Realm with Realm Studio {#setting-up-a-new-realm-with-realm-studio}
-
-Realm Studio is a powerful tool, and one of the advanced features it provides is the ability to create a Realm and assign permissions to it, without needing to do this programmatically.
-
-### Create the reference Realm {#create-the-reference-realm}
-
-We need to create a global Realm that will contain the `Project` and `Item` objects for all users. This is known as the reference Realm, and it will be opened by each user using partial sync.
-
-1. Open Realm Studio and Click on _Connect to the Server._ By default Realm Studio will use the auto-generated admin user \(`realm-admin`\) to connect as an admin to your instance.
-2. Create a new global Realm.
-   1. Click _Create new Realm_.
-   2. Enter `ToDo-permissions` for the path.
-   3. Click _Create Realm_.
-3. Make the `ToDo-permissions` Realm readable and writable by all authenticated users:
-   1. Open the special `__admin` Realm from Realm Studio, then select `Permission.`
-   2. Click on _Create new Permission_ to add a new permission for our `ToDo-permissions` Realm.
-   3. Click on `realmFile` and select the `ToDo-permissions` Realm.
-   4. Select `true` for `mayRead` and `mayWrite` to give read and write permission on this Realm to all authenticated users.
-   5. Click on _Create_ to create the permission. This will add it to the list of permissions in the `__admin` Realm.
-
-{% hint style="info" %}
-If you don't see the `__admin` Realm, go to the "View" menu and select "Show System Realms":
-
-![](../../.gitbook/assets/image%20%283%29.png)
-{% endhint %}
-
-You can verify that new `ToDo-permissions` Realm is set up correctly by checking that its ownership is reported as `public R W`.
-
-{% hint style="info" %}
-When creating the permission we left the `user` field empty \(`null`\). This indicates that the permission will apply to all users.
-{% endhint %}
-
 ## Updating the ToDo application {#updating-the-todo-application}
 
-### Create a new role per user {#create-a-new-role-per-user}
+### A user's role {#create-a-new-role-per-user}
 
-Permissions are assigned to a collection of zero or more users named a _role_. Since we want a given `Project` to be accessible only to a single user, we will create a separate role for each user. We can then grant the current user's role the appropriate permissions when we create a new `Project`. This will have the effect of preventing all other users from seeing or modifying that `Project` instance.
+Permissions are assigned to a collection of zero or more users named a _role_. Since we want a given `Project` to be accessible only to a single user, we need to use a separate role for each user. We can then grant the current user's role the appropriate permissions when we create a new `Project`. This will have the effect of preventing all other users from seeing or modifying that `Project` instance.
 
-To create the new role, after the user successfully logs in, we verify that we have a `PermissionRole` that corresponds to the current `SyncUser`. If the role doesn't exist, we create the role and add the user to it.
-
-```swift
-// Ensure there's a role named for the user with the user as a member.
-func ensureRoleExists(_ user: SyncUser, _ realm: Realm) {
-    let identity = user.identity!
-    guard realm.objects(PermissionRole.self).filter("name = %@ AND ANY users.identity = %@",
-                                                    identity, identity).isEmpty
-    else {
-        return
-    }
-
-    let permissionUser = realm.create(PermissionUser.self, value: [identity], update: true)
-    let role = realm.create(PermissionRole.self, value: [identity], update: true)
-    role.users.append(permissionUser)
-}
-```
+By default, every logged-in user has a private role created for them. This role can be accessed at `PermissionUser.role`. We'll use this role when creating new projects.
 
 ### Control access to `Project` instances {#control-access-to-project-instances}
 
@@ -108,7 +60,8 @@ project.name = textField.text ?? ""
 try! self.realm.write {
     self.realm.add(project)
 
-    let permission = project.permissions.findOrCreate(forRoleNamed: SyncUser.current!.identity!)
+    let user = self.realm.object(ofType: PermissionUser.self, forPrimaryKey: SyncUser.current!.identity!)!
+    let permission = project.permissions.findOrCreate(forRole: user.role!)
     permission.canRead = true
     permission.canUpdate = true
     permission.canDelete = true
@@ -137,11 +90,16 @@ We use permissions to limit querying to only the `Project` type. This means that
 // Ensure that class-level permissions cannot be modified by anyone but admin users.
 // The Project type can be queried, while Item cannot. This means that the only Item
 // objects that will be synchronized are those associated with our Projects.
-let queryable = [Project.className(): true, Item.className(): false]
-for cls in [Project.self, Item.self] {
-    let classPermissions = realm.objects(ClassPermission.self).filter("name = %@", cls.className()).first!
-    let everyonePermission = classPermissions.permissions.findOrCreate(forRoleNamed: "everyone")
+// Additionally, we prevent roles from being modified to avoid malicious users
+// from gaining access to other user's projects by adding themselves as members
+// of that user's private role.
+let queryable = [Project.className(): true, Item.className(): false, PermissionRole.className(): true]
+let updateable = [Project.className(): true, Item.className(): true, PermissionRole.className(): false]
+
+for cls in [Project.self, Item.self, PermissionRole.self] {
+    let everyonePermission = realm.permissions(forType: cls).findOrCreate(forRoleNamed: "everyone")
     everyonePermission.canQuery = queryable[cls.className()]!
+    everyonePermission.canUpdate = updateable[cls.className()]!
     everyonePermission.canSetPermissions = false
 }
 ```
@@ -152,8 +110,7 @@ We use permissions to prevent the schema and permissions from being modified. No
 
 ```swift
 // Ensure that the schema and Realm-level permissions cannot be modified by anyone but admin users.
-let realmPermissions = realm.objects(RealmPermission.self).first!
-let everyonePermission = realmPermissions.permissions.findOrCreate(forRoleNamed: "everyone")
+let everyonePermission = realm.permissions.findOrCreate(forRoleNamed: "everyone")
 everyonePermission.canModifySchema = false
 // `canSetPermissions` must be disabled last, as it would otherwise prevent other permission changes
 // from taking effect.
