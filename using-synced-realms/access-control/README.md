@@ -540,11 +540,31 @@ This can e.g. be used to toggle an Edit button if a user only have read access t
 
 {% tabs %}
 {% tab title="Swift" %}
-Your content goes here.
+```swift
+let person = getPerson()
+let privileges = realm.getPrivileges(person)
+
+if privileges.contains(.update) {
+    showEditButton()
+}
+else {
+    hideEditButton()
+}
+```
 {% endtab %}
 
 {% tab title="Objective-C" %}
-Your content goes here.
+```swift
+Person *person = getPerson();
+struct RLMObjectPrivileges privileges = [realm privilegesForObject:person];
+
+if (privileges.update) {
+    showEditButton()
+}
+else {
+    hideEditButton()
+}
+```
 {% endtab %}
 
 {% tab title="Java" %}
