@@ -201,11 +201,45 @@ Class permissions are set and modified the same way as Realm permissions:
 
 {% tabs %}
 {% tab title="Swift" %}
-Your content goes here.
+```swift
+// Example of only granting read only access to a class in the Realm
+ 
+// Permissions must be modified inside a write transaction
+try! realm.write {
+    // Find an existing Role 
+    let readOnlyRole = realm.object(ofType: PermissionRole.self, forPrimaryKey: "read-only")!
+
+    // Add the user to the role
+    let user = getUser()
+    readOnlyRole.users.append(user)
+
+    // Create a new permission object for the role and add it to the class permissions
+    let permissions = realm.permissions(forType: Person.self).findOrCreate(forRole: readOnlyRole)
+    permissions.canRead = true
+    permissions.canQuery = true
+}
+```
 {% endtab %}
 
 {% tab title="Objective-C" %}
-Your content goes here.
+```objectivec
+// Example of only granting read only access to a class in the Realm
+ 
+// Permissions must be modified inside a write transaction
+[realm transactionWithBlock:^{
+    // Find an existing Role 
+    RLMPermissionRole *readOnlyRole = [RLMPermissionRole objectInRealm:realm forPrimaryKey:@"read-only"];
+
+    // Add the user to the role
+    RLMPermissionUser *user = getUser();
+    [readOnlyRole.users addObject:user];
+
+    // Create a new permission object for the role and add it to the class permissions
+    RLMPermission *permission = [RLMPermission permissionForRoleNamed:readOnlyRole.name onClass:Person.class realm:realm];
+    permission.canRead = YES;
+    permission.canQuery = YES;
+}];
+```
 {% endtab %}
 
 {% tab title="Java" %}
