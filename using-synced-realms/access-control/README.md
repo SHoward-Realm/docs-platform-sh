@@ -201,45 +201,11 @@ Class permissions are set and modified the same way as Realm permissions:
 
 {% tabs %}
 {% tab title="Swift" %}
-```swift
-// Example of only granting read only access to a class in the Realm
- 
-// Permissions must be modified inside a write transaction
-try! realm.write {
-    // Find an existing Role 
-    let readOnlyRole = realm.object(ofType: PermissionRole.self, forPrimaryKey: "read-only")!
-
-    // Add the user to the role
-    let user = getUser()
-    readOnlyRole.users.append(user)
-
-    // Create a new permission object for the role and add it to the class permissions
-    let permissions = realm.permissions(forType: Person.self).findOrCreate(forRole: readOnlyRole)
-    permissions.canRead = true
-    permissions.canQuery = true
-}
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Objective-C" %}
-```objectivec
-// Example of only granting read only access to a class in the Realm
- 
-// Permissions must be modified inside a write transaction
-[realm transactionWithBlock:^{
-    // Find an existing Role 
-    RLMPermissionRole *readOnlyRole = [RLMPermissionRole objectInRealm:realm forPrimaryKey:@"read-only"];
-
-    // Add the user to the role
-    RLMPermissionUser *user = getUser();
-    [readOnlyRole.users addObject:user];
-
-    // Create a new permission object for the role and add it to the class permissions
-    RLMPermission *permission = [RLMPermission permissionForRoleNamed:readOnlyRole.name onClass:Person.class realm:realm];
-    permission.canRead = YES;
-    permission.canQuery = YES;
-}];
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Java" %}
@@ -307,23 +273,11 @@ If there is an ACL property, but no permissions have been defined for any role, 
 
 {% tabs %}
 {% tab title="Swift" %}
-```swift
-// The ACL property is a `List<Permission>` field with a user-defined name
-class Person: Object {
-    @objc dynamic var name = ""
-    let permissions = List<Permission>()
-}
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Objective-C" %}
-```objectivec
-// The ACL property is a `RLMArray<RLMPermission *>` field with a user-defined name
-@interface Person : RLMObject
-@property NSString *name;
-@property RLMArray<RLMPermission *><RLMPermission> *permissions;
-@end
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Java" %}
@@ -369,47 +323,11 @@ Object-level permissions are set and modified the same way as Realm and class-le
 
 {% tabs %}
 {% tab title="Swift" %}
-```swift
-// Example of restricting the object to the user creating it.
- 
-// Permissions must be modified inside a write transaction
-try! realm.write {
-    // Get the permission user for the sync user that is currently logged in.
-    let user = realm.object(ofType: PermissionUser.self, forPrimaryKey: SyncUser.current!.identity!)!
-
-    let person = getPerson()
-
-    // Create a new permission object for the user's private role and
-    // add it to the objects permissions
-    let permissions = person.permissions.findOrCreate(forRole: user.role)
-    permissions.canRead = true
-    permissions.canUpdate = true
-    permissions.canDelete = true
-    permissions.canSetPermissions = true
-}
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Objective-C" %}
-```objectivec
-// Example of restricting the object to the user creating it.
- 
-// Permissions must be modified inside a write transaction
-[realm transactionWithBlock:^{
-    // Get the permission user for the sync user that is currently logged in.
-    RLMPermissionUser *user = [RLMPermissionUser userInRealm:realm withIdentity:RLMSyncUser.currentUser.identity];
-
-    Person *person = getPerson();
-
-    // Create a new permission object for the user's private role and
-    // add it to the objects permissions
-    RLMPermission *permission = [RLMPermission permissionForRoleNamed:readOnlyRole.name onObject:person realm:realm];
-    permissions.canRead = YES;
-    permissions.canUpdate = YES;
-    permissions.canDelete = YES;
-    permissions.canSetPermissions = YES;
-}];
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Java" %}
@@ -474,31 +392,11 @@ This can be achieved in the following way:
 
 {% tabs %}
 {% tab title="Swift" %}
-```swift
-// Realm privileges
-let privileges = realm.getPrivileges()
- 
-// Class privileges for `Person`
-let privileges = realm.getPrivileges(Person.self)
- 
-// Object privileges
-let person = getPerson()
-let privileges = realm.getPrivileges(person)
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Objective-C" %}
-```objectivec
-// Realm privileges
-struct RLMRealmPrivileges privileges = [realm privilegesForRealm];
- 
-// Class privileges for `Person`
-struct RLMClassPrivileges privileges = [realm privilegesForClass:Person.class];
- 
-// Object privileges
-Person *person = getPerson();
-struct RLMObjectPrivileges privileges = [realm privilegesForObject:person];
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Java" %}
@@ -540,31 +438,11 @@ This can e.g. be used to toggle an Edit button if a user only have read access t
 
 {% tabs %}
 {% tab title="Swift" %}
-```swift
-let person = getPerson()
-let privileges = realm.getPrivileges(person)
-
-if privileges.contains(.update) {
-    showEditButton()
-}
-else {
-    hideEditButton()
-}
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Objective-C" %}
-```swift
-Person *person = getPerson();
-struct RLMObjectPrivileges privileges = [realm privilegesForObject:person];
-
-if (privileges.update) {
-    showEditButton()
-}
-else {
-    hideEditButton()
-}
-```
+Your content goes here.
 {% endtab %}
 
 {% tab title="Java" %}
