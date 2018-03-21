@@ -1,10 +1,3 @@
----
-description: >-
-  Realm Platform is designed to integrate into existing systems-of-record
-  through a dedicated API that outputs all synced operations. Pre-built
-  connectors are also available offering two-way DB sync.
----
-
 # Data integration
 
 ## Overview
@@ -44,7 +37,7 @@ The Adapter API is set up in a very similar fashion to the [Event Handler API.](
 {% endcode-tabs %}
 
 {% hint style="info" %}
-As with the [Event Handler API](../data-change-events.md#creating-an-event-handler), you’ll need to access the Object Server with an [admin user.](../../working-with-users/admin-users.md)
+As with the [Event Handler API](../data-change-events.md#creating-an-event-handler), you’ll need to access the Object Server with an [admin user.](../../user-authentication/admin-users.md)
 {% endhint %}
 
 To use the Adapter API, the Node.js application you’re creating will act as a translator, receiving instructions from the Object Server and calling your external database’s API to read and write to it. A sample application might look like this:

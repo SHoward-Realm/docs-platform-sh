@@ -1,9 +1,3 @@
----
-description: >-
-  Realm Platform includes a built-in username/password system that includes
-  additional functionality.
----
-
 # Username/password provider
 
 ## Overview

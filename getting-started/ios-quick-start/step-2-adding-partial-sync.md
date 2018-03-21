@@ -1,9 +1,3 @@
----
-description: >-
-  This adds functionality to our ToDo app example showing how to use custom
-  queries to explicitly control what data are synced to mobile clients
----
-
 # Step 2- Adding Partial Sync
 
 {% hint style="danger" %}

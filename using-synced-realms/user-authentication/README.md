@@ -1,9 +1,3 @@
----
-description: >-
-  Opening a synced Realm requires an authenticated user. This guide discusses
-  how to login a user and other related actions.
----
-
 # User Authentication
 
 The central object in the Realm Object Server is the Realm User \(`SyncUser`\). A Realm User is used to identify the end-user of the application and is used with the server's [access control](../access-control/) functionality to securely control what data is synchronized.  A `SyncUser` [authenticates](./#login), or performs a [login](./#login), via a username/password scheme, or through a number of third-party authentication methods.
@@ -193,7 +187,7 @@ Additional information can be passed to a custom auth provider in the form of a 
 
 Additional authentication providers are available with the self-hosted version. For more details see:
 
-{% page-ref page="authentication-providers.md" %}
+{% page-ref page="additional-providers.md" %}
 
 ## Login
 

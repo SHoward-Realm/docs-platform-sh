@@ -1,10 +1,3 @@
----
-description: >-
-  Realm Platform offers a GraphQL API providing a reactive HTTP interface into
-  synchronized Realm data for use in web or server-side apps where Realm SDKs
-  are unsupported.
----
-
 # GraphQL - Web Access
 
 ## Overview

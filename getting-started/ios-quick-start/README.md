@@ -1,7 +1,3 @@
----
-description: Provides an overview of our iOS quick start tutorials.
----
-
 # iOS Quick Start
 
 To get started with Realm Platform, we created 3 tutorials to guide you to learning the key functionality. Each tutorial is self-contained, but builds off the previous tutorial, to incorporate more advanced functionality.

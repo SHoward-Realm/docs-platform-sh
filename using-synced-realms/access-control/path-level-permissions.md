@@ -1,7 +1,3 @@
----
-description: Path-level permissions provide access control at the Realm-file level.
----
-
 # Path-level permissions
 
 ## Overview

@@ -1,7 +1,3 @@
----
-description: Realm Platform allows you to access and change any shared Realm server-side.
----
-
 # Data access
 
 ## Overview
@@ -18,7 +14,7 @@ You can use these mechanisms to query or write to the synchronized Realms, openi
 
 Realm Platform's user authentication supports the concept of an admin user. These users automatically have full read/write access to all synchronized Realms. Typically, when building server-side logic you will use an admin user as the identity in the server-side client code. For more information on admin users see the guide in the user authentication section:
 
-{% page-ref page="../working-with-users/admin-users.md" %}
+{% page-ref page="../user-authentication/admin-users.md" %}
 
 ## SDKs
 

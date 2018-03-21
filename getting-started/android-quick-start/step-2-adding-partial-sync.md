@@ -1,10 +1,3 @@
----
-description: >-
-  In the first part of the tutorial, we've seen how we get started with our
-  Realm Cloud instance to synchronize data. In this part, we continue to enhance
-  our ToDo App by adding partial sync.
----
-
 # Step 2 - Adding Partial Sync
 
 ## Quick Start {#quick-start}

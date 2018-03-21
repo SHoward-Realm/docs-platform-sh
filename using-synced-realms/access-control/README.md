@@ -1,9 +1,3 @@
----
-description: >-
-  Realm Platform offers a variety of mechanisms to securely control access to
-  synchronized data which are outlined in this guide.
----
-
 # Access Control
 
 ## Overview
@@ -12,16 +6,16 @@ As you progress in your app development, eventually you will want to consider th
 
 ### Path-level Permissions
 
-In versions &lt;3.x access control was limited to just [**path-level permissions**](overview.md), or rather permissions that were based off the specific path assigned to the Realm, such as `/globalRealm` or `/~/myRealm`. This design meant that to control data access to specific users or groups, the application had to split its data up into different Realms, such as a global read-only Realm \(i.e. `/globalRealm`\) and user-specific data in individual Realms \(i.e. `/~/myRealm`\).
+In versions &lt;3.x access control was limited to just [**path-level permissions**](path-level-permissions.md), or rather permissions that were based off the specific path assigned to the Realm, such as `/globalRealm` or `/~/myRealm`. This design meant that to control data access to specific users or groups, the application had to split its data up into different Realms, such as a global read-only Realm \(i.e. `/globalRealm`\) and user-specific data in individual Realms \(i.e. `/~/myRealm`\).
 
 These permissions should only be used by applications that match the &lt;3.x data model requirements. For more details see the dedicated guide:
 
-{% page-ref page="overview.md" %}
+{% page-ref page="path-level-permissions.md" %}
 
 ### Fine-Grained Permissions
 
 {% hint style="danger" %}
-This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](overview.md) for the APIs and access control behavior for &lt;3.x. 
+This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](path-level-permissions.md) for the APIs and access control behavior for &lt;3.x. 
 {% endhint %}
 
 Starting with version 3.x and the introduction of [partial synchronization](../syncing-data.md) and [the default synced Realm](../setting-up-your-realms.md#the-default-synced-realm), we also introduced a fine-grained permission system that works on more levels:
@@ -30,7 +24,7 @@ Starting with version 3.x and the introduction of [partial synchronization](../s
 * [**Class-level permissions**](./#class-level) - permissions that apply only to a specific object class within a Realm file
 * [**Object-level permissions**](./#object-level) - permissions that apply only to a specific object within a Realm file
 
-With this fine-grained permission system you do not need to use the [**path-level permissions**](overview.md) anymore. Instead, we recommend to start with the [default synced Realm](../setting-up-your-realms.md#the-default-synced-realm), which is designed for partial sync and fine-grained permissions.
+With this fine-grained permission system you do not need to use the [**path-level permissions**](path-level-permissions.md) anymore. Instead, we recommend to start with the [default synced Realm](../setting-up-your-realms.md#the-default-synced-realm), which is designed for partial sync and fine-grained permissions.
 
 ### Comparison
 
@@ -51,7 +45,7 @@ By default, when a Realm or class is created, all users are granted full access.
 ## Fine-Grained Permissions
 
 {% hint style="danger" %}
-This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](overview.md) for the APIs and access control behavior for &lt;3.x. 
+This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](path-level-permissions.md) for the APIs and access control behavior for &lt;3.x. 
 {% endhint %}
 
 In addition to path-level permissions, you can control user access to individual objects through fine-grained permissions. This feature is in effect whenever the user is connecting to a Realm file using partial synchronization.
@@ -91,7 +85,25 @@ These permissions are modeled using normal Realm Objects and can be edited the f
 
 {% tabs %}
 {% tab title="Swift" %}
-
+```swift
+// Example creating a new role with only read access to the Realm
+ 
+// Permissions must be modified inside a write transaction
+try! realm.write {
+    // Create the role
+    let readOnlyRole = realm.create(Role.self, value: ["read-only"])
+     
+    // Add the user to the role
+    let user = getUser()
+    readOnlyRole.users.append(user)
+     
+    // Create a new permission object for the role and add it to the Realm
+    // permissions
+    let permission = realm.permissions.findOrCreate(forRole: readOnlyRole)
+    permission.canRead = true
+    permission.canQuery = true
+}
+```
 {% endtab %}
 
 {% tab title="Objective-C" %}

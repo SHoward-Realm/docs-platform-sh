@@ -1,7 +1,7 @@
 ---
 description: >-
   Key to Realm Platform is the concept of a synchronized Realm. This guide
-  provides an overview and how to get started using a synced Realm.
+  discusses how to get started with a synced Realm.
 ---
 
 # Setting Up Your Realms

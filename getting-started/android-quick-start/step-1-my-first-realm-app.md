@@ -1,10 +1,3 @@
----
-description: >-
-  This tutorial will walk you through the creation of a simple todo app, that
-  can synchronize with your Realm Cloud instance. You can either follow the
-  quick start, or the detailed step by step guide.
----
-
 # Step 1 - My First Realm App
 
 #### Prerequisites {#prerequisites-1}

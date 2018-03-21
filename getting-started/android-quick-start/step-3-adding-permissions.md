@@ -1,10 +1,3 @@
----
-description: >-
-  In this tutorial, we're going to see how we can use Realm's permission system
-  in order to limit which users can see our projects within our ToDo
-  application.
----
-
 # Step 3 - Adding Permissions
 
 {% hint style="danger" %}

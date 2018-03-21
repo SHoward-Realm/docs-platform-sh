@@ -1,9 +1,3 @@
----
-description: >-
-  This guide provides an overview on Realm Platform and quick-start tutorials to
-  get started.
----
-
 # Getting Started
 
 ## What is Realm Platform? {#the-realm-platform}
@@ -35,8 +29,6 @@ Realm Platform is also available in a self-hosted version with the same function
 ### [Sign-Up for Self-Hosted Standard Plan trial](https://realm.io/trial/self-hosted-standard-plan)
 
 To learn about how to install, configure, and operate the self-hosted version see this section in the documentation:
-
-{% page-ref page="../self-hosted/" %}
 
 {% hint style="info" %}
 **Want to learn more about Realm?**

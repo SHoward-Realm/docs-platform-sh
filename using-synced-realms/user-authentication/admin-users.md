@@ -77,7 +77,7 @@ The Nickname provider is designed to quickly create users when you are first get
 The Nickname provider should not be used in production.
 {% endhint %}
 
-For more information see the [documentation on the Nickname provider](authentication-providers.md#nickname).
+For more information see the [documentation on the Nickname provider](additional-providers.md#nickname).
 
 ## Admin Tokens
 

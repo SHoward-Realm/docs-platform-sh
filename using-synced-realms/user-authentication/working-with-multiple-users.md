@@ -1,7 +1,3 @@
----
-description: Client applications can login multiple users for advanced scenarios.
----
-
 # Working with multiple users
 
 The Realm Platform allows an application to support multiple users at the same time.

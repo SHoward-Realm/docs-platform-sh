@@ -1,9 +1,3 @@
----
-description: >-
-  Realm Platform provides different authentication providers and this guide
-  explains how to use each one.
----
-
 # Additional providers
 
 ## JWT

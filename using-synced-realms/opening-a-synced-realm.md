@@ -1,10 +1,3 @@
----
-description: >-
-  The first step to synchronizing data with Realm Platform is to open up a Realm
-  in a client application. This guide explains the different ways to open a
-  synced Realm.
----
-
 # Opening A Synced Realm
 
 ## Configuring The Realm To Be Opened
@@ -176,7 +169,7 @@ The Realm URL uses a specific scheme: `realm://` for non-secure connections and 
 For more details, see the [Understanding Realm URLs and Paths](opening-a-synced-realm.md#understanding-realm-urls-and-paths) section below.
 {% endhint %}
 
-To obtain an authenticated user, you must login via any of the supported authentication providers. If you are unfamiliar, see the [Working With Users](working-with-users/) section.
+To obtain an authenticated user, you must login via any of the supported authentication providers. If you are unfamiliar, see the [Working With Users](user-authentication/) section.
 
 {% tabs %}
 {% tab title="Swift" %}
@@ -215,7 +208,7 @@ The configuration values for a synced Realm cannot have an `inMemoryIdentifier` 
 {% endtab %}
 
 {% tab title="Java" %}
-Realms on the Realm Object Server are created using a subclass of the normal `RealmConfiguration` used to create standalone Realms. This class is named `SyncConfiguration` and uses the same builder pattern known from normal Realms. Specifically it requires an [User](working-with-users/) and an [URL](https://realm.io/docs/java/latest/#server-url).
+Realms on the Realm Object Server are created using a subclass of the normal `RealmConfiguration` used to create standalone Realms. This class is named `SyncConfiguration` and uses the same builder pattern known from normal Realms. Specifically it requires an [User](user-authentication/) and an [URL](https://realm.io/docs/java/latest/#server-url).
 
 ```java
 // Create the configuration
@@ -403,7 +396,7 @@ var realm = Realm.GetInstance(configuration);
 {% endtabs %}
 
 {% hint style="danger" %}
-If a Realm has read-only [file-level permissions](access-control/overview.md), then you _must_ asynchronously open the Realm as described in [Asynchronously Opening A Realm](opening-a-synced-realm.md#asynchronously-opening-a-realm). Opening a file-level read-only Realm without the asynchronous API will cause an error.
+If a Realm has read-only [file-level permissions](access-control/path-level-permissions.md), then you _must_ asynchronously open the Realm as described in [Asynchronously Opening A Realm](opening-a-synced-realm.md#asynchronously-opening-a-realm). Opening a file-level read-only Realm without the asynchronous API will cause an error.
 
 _This behavior does not apply to partially synced Realms that use the _[_finer-grainer access controls_](access-control/)_._
 {% endhint %}
@@ -533,7 +526,7 @@ This restriction is not enforced for admin users. As a result, if you want to cr
 
 You can learn more about the details of path-level permissions in its dedicated section, including how to adjust these permissions to share a Realm:
 
-{% page-ref page="access-control/overview.md" %}
+{% page-ref page="access-control/path-level-permissions.md" %}
 
 ### ~ Shorthand
 

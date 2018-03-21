@@ -1,9 +1,3 @@
----
-description: >-
-  Synchronized Realm manage networking automatically and this guide details how
-  you can monitor it.
----
-
 # Monitoring Network Activity
 
 ## Overview
