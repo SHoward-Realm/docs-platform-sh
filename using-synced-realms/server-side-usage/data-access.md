@@ -56,35 +56,53 @@ For more information consult the [Realm Javascript SDK documentation](https://re
 {% endtab %}
 
 {% tab title=".Net" %}
-### Prerequisites
+Realm .NET supports running .NET Core and .NET Framework apps on Windows Server 2012 or later, as well as all Linux distributions that .NET Core supports.
 
-We support the following platforms:
+Simply install Realm via [NuGet](https://www.nuget.org/packages/Realm/):
 
-* .NET Core 1.1 or later on:
-  * Ubuntu 16.04 or later
-  * Debian 8 or later
-  * RHEL 7.1 or later
-  * macOS 10.11 or later
-  * Windows 10 or later
-
-No explicit steps are required to enable Realm Platform. It is installed by default in the standard Realm NuGet.
-
-Follow the installation instructions [here](https://realm.io/docs/dotnet/latest/#installation).
-
-Then create a script that logs in with an admin user and open any synchronized Realm:
-
-```csharp
-var credentials = Credentials.UsernamePassword("admin", "password", createUser: false);
-var authURL = new Uri("http://my.realm-server.com:9080");
-var adminUser = await User.LoginAsync(credentials, authURL);
-
-var serverURL = new Uri("realm://my.realm-server.com:9080/aRealm");
-var configuration = new SyncConfiguration(adminUser, serverURL);
-
-var realm = Realm.GetInstance(configuration);
+```text
+Install-Package Realm
 ```
 
-For more information consult the [Realm .Net documentation](https://realm.io/docs/dotnet/latest/).
+**Note**: The `dotnet` command line tool is not supported when building for .NET Core. Please use Visual Studio or the `msbuild` command line tool to build your project.
+
+Then create a file called `FodyWeavers.xml` in the root of your project and populate it with the following content:
+
+```markup
+<?xml version="1.0" encoding="utf-8" ?>
+<Weavers>
+    <RealmWeaver />
+</Weavers>
+```
+
+Finally, log in as an admin user and open any synchronized Realm:
+
+```csharp
+const string ServerUrl = "MY-SERVER-URL"
+async Task UseRealm()
+{
+    var credentials = Credentials.UsernamePassword("admin", "password", createUser: false);
+    var adminUser = await User.LoginAsync(credentials, new Uri($"https://{ServerUrl}"));
+    var configuration = new SyncConfiguration(adminUser, new Uri($"realms://{ServerUrl}/aRealm"))
+    {
+        IsDynamic = true
+    };
+    var realm = await Realm.GetInstanceAsync(configuration);
+
+    // Use the Realm for querying or writing to push data to clients
+}
+
+static void Main()
+{
+    // Make sure to use a thread with a synchronization context in order 
+    // to ensure that task continuations will be dispatched on the same
+    // thread. In this example, we're using AsyncContext Nito.AsyncEx
+    // package: https://www.nuget.org/packages/Nito.AsyncEx
+    AsyncContext.Run(() => UseRealm());
+}
+```
+
+For more information consult the [Realm .NET SDK documentation](http://realm.io/docs/dotnet/latest/).
 {% endtab %}
 {% endtabs %}
 
