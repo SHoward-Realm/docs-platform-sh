@@ -474,11 +474,31 @@ This can be achieved in the following way:
 
 {% tabs %}
 {% tab title="Swift" %}
-Your content goes here.
+```swift
+// Realm privileges
+let privileges = realm.getPrivileges()
+ 
+// Class privileges for `Person`
+let privileges = realm.getPrivileges(Person.self)
+ 
+// Object privileges
+let person = getPerson()
+let privileges = realm.getPrivileges(person)
+```
 {% endtab %}
 
 {% tab title="Objective-C" %}
-Your content goes here.
+```objectivec
+// Realm privileges
+struct RLMRealmPrivileges privileges = [realm privilegesForRealm];
+ 
+// Class privileges for `Person`
+struct RLMClassPrivileges privileges = [realm privilegesForClass:Person.class];
+ 
+// Object privileges
+Person *person = getPerson();
+struct RLMObjectPrivileges privileges = [realm privilegesForObject:person];
+```
 {% endtab %}
 
 {% tab title="Java" %}
