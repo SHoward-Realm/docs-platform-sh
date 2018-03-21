@@ -109,7 +109,7 @@ var credentials = Credentials.UsernamePassword(username, password, createUser: f
 
 {% tabs %}
 {% tab title="Swift" %}
-### Change Current User's Password
+### Change Current User's Password {#change-current-user's-password}
 
 Users who authenticate using the built-in Realm Object Server username/password credential type may change their own passwords by calling the `SyncUser.changePassword(_:, completion:)` API.
 
@@ -125,7 +125,7 @@ user.changePassword(newPassword) { (error) in
 }
 ```
 
-### Change Another User's Password
+### Change Another User's Password {#change-another-user's-password}
 
 Administrators may change the password of any user by calling the `SyncUser.changePassword(_:, forUserID:, completion:)` API. Pass in the user identity of the user whose password should be changed.
 
