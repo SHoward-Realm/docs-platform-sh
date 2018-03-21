@@ -307,11 +307,23 @@ If there is an ACL property, but no permissions have been defined for any role, 
 
 {% tabs %}
 {% tab title="Swift" %}
-Your content goes here.
+```swift
+// The ACL property is a `List<Permission>` field with a user-defined name
+class Person: Object {
+    @objc dynamic var name = ""
+    let permissions = List<Permission>()
+}
+```
 {% endtab %}
 
 {% tab title="Objective-C" %}
-Your content goes here.
+```objectivec
+// The ACL property is a `RLMArray<RLMPermission *>` field with a user-defined name
+@interface Person : RLMObject
+@property NSString *name;
+@property RLMArray<RLMPermission *><RLMPermission> *permissions;
+@end
+```
 {% endtab %}
 
 {% tab title="Java" %}
