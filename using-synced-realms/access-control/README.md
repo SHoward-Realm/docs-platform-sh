@@ -211,7 +211,7 @@ realm.commitTransaction();
 // Example of only granting read only access to a class in the Realm
 
 // Permissions must be modified inside a write transaction
-realm-write(() => {
+realm.write(() => {
 
     // Find an existing Role
     let role = realm.objects('__Role').filtered(`name = 'read-only'`)[0];
