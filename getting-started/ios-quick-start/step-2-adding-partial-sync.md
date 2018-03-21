@@ -18,7 +18,7 @@ Before we get started we need a few things setup; the prerequisites for this pro
 * CocoaPods v1.2.x+
 * The Realm Cloud instance URL that was generated when you created your instance \(it can be found by logging in to [https://cloud.realm.io](https://cloud.realm.io/), and clicking the `Copy Instance URL` link\).
 
-This tutorial uses CocoaPods to install the required Realm frameworks. You can install Cocoapods by [following the installation instructions](https://guides.cocoapods.org/using/getting-started.html) at cocoapods.org.
+This tutorial uses CocoaPods to install the required Realm frameworks. You can install CocoaPods by [following the installation instructions](https://guides.cocoapods.org/using/getting-started.html) at cocoapods.org.
 
 ## Step 1: Download the completed iOS ToDo Basic Tutorial {#step-1:-download-the-completed-ios-todo-basic-tutorial}
 
