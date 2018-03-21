@@ -37,11 +37,11 @@ Rather than start from a clean slate, we will build on top of the iOS ToDo app w
 
 > Note: there is a _PartialSync_ folder here as well - in this tutorial we will be adding to the basic sync tutorial to bring it up to the level of the completed partial sync version.
 
-## Step 2: Update/Install the Realm SDK with Cocoapods {#step-2:-updateinstall-the-realm-sdk-with-cocoapods}
+## Step 2: Install the Realm SDK with CocoaPods {#step-2:-updateinstall-the-realm-sdk-with-cocoapods}
 
-In order to be ready to add our new functionality, we need to update the Realm Framework; this is done using cocoapods.
+In order to be ready to add our new functionality, we need to install the Realm framework; this is done using CocoaPods.
 
-This tutorial uses a beta version of our sync APIs that implements our query-based selective sync mechanism; the Cocoapods file will need to be updated. As shipped, the [SyncIntro](step-1-my-first-realm-app.md) code has a `Podfile` that contains the following:
+This tutorial uses a beta version of our sync APIs that adds our query-based selective sync mechanism. This API was introduced in Realm Swift v3.2.0. The [SyncIntro](step-1-my-first-realm-app.md) code has a `Podfile` that contains the following:
 
 {% code-tabs %}
 {% code-tabs-item title="Podfile" %}
@@ -60,19 +60,7 @@ end
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-You will need to edit this \(which can be done either in Xcode by opening the `Podfile` in the `Pods` section of the file navigator, or with your favorite text editor.
-
-The line that references `pod 'RealmSwift'` will need to be deleted and replaced with the following:
-
-{% code-tabs %}
-{% code-tabs-item title="Podfile" %}
-```ruby
-pod 'RealmSwift', '~> 3.2.0-beta.1'
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-Once the `Realm` and `RealmSwift` lines have been updated, save your changes. Then, In your terminal window, in the `SyncIntro` folder execute the command:
+In your terminal window, in the `SyncIntro` folder execute the command:
 
 `pod update --repo-update`
 
@@ -80,7 +68,7 @@ This will download the Realm frameworks and update the Xcode workspace file. Onc
 
 ## Step 3: Setting the Realm Cloud Instance URL {#step-3:-setting-the-realm-cloud-instance-url}
 
-Locate and open the `Constants.swift` file in the Xcode file navigator; replace the two instances of `MY_INSTANCE_ADDRESS` with the hostname portion of the Realm Cloud instance you copied from the Realm Cloud Portal \(e.g., mycoolapp.us1.cloud.realm.io\).
+Locate and open the `Constants.swift` file in the Xcode file navigator, then update the value of `MY_INSTANCE_ADDRESS` with the hostname portion of the Realm Cloud instance you copied from the Realm Cloud Portal \(e.g., mycoolapp.us1.cloud.realm.io\).
 
 {% code-tabs %}
 {% code-tabs-item title="Constants.swift" %}
@@ -93,13 +81,12 @@ struct Constants {
     // ****
     // ****
     // **** ROS On-Premises Users
-    // **** Replace the AUTH_URL and REALM_URL strings with the fully qualified versions of
-    // **** address of your ROS server, e.g.: "http://127.0.0.1:9080" and "realm://127.0.0.1:9080"
+    // **** Replace the AUTH_URL string with the fully qualified versions of
+    // **** address of your ROS server, e.g.: "http://127.0.0.1:9080"
     
     static let MY_INSTANCE_ADDRESS = "MY_INSTANCE_ADDRESS" // <- update this
 
     static let AUTH_URL  = URL(string: "https://\(MY_INSTANCE_ADDRESS)")!
-    static let REALM_URL = URL(string: "realms://\(MY_INSTANCE_ADDRESS)/ToDo")!
 }
 ```
 {% endcode-tabs-item %}
@@ -145,20 +132,20 @@ Before we add the entire contents needed for this file we will look at the relev
 **Opening the Realm with Partial Sync**:
 
 ```swift
-let syncConfig = SyncConfiguration(user: SyncUser.current!, realmURL: Constants.REALM_URL, isPartial: true)
+realm = try! Realm(configuration: SyncConfiguration.automatic())
 ```
 
-The important change here is an additional parameter applied to the Realm SyncConfiguration that tells the server not to download all of the Realm's data on open/connection but rather to only respond to the client's specific subscription request, based on a specific query.
+We've changed from constructing a sync configuration manually, to using Realm's automatic sync configuration. The automatic sync configuration determines which sync server to contact based on the user that is currently logged in, and opts into the query-based partial synchronization mode. This mode tells the server not to download all of the Realm's data, but rather to only download the portion of the object graph that matches queries that the client has explicitly subscribed to.
 
 **Setting up the Sync Query**:
 
 ```swift
-projects = realm.objects(Project.self).filter(NSPredicate(format: "owner = '\(SyncUser.current!.identity!)'")).sorted(byKeyPath: "timestamp", ascending: false)
+projects = realm.objects(Project.self).filter("owner = %@", SyncUser.current!.identity!).sorted(byKeyPath: "timestamp", ascending: false)
 ```
 
-Here the syntax we used with a fully-synced Realm and partial sync are the same - the difference is with a _with a fully synced Realm the data are already synchronized_ \(or may be in the process of being downloaded\). The query is selecting `Project` model records where the `owner` property matches the ID of the currently logged in user \(`SyncUser.current!.identity!`\), and these will be sorted in date order, newest first.
+Here the syntax we used with a fully-synced Realm and a partially-synced Realm is the same - the difference is with a _with a fully synced Realm the data is already synchronized_ \(or may be in the process of being downloaded\). The query is selecting `Project` model records where the `owner` property matches the ID of the currently logged in user \(`SyncUser.current!.identity!`\), and these will be sorted in date order, newest first.
 
-It's important to note that with partial sync, _no data are synchronized from the server to the client until a subscription is presented._ In our application the presentation of the subscription is done just as we are preparing to display the data in the controller's `viewDidLoad` method as follows:
+It's important to note that with partial sync, _no data is synchronized from the server to the client until a subscription is created._ In our application the subscription is created as we are preparing to display the data in the controller's `viewDidLoad` method as follows:
 
 ```swift
 subscription = projects.subscribe(named: "my-projects")
@@ -171,9 +158,9 @@ subscriptionToken = subscription.observe(\.state, options: .initial) { state in
 }
 ```
 
-The first line is the subscription itself. You can have any number of subscriptions for different kinds of data depending on your application's requirements.
+The first line creates the subscription itself. You can have any number of subscriptions for different kinds of data depending on your application's requirements.
 
-The second line is a subscription token - an observer pattern used frequently in Realm to allow applications to react to changes in the state of Realm objects. It is very similar to the `NotificationToken` used to respond changes in result sets for Realm queries; the subscription token lets your application react to changes in the status of the fulfillment of your subscriptions.
+The second line observes changes to the state of the subscription, similar to how you may observe changes to the state of a Realm collection or object. This observer lets your application react to changes in the status of the subscription.
 
 The rest of this class is more or less the same as the fully-synced `ItemsViewController` in the intro version of this application where the goal was just to build a simple list of ToDo items, except it allows the user to create and persist new `Project` records.
 
@@ -189,7 +176,7 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
    let itemsVC = ItemsViewController()
    itemsVC.project = project
    self.navigationController?.pushViewController(itemsVC, animated: true)
-    }
+}
 ```
 
 This gets the project we selected from the list of projects we own that were returned as part of the subscription. It then creates an instance of the `ItemsViewController` and passes a copy of the `Project` record into the new controller; we then push the new view controller onto the navigation controller stack which causes it to be displayed.
@@ -209,16 +196,14 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     var notificationToken: NotificationToken?
     var subscriptionToken: NotificationToken?
     var subscription: SyncSubscription<Project>!
-
     
     var tableView = UITableView()
     let activityIndicator = UIActivityIndicatorView()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let syncConfig = SyncConfiguration(user: SyncUser.current!, realmURL: Constants.REALM_URL, isPartial: true)
-        realm = try! Realm(configuration: Realm.Configuration(syncConfiguration: syncConfig))
+        realm = try! Realm(configuration: SyncConfiguration.automatic())
         
-        projects = realm.objects(Project.self).filter(NSPredicate(format: "owner = '\(SyncUser.current!.identity!)'")).sorted(byKeyPath: "timestamp", ascending: false)
+        projects = realm.objects(Project.self).filter("owner = %@", SyncUser.current!.identity!).sorted(byKeyPath: "timestamp", ascending: false)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -364,8 +349,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             realm.delete(project.items)
             realm.delete(project)
         }
-    }
-    
+    }   
 }
 ```
 {% endcode-tabs-item %}
@@ -408,7 +392,7 @@ The big difference between the simple version of the application where we create
 Let's recap what we have done so far; in our partial sync powered ToDo app, we...
 
 1. Allow the user to log in with a nick name, but instead of jumping right to a list to the ToDo's in the ItemsViewController we present a ProjectsViewController.
-2. Allow the user to see a list of their existing projects, or to create one or more new projects that act a grouping mechanism \(via the `ProjectsViewController`\) for TODo items. We know about \(can find\) these projects because of the ability to _subscribe_ to `Project` records that _match a specific query_ we are interested in. In this case projects that were created by our own user - represented by the `SyncUser.current.identity` which is Realm's way of tracking the currently logged in user.
+2. Allow the user to see a list of their existing projects, or to create one or more new projects that act a grouping mechanism \(via the `ProjectsViewController`\) for ToDo items. We know about \(can find\) these projects because of the ability to _subscribe_ to `Project` records that _match a specific query_ we are interested in. In this case projects that were created by our own user - represented by the `SyncUser.current.identity` which is Realm's way of tracking the currently logged in user.
 3. Have set up the `ProjectsViewController` in such a way that when we tap on the row for a given project, that project record is passed over to the ItemsViewController which uses this information to show us any existing ToDo items and/or create new ones that will be added to the selected project.
 
 ## Step 7: Connecting ToDo Items to a Project {#step-7:-connecting-todo-items-to-a-project}
