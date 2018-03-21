@@ -369,11 +369,47 @@ Object-level permissions are set and modified the same way as Realm and class-le
 
 {% tabs %}
 {% tab title="Swift" %}
-Your content goes here.
+```swift
+// Example of restricting the object to the user creating it.
+ 
+// Permissions must be modified inside a write transaction
+try! realm.write {
+    // Get the permission user for the sync user that is currently logged in.
+    let user = realm.object(ofType: PermissionUser.self, forPrimaryKey: SyncUser.current!.identity!)!
+
+    let person = getPerson()
+
+    // Create a new permission object for the user's private role and
+    // add it to the objects permissions
+    let permissions = person.permissions.findOrCreate(forRole: user.role)
+    permissions.canRead = true
+    permissions.canUpdate = true
+    permissions.canDelete = true
+    permissions.canSetPermissions = true
+}
+```
 {% endtab %}
 
 {% tab title="Objective-C" %}
-Your content goes here.
+```objectivec
+// Example of restricting the object to the user creating it.
+ 
+// Permissions must be modified inside a write transaction
+[realm transactionWithBlock:^{
+    // Get the permission user for the sync user that is currently logged in.
+    RLMPermissionUser *user = [RLMPermissionUser userInRealm:realm withIdentity:RLMSyncUser.currentUser.identity];
+
+    Person *person = getPerson();
+
+    // Create a new permission object for the user's private role and
+    // add it to the objects permissions
+    RLMPermission *permission = [RLMPermission permissionForRoleNamed:readOnlyRole.name onObject:person realm:realm];
+    permissions.canRead = YES;
+    permissions.canUpdate = YES;
+    permissions.canDelete = YES;
+    permissions.canSetPermissions = YES;
+}];
+```
 {% endtab %}
 
 {% tab title="Java" %}
