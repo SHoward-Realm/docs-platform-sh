@@ -91,7 +91,7 @@ These permissions are modeled using normal Realm Objects and can be edited the f
 // Permissions must be modified inside a write transaction
 try! realm.write {
     // Create the role
-    let readOnlyRole = realm.create(Role.self, value: ["read-only"])
+    let readOnlyRole = realm.create(PermissionRole.self, value: ["read-only"])
      
     // Add the user to the role
     let user = getUser()
