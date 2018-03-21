@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-7 0 1e3 1e3" width="1000" height="1000">
+  <defs>
+    <font-face font-family="Effra" font-size="40" panose-1="2 11 6 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-95" underline-thickness="51" slope="0" x-height="465" cap-height="667" ascent="934.0057" descent="-253.9978" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Effra-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Effra" font-size="20" panose-1="2 11 6 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-95" underline-thickness="51" slope="0" x-height="465" cap-height="667" ascent="934.0057" descent="-253.9978" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Effra-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Effra" font-size="12" panose-1="2 11 6 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-95" underline-thickness="51" slope="0" x-height="465" cap-height="667" ascent="934.0057" descent="-253.9978" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Effra-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Effra" font-size="16" panose-1="2 11 6 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-95" underline-thickness="51" slope="0" x-height="465" cap-height="667" ascent="934.0057" descent="-253.9978" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Effra-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -3 6 6" markerWidth="6" markerHeight="6" color="#6fc684">
+      <g>
+        <path d="M 3.2 0 L 0 -1.2 L 0 1.2 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker_2" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -3 6 6" markerWidth="6" markerHeight="6" color="#f53825">
+      <g>
+        <path d="M 3.2 0 L 0 -1.2 L 0 1.2 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Effra" font-size="24" panose-1="2 11 6 3 2 2 3 2 2 4" units-per-em="1000" underline-position="-95" underline-thickness="51" slope="0" x-height="465" cap-height="667" ascent="934.0057" descent="-253.9978" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Effra-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Effra" font-size="24" panose-1="2 11 6 3 2 2 3 9 2 4" units-per-em="1000" underline-position="-95" underline-thickness="51" slope="-458.33333" x-height="465" cap-height="667" ascent="934.0057" descent="-253.9978" font-style="italic" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Effra-Italic"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker_3" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -3 6 6" markerWidth="6" markerHeight="6" color="#39477f">
+      <g>
+        <path d="M 3.2 0 L 0 -1.2 L 0 1.2 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker_4" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -3 6 6" markerWidth="6" markerHeight="6" color="#39477f">
+      <g>
+        <path d="M 3.2 0 L 0 -1.2 L 0 1.2 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.7.1 
+    <dc:date>2018-03-09 01:16:49 +0000</dc:date>
+  </metadata>
+  <g id="Canvas_1" fill-opacity="1" stroke-dasharray="none" stroke="none" stroke-opacity="1" fill="none">
+    <title>Canvas 1</title>
+    <rect fill="white" x="-7" y="0" width="1e3" height="1e3"/>
+    <g id="Canvas_1: Layer 1">
+      <title>Layer 1</title>
+      <g id="Graphic_52">
+        <rect x="771" y="749" width="115" height="238" id="path"/>
+        <clipPath id="clip_path">
+          <use xl:href="#path"/>
+        </clipPath>
+        <g clip-path="url(#clip_path)">
+          <image xl:href="image5.pdf" width="115" height="238" transform="translate(771 749)"/>
+        </g>
+      </g>
+      <g id="Graphic_49">
+        <rect x="618" y="84" width="222" height="252" id="path_2"/>
+        <clipPath id="clip_path_2">
+          <use xl:href="#path_2"/>
+        </clipPath>
+        <g clip-path="url(#clip_path_2)">
+          <image xl:href="image3.pdf" width="222" height="252" transform="translate(618 84)"/>
+        </g>
+      </g>
+      <g id="Graphic_6">
+        <text transform="translate(32 6)" fill="black">
+          <tspan font-family="Effra" font-size="40" font-weight="400" fill="black" x="15.16" y="37">Path-level Permissions</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7">
+        <text transform="translate(541 6)" fill="black">
+          <tspan font-family="Effra" font-size="40" font-weight="400" fill="black" x="6.94" y="37">Finer-grain Permissions</tspan>
+        </text>
+      </g>
+      <g id="Line_9">
+        <path d="M 486 0 L 486 1003 L 934 1102" stroke="#9a9ba5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.0,8.0" stroke-width="2"/>
+      </g>
+      <g id="Group_10">
+        <title>_x37_91-warning_x40_2x.png</title>
+        <g id="Group_11">
+          <g id="Graphic_12">
+            <path d="M 293.74 438.031 L 293.754 438.023 L 267.723 389.961 L 267.706 389.971 C 267.356 389.392 266.727 389 266 389 C 265.274 389 264.644 389.392 264.293 389.971 L 264.276 389.961 L 238.246 438.023 L 238.261 438.031 C 238.1 438.32 238 438.646 238 439 C 238 440.104 238.896 441 240 441 L 292 441 C 293.104 441 294 440.104 294 439 C 294 438.646 293.9 438.32 293.74 438.031 Z M 290 439 L 289 439 L 243 439 L 242 439 L 240 439 L 266 390.979 L 292 439 Z M 262 409 L 264 423 C 264 424.104 264.896 425 266 425 C 267.104 425 268 424.104 268 423 L 270 409 C 270 407.896 269.104 407 268 407 L 264 407 C 262.896 407 262 407.896 262 409 Z M 266 423 L 264 409 L 268 409 Z M 266 427 C 263.791 427 262 428.791 262 431 C 262 433.209 263.791 435 266 435 C 268.209 435 270 433.209 270 431 C 270 428.791 268.209 427 266 427 Z M 266 433 C 264.896 433 264 432.104 264 431 C 264 429.896 264.896 429 266 429 C 267.104 429 268 429.896 268 431 C 268 432.104 267.104 433 266 433 Z" fill="#f53825"/>
+          </g>
+        </g>
+      </g>
+      <g id="Graphic_13">
+        <path d="M 153.2 582 L 298.8 582 C 316.0224 582 330 595.216 330 611.5 C 330 627.784 316.0224 641 298.8 641 L 153.2 641 C 135.9776 641 122 627.784 122 611.5 C 122 595.216 135.9776 582 153.2 582 Z" fill="#39477f"/>
+        <text transform="translate(147.8 592.5)" fill="white">
+          <tspan font-family="Effra" font-size="20" font-weight="400" fill="white" x="34.76" y="19">Path-level</tspan>
+          <tspan font-family="Effra" font-size="12" font-weight="400" fill="white" x="23.714" y="35">Access Control Layer</tspan>
+        </text>
+      </g>
+      <g id="Group_18">
+        <title>_x37_46-plus-circle_x40_2x.png</title>
+        <g id="Group_19">
+          <g id="Graphic_20">
+            <path d="M 832.5871 474.783 L 829.3041 471.5 L 832.5871 468.217 C 832.7265 468.0776 832.7267 467.8516 832.5871 467.71193 C 832.4474 467.5723 832.2214 467.5725 832.082 467.71193 L 828.799 470.9949 L 825.516 467.71193 C 825.3763 467.5723 825.1506 467.5723 825.0109 467.71193 C 824.8713 467.8516 824.8713 468.07735 825.0109 468.217 L 828.2939 471.5 L 825.0109 474.783 C 824.8713 474.92265 824.8713 475.1484 825.0109 475.2881 C 825.1506 475.4277 825.3763 475.4277 825.516 475.2881 L 828.799 472.0051 L 832.082 475.2881 C 832.2216 475.4277 832.4474 475.4277 832.5871 475.2881 C 832.7267 475.1484 832.7267 474.92265 832.5871 474.783 Z M 835.8701 464.42893 C 831.9648 460.5237 825.6332 460.5237 821.7279 464.42893 C 817.8227 468.3342 817.8227 474.6658 821.7279 478.57107 C 825.6332 482.4763 831.9648 482.4763 835.8701 478.57107 C 839.7753 474.6658 839.7753 468.3342 835.8701 464.42893 Z M 822.233 478.066 C 818.6068 474.4398 818.6068 468.5602 822.233 464.934 C 825.8592 461.3078 831.7388 461.3078 835.365 464.934 C 838.9912 468.5602 838.9912 474.4398 835.365 478.066 C 831.7388 481.6922 825.8592 481.6922 822.233 478.066 Z" fill="#f53825"/>
+          </g>
+        </g>
+      </g>
+      <g id="Graphic_21">
+        <text transform="translate(821 461.5)" fill="#f53825">
+          <tspan font-family="Effra" font-size="16" font-weight="400" fill="#f53825" x="21.412" y="15">Rejected by ACL</tspan>
+        </text>
+      </g>
+      <g id="Line_22">
+        <line x1="160" y1="582" x2="160" y2="327.9" marker-end="url(#FilledArrow_Marker)" stroke="#6fc684" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Line_23">
+        <line x1="267" y1="582" x2="267" y2="468.9" marker-end="url(#FilledArrow_Marker_2)" stroke="#f53825" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Graphic_24">
+        <rect x="115" y="84" width="222" height="252" id="path_3"/>
+        <clipPath id="clip_path_3">
+          <use xl:href="#path_3"/>
+        </clipPath>
+        <g clip-path="url(#clip_path_3)">
+          <image xl:href="image3.pdf" width="222" height="252" transform="translate(115 84)"/>
+        </g>
+      </g>
+      <g id="Graphic_25">
+        <rect x="128" y="237" width="64" height="72" id="path_4"/>
+        <clipPath id="clip_path_4">
+          <use xl:href="#path_4"/>
+        </clipPath>
+        <g clip-path="url(#clip_path_4)">
+          <image xl:href="image4.pdf" width="64" height="72" transform="translate(128 237)"/>
+        </g>
+      </g>
+      <g id="Graphic_26">
+        <text transform="translate(197 259)" fill="#1c233f">
+          <tspan font-family="Effra" font-size="24" font-weight="400" fill="#1c233f" x=".404" y="22">/~/myRealm</tspan>
+        </text>
+      </g>
+      <g id="Graphic_27">
+        <rect x="171" y="749" width="115" height="238" id="path_5"/>
+        <clipPath id="clip_path_5">
+          <use xl:href="#path_5"/>
+        </clipPath>
+        <g clip-path="url(#clip_path_5)">
+          <image xl:href="image5.pdf" width="115" height="238" transform="translate(171 749)"/>
+        </g>
+      </g>
+      <g id="Graphic_28">
+        <rect x="128" y="158" width="64" height="72" id="path_6"/>
+        <clipPath id="clip_path_6">
+          <use xl:href="#path_6"/>
+        </clipPath>
+        <g clip-path="url(#clip_path_6)">
+          <image xl:href="image4.pdf" width="64" height="72" transform="translate(128 158)"/>
+        </g>
+      </g>
+      <g id="Graphic_29">
+        <text transform="translate(196 180)" fill="#1c233f">
+          <tspan font-family="Effra" font-size="24" font-weight="400" fill="#1c233f" x=".72" y="22">/globalRealm</tspan>
+        </text>
+      </g>
+      <g id="Graphic_30">
+        <rect x="194" y="873" width="64" height="72" id="path_7"/>
+        <clipPath id="clip_path_7">
+          <use xl:href="#path_7"/>
+        </clipPath>
+        <g clip-path="url(#clip_path_7)">
+          <image xl:href="image4.pdf" width="64" height="72" transform="translate(194 873)"/>
+        </g>
+      </g>
+      <g id="Graphic_31">
+        <rect x="194" y="794" width="64" height="72" id="path_8"/>
+        <clipPath id="clip_path_8">
+          <use xl:href="#path_8"/>
+        </clipPath>
+        <g clip-path="url(#clip_path_8)">
+          <image xl:href="image4.pdf" width="64" height="72" transform="translate(194 794)"/>
+        </g>
+      </g>
+      <g id="Group_35">
+        <title>_x37_91-warning_x40_2x.png</title>
+        <g id="Group_36">
+          <g id="Graphic_37">
+            <path d="M 832.74 427.031 L 832.754 427.023 L 806.723 378.961 L 806.706 378.971 C 806.356 378.392 805.727 378 805 378 C 804.274 378 803.644 378.392 803.293 378.971 L 803.276 378.961 L 777.246 427.023 L 777.261 427.031 C 777.1 427.32 777 427.646 777 428 C 777 429.104 777.896 430 779 430 L 831 430 C 832.104 430 833 429.104 833 428 C 833 427.646 832.9 427.32 832.74 427.031 Z M 829 428 L 828 428 L 782 428 L 781 428 L 779 428 L 805 379.979 L 831 428 Z M 801 398 L 803 412 C 803 413.104 803.896 414 805 414 C 806.104 414 807 413.104 807 412 L 809 398 C 809 396.896 808.104 396 807 396 L 803 396 C 801.896 396 801 396.896 801 398 Z M 805 412 L 803 398 L 807 398 Z M 805 416 C 802.791 416 801 417.791 801 420 C 801 422.209 802.791 424 805 424 C 807.209 424 809 422.209 809 420 C 809 417.791 807.209 416 805 416 Z M 805 422 C 803.896 422 803 421.104 803 420 C 803 418.896 803.896 418 805 418 C 806.104 418 807 418.896 807 420 C 807 421.104 806.104 422 805 422 Z" fill="#f53825"/>
+          </g>
+        </g>
+      </g>
+      <g id="Graphic_38">
+        <path d="M 757.2 656 L 902.8 656 C 920.0224 656 934 669.216 934 685.5 C 934 701.784 920.0224 715 902.8 715 L 757.2 715 C 739.9776 715 726 701.784 726 685.5 C 726 669.216 739.9776 656 757.2 656 Z" fill="#39477f"/>
+        <text transform="translate(751.8 666.5)" fill="white">
+          <tspan font-family="Effra" font-size="20" font-weight="400" fill="white" x="27.79" y="19">Realm-level</tspan>
+          <tspan font-family="Effra" font-size="12" font-weight="400" fill="white" x="23.714" y="35">Access Control Layer</tspan>
+        </text>
+      </g>
+      <g id="Line_47">
+        <line x1="682.8889" y1="390" x2="682.8889" y2="307.9" marker-end="url(#FilledArrow_Marker)" stroke="#6fc684" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Graphic_50">
+        <rect x="630" y="170" width="105.77778" height="119" id="path_9"/>
+        <clipPath id="clip_path_9">
+          <use xl:href="#path_9"/>
+        </clipPath>
+        <g clip-path="url(#clip_path_9)">
+          <image xl:href="image4.pdf" width="64" height="72" transform="translate(630 170) scale(1.6527778)"/>
+        </g>
+      </g>
+      <g id="Graphic_54">
+        <text transform="translate(746 217)" fill="#1c233f">
+          <tspan font-family="Effra" font-size="24" font-weight="400" fill="#1c233f" x=".692" y="22">/default</tspan>
+        </text>
+      </g>
+      <g id="Graphic_55">
+        <rect x="794" y="832" width="64" height="72" id="path_10"/>
+        <clipPath id="clip_path_10">
+          <use xl:href="#path_10"/>
+        </clipPath>
+        <g clip-path="url(#clip_path_10)">
+          <image xl:href="image4.pdf" width="64" height="72" transform="translate(794 832)"/>
+        </g>
+      </g>
+      <g id="Line_56">
+        <line x1="766" y1="655" x2="766.7546" y2="596.8984" marker-end="url(#FilledArrow_Marker)" stroke="#6fc684" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Graphic_57">
+        <text transform="translate(291 832)" fill="#1c233f">
+          <tspan font-family="Effra" font-size="24" font-style="italic" font-weight="400" fill="#1c233f" x="5.256" y="22">Multi-Realm Sync </tspan>
+          <tspan font-family="Effra" font-size="24" font-style="italic" font-weight="400" fill="#1c233f" x="47.664" y="50">via Paths</tspan>
+        </text>
+      </g>
+      <g id="Graphic_58">
+        <path d="M 656.2 519 L 801.8 519 C 819.0224 519 833 532.216 833 548.5 C 833 564.784 819.0224 578 801.8 578 L 656.2 578 C 638.9776 578 625 564.784 625 548.5 C 625 532.216 638.9776 519 656.2 519 Z" fill="#4c60ae"/>
+        <text transform="translate(650.8 529.5)" fill="white">
+          <tspan font-family="Effra" font-size="20" font-weight="400" fill="white" x="31.15" y="19">Class-level</tspan>
+          <tspan font-family="Effra" font-size="12" font-weight="400" fill="white" x="23.714" y="35">Access Control Layer</tspan>
+        </text>
+      </g>
+      <g id="Graphic_59">
+        <path d="M 541.2 387 L 686.8 387 C 704.0224 387 718 400.216 718 416.5 C 718 432.784 704.0224 446 686.8 446 L 541.2 446 C 523.9776 446 510 432.784 510 416.5 C 510 400.216 523.9776 387 541.2 387 Z" fill="#6580e6"/>
+        <text transform="translate(535.8 397.5)" fill="white">
+          <tspan font-family="Effra" font-size="20" font-weight="400" fill="white" x="24.96" y="19">Object-level</tspan>
+          <tspan font-family="Effra" font-size="12" font-weight="400" fill="white" x="23.714" y="35">Access Control Layer</tspan>
+        </text>
+      </g>
+      <g id="Line_60">
+        <line x1="803" y1="517.5" x2="803.753" y2="459.8984" marker-end="url(#FilledArrow_Marker_2)" stroke="#f53825" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Line_61">
+        <line x1="718" y1="409" x2="763.1023" y2="408.2953" marker-end="url(#FilledArrow_Marker_2)" stroke="#f53825" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Line_62">
+        <path d="M 879 655 C 879 521 804 509 803.5782 473.26537" stroke="#f53825" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Line_63">
+        <line x1="683" y1="518" x2="683.7375" y2="464.8982" marker-end="url(#FilledArrow_Marker)" stroke="#6fc684" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Group_64">
+        <title>_x38_88-checkmark_x40_2x.png</title>
+        <g id="Group_65">
+          <g id="Graphic_66">
+            <path d="M 659.64286 618.7857 C 659.5443 618.7857 659.455 618.8257 659.39036 618.8907 L 653.9286 624.35214 L 650.60964 621.0332 C 650.545 620.9686 650.4557 620.9286 650.35714 620.9286 C 650.16 620.9286 650 621.0886 650 621.2857 C 650 621.3843 650.04 621.4736 650.10464 621.5382 L 653.6761 625.10964 C 653.7407 625.17464 653.83 625.2143 653.9286 625.2143 C 654.02714 625.2143 654.1164 625.17464 654.1811 625.10964 L 659.89536 619.3957 C 659.96 619.3307 660 619.2414 660 619.14286 C 660 618.94536 659.84036 618.7857 659.64286 618.7857 Z M 656.4286 612 L 653.5714 612 C 647.14286 612 645 614.14286 645 620.5714 L 645 623.4286 C 645 629.85714 647.14286 632 653.5714 632 L 656.4286 632 C 662.85714 632 665 629.85714 665 623.4286 L 665 620.5714 C 665 614.14286 662.85714 612 656.4286 612 Z M 664.2857 623.3268 C 664.2857 629.2961 662.2961 631.2857 656.3268 631.2857 L 653.6736 631.2857 C 647.7039 631.2857 645.7143 629.2961 645.7143 623.3268 L 645.7143 620.6736 C 645.7143 614.7039 647.7039 612.7143 653.6736 612.7143 L 656.3268 612.7143 C 662.2961 612.7143 664.2857 614.7039 664.2857 620.6736 Z" fill="#6fc684"/>
+          </g>
+        </g>
+      </g>
+      <g id="Graphic_67">
+        <text transform="translate(650 612.5)" fill="#6fc684">
+          <tspan font-family="Effra" font-size="16" font-weight="400" fill="#6fc684" x="19.352" y="15">Passed ACL</tspan>
+        </text>
+      </g>
+      <g id="Group_81">
+        <title>_x38_88-checkmark_x40_2x.png</title>
+        <g id="Group_82">
+          <g id="Graphic_83">
+            <path d="M 578.14286 483.7857 C 578.0443 483.7857 577.955 483.8257 577.89036 483.8907 L 572.4286 489.35214 L 569.10964 486.0332 C 569.045 485.9686 568.9557 485.9286 568.85714 485.9286 C 568.66 485.9286 568.5 486.0886 568.5 486.2857 C 568.5 486.3843 568.54 486.4736 568.60464 486.5382 L 572.1761 490.10964 C 572.2407 490.17464 572.33 490.2143 572.4286 490.2143 C 572.52714 490.2143 572.6164 490.17464 572.6811 490.10964 L 578.39536 484.3957 C 578.46 484.3307 578.5 484.2414 578.5 484.14286 C 578.5 483.94536 578.34036 483.7857 578.14286 483.7857 Z M 574.9286 477 L 572.0714 477 C 565.64286 477 563.5 479.14286 563.5 485.5714 L 563.5 488.4286 C 563.5 494.85714 565.64286 497 572.0714 497 L 574.9286 497 C 581.35714 497 583.5 494.85714 583.5 488.4286 L 583.5 485.5714 C 583.5 479.14286 581.35714 477 574.9286 477 Z M 582.7857 488.3268 C 582.7857 494.2961 580.7961 496.2857 574.8268 496.2857 L 572.1736 496.2857 C 566.2039 496.2857 564.2143 494.2961 564.2143 488.3268 L 564.2143 485.6736 C 564.2143 479.7039 566.2039 477.7143 572.1736 477.7143 L 574.8268 477.7143 C 580.7961 477.7143 582.7857 479.7039 582.7857 485.6736 Z" fill="#6fc684"/>
+          </g>
+        </g>
+      </g>
+      <g id="Graphic_84">
+        <text transform="translate(568.5 477.5)" fill="#6fc684">
+          <tspan font-family="Effra" font-size="16" font-weight="400" fill="#6fc684" x="19.352" y="15">Passed ACL</tspan>
+        </text>
+      </g>
+      <g id="Group_85">
+        <title>_x38_88-checkmark_x40_2x.png</title>
+        <g id="Group_86">
+          <g id="Graphic_87">
+            <path d="M 572.64286 356.2857 C 572.5443 356.2857 572.455 356.3257 572.39036 356.3907 L 566.9286 361.85214 L 563.60964 358.5332 C 563.545 358.46857 563.4557 358.42857 563.35714 358.42857 C 563.16 358.42857 563 358.58857 563 358.7857 C 563 358.8843 563.04 358.97357 563.10464 359.0382 L 566.6761 362.60964 C 566.7407 362.67464 566.83 362.7143 566.9286 362.7143 C 567.02714 362.7143 567.1164 362.67464 567.1811 362.60964 L 572.89536 356.8957 C 572.96 356.8307 573 356.74143 573 356.64286 C 573 356.44536 572.84036 356.2857 572.64286 356.2857 Z M 569.4286 349.5 L 566.5714 349.5 C 560.14286 349.5 558 351.64286 558 358.07143 L 558 360.92857 C 558 367.35714 560.14286 369.5 566.5714 369.5 L 569.4286 369.5 C 575.85714 369.5 578 367.35714 578 360.92857 L 578 358.07143 C 578 351.64286 575.85714 349.5 569.4286 349.5 Z M 577.2857 360.8268 C 577.2857 366.79607 575.2961 368.7857 569.3268 368.7857 L 566.6736 368.7857 C 560.7039 368.7857 558.7143 366.79607 558.7143 360.8268 L 558.7143 358.17357 C 558.7143 352.20393 560.7039 350.2143 566.6736 350.2143 L 569.3268 350.2143 C 575.2961 350.2143 577.2857 352.20393 577.2857 358.17357 Z" fill="#6fc684"/>
+          </g>
+        </g>
+      </g>
+      <g id="Graphic_88">
+        <text transform="translate(563 350)" fill="#6fc684">
+          <tspan font-family="Effra" font-size="16" font-weight="400" fill="#6fc684" x="19.352" y="15">Passed ACL</tspan>
+        </text>
+      </g>
+      <g id="Group_89">
+        <title>_x38_88-checkmark_x40_2x.png</title>
+        <g id="Group_90">
+          <g id="Graphic_91">
+            <path d="M 52.64286 461.7857 C 52.544286 461.7857 52.455 461.8257 52.39036 461.8907 L 46.92857 467.35214 L 43.609643 464.0332 C 43.545 463.96857 43.455714 463.92857 43.357143 463.92857 C 43.16 463.92857 43 464.08857 43 464.2857 C 43 464.3843 43.04 464.47357 43.104643 464.5382 L 46.67607 468.10964 C 46.740714 468.17464 46.83 468.2143 46.92857 468.2143 C 47.027143 468.2143 47.11643 468.17464 47.18107 468.10964 L 52.89536 462.3957 C 52.96 462.3307 53 462.24143 53 462.14286 C 53 461.94536 52.84036 461.7857 52.64286 461.7857 Z M 49.42857 455 L 46.57143 455 C 40.142857 455 38 457.14286 38 463.57143 L 38 466.42857 C 38 472.85714 40.142857 475 46.57143 475 L 49.42857 475 C 55.85714 475 58 472.85714 58 466.42857 L 58 463.57143 C 58 457.14286 55.85714 455 49.42857 455 Z M 57.285714 466.3268 C 57.285714 472.29607 55.29607 474.2857 49.326786 474.2857 L 46.67357 474.2857 C 40.70393 474.2857 38.714286 472.29607 38.714286 466.3268 L 38.714286 463.67357 C 38.714286 457.70393 40.70393 455.7143 46.67357 455.7143 L 49.326786 455.7143 C 55.29607 455.7143 57.285714 457.70393 57.285714 463.67357 Z" fill="#6fc684"/>
+          </g>
+        </g>
+      </g>
+      <g id="Graphic_92">
+        <text transform="translate(43 455.5)" fill="#6fc684">
+          <tspan font-family="Effra" font-size="16" font-weight="400" fill="#6fc684" x="19.352" y="15">Passed ACL</tspan>
+        </text>
+      </g>
+      <g id="Group_93">
+        <title>_x37_46-plus-circle_x40_2x.png</title>
+        <g id="Group_94">
+          <g id="Graphic_95">
+            <path d="M 296.58706 519.783 L 293.30407 516.5 L 296.58706 513.217 C 296.72646 513.0776 296.7267 512.8516 296.58706 512.7119 C 296.4474 512.5723 296.2214 512.5725 296.082 512.7119 L 292.799 515.9949 L 289.516 512.7119 C 289.37634 512.5723 289.15057 512.5723 289.01092 512.7119 C 288.87126 512.8516 288.87126 513.07735 289.01092 513.217 L 292.2939 516.5 L 289.01092 519.783 C 288.87126 519.92265 288.87126 520.1484 289.01092 520.2881 C 289.15057 520.4277 289.37634 520.4277 289.516 520.2881 L 292.799 517.0051 L 296.082 520.2881 C 296.22164 520.4277 296.4474 520.4277 296.58706 520.2881 C 296.7267 520.1484 296.7267 519.92265 296.58706 519.783 Z M 299.87006 509.42893 C 295.9648 505.5237 289.63317 505.5237 285.72792 509.42893 C 281.82267 513.3342 281.82267 519.6658 285.72792 523.57107 C 289.63317 527.4763 295.9648 527.4763 299.87006 523.57107 C 303.7753 519.6658 303.7753 513.3342 299.87006 509.42893 Z M 286.233 523.066 C 282.6068 519.4398 282.6068 513.5602 286.233 509.934 C 289.8592 506.3078 295.7388 506.3078 299.36498 509.934 C 302.99118 513.5602 302.99118 519.4398 299.36498 523.066 C 295.7388 526.6922 289.8592 526.6922 286.233 523.066 Z" fill="#f53825"/>
+          </g>
+        </g>
+      </g>
+      <g id="Graphic_96">
+        <text transform="translate(285 506.5)" fill="#f53825">
+          <tspan font-family="Effra" font-size="16" font-weight="400" fill="#f53825" x="21.412" y="15">Rejected by ACL</tspan>
+        </text>
+      </g>
+      <g id="Line_97">
+        <line x1="226.1915" y1="794" x2="226.89947" y2="660.8997" marker-end="url(#FilledArrow_Marker_3)" stroke="#39477f" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+      <g id="Graphic_98">
+        <text transform="translate(542 832)" fill="#1c233f">
+          <tspan font-family="Effra" font-size="24" font-style="italic" font-weight="400" fill="#1c233f" x="34.188" y="22">Partial Sync</tspan>
+          <tspan font-family="Effra" font-size="24" font-style="italic" font-weight="400" fill="#1c233f" x="35.856" y="50">via Queries</tspan>
+        </text>
+      </g>
+      <g id="Line_33">
+        <line x1="826.5882" y1="832" x2="828.1912" y2="733.8975" marker-end="url(#FilledArrow_Marker_4)" stroke="#39477f" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+    </g>
+  </g>
+</svg>
