@@ -12,7 +12,7 @@ description: >-
 {% hint style="danger" %}
 ## This tutorial uses new APIs still in beta.
 
-This tutorial uses a beta version of new Realm APIs. The API may change, and we encourage you to give feedback!
+The API may change, and we encourage you to give feedback!
 {% endhint %}
 
 {% hint style="success" %}

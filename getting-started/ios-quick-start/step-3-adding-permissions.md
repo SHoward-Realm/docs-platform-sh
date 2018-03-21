@@ -8,9 +8,9 @@ description: >-
 # Step 3 - Adding Permissions
 
 {% hint style="danger" %}
-## _This tutorial uses functionality not yet deployed on Realm Cloud._
+## This tutorial uses new APIs still in beta.
 
-This tutorial uses a beta version of new Realm APIs. This code is _**not yet production ready**_ and may not reflect the final API. We will be updating this tutorial as the API and the functionality are made ready for general availability.
+The API may change, and we encourage you to give feedback!
 {% endhint %}
 
 In the previous tutorial we used partial sync to synchronize only projects owned by the current user. However, nothing prevented a malicious user from seeing another user's projects by subscribing with a query that matches a broader set of `Project` instances.
