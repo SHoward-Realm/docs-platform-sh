@@ -148,7 +148,7 @@ By default Nickname authentication is enabled with Cloud
 
 To enable or disable go to the Settings for your instance in the cloud portal:
 
-![](../../.gitbook/assets/image%20%286%29.png)
+![](../../.gitbook/assets/image%20%288%29.png)
 {% endtab %}
 
 {% tab title="Self-Hosted" %}

@@ -43,6 +43,12 @@ We need to create a global Realm that will contain the `Project` and `Item` obje
    4. Select `true` for `mayRead` and `mayWrite` to give read and write permission on this Realm to all authenticated users.
    5. Click on _Create_ to create the permission. This will add it to the list of permissions in the `__admin` Realm.
 
+{% hint style="info" %}
+If you don't see the `__admin` Realm, go to the "View" menu and select "Show System Realms":
+
+![](../../.gitbook/assets/image%20%283%29.png)
+{% endhint %}
+
 You can verify that new `ToDo-permissions` Realm is set up correctly by checking that its ownership is reported as `public R W`.
 
 {% hint style="info" %}

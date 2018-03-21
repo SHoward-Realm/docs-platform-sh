@@ -38,7 +38,7 @@ const token = jwt.sign(payload, { key:  key, passphrase: 'your-passphrase' }, { 
 {% tab title="Cloud" %}
 You can configure the JWT provider in your instance settings. Adjust the _Field Name_ and _Value_ inputs to control what determines that a token is an administrator:
 
-![](../../.gitbook/assets/image%20%283%29.png)
+![](../../.gitbook/assets/image%20%284%29.png)
 {% endtab %}
 
 {% tab title="Self-Hosted" %}
