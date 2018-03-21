@@ -141,6 +141,8 @@ adminUser.changePassword(newPassword, forUserID: "12345...") { (error) in
 {% endtab %}
 
 {% tab title="Objective-C" %}
+### Change Current User's Password
+
 Users who authenticate using the built-in Realm Object Server username/password credential type may change their own passwords by calling the `-[RLMSyncUser changePassword:completion:]` API.
 
 This API makes an asynchronous call to the server. The completion block will be called once a response is received, and will be passed in an error if the operation failed, or nil if the operation succeeded.
@@ -149,6 +151,22 @@ This API makes an asynchronous call to the server. The completion block will be 
 NSString *newPassword = @"swordfish";
 [user changePassword:newPassword
           completion:^(NSError *error) {
+    if (error) {
+        // Something went wrong
+    }
+    // Otherwise, the password was successfully changed.
+}];
+```
+
+### Change Another User's Password {#change-another-user's-password}
+
+Administrators may change the password of any user by calling the `-[RLMSyncUser changePassword:forUserID:completion:]` API. Pass in the user identity of the user whose password should be changed.
+
+```objectivec
+NSString *newPassword = @"swordfish";
+[adminUser changePassword:newPassword
+                forUserId:@"12345..."
+               completion:^(NSError *error) {
     if (error) {
         // Something went wrong
     }
