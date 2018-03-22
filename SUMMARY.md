@@ -75,6 +75,7 @@
       * [Hardware Requirements and Scaling](self-hosted/manage/enterprise-architecture/hardware-requirements-and-scaling.md)
       * [Deployment](self-hosted/manage/enterprise-architecture/deployment.md)
       * [High Availability](self-hosted/manage/enterprise-architecture/high-availability.md)
+      * [Disaster Recovery](self-hosted/manage/enterprise-architecture/disaster-recovery.md)
       * [Monitoring](self-hosted/manage/enterprise-architecture/monitoring.md)
       * [Logging](self-hosted/manage/enterprise-architecture/logging.md)
       * [Backup](self-hosted/manage/enterprise-architecture/backup.md)
