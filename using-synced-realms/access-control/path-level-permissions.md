@@ -80,6 +80,22 @@ user.getGrantedPermissions().then(permissions => {
 {% endtab %}
 
 {% tab title=".Net" %}
+To get a collection of all the Permissions a user has been granted, use the `User.GetGrantedPermissionsAsync` method:
+
+```csharp
+var permissions = await user.GetGrantedPermissionsAsync(Recipient.CurrentUser, millisecondTimeout: 2000);
+
+// Permissions is a regular query
+var writePermissions = permissions.Where(p => p.MayWrite);
+
+// Queries are live and emit notifications
+writePermissions.SubscribeForNotifications((sender, changes, error) =>
+{
+    // handle permission changes
+});
+```
+
+To get permissions granted **by** a user, pass in `Recipient.OtherUser`. The `millisecondTimeout` argument controls the maximum time to wait for response from the server. When the timeout elapses, the last known state is returned, so even if the client is currently offline, some data may still be shown.
 
 {% endtab %}
 {% endtabs %}
@@ -167,7 +183,21 @@ To apply the permission changes for all Realms managed by the user, specify a `r
 {% endtab %}
 
 {% tab title=".Net" %}
+Permission changes can be applied (i.e. granted or revoked) via the `User.ApplyPermissionsAsync` method in order to directly increase or decrease other users’ access to a Realm.
 
+```csharp
+var condition = PermissionCondition.UserId("some-user-id");
+var realmUrl = "realm://my-server.com/~/myRealm";
+await user.ApplyPermissionsAsync(condition, realmUrl, AccessLevel.Read);
+```
+
+There are three factory methods for PermissionCondition:
+
+- `UserId` - use this to apply permissions based on a user’s Identity(the internal Id that Realm generates).
+- `Email` - use this to change permissions by specifying a user’s email (username) in the Username/Password provider.
+- `Default` - use this to apply default permissions that will be granted to all users unless an explicit permission is applied for them. The `AccessLevel` granted alongside this condition will also be used as default access level for future new users.
+
+The last argument controls the AccessLevel that the user will be granted. Higher access implies all lower tiers, e.g. `Write` implies `Read`, `Admin` implies `Read` and `Write`. If `AccessLevel.None` is passed, this will revoke the user’s permissions for this Realm.
 {% endtab %}
 {% endtabs %}
 
@@ -191,7 +221,7 @@ Revoking permissions can either be done by granting a permission value with an a
 {% endtab %}
 
 {% tab title=".Net" %}
-
+Revoking permissions can either be done by granting a permission value with an access level of `AccessLevel.None`.
 {% endtab %}
 {% endtabs %}
 
@@ -305,6 +335,26 @@ Permissions granted by permission offers are additive: if a user has write acces
 {% endtab %}
 
 {% tab title=".Net" %}
+A user can offer permissions to their Realm by sharing the opaque token returned by `OfferPermissionsAsync`:
+
+```csharp
+var realmUrl = "realm://my-server.com/~/myRealm";
+var expiration = DateTimeOffset.UtcNow.AddDays(7);
+var token = await userA.OfferPermissionsAsync(realmUrl, AccessLevel.Write, expiresAt: expiration);
+```
+
+The optional expiresAt argument controls when the offer expires - i.e. using the token after that date will no longer grant permissions to that Realm. Users who have already consumed the token to obtain permissions will not lose their access after that date. If you want to revoke it, use `ApplyPermissionsAsync`.
+
+Once a user has received a token, e.g. by sharing it via messaging app, or scanning a QR code, they can consume it to obtain the permissions offered:
+
+```csharp
+var token = "...";
+var realmUrl = await userB.AcceptPermissionOfferAsync(token);
+
+// Use the realmUrl to open the Realm
+var config = new SyncConfiguration(userB, new Uri(realmUrl));
+var realm = await Realm.GetInstanceAsync(config);
+```
 
 {% endtab %}
 {% endtabs %}
