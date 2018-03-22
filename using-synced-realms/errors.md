@@ -285,7 +285,11 @@ If the token is used to immediately delete the Realm files, all instances of the
 {% endtab %}
 
 {% tab title=". Net" %}
+If a user attempts to perform operations on a Realm for which they do not have appropriate permissions, a permission denied error will be reported. Such an error may occur, for example, if a user attempts to write to a Realm for which they only have read permissions or opens a Realm for which they have no permissions at all.
 
+It is important to note that if a user has only read access to a particular synchronized Realm they must open that Realm asynchronously using the `Realm.GetInstanceAsync` API. Failure to do so will lead to a permission denied error being reported.
+
+A permission denied error will be denoted by the code `ErrorCode.PermissionDenied` and its runtime type will be `PermissionDeniedException`. In all cases, this error indicates that the local copy of the Realm can no longer synchronize with the remote one and will be automatically deleted the next time the application is launched. If you want to perform the deletion immediately so you can reopen the Realm, you can invoke the `PermissionDeniedException.DeleteRealmUserInfo` method with an argument `deleteRealm: true`. Be advised that all references to that Realm must be disposed of prior to invoking the method. If you want to cancel the deletion, you can pass `deleteRealm: false`.
 {% endtab %}
 {% endtabs %}
 
