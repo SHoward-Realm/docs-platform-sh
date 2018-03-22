@@ -4,6 +4,8 @@ description: How to setup disaster recovery
 
 # Disaster Recovery
 
+This guide will go over the process to setup disaster recovery for your Realm Object Server.  To learn about how disaster recovery works at a high level, click [here](high-availability.md#disaster-recovery).  
+
 ## Prerequisites: 
 
 You'll need to install a second cluster just like your first cluster.  You can do this by following the instructions [here](deployment-instructions.md).  
@@ -80,7 +82,39 @@ ubuntu@swg-01-west:~/remoteBackup$ mv sync/ user_data
 ubuntu@swg-01-west:~$ cp -a remoteBackup/. syncWorker/data/
 ```
 
-And that’s it - your sync workers are ready to go. Simply startup the sync worker and other services when you are ready to failover and shift your global load balancer or DNS at the new disaster recovery public IP address. To make a seamless user experience you will want to add a client reset callback in the event that a DR event occurs. See [here](https://realm.io/docs/swift/latest/#client-reset) for more details. 
+And that’s it - your sync workers are ready to go. Simply startup the sync worker and other services when you are ready to failover and shift your global load balancer or DNS at the new disaster recovery public IP address. 
+
+All of the above manual steps can be put into a Bash script that can be executed on a regular basis via a cron job. For instance, below the script grabs the IP address of the host server, checks to see if it is the master, and if it is creates a backup and copies it to the remote sync-worker cluster.
+
+```bash
+#!/usr/bin/sh -eo pipefail
+machineIp=$(ip addr show eth0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
+echo $machineIp
+consul_host="<CONSUL_HOST>"
+consul_response=$(curl -s "http://$consul_host:8500/v1/catalog/service/sync?tag=role=master")
+service_address_regex="\"ServiceAddress\":\\s*\"([^\"]*)\""
+if [[ $consul_response =~ $service_address_regex ]]; then
+   sync_master="${BASH_REMATCH[1]}"
+   echo $sync_master
+   if [[ $sync_master = $machineIp ]]; then
+     echo "I am the master sync-worker : " $sync_master
+    cd ~/syncworker
+    rm -rf backup
+    mkdir -p backup
+    node_modules/realm-object-server/dist/cli.js backup -f data -t backup
+    rsync -avz -e "ssh -i myKey.pem" backup/ ubuntu@<IP_OF_REMOTE_SYNC_WORKER>:syncworker/data/
+    rsync -avz -e "ssh -i myKey.pem" backup/ ubuntu@<IP_OF_REMOTE_SYNC_WORKER>:syncworker/data/
+    rsync -avz -e "ssh -i myKey.pem" backup/ ubuntu@<IP_OF_REMOTE_SYNC_WORKER>:syncworker/data/
+   fi
+else
+   echo "Could not determine the sync master. Consul response follows:"
+   echo $consul_response
+fi
+```
+
+
+
+To make a seamless user experience you will want to add a client reset callback in the event that a DR event occurs. See [here](https://realm.io/docs/swift/latest/#client-reset) for more details. 
 
   
 

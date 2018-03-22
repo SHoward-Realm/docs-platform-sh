@@ -51,14 +51,15 @@ In the event of consul failover the network monitoring tool should trigger a red
 
 ## Disaster Recovery
 
-In the event that an entire datacenter goes down and traffic must be served from a secondary datacenter the operator should make use of Realm’s backup functionality. This backup can be performed at regular intervals on each of the masters of the sync worker group. This backup is zipped and stored as a file in the secondary datacenter. This backup command can be run at regular intervals such as every day, every hour, or even faster by tools such as a cron job.  
+In the event that an entire datacenter goes down and traffic must be served from a secondary datacenter the operator should make use of Realm’s backup functionality. This backup can be performed at regular intervals on each of the masters of the sync worker group. This backup is zipped and stored as a file in the secondary datacenter. This backup command can be run at regular intervals such as every day, every hour, or even faster by tools such as a cron job.
 
+Once failure of a DC has been determined by the network monitoring tool - CM scripts can be used to redeploy the entire ROS cluster as if it were an initial deployment except this time the scripts will use the backup restore functionality and point to the latest backup file. Once this cluster is up the public load balancer can be adjusted to point to the new ROS proxy in the new datacenter.
 
-Once failure of a DC has been determined by the network monitoring tool - CM scripts can be used to redeploy the entire ROS cluster as if it were an initial deployment except this time the scripts will use the backup restore functionality and point to the latest backup file. Once this cluster is up the public load balancer can be adjusted to point to the new ROS proxy in the new datacenter.  
+If downtime must be kept to a minimum the ROS cluster can be kept in a “warm spare” mode where the nodes are ready but not serving traffic.The ROS sync-worker group can always be deployed with the most recent backup once one occurs. Once failure is detected the only thing needed to do is to adjust the forwarding address on the public load balancer.
 
-
-If downtime must be kept to a minimum the ROS cluster can be kept in a “warm spare” mode where the nodes are ready but not serving traffic.The ROS sync-worker group can always be deployed with the most recent backup once one occurs. Once failure is detected the only thing needed to do is to adjust the forwarding address on the public load balancer.**  
-**
+{% hint style="info" %}
+Learn how to set up disaster recovery [here](disaster-recovery.md)! 
+{% endhint %}
 
 ![Disaster Recovery](https://lh6.googleusercontent.com/JmQb8_KsOw0u1QDUJ29B-0pKU8r3P0riUo6rsxF-BwjaDvfJByair-teBr90m8o3Ujyl60qS533nSJ7mcULTakf0sGt5EoY6byJ8Hxjl3Fa3DeHo2ghAJWQvMAChNjlkJdw8jqmO)
 
