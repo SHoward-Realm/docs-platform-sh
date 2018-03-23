@@ -3,7 +3,7 @@
 {% hint style="danger" %}
 ## This tutorial uses new APIs still in beta.
 
-The API may change, and we encourage you to give feedback!
+The API may change, and we encourage you to give [feedback](https://forums.realm.io/t/partial-synchronization-and-object-level-permissions-feedback/1109)!
 {% endhint %}
 
 {% hint style="info" %}
