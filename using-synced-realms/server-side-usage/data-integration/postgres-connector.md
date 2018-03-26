@@ -5,7 +5,8 @@ This guide walks you through how to use Realm’s data adapter to sync data from
 ## Prerequisites:  {#prerequisites:}
 
 * Postgres 9.x \(we recommend using 9.6\)
-* Realm Object Server 2.x \(or higher\)
+* Realm Object Server 2.x \(or higher\) or Realm Cloud
+* A Realm [Feature Token](https://realm.io/trial/realm-professional-edition/) 
 
 ## Postgres {#postgres:}
 
@@ -133,6 +134,10 @@ More information on logical replication in RDS can be found [here](https://aws.a
 You should now be able to connect to the Postgres server remotely. There are various tools you can use online to connect and browse Postgres such as [Postico](https://eggerapps.at/postico/) .
 
 ## Realm Data Adapter {#realm-data-adapter:}
+
+{% hint style="info" %}
+You'll need to contact [sales@realm.io](mailto:sales@realm.io) to receive the Postgres Data Adapter Package file.
+{% endhint %}
 
 Now let’s setup the Realm Data Adapter. We will use a remote CentOS server that has the Realm Object Server installed on it already however the Realm Object Server and the Realm Data Adapter Node process could live on separate machines for scalability and fault tolerance purposes. To see instructions on how to install the Realm Object Server see [here](https://docs.realm.io/platform/v/3.x/self-hosted/installation).
 

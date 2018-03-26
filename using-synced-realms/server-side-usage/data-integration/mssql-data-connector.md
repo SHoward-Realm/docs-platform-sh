@@ -120,7 +120,7 @@ The data adapter relies on a number of components for two way data synchronizati
 ### Setup the Data Adapter Package
 
 {% hint style="info" %}
-You'll need to contact sales@realm.io to receive the MSSQL Data Adapter Package file. In the future, this will be distributed on NPM .
+You'll need to contact [sales@realm.io](mailto:sales@realm.io) to receive the MSSQL Data Adapter Package file.
 {% endhint %}
 
 Find a desirable location on your server and run the following commands from your terminal: 

@@ -1,7 +1,3 @@
----
-description: How to setup disaster recovery
----
-
 # Disaster Recovery
 
 This guide will go over the process to setup disaster recovery for your Realm Object Server.  To learn about how disaster recovery works at a high level, click [here](high-availability.md#disaster-recovery).  

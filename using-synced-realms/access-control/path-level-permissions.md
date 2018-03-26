@@ -30,7 +30,7 @@ Admin users can always read or write from the Realm.
 
 Permissions for a Realm can be set on a _default_ basis and a _per-user_ basis. When a user attempts to sync a Realm, first the server checks to see if there are per-user permissions set for that user on that Realm. If there are no per-user permissions set for that user, the default permissions for the Realm are used. For example, a Realm might have `mayRead` set true by default, with individual users being granted `mayWrite` permissions.
 
-By default, a Realm is exclusive to its owner: the owner has all permissions on it, and no other user has _any _permissions for it. Other users must be explicitly granted access.
+By default, a Realm is exclusive to its owner: the owner has all permissions on it, and no other user has \_any \_permissions for it. Other users must be explicitly granted access.
 
 ## Reading Permissions
 
@@ -63,10 +63,6 @@ To get all the Realms a user has access to, along with the level of access for e
 ```
 {% endtab %}
 
-{% tab title="Java" %}
-
-{% endtab %}
-
 {% tab title="Javascript" %}
 ```javascript
 let user = Realm.Sync.User.current;
@@ -96,7 +92,6 @@ writePermissions.SubscribeForNotifications((sender, changes, error) =>
 ```
 
 To get permissions granted **by** a user, pass in `Recipient.OtherUser`. The `millisecondTimeout` argument controls the maximum time to wait for response from the server. When the timeout elapses, the last known state is returned, so even if the client is currently offline, some data may still be shown.
-
 {% endtab %}
 {% endtabs %}
 
@@ -132,7 +127,6 @@ let permission = SyncPermission(realmPath: realmPath,
 user.apply(permission) { error in
     // ...
 }
-
 ```
 {% endtab %}
 
@@ -164,10 +158,6 @@ RLMSyncPermission *permission = [[RLMSyncPermission alloc] initWithRealmPath:rea
 ```
 {% endtab %}
 
-{% tab title="Java" %}
-
-{% endtab %}
-
 {% tab title="Javascript" %}
 ```javascript
 let user = Realm.Sync.User.current;
@@ -179,11 +169,11 @@ user.applyPermissions(userId, realmPath, 'write').then(permissionChange => {
 });
 ```
 
-To apply the permission changes for all Realms managed by the user, specify a `realmPath` value of `*`. 
+To apply the permission changes for all Realms managed by the user, specify a `realmPath` value of `*`.
 {% endtab %}
 
 {% tab title=".Net" %}
-Permission changes can be applied (i.e. granted or revoked) via the `User.ApplyPermissionsAsync` method in order to directly increase or decrease other users’ access to a Realm.
+Permission changes can be applied \(i.e. granted or revoked\) via the `User.ApplyPermissionsAsync` method in order to directly increase or decrease other users’ access to a Realm.
 
 ```csharp
 var condition = PermissionCondition.UserId("some-user-id");
@@ -193,9 +183,9 @@ await user.ApplyPermissionsAsync(condition, realmUrl, AccessLevel.Read);
 
 There are three factory methods for PermissionCondition:
 
-- `UserId` - use this to apply permissions based on a user’s Identity(the internal Id that Realm generates).
-- `Email` - use this to change permissions by specifying a user’s email (username) in the Username/Password provider.
-- `Default` - use this to apply default permissions that will be granted to all users unless an explicit permission is applied for them. The `AccessLevel` granted alongside this condition will also be used as default access level for future new users.
+* `UserId` - use this to apply permissions based on a user’s Identity\(the internal Id that Realm generates\).
+* `Email` - use this to change permissions by specifying a user’s email \(username\) in the Username/Password provider.
+* `Default` - use this to apply default permissions that will be granted to all users unless an explicit permission is applied for them. The `AccessLevel` granted alongside this condition will also be used as default access level for future new users.
 
 The last argument controls the AccessLevel that the user will be granted. Higher access implies all lower tiers, e.g. `Write` implies `Read`, `Admin` implies `Read` and `Write`. If `AccessLevel.None` is passed, this will revoke the user’s permissions for this Realm.
 {% endtab %}
@@ -212,10 +202,6 @@ Revoking permissions can either be done by granting a permission value with an a
 Revoking permissions can either be done by granting a permission value with an access level of `RLMSyncAccessLevelNone` or by passing a permission value with _any_ level to `-[RLMSyncUser revokePermission:callback:]`.
 {% endtab %}
 
-{% tab title="Java" %}
-
-{% endtab %}
-
 {% tab title="Javascript" %}
 Revoking permissions can either be done by granting a permission value with an access level of `'none'`.
 {% endtab %}
@@ -224,8 +210,6 @@ Revoking permissions can either be done by granting a permission value with an a
 Revoking permissions can either be done by granting a permission value with an access level of `AccessLevel.None`.
 {% endtab %}
 {% endtabs %}
-
-
 
 ### Offering Permissions
 
@@ -326,14 +310,6 @@ Note that a user’s device must be able to communicate with a Realm Object Serv
 Permissions granted by permission offers are additive: if a user has write access to a certain Realm and is offered \(and accepts\) read access to that same Realm, they do not lose their existing write access.
 {% endtab %}
 
-{% tab title="Java" %}
-
-{% endtab %}
-
-{% tab title="Javascript" %}
-
-{% endtab %}
-
 {% tab title=".Net" %}
 A user can offer permissions to their Realm by sharing the opaque token returned by `OfferPermissionsAsync`:
 
@@ -355,6 +331,6 @@ var realmUrl = await userB.AcceptPermissionOfferAsync(token);
 var config = new SyncConfiguration(userB, new Uri(realmUrl));
 var realm = await Realm.GetInstanceAsync(config);
 ```
-
 {% endtab %}
 {% endtabs %}
+
