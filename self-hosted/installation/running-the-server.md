@@ -29,7 +29,5 @@ Once you are ready to go into production with the server you will want to run it
 Click [here](https://docs.realm.io/platform/going-into-production/going-into-production/command-line-interface-for-ros) for more information on the command-line interface for ROS.
 {% endhint %}
 
-## What's next?  [Install Realm Studio]()
-
 Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE)
 
