@@ -167,7 +167,7 @@ SSH to your new CentOS server for the data adapter
 
 You can find the Adapter.js code [here](https://gist.github.com/mgeerling/9cca913539caef4d24f3d7ec6afe3daa).
 
-And we use Config.js to set up your variables [here](https://gist.github.com/ianpward/90504955aabc0f39c0eab45ecbdb859f).
+And we use Config.js to set up your variables [here](https://gist.github.com/mgeerling/81ec8eba70accb0e2feae7155c49d82f).
 
 When in development it may be necessary to reset your environment as you test things. You can use this [Reset.js script](https://gist.github.com/ianpward/6aa25df804a14b4a4d6e7156322a9747) to do so
 

@@ -25,6 +25,7 @@
     * [Data integration](using-synced-realms/server-side-usage/data-integration/README.md)
       * [Postgres Connector](using-synced-realms/server-side-usage/data-integration/postgres-connector.md)
       * [MSSQL Data Connector](using-synced-realms/server-side-usage/data-integration/mssql-data-connector.md)
+    * [Server-side Code Samples](https://github.com/realm/realm-server-side-samples)
   * [Access Control](using-synced-realms/access-control/README.md)
     * [Path-level permissions](using-synced-realms/access-control/path-level-permissions.md)
   * [Monitoring Network Activity](using-synced-realms/monitoring-network-activity.md)
