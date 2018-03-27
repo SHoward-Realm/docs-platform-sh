@@ -166,7 +166,7 @@ The LogService collects logs from the Server process and outputs them to a speci
 
 #### HeathService
 
-The HealthService brings up /health endpoint used to check the health of the server. This is useful to query as part of a monitoring system which could then trigger a redeployment in the case of health failure.
+The HealthService brings up /health endpoint used to check the health of the server. This is useful to query as part of a monitoring system which could then trigger a redeployment in the case of health failure. Health services should be deployed on each sync worker and if all health services go down on a sync worker group and not return a success code then the health service on the proxy will return failure. This is useful for trigger a DR failover. 
 
 #### WelcomeService
 
@@ -283,6 +283,14 @@ You should see in the logs something like:
 info: Realm Object Server has started and is listening on http://0.0.0.0:9080
 Your server is started at 0.0.0.0:9080
 ```
+
+{% hint style="info" %}
+Be sure to add your sync workers and core services to the server's startup boot process. It is recommended to use a process monitor like pm2 to restart the process should it ever go down. If using pm2 then the commands to add the process to startup would be:
+
+`pm2 startup`
+
+`pm2 save`
+{% endhint %}
 
 You can then check the Consul UI to see that all the services are showing as green:
 
