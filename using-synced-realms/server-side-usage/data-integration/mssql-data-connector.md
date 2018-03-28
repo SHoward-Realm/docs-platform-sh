@@ -4,7 +4,7 @@ This guide walks you through how to use Realm’s data adapter to sync data from
 
 ## Requirements {#postgres}
 
-* A Running Instance of the Realm Object Server
+* Realm Object Server 2.x \(or higher\) or Realm Cloud
 * A Realm [Feature Token](https://realm.io/trial/realm-professional-edition/)
 * MSSQL Server 2014 or newer 
 * The ability to enable Change Tracking and Snapshot Isolation on your MSSQL Server
@@ -120,7 +120,7 @@ The data adapter relies on a number of components for two way data synchronizati
 ### Setup the Data Adapter Package
 
 {% hint style="info" %}
-You'll need to contact [sales@realm.io](mailto:sales@realm.io) to receive the MSSQL Data Adapter Package file.
+You'll need to contact [info@realm.io](mailto:sales@realm.io) to receive the MSSQL Data Adapter Package file.
 {% endhint %}
 
 Find a desirable location on your server and run the following commands from your terminal: 
