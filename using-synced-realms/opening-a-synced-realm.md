@@ -27,7 +27,7 @@ For example, to log in, then asynchronously open the default synced Realm with t
 ```swift
 SyncUser.logIn(with: credentials, server: serverURL) { user, error in
     if let user = user {
-        Realm.Configuration.defaultConfiguration = SyncC onfiguration.automatic()
+        Realm.Configuration.defaultConfiguration = SyncConfiguration.automatic()
         Realm.asyncOpen() { realm in
             // ...
         }
