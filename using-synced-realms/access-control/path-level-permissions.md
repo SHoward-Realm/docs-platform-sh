@@ -64,7 +64,36 @@ To get all the Realms a user has access to, along with the level of access for e
 {% endtab %}
 
 {% tab title="Java" %}
+To get a collection of all the Permissions a user has been granted, use the `getPermissions(callback)`method:
 
+```java
+PermissionManager pm = user.getPermissionManager();
+
+// Retrieve 
+pm.getPermissions(new PermissionManager.PermissionsCallback() {
+    @Override
+    public void onSuccess(RealmResults<Permission> permissions) {
+
+        // Permissions can be queried like normal
+        Permission p = permissions.where().equalTo("path", realmPath).findFirst();
+
+        // Changelisteners can be registered 
+        // The PermissionManager keeps a reference to these as long as the Permission Manager
+        // is open, so they do not risk getting GC'ed
+        permissions.addChangeListener(new RealmChangeListener() {
+            @Override
+            public void onChange(RealmResults<Permission> permissions) {
+                // Permissions changed
+            }
+        });
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+        // handle error  
+    }
+});
+```
 {% endtab %}
 
 {% tab title="Javascript" %}
@@ -163,7 +192,32 @@ RLMSyncPermission *permission = [[RLMSyncPermission alloc] initWithRealmPath:rea
 {% endtab %}
 
 {% tab title="Java" %}
+Permission changes can be applied \(i.e. granted or revoked\) via the `applyPermissions(permissionRequest, callback)` method in order to directly increase or decrease other users’ access to a Realm.
 
+```java
+PermissionManager pm = user.getPermissionManager();
+
+// Create request
+UserCondition condition = UserCondition.userId(user.getIdentity());
+AccessLevel accessLevel = AccessLevel.WRITE;
+PermissionRequest request = new PermissionRequest(condition, url, accessLevel);
+
+pm.applyPermissions(request, new PermissionManager.ApplyPermissionsCallback() {
+    @Override
+    public void onSucesss() {
+        // Permissions where succesfully changed
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+        // Something went wrong
+    }
+});
+```
+
+`UserCondition` specifies which users are effected and has 3 factory methods: - `userId()` - use this to apply permissions based on a user’s [Identity](https://realm.io/docs/java/latest/api/io/realm/SyncUser.html#getIdentity--)\(the internal Id that Realm generates\). - `userName()` - use this to change permissions by specifying a user’s username in the [Username/Password](https://realm.io/docs/realm-object-server/latest/#usernamepassword) provider. This is normally their email address. - `nonExistingPermissions()` - use this to apply the permissions to all users not already having access to the Realm. This can e.g. be useful to give everyone read access to a Realm without having to enumerate them.
+
+The last argument controls the [AccessLevel](https://realm.io/docs/java/latest/api/io/realm/permissions/AccessLevel.html) that the user will be granted. Higher access implies all lower tiers, e.g. `WRITE` implies `READ`, `ADMIN` implies `READ` and `WRITE`.
 {% endtab %}
 
 {% tab title="Javascript" %}
@@ -211,7 +265,7 @@ Revoking permissions can either be done by granting a permission value with an a
 {% endtab %}
 
 {% tab title="Java" %}
-
+If `AccessLevel.NONE` is passed, this will revoke the user’s permissions for this Realm.
 {% endtab %}
 
 {% tab title="Javascript" %}
@@ -323,7 +377,78 @@ Permissions granted by permission offers are additive: if a user has write acces
 {% endtab %}
 
 {% tab title="Java" %}
+In some situations you want to grant permissions to users, but either you don’t know who they are or perhaps you want to extend the offer through a different channel like email. Examples are scanning a QR code or sending access over an email.
 
+In those cases, you can create a permission offer token that represents the intent of getting access, but access is not given until the receiver accepts the token.
+
+A user can create this opaque token returned by `makeOffer(offer, callback)`:
+
+```java
+PermissionManager pm = user.getPermissionManager();
+
+// Create Offer
+String realmUrl = "realm://my-server.com/~/myRealm";
+Date expiresAt = new Date(2017, 08, 25);
+AccessLevel accessLevel = AccessLevel.READ;
+PermissionOffer offer = new PermissionOffer(realmUrl, accessLevel, expiresAt);
+
+// Accept token
+pm.makeOffer(offer, new PermissionManager.MakeOfferCallback() {
+    @Override
+    public void onSucces(String token) {
+        // Send token to other users
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+        // An error happened
+    }
+});
+```
+
+The optional `expiresAt` argument controls when the offer expires - i.e. using the token after that date will no longer grant permissions to that Realm. You can also revoke the token manually using `revokeOffer(token, callback)`.
+
+Users who have already consumed the token to obtain permissions will not lose their access if the token is revoked or expires.
+
+Once a user has received a token they can consume it to obtain the permissions offered:
+
+```java
+PermissionManager pm = user.getPermissionManager();
+
+String token = getToken();
+var realmUrl = pm.acceptOffer(token,  new PermissionManager.AcceptOfferCallback() {
+    @Override
+    public void onSucces(String realmUrl, Permission permission) {
+        // User can now access the Realm
+        SyncConfiguration config = new SyncConfiguration.Builder(realmUrl, user).build();
+        Realm realm = Realm.getInstance(config);
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+        // An error happened
+    }
+});
+```
+
+In some cases you might want to revoke existing offers after an app has been restarted. In that case, it is possible to get a list of all existing offers using `getCreatedOffers(callback)`.
+
+```java
+PermissionManager pm = user.getPermissionManager();
+user.getCreatedOffers(new PermissionManager.OffersCallback() {
+    @Override
+    public void onSuccess(RealmResults<PermissionOffer> offers) {
+        for (PermissionOffer offer : offers) {
+            // Handle individual offer
+        }
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+        // handle error
+    }
+});
+```
 {% endtab %}
 
 {% tab title="Javascript" %}
