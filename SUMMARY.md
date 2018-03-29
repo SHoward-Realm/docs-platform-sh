@@ -37,7 +37,7 @@
   * [GraphiQL Explorer](graphql-web-access/graphiql-explorer.md)
 * [Realm Studio](realm-studio/README.md)
   * [View Your Data](realm-studio/view-your-data.md)
-  * [Administer Users](realm-studio/untitled.md)
+  * [Administer Users](realm-studio/administer-users.md)
   * [View Logs](realm-studio/view-logs.md)
 * Self-Hosted
   * [Installation](self-hosted/installation/README.md)

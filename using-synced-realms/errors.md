@@ -14,7 +14,7 @@ SyncManager.shared.errorHandler = { error, session in
 }
 ```
 
-Realm Platform errors are represented by `SyncError` values, which conform to Swift’s `Error`protocol.  
+Realm Platform errors are represented by `SyncError` values, which conform to Swift’s `Error`protocol.
 {% endtab %}
 
 {% tab title="Objective-C" %}
@@ -171,7 +171,9 @@ The following example shows how the client reset APIs might be used to carry out
 {% endtab %}
 
 {% tab title="Java" %}
-
+{% hint style="warning" %}
+_Details coming soon!_
+{% endhint %}
 {% endtab %}
 
 {% tab title="Javascript" %}
@@ -277,11 +279,15 @@ If the token is used to immediately delete the Realm files, all instances of the
 {% endtab %}
 
 {% tab title="Java" %}
-
+{% hint style="warning" %}
+_Details coming soon!_
+{% endhint %}
 {% endtab %}
 
 {% tab title="Javascript" %}
-
+{% hint style="warning" %}
+_Details coming soon!_
+{% endhint %}
 {% endtab %}
 
 {% tab title=". Net" %}
