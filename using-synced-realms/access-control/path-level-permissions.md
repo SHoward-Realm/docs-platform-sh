@@ -327,7 +327,28 @@ Permissions granted by permission offers are additive: if a user has write acces
 {% endtab %}
 
 {% tab title="Javascript" %}
+A user can offer permissions to their Realm by sharing the opaque token returned by `offerPermissionsAsync`:
 
+```javascript
+const realmUrl = 'realm://my-server.com/~/myRealm';
+const oneDay = 1000 * 60 * 60 * 24;
+const expiration = new Date(Date.now() + 7 * oneDay);
+userA.offerPermissions(realmUrl, 'write', expiration)
+  .then(token => { /* ... */ });
+```
+
+The optional `expiresAt` argument controls when the offer expires - i.e. using the token after that date will no longer grant permissions to that Realm. Users who have already consumed the token to obtain permissions will not lose their access after that date. If you want to revoke permissions, use `applyPermissionsAsync`.
+
+Once a user has received a token, e.g. by sharing it via messaging app, or scanning a QR code, they can consume it to obtain the permissions offered:
+
+```javascript
+const token = "...";
+userB.acceptPermissionOffer(token)
+  .then(realmUrl => Realm.open({ schema: [/* ... */], sync: { user: userB, url: realmUrl }}))
+  .then(realm => {
+    // ..use the realm
+  });
+```
 {% endtab %}
 
 {% tab title=".Net" %}
