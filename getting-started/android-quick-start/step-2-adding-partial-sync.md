@@ -641,7 +641,7 @@ public class ItemsActivity extends AppCompatActivity {
 Now you can use two different users on two different devices, you should only see each user's project/tasks.
 
 {% hint style="info" %}
-You can also pull the Realm file from the device then open it using Realm Studio, you'll see effectively that your local Realm contains only `Item` and `Project` related to your user. 
+You can also pull the Realm file from the device then open it using [Realm Studio](../../realm-studio/), you'll see effectively that your local Realm contains only `Item` and `Project` related to your user. 
 {% endhint %}
 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L3ie62rQOBxzmQJGkjW%2F-L3ieAaekz-HwrwKeBkp%2FPartialSync.gif?alt=media&token=a60749b3-b0c0-4d1d-b787-cee0cf98ad90)

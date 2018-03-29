@@ -18,7 +18,11 @@ Want to get started right away with the complete source code? [Clone the demo ap
 
 ## Setting up a new Realm with Realm Studio {#setting-up-a-new-realm-with-realm-studio}
 
-Realm Studio is a powerful tool, one of the advanced features is to be able to create a Realm and assign permissions to it, without the need to do this programmatically.
+[Realm Studio](../../realm-studio/) is a powerful tool, one of the advanced features is to be able to create a Realm and assign permissions to it, without the need to do this programmatically.
+
+To install Realm Studio, follow the instructions here:
+
+{% page-ref page="../../realm-studio/" %}
 
 ### Create the reference Realm {#create-the-reference-realm}
 

@@ -318,7 +318,7 @@ In JavaScript, the schema for your model must be passed into the constructor as 
 
 ### In Realm Studio
 
-When working with a larger team or when building a cross-platform application, it can be easier to create your models in a centralized place. Realm Platform offers a desktop application, [Realm Studio](https://github.com/realm/docs-platform/tree/b245f7b94add1ca8ff81430ea06b466747799ffb/using-realm-studio/README.md), where you can connect to your cloud instance or self-hosted server and create a new synchronized Realm. You can then create new classes and add properties to the Realm.
+When working with a larger team or when building a cross-platform application, it can be easier to create your models in a centralized place. Realm Platform offers a desktop application, [Realm Studio](../realm-studio/), where you can connect to your cloud instance or self-hosted server and create a new synchronized Realm. You can then create new classes and add properties to the Realm.
 
 Once you are finished creating the Realm in Studio, you can export the model definitions to any supported platform language so you can include the code in your application.
 
