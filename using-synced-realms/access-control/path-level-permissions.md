@@ -63,6 +63,10 @@ To get all the Realms a user has access to, along with the level of access for e
 ```
 {% endtab %}
 
+{% tab title="Java" %}
+
+{% endtab %}
+
 {% tab title="Javascript" %}
 ```javascript
 let user = Realm.Sync.User.current;
@@ -158,6 +162,10 @@ RLMSyncPermission *permission = [[RLMSyncPermission alloc] initWithRealmPath:rea
 ```
 {% endtab %}
 
+{% tab title="Java" %}
+
+{% endtab %}
+
 {% tab title="Javascript" %}
 ```javascript
 let user = Realm.Sync.User.current;
@@ -200,6 +208,10 @@ Revoking permissions can either be done by granting a permission value with an a
 
 {% tab title="Objective-C" %}
 Revoking permissions can either be done by granting a permission value with an access level of `RLMSyncAccessLevelNone` or by passing a permission value with _any_ level to `-[RLMSyncUser revokePermission:callback:]`.
+{% endtab %}
+
+{% tab title="Java" %}
+
 {% endtab %}
 
 {% tab title="Javascript" %}
@@ -308,6 +320,14 @@ NSString *token;
 Note that a user’s device must be able to communicate with a Realm Object Server in order to create and accept permission offers.
 
 Permissions granted by permission offers are additive: if a user has write access to a certain Realm and is offered \(and accepts\) read access to that same Realm, they do not lose their existing write access.
+{% endtab %}
+
+{% tab title="Java" %}
+
+{% endtab %}
+
+{% tab title="Javascript" %}
+
 {% endtab %}
 
 {% tab title=".Net" %}
