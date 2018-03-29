@@ -14,7 +14,7 @@ JWT authentication is _disabled_ by default in Cloud as it requires configuratio
 
 To enable or disable go to the Settings for your instance in the cloud portal:
 
-![](../../.gitbook/assets/image%20%282%29.png)
+![](../../.gitbook/assets/image%20%285%29.png)
 {% endtab %}
 
 {% tab title="Self-Hosted" %}
@@ -74,7 +74,7 @@ By default anonymous authentication is enabled with Cloud
 
 To enable or disable go to the Settings for your instance in the cloud portal:
 
-![](../../.gitbook/assets/image.png)
+![](../../.gitbook/assets/image%20%281%29.png)
 {% endtab %}
 
 {% tab title="Self-Hosted" %}
@@ -142,7 +142,7 @@ By default Nickname authentication is enabled with Cloud
 
 To enable or disable go to the Settings for your instance in the cloud portal:
 
-![](../../.gitbook/assets/image%20%288%29.png)
+![](../../.gitbook/assets/image%20%2819%29.png)
 {% endtab %}
 
 {% tab title="Self-Hosted" %}

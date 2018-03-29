@@ -35,6 +35,10 @@
   * [How to use the API](graphql-web-access/how-to-use-the-api.md)
   * [Using the GraphQL Client](graphql-web-access/using-the-graphql-client.md)
   * [GraphiQL Explorer](graphql-web-access/graphiql-explorer.md)
+* [Realm Studio](realm-studio/README.md)
+  * [View Your Data](realm-studio/view-your-data.md)
+  * [Administer Users](realm-studio/untitled.md)
+  * [View Logs](realm-studio/view-logs.md)
 * Self-Hosted
   * [Installation](self-hosted/installation/README.md)
     * [Manual Install](self-hosted/installation/manual-install.md)
