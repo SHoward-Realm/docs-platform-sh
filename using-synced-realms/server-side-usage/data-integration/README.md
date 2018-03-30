@@ -10,8 +10,8 @@ The adapter API is designed for one-way transfer of all changes, including schem
 
 Realm offers the following pre-built database connectors that utilize the Adapter API:
 
-* Postgres
-* SQLServer
+* [Postgres](postgres-connector.md)
+* [SQLServer](mssql-data-connector.md)
 
 These database connectors offer two-way replication. They use the Adapter API to capture changes from Realm and convert the operations into the applicable database commands in the other system. In addition, they use different mechanisms to perform "Change Data Capture" from the other system and convert the operations into Realm API commands. As a result, the database connectors provide automatic realtime two-way synchronization simplifying integration work. For more information consult their documentation.
 
