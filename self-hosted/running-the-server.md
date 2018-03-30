@@ -23,10 +23,10 @@ That’s it! You now have a functioning Realm Object Server running locally on p
 If you have trouble running a `ros` command it may be due to your version of `NVM`.  Try running `nvm use 8` in your terminal.
 {% endhint %}
 
-Once you are ready to go into production with the server you will want to run it in the background. See the documentation section ["Going Into Production"](https://github.com/realm/docs-platform/tree/b245f7b94add1ca8ff81430ea06b466747799ffb/manage/run-ros-in-the-background.md) for more details.
+Once you are ready to go into production with the server you will want to run it in the background. See the documentation section ["Going Into Production"](manage/run-ros-in-the-background.md) for more details.
 
 {% hint style="info" %}
-Click [here](https://docs.realm.io/platform/going-into-production/going-into-production/command-line-interface-for-ros) for more information on the command-line interface for ROS.
+Click [here](manage/command-line-interface-for-ros.md) for more information on the command-line interface for ROS.
 {% endhint %}
 
 ## What's next - [Install Realm Studio](../realm-studio/#installation)
