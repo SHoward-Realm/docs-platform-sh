@@ -106,6 +106,7 @@
   * [Building a Field Worker Application in Swift](guides/building-a-field-worker-application-in-swift.md)
   * [Sample UI for Login](guides/sample-ui-for-login.md)
   * [Designing an Architecture with Multiple Realms](guides/designing-an-architecture-with-multiple-realms.md)
+  * [White Papers](https://realm.io/resources)
 
 ## Have a Question?
 
