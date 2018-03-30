@@ -59,7 +59,7 @@ npm install -g realm-object-server
 
 This will install the server globally which is the easiest way to try it out since it includes a CLI. For Linux, if you are installing as root \(not recommended\), you may need to add `--unsafe-perm` to the `npm install` commands.
 
-## What's next?  [Learn how to start the server](running-the-server.md) {#getting-started}
+## What's next?  [Learn how to start the server](../running-the-server.md) {#getting-started}
 
 Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE)
 

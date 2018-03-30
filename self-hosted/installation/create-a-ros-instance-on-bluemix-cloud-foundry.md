@@ -1,4 +1,4 @@
-# Create a ROS Instance on Bluemix Cloud Foundry
+# Deploy to Bluemix Cloud Foundry
 
 ##  1. Install the Server 
 

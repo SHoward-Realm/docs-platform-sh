@@ -43,7 +43,8 @@
   * [Installation](self-hosted/installation/README.md)
     * [Manual Install](self-hosted/installation/manual-install.md)
     * [Installing via Docker](self-hosted/installation/installing-via-docker.md)
-    * [Running the Server](self-hosted/installation/running-the-server.md)
+    * [Deploy to Bluemix Cloud Foundry](self-hosted/installation/create-a-ros-instance-on-bluemix-cloud-foundry.md)
+  * [Running the Server](self-hosted/running-the-server.md)
   * [Customize](self-hosted/customize/README.md)
     * Authentication
       * [Username/Password](self-hosted/customize/authentication/usernamepassword/README.md)
@@ -104,7 +105,6 @@
   * [Convert a Local Realm to a Synced Realm](guides/convert-a-local-realm-to-a-synced-realm.md)
   * [Building a Field Worker Application in Swift](guides/building-a-field-worker-application-in-swift.md)
   * [Sample UI for Login](guides/sample-ui-for-login.md)
-  * [Create a ROS Instance on Bluemix Cloud Foundry](guides/create-a-ros-instance-on-bluemix-cloud-foundry.md)
   * [Designing an Architecture with Multiple Realms](guides/designing-an-architecture-with-multiple-realms.md)
 
 ## Have a Question?

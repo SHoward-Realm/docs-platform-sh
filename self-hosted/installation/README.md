@@ -23,7 +23,7 @@ curl -s https://raw.githubusercontent.com/realm/realm-object-server/master/insta
 The professional edition features are unlocked by using a feature token.  Click [here](https://realm.io/trial/realm-professional-edition/) to register for a trial.  
 {% endhint %}
 
-## What's next?  [Learn how to start the server](running-the-server.md) {#getting-started}
+## What's next?  [Learn how to start the server](../running-the-server.md) {#getting-started}
 
 
 
