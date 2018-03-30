@@ -1,5 +1,9 @@
 # Designing an Architecture with Multiple Realms
 
+{% hint style="warning" %}
+Multiple Realm architectures will become less common after the GA release of partial sync which will allow finer grain \(object-level\) permissions.  
+{% endhint %}
+
 ## Intro {#intro}
 
 The design of databases can be challenging in the best of circumstances, designing for mobile even more so since there's a constant tug of war between the desire to have as much info available on the end-user's device as possible and being respectful of both the disk space on the end-user's device and the amount of over-the-air bandwidth being consumed

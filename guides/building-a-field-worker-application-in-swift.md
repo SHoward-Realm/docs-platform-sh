@@ -1,6 +1,15 @@
+---
+description: Build a team oriented field worker application for iOS in Swift!
+---
+
 # Building a Field Worker Application in Swift
 
-##  Overview
+{% hint style="warning" %}
+This tutorial was designed for Realm Object Server 2.x  
+If you are running a newer version of the server or Realm Cloud, it may take a few small configuration changes to build and function 
+{% endhint %}
+
+## Overview
 
 Teamwork is a Realm demo-app that represents an idealized, distributed customer services application. This is the kind that might be used by a power company, a cable company, or even a distributed mobile sales force. Its world-view is that of one or more central "manager" users who create and assign tasks to field workers/agents who are either members of teams or are individual agents carrying out their various assigned tasks.Interested in learning more about reactive, offline-first apps for the mobile workforce?
 

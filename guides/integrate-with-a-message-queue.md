@@ -4,17 +4,14 @@
 
 ![Example Architecture for Dequeueing Messages from a Message Queue ](../.gitbook/assets/dequeuer.png)
 
-**Objective:**
+## Objective
 
 The aim of this exercise is to create a basic test application that follows the dequeuer architecture pattern for the Realm Platform. Upon completion, you will be able to write a message to Apache Kafka, consume the message via node.js, and respond to this consumed message by creating a new object in the Realm Object Server.
 
-### **Prerequisites:** {#prerequisites}
+### Prerequisites 
 
-The exercises below require a running instance of the Professional or Enterprise edition of the Realm Object Server. Detailed installation instructions can be found[ here](https://realm.io/docs/realm-object-server/latest/index.html#install-realm-object-server).
-
-_\(Note: if you run into any issues during installation, make sure you have all of the required prerequisites\)._
-
-You also need to create an **admin** user on your Realm Object Server. This username and password will be used in step 4.
+* Realm Object Server 2.x \(or higher\) or Realm Cloud
+* An admin user for your object server or cloud instance. The username and password will be used in step 4
 
 ### **Step 1: Download Kafka** {#step-1-download-kafka}
 

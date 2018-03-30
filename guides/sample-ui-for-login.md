@@ -1,3 +1,9 @@
+---
+description: >-
+  An example screen for logging into the Realm Platform from your iOS
+  application
+---
+
 # Sample UI for Login
 
 The LoginKit can be pulled into your app to prompt the user for credentials and then use those credentials to open a synced Realm. User credentials are required to open a synced realm although they could be hardcoded into your app if your app does not require users to log in.
