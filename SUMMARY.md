@@ -100,7 +100,7 @@
   * [API](https://realm.io/docs/realm-object-server/latest/api/ros/)
 * Guides
   * [The Realm Data Model](guides/the-realm-data-model.md)
-  * [Working with Realm's Data Connectors](https://docs.realm.io/platform/~/edit/primary/using-synced-realms/server-side-usage/data-integration)
+  * [Working with Realm's Data Connectors](https://docs.realm.io/platform/using-synced-realms/server-side-usage/data-integration)
   * [Integrate with a Message Queue](guides/integrate-with-a-message-queue.md)
   * [Convert a Local Realm to a Synced Realm](guides/convert-a-local-realm-to-a-synced-realm.md)
   * [Building a Field Worker Application in Swift](guides/building-a-field-worker-application-in-swift.md)
