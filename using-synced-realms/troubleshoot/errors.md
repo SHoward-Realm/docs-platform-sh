@@ -306,7 +306,7 @@ A permission denied error will be denoted by the code `ErrorCode.PermissionDenie
 | **Error Message** | **Cause** |
 | :--- | :--- |
 | 204 “Illegal Realm path \(BIND\)” | Indicates that the Realm path is not valid for the user. |
-| 207 “Bad server file identifier \(IDENT\)” | Indicates that the local Realm specifies a link to a server-side Realm that does not exist. This is most likely because the server state has been completely reset. |
+| 207 or 208 “Bad server file identifier \(IDENT\)” | Indicates that the local Realm specifies a link to a server-side Realm that does not exist. This is most likely because the server state has been completely reset. |
 | 211 “Diverging histories \(IDENT\)” | Indicates that the local Realm specifies a server version that does not exists. This is most likely because the server state has been partially reset \(for example because a backup was restored\). |
 
 ### Client Level Errors
