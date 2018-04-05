@@ -28,10 +28,10 @@ To use Realm Cloud in your iOS app, you'll need to add the `Realm` and `RealmSwi
 {% tabs %}
 {% tab title=".Cocoapods" %}
 {% hint style="warning" %}
-Make sure you have Cocoapods version 1.2.x or higher.
-{% endhint %}
+Make sure you have Cocoapods version 1.2.x or higher. 
 
-You can install Cocoapods by [following the installation instructions](https://guides.cocoapods.org/using/getting-started.html) at cocoapods.org.
+If you run into any errors or if you need to install Cocoapods, please [follow the installation instructions](https://guides.cocoapods.org/using/getting-started.html) at [Cocoapods.org](https://cocoapods.org/).
+{% endhint %}
 
 If you choose to use Cocopods, _you will need to close your Xcode project for the next steps_; we will re-open it once Cocopods is set up.
 
