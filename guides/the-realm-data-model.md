@@ -12,7 +12,7 @@ If you're used to working with other kinds of databases, here are some things th
 
 The hypothetical chat application above might use one synchronized Realm for public chats, another synchronized Realm storing user data, yet another synchronized Realm for a "master channel list" that's read-only to non-administrative users, and a local Realm for persisted settings on that device. Or a multi-user application on the same device could store each user's private data in a user-specific Realm. Realms are lightweight, and your application can be using several at one time. \(On mobile platforms, there are some resource constraints, but up to a dozen open at once should be no issue.\)
 
-The concepts being discussed are cross-platform; simple examples will be given in Swift. Consult the documentation section for your preferred binding for examples in your language.
+The concepts being discussed are cross-platform; simple examples will be given in Swift. Consult the documentation section for your preferred SDK for examples in your language.
 
 ## Opening a Realm {#opening-a-realm}
 
@@ -183,7 +183,7 @@ Note that in Java, `RealmList` properties are always considered required, so the
 
 You'll note that defining the `Person has-many Dogs` relationship didn't automatically create a `Dog belongs-to Person` relationship; both sides of the relationship need to be set explicitly. Adding a `Dog` to a `Person`'s `dogs` list doesn't automatically set the dog's `owner`property. It's important to define both sides of this relationship: while it makes it easier for your code to traverse relationships, it's also necessary for Realm's notification system to work properly.
 
-Some Realm language bindings provide "linking objects" properties, which return all objects that link to a given object from a specific property. To define `Dog` this way, our model could be:
+Some Realm SDKs provide "linking objects" properties, which return all objects that link to a given object from a specific property. To define `Dog` this way, our model could be:
 
 ```text
 class Dog: Object {
@@ -312,7 +312,7 @@ Neither of these will allow you to apply destructive changes to an existing Real
 
 ### More about Migrations {#more-about-migrations}
 
-To see examples and more details in your preferred language binding, consult the language-specific documentation for migrations:
+To see examples and more details in your preferred SDK, consult the language-specific documentation for migrations:
 
 * [Java](https://realm.io/docs/java/latest/#migrations)
 * [Objective-C](https://realm.io/docs/objc/latest/#migrations)
