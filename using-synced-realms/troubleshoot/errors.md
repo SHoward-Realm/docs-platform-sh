@@ -313,7 +313,7 @@ A permission denied error will be denoted by the code `ErrorCode.PermissionDenie
 
 | **Error Message** | **Cause** |
 | :--- | :--- |
-| 105 “Wrong protocol version \(CLIENT\)” | The client and the server use different versions of the sync protocol due to a mismatch in upgrading. |
+| 105 “Wrong protocol version \(CLIENT\)” | The client and the server use different versions of the sync protocol due to a mismatch in upgrading. For example: "client protocol version = 24, server protocol version = 22". Refer to [Version Compatibilities](version-compatibilities.md) table to ensure client and server are compatible. |
 | 108 “Client file bound in other session \(IDENT\)” | Indicates that multiple sync sessions for the same client-side Realm file overlap in time. |
 | 203 “Bad user authentication \(BIND, REFRESH\)” | Indicates that the server has produced a bad token, or that the SDK has done something wrong. |
 | 206 “Permission denied \(BIND, REFRESH\)” | Indicates that the user does not have permission to access the Realm at the given path. |
