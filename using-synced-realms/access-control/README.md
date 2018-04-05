@@ -66,7 +66,7 @@ Realm is an offline-first database, but permission checks are performed by the s
 A reversal of an illegal change looks like any other change coming from the server.
 {% endhint %}
 
-To minimize the risk of a user unintentionally making illegal changes while offline, the permission metadata is replicated to each client for offline access, and can be [queried in the app for UI purposes](https://github.com/realm/docs-platform/blob/606a22414e7c7fe21c10f6c67879990eddd6df72/develop/object-permissions.md#user-privileges). No permission checks are done automatically by the client -- the app has to manually query the permission metadata.
+To minimize the risk of a user unintentionally making illegal changes while offline, the permission metadata is replicated to each client for offline access, and can be [queried in the app for UI purposes](./#user-privileges). No permission checks are done automatically by the client -- the app has to manually query the permission metadata.
 
 The permission system recognizes three levels of permissions: Realm, Class, and Object-level. The hierarchy works like this: If a user does not have higher-level `Read` access, they cannot see anything on the lower levels. For example, if a user lacks `Read` access at the Realm-level, they cannot see any data in the Realm, even if they have `Read` at the class or object-level. However, just because they have higher-level `Read` access does not mean they can see _everything_ on the lower level -- just that they can see anything at all. In this way, the app developer can decide for themselves what granularity they want for permissions in their data model.
 
