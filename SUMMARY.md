@@ -30,7 +30,9 @@
     * [Path-level permissions](using-synced-realms/access-control/path-level-permissions.md)
   * [Monitoring Network Activity](using-synced-realms/monitoring-network-activity.md)
   * [Migrating Your Data](using-synced-realms/migrating-your-data.md)
-  * [Errors](using-synced-realms/errors.md)
+  * Troubleshoot
+    * [Errors](using-synced-realms/troubleshoot/errors.md)
+    * [Version Compatibilities](using-synced-realms/troubleshoot/version-compatibilities.md)
 * [GraphQL - Web Access](graphql-web-access/README.md)
   * [How to use the API](graphql-web-access/how-to-use-the-api.md)
   * [Using the GraphQL Client](graphql-web-access/using-the-graphql-client.md)
@@ -92,11 +94,9 @@
     * [Command-line Interface for ROS](self-hosted/manage/command-line-interface-for-ros.md)
     * [Run ROS in the Background](self-hosted/manage/run-ros-in-the-background.md)
   * Troubleshoot
-    * [Version Compatibilities](self-hosted/troubleshoot/version-compatibilities.md)
-    * [Verify Port Access](self-hosted/troubleshoot/verify-port-access.md)
-    * [Errors](self-hosted/troubleshoot/errors.md)
-    * [Enable Logging on your ROS](self-hosted/troubleshoot/enable-logging-on-your-ros.md)
     * [Installation Errors](self-hosted/troubleshoot/installation-errors.md)
+    * [Enable Logging on your ROS](self-hosted/troubleshoot/enable-logging-on-your-ros.md)
+    * [Verify Port Access](self-hosted/troubleshoot/verify-port-access.md)
   * [API](https://realm.io/docs/realm-object-server/latest/api/ros/)
 * Guides
   * [The Realm Data Model](guides/the-realm-data-model.md)
