@@ -139,6 +139,10 @@ Paste the code snippet here into the newly created `Constants.swift`; replace th
 **NOTE**: The Realm Cloud Portal presents fully specified URLs \(e.g., _https:_//_appname.cloud.realm.io_\); be sure to paste in only the host name part \(e.g., _appname.cloud.realm.io_\) into your copy of the `Constants.swift` file.Constants.swift
 {% endhint %}
 
+{% hint style="warning" %}
+**Self-Hosted:** The code snippet below is optimized for cloud. When using a self-hosted version of Realm Object Server, directly set the `AUTH_URL` and `REALM_URL` variables. _It is likely you won't initially have SSL/TLS setup, so be careful with `http[s]` and `realm[s]`_.
+{% endhint %}
+
 {% code-tabs %}
 {% code-tabs-item title="constants.swift" %}
 ```swift
