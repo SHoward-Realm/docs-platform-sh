@@ -26,14 +26,16 @@ Rather than start from a clean slate, we will build on top of the iOS ToDo app w
 
 1. Open a new Terminal window
 2. Change directory to a convenient location to keep this source code \(e.g., `cd ~/Desktop`\)
-3. Download the iOS App Tutorial source code with the command git command:
+3. Download the iOS App Tutorial source code with the git command:
 
-   \`git clone [https://github.com/realm/my-first-realm-app.git\`](https://github.com/realm/my-first-realm-app.git) 
+```bash
+git clone https://github.com/realm/my-first-realm-app.git
+```
 
-4. Change into the downloaded directory with `cd my-first-app`
-5. Remove the Android source code and git control files with `rm -rf android .git`
-6. Change directory into the ios directory with `cd ios`
-7. Change directory into the SyncIntro directory with `cd SyncIntro`
+1. Change into the downloaded directory with `cd my-first-realm-app`
+2. Remove the Android source code and git control files with `rm -rf android .git`
+3. Change directory into the ios directory with `cd ios`
+4. Change directory into the SyncIntro directory with `cd SyncIntro`
 
 > Note: there is a _PartialSync_ folder here as well - in this tutorial we will be adding to the basic sync tutorial to bring it up to the level of the completed partial sync version.
 
