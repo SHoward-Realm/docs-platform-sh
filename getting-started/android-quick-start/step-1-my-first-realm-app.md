@@ -130,6 +130,10 @@ final class Constants {
 
 Assign to `INSTANCE_ADDRESS`the actual instance address. It can be found on the 'Getting started' tab in Realm Studio.
 
+{% hint style="warning" %}
+**Self-Hosted:** The code snippet above is optimized for cloud. When using a self-hosted version of Realm Object Server, directly set the `AUTH_URL` and `REALM_BASE_URL` variables. _It is likely you won't initially have SSL/TLS setup, so be careful with_ _`http[s]`_ _and_ _`realm[s]`_.
+{% endhint %}
+
 ![](../../.gitbook/assets/screen-shot-2018-03-18-at-14.33.55.png)
 
 {% hint style="success" %}
