@@ -180,7 +180,9 @@ Realm.open(config).then(realm => { /* ... */ });
 {% endtab %}
 
 {% tab title=".Net" %}
-
+{% hint style="warning" %}
+_Coming Soon!_
+{% endhint %}
 {% endtab %}
 {% endtabs %}
 
@@ -369,7 +371,9 @@ let realmV2 = new Realm(configV2);
 {% endtab %}
 
 {% tab title=".Net" %}
-
+{% hint style="warning" %}
+_Coming Soon!_
+{% endhint %}
 {% endtab %}
 {% endtabs %}
 
