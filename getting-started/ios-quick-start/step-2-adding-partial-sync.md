@@ -70,6 +70,10 @@ This will download the Realm frameworks and update the Xcode workspace file. Onc
 
 Locate and open the `Constants.swift` file in the Xcode file navigator, then update the value of `MY_INSTANCE_ADDRESS` with the hostname portion of the Realm Cloud instance you copied from the Realm Cloud Portal \(e.g., mycoolapp.us1.cloud.realm.io\).
 
+{% hint style="warning" %}
+**Self-Hosted:** The code snippet below is optimized for cloud. When using a self-hosted version of Realm Object Server, directly set the `AUTH_URL` and `REALM_URL` variables. _It is likely you won't initially have SSL/TLS setup, so be careful with_ _`http[s]`_ _and_ _`realm[s]`_.
+{% endhint %}
+
 {% code-tabs %}
 {% code-tabs-item title="Constants.swift" %}
 ```swift
