@@ -113,7 +113,7 @@ The default app template contains a few files we won't need in this example, so 
 
 1. Open the `Info.plist` for your target \(this will be in the iOSToDoApp group in the file navigator\)
 2. Find the `Main storyboard file base name` entry and remove it by pressing on the `-` icon next to it in the property editor
-3. Find the `Main.storyboard` file in the file navigator and delete it by selecting it and then pressing the `Delete` key
+3. Find the `Main.storyboard` file in Xcode's file navigator and delete it by selecting it and then pressing the `Delete` key
 
 Edit the **AppDelegate.swift** file and replace the `func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)` method to match the following code below. This sets up `UINavigationController` with a `WelcomeViewController` which we will create in an upcoming step.
 
