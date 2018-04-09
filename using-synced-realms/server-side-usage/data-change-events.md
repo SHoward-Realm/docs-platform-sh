@@ -68,7 +68,7 @@ let adminUser = undefined
 var handleChange = async function (changeEvent) {
   // Extract the user ID from the virtual path, assuming that we're using
   // a filter which only subscribes us to updates of user-scoped Realms.
-  var matches = changeEvent.path.match(/^\/([0-9a-f]+)\/private$/);
+  var matches = changeEvent.path.match(/^/([^/]+)/([^/]+)$/);
   var userId = matches[1];
 
   var realm = changeEvent.realm;
