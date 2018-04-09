@@ -133,7 +133,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 Next we will create a new Swift file to contain our app's constants. This is done by selecting `File > New > File..`. in Xcode and then selecting "Swift File" from the file type selector panel. Press `next` then enter `Constants` for the file name \(the `.swift` extension will be added automatically\) and navigate, if needed, to your Xcode project directory and save the file.
 
-Paste the code snippet here into the newly created `Constants.swift`; replace the string MY\__INSTANCE\__ADDRESS _with the hostname portion of the Realm Cloud instance you copied from the Realm Cloud Portal \(e.g., mycoolapp.us1.cloud.realm.io\). We will use these constants \(e.g.,_ _`Constants.AUTH_URL`_ and `Constants.REALM_URL`_\) w_herever we need to references our Realm instance.
+Paste the code snippet here into the newly created `Constants.swift`; replace the string  `MY_INSTANCE_ADDRESS` with the hostname portion of the Realm Cloud instance you copied from the Realm Cloud Portal \(e.g., `mycoolapp.us1.cloud.realm.io`\). We will use these constants \(e.g. `Constants.AUTH_URL` and `Constants.REALM_URL`_\)_ wherever we need to references our Realm instance.
 
 {% hint style="warning" %}
 **NOTE**: The Realm Cloud Portal presents fully specified URLs \(e.g., _https:_//_appname.cloud.realm.io_\); be sure to paste in only the host name part \(e.g., _appname.cloud.realm.io_\) into your copy of the `Constants.swift` file.
