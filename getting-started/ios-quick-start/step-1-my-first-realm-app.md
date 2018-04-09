@@ -463,7 +463,7 @@ func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEdi
 }
 ```
 
-Here too a Realm write transaction is used to tell our Realm of our intent to make a modification to the database - this time the deletion of a specific item.
+Here too, a Realm write transaction is used to tell our Realm of our intent to make a modification to the database - this time the deletion of a specific item.
 
 ## Step 9: Adding Reactive Functionality {#step-9:-adding-reactive-functionality}
 
