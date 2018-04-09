@@ -271,6 +271,126 @@ public class Program
 {% endtab %}
 {% endtabs %}
 
+## Handling Changes {#integrating-with-a-3rd-party-api}
+
+The event handler callback provides access to detailed change information through a passed in change event object. This includes the indexes for the objects corresponding to:
+
+* Insertions
+* Modifications
+* Deletions
+
+The change information only applies at an object-level. If you need property-level change information, an additional data adapter API is available in Javascript which is designed to pass every database operation. It forms the basis for our pre-built database connectors. Read more here:
+
+{% page-ref page="data-integration/" %}
+
+### Insertions/Modifications
+
+To access the inserted or modified objects, you can access the `Realm` object included in the change event object:
+
+{% tabs %}
+{% tab title="Javascript" %}
+```javascript
+var handleChange = async function (changeEvent) {
+  // Get the current Realm
+  var realm = changeEvent.realm;
+  // Retrieve all objects of the relevant type
+  var coupons = realm.objects('Coupon');
+  // Retrieve the indexes for the insertions/modifications
+  var couponIndexes = changeEvent.changes.Coupon.insertions;
+
+  for (let couponIndex of couponIndexes) {
+    // Use the Results object to retrieve the inserted/modified object
+    var coupon = coupons[couponIndex];
+    
+    //..
+  }
+}
+```
+{% endtab %}
+
+{% tab title=".Net" %}
+```csharp
+// The HandleChangeAsync method is called for every observed Realm file 
+// whenever it has changes. It is called with a change event which contains 
+// a version of the Realm from before and after the change, as well as
+// collections of all objects which were added, deleted, or modified in this change
+public override async Task HandleChangeAsync(IChangeDetails details)
+{
+    // Retrieve the indexes for the insertions/modifications
+    if (details.TryGetValue("Coupon", out var changeSetDetails) &&
+        changeSetDetails.Insertions.Length > 0)
+    {
+        // Get the current Realm
+        // If you want a read-only version, use .CurrentRealm property
+        using (var realm = details.GetRealmForWriting())
+        {
+            // Use the Results object to retrieve the inserted/modified object
+            foreach (var coupon in changeSetDetails.Insertions.Select(c => c.CurrentObject))
+            {
+                //..
+            }
+        }
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Deletions
+
+To access the deleted objects, you cannot use the `Realm` object included in the change event object. The reason is that the `Realm`object is at the current state of the database after the changes have been applied. This means the deleted objects are already removed. However, because Realm has an MVCC architecture, it is possible to provide a second view of the database that is at the state before the change.
+
+This previous or old state is provided in the `oldRealm` object included in the change event object. Use this to retrieve the delete objects:
+
+{% tabs %}
+{% tab title="Javascript" %}
+```javascript
+var handleChange = async function (changeEvent) {
+  // Get the old Realm that is at the state before the change
+  var oldRealm = changeEvent.oldRealm;
+  // Retrieve all objects of the relevant type
+  var coupons = realm.objects('Coupon');
+  // Retrieve the indexes for the deletions
+  var couponIndexes = changeEvent.changes.Coupon.deletions;
+
+  for (let couponIndex of couponIndexes) {
+    // Use the Results object to retrieve the deleted object
+    var deletedCoupone = coupons[couponIndex];
+    
+    //..
+  }
+}
+```
+{% endtab %}
+
+{% tab title=".Net" %}
+```csharp
+// The HandleChangeAsync method is called for every observed Realm file 
+// whenever it has changes. It is called with a change event which contains 
+// a version of the Realm from before and after the change, as well as
+// collections of all objects which were added, deleted, or modified in this change
+public override async Task HandleChangeAsync(IChangeDetails details)
+{
+    // Retrieve the indexes for the insertions/modifications
+    if (details.TryGetValue("Coupon", out var changeSetDetails) &&
+        changeSetDetails.Deletions.Length > 0)
+    {
+        // Get the previous Realm
+        // This Realm is read-only!
+        using (var realm = details.PreviousRealm)
+        {
+            // Use the Results object to retrieve the deleted object
+            foreach (var coupon in changeSetDetails.Deletions.Select(c => c.CurrentObject))
+            {
+                //..
+            }
+        }
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
 ## Integrating with a 3rd Party API {#integrating-with-a-3rd-party-api}
 
 A great potential use case for our event handler is integration with a 3rd party API. When a change is made to the Realm Object Server, a call can be made to a 3rd party API and then the results can easily be written to a synchronized Realm.
