@@ -368,6 +368,7 @@ To do this, locate and open the `WelcomeViewController` in the file navigator. F
 ```swift
 SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
     if let _ = user {
+        // We will update the line below to point to ProjectsViewController
         self?.navigationController?.viewControllers = [ItemsViewController()]  
     } else if let error = err {
         fatalError(error.localizedDescription)
@@ -375,13 +376,12 @@ SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak se
 })
 ```
 
-At line 3, after successfully logging in we go to our list of ToDo items. And now the updated version:
-
-In this version we are going to _reset the default view_ for the Navigation Controller to be our list of Projects.
+At line 4, after successfully logging in we go to our list of ToDo items. We need to update this to _reset the default view_ for the Navigation Controller to be our list of Projects. Here is the final code:
 
 ```swift
 SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak self](user, err) in
     if let _ = user {
+        // The line below we altered to point to ProjectsViewController
         self?.navigationController?.viewControllers = [ProjectsViewController()]
     } else if let error = err {
         fatalError(error.localizedDescription)
