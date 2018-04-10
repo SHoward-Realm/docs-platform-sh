@@ -43,7 +43,7 @@ We need to create a global Realm that will contain the `Project` and `Item` obje
 {% hint style="info" %}
 If you don't see the `__admin` Realm, go to the "View" menu and select "Show System Realms":
 
-![](../../.gitbook/assets/image%20%288%29.png)
+![](../../.gitbook/assets/image%20%289%29.png)
 {% endhint %}
 
 You can verify that new `ToDo-permissions` Realm is set up correctly by checking that its ownership is reported as `public R W`.
