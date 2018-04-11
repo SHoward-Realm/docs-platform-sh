@@ -292,5 +292,7 @@ All of the default Postgres types are automatically mapped and converted to corr
 | `date` | `timestamp`, `timestamp without time zone`, `timestamp with time zone`, `date` |
 | `data` | not supported currently |
 
-Not what you were looking for? [Leave Feedback](mailto:docs-feedback@realm.io) 
+
+
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

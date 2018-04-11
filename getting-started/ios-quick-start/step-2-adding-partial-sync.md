@@ -494,5 +494,7 @@ You should now be able to build and run the application, log in and create proje
 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L4307kfLEbsr_KglEYD%2F-L430AZfLqJfrAVoaUQJ%2Fios-partalSync.gif?alt=media&token=2c910be8-9a55-4f4a-a4de-30903d46ad9e)
 
-Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE) 
+
+
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

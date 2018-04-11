@@ -46,3 +46,5 @@ With synchronized Realms, you can make changes to the schema. This is limited to
 
 ![](../.gitbook/assets/image%20%2821%29.png)
 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+

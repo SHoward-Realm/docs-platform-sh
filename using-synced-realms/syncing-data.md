@@ -265,3 +265,7 @@ _API Coming Soon!_
 
 When you open a Realm without partial sync, the entire Realm contents will be kept in sync. You will not need to use the subscription APIs as described [above](syncing-data.md#using-partial-synchronization). Instead, to control what data is synchronized to a client, you will need to split your data up into individual Realms. For example, a common pattern is to use a global Realm for shared data across all data at a base path `/globalRealm` and user-specific data in a Realm at the user's scoped path: `/~/myRealm`.
 
+
+
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+

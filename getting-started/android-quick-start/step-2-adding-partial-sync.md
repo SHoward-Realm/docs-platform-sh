@@ -632,5 +632,5 @@ You can also pull the Realm file from the device then open it using [Realm Studi
 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L3ie62rQOBxzmQJGkjW%2F-L3ieAaekz-HwrwKeBkp%2FPartialSync.gif?alt=media&token=a60749b3-b0c0-4d1d-b787-cee0cf98ad90)
 
-Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

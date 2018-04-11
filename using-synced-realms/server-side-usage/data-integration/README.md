@@ -170,5 +170,5 @@ For full details, including all the instruction types and the data passed to the
 
 A PostgreSQL and Microsoft SQL Server data connectors are already implemented, and more are on the way, including MongoDB. Any data connector can be customized to your application’s specific needs. If you’re a Realm Enterprise customer, contact your representative for more information.
 
-Not what you were looking for? [Leave Feedback](mailto:docs-feedback@realm.io) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

@@ -10,3 +10,5 @@ When connected to a server, Realm Studio allows you to view the logs.
 You can adjust the log level as needed in the lower right.
 {% endhint %}
 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+
