@@ -38,5 +38,5 @@ Learn how Realm Platform can help you design world-class apps and features.
 [Read the white paper](https://www2.realm.io/whitepaper/realm-overview-registration?_ga=2.266659790.1140662478.1513013122-2031688623.1501706764) or [Watch the webinar](https://www2.realm.io/webinar/realm-platform-2-overview-registration?_ga=2.97855199.1140662478.1513013122-2031688623.1501706764)
 {% endhint %}
 
-
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 
