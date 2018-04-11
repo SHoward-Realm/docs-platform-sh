@@ -298,5 +298,5 @@ You can then check the Consul UI to see that all the services are showing as gre
 
 The last and final test would be to connect using Studio to the IP and port of the Core Services node using the `adminToken` which can be found in the `data/keys/admin.json`
 
-Not what you were looking for? [Leave Feedback](mailto:docs-feedback@realm.io) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

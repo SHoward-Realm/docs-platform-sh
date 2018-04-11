@@ -64,5 +64,5 @@ For apps deployed through enterprise App Stores that can control when the app ge
 
 Finally, we can provide custom workarounds to enable running two Realm Object Servers in parallel to further ease the upgrade experience for end-users for paid customers.
 
-Not what you were looking for? [Leave Feedback](mailto:docs-feedback@realm.io)
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

@@ -28,7 +28,5 @@ In the event of a ROS Core services node is overloaded as shown by a network mon
 In the event of a ROS sync-worker group is overloaded as shown by a network monitoring tool another group can be added to the pool by deploying more nodes using a CM tool and by choosing a unique name for the `SYNC_LABEL` \(the same for every node in the group but different from other groups\) and a unique `SYNC_ID` for each sync-worker node. The group will automatically be discovered via consul and then new connections will start to take advantage of the increased capacity as distributed by the ROS proxy module.  
 
 
-
-
-Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE)
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

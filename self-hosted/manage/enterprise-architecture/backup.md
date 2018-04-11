@@ -38,5 +38,5 @@ The client side APIs will emit a “client reset” exception or error and give 
 
 If client reset happens, the client will lose any data that was not included in the backup data. The best way to minimize this potential data loss is to use the synchronous backup system. If you can’t do that, run the manual backup system frequently.
 
-Not what you were looking for? [Leave Feedback](mailto:docs-feedback@realm.io)
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

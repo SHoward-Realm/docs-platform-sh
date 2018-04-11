@@ -71,3 +71,5 @@ In a production environment you will at some point need to upgrade or patch the 
 To upgrade the Realm core services module it is recommended to have a secondary process deployed and part of the load balanced pool. This secondary process should be on the needed patched version, then you can configure your load balancer to start directing all new connections to the secondary Realm core services app. Once the primary Core services app is free from connections you may stop it and upgrade the app. This procedure is known as connection draining and is built into many proxies such as HAproxy.  
 
 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+

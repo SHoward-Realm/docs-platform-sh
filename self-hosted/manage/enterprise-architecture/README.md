@@ -38,8 +38,5 @@ The following diagram shows the component pieces of the Realm Object Server Ente
 ![](https://lh5.googleusercontent.com/6HiFsj46qLrI76UdoOrnL54gcYNu2WYZcU51gsndb-ToGQ04uCZIkyPrblzPRuJBzfl7f8FYm3VQoCvVaaLWPuojJLCnUcXc9TCJIcRJp4CxMF-ykqQoHmcNxmGWgB3ufRj5_Qns)
 
   
-
-
-  
-Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE)
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

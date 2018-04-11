@@ -113,5 +113,5 @@ fi
 To make a seamless user experience you will want to add a client reset callback in the event that a DR event occurs. See [here](https://realm.io/docs/swift/latest/#client-reset) for more details. 
 
   
-
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 
