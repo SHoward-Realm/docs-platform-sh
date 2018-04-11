@@ -32,10 +32,12 @@ Partial sync will allow us to synchronize only our projects via a query, while a
 ```java
 SyncConfiguration configuration = new SyncConfiguration.Builder(
                 SyncUser.currentUser(),
-                REALM_BASE_URL + "/items")
+                REALM_BASE_URL + "/default")
                 .partialRealm()
                 .build();
 ```
+
+Alternatively we can use `SyncConfiguration.automatic()` which achieve the same thing.
 
 * Using async queries to subscribe to the data from the server:
 
@@ -66,13 +68,10 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven {
-            url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
-        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath "io.realm:realm-gradle-plugin:5.0.0-SNAPSHOT"
+        classpath "io.realm:realm-gradle-plugin:5.0.1"
 
     }
 }
@@ -81,9 +80,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
-        }
     }
 }
 ```
@@ -174,12 +170,7 @@ This is done by modifying the `WelcomeActivity` . We replace the `goToItemsActiv
 
 ```java
 private void setUpRealmAndGoToListTaskActivity(){
-        SyncConfiguration configuration = new SyncConfiguration.Builder(
-                SyncUser.currentUser(),
-                REALM_BASE_URL + "/items")
-                .partialRealm()
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+        Realm.setDefaultConfiguration(SyncConfiguration.automatic());
         Intent intent = new Intent(WelcomeActivity.this, ProjectsActivity.class);
         startActivity(intent);
 }
@@ -241,7 +232,7 @@ public class WelcomeActivity extends AppCompatActivity {
         String nickname = mNicknameTextView.getText().toString();
         showProgress(true);
 
-        SyncCredentials credentials = SyncCredentials.nickname(nickname, true);
+        SyncCredentials credentials = SyncCredentials.nickname(nickname, false);
         SyncUser.loginAsync(credentials, AUTH_URL, new SyncUser.Callback<SyncUser>() {
             @Override
             public void onSuccess(SyncUser user) {
@@ -284,12 +275,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void setUpRealmAndGoToListTaskActivity(){
-        SyncConfiguration configuration = new SyncConfiguration.Builder(
-                SyncUser.currentUser(),
-                REALM_BASE_URL + "/items")
-                .partialRealm()
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+        Realm.setDefaultConfiguration(SyncConfiguration.automatic());
         Intent intent = new Intent(WelcomeActivity.this, ProjectsActivity.class);
         startActivity(intent);
     }

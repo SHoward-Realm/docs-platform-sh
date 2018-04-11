@@ -27,13 +27,13 @@ Use Android Studio version 3.0 or higher, to open the existing Android project u
 
 Edit `Constants.java` and set `INSTANCE_ADDRESS` to the URL of your Cloud instance . Be sure to paste in only the host name part \("your-app-name.cloud.realm.io"\).
 
-![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L3VQ0F54YSkamg0tzyZ%2F-L3VSTVyg_WZCCjDiMv7%2FScreen%20Shot%202018-01-23%20at%2000.40.35.png?alt=media&token=ca86f489-3845-404e-b1d0-fdcc73a8d502)
+![](../../.gitbook/assets/screen-shot-2018-04-10-at-19.26.27.png)
 
 ### Build the application
 
 Now build and run the application. Add tasks and observe how they sync on your Realm Cloud instance using Realm Studio :
 
-![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L3VSh36eR_YyMvEASKH%2F-L3VTht7f-zZtZuJUnSR%2FScreen%20Shot%202018-01-23%20at%2000.45.54.png?alt=media&token=4cea1bdd-be36-4481-a592-0693a1107ab1)
+![](../../.gitbook/assets/screen-shot-2018-04-10-at-19.33.19.png)
 
 ### Collaborate!  {#next-step}
 
@@ -58,7 +58,7 @@ We will start off with a simple ToDo application without any Realm features in i
 ```bash
 git clone https://github.com/realm/my-first-realm-app
 cd my-first-realm-app
-git checkout -b develop android_step_1
+git checkout -b develop android-step-1
 ```
 
 Open the Android Project with the name of `SyncIntro` found under `my-first-realm-app/android`. 
@@ -83,7 +83,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'io.realm:realm-gradle-plugin:5.0.0'
+        classpath 'io.realm:realm-gradle-plugin:5.0.1'
     }
 }
 ```
@@ -111,7 +111,7 @@ realm {
 We're going to use [Realm Android Adapter](https://github.com/realm/realm-android-adapters) to build the list of tasks, we need to add it's dependency.
 
 ```groovy
-implementation 'io.realm:android-adapters:2.1.1'
+implementation 'io.realm:android-adapters:3.0.0'
 ```
 
 **Step 2d:**
@@ -124,14 +124,13 @@ package io.realm.todo;
 final class Constants {
     private static final String INSTANCE_ADDRESS = "YOUR_INSTANCE.cloud.realm.io";
     static final String AUTH_URL = "https://" + INSTANCE_ADDRESS + "/auth";
-    static final String REALM_BASE_URL = "realms://" + INSTANCE_ADDRESS;
 }
 ```
 
 Assign to `INSTANCE_ADDRESS`the actual instance address. It can be found on the 'Getting started' tab in Realm Studio.
 
 {% hint style="warning" %}
-**Self-Hosted:** The code snippet above is optimized for cloud. When using a self-hosted version of Realm Object Server, directly set the `AUTH_URL` and `REALM_BASE_URL` variables. _It is likely you won't initially have SSL/TLS setup, so be careful with_ _`http[s]`_ _and_ _`realm[s]`_.
+**Self-Hosted:** The code snippet above is optimized for cloud. When using a self-hosted version of Realm Object Server, directly set the `AUTH_URL` variable. _It is likely you won't initially have SSL/TLS setup, so be careful with_ _`http[s]`_.
 {% endhint %}
 
 ![](../../.gitbook/assets/screen-shot-2018-03-18-at-14.33.55.png)
@@ -140,7 +139,7 @@ Assign to `INSTANCE_ADDRESS`the actual instance address. It can be found on the 
 **Checkpoint**: You can compare your changes so far with the tag`android_step_2`
 
 ```bash
-git diff android_step_2
+git diff android-step-2
 ```
 {% endhint %}
 
@@ -186,7 +185,7 @@ In production you will most likely be using a password based provider like `user
 Replace the  `goToItemsActivity();` line in `attemptLogin()` function with this code snippet:
 
 ```java
-SyncCredentials credentials = SyncCredentials.nickname(nickname, true);
+SyncCredentials credentials = SyncCredentials.nickname(nickname, false);
 SyncUser.logInAsync(credentials, AUTH_URL, new SyncUser.Callback<SyncUser>() {
     @Override
     public void onSuccess(SyncUser user) {
@@ -224,7 +223,7 @@ import static io.realm.todo.Constants.AUTH_URL;
 
 Try now to run the application and log in to the cloud using some random name, eg. "CoolJoe". You should now see the new user in the Realm Studio user list:
 
-![](../../.gitbook/assets/screenshot_2018-03-15_16-47-10.png)
+![](../../.gitbook/assets/screen-shot-2018-04-10-at-21.05.49.png)
 
 We can also implement the option to log out. Locate the `ItemsActivity` class. Modify the `onOptionsItemSelected` method to look like the following \(remember also to update imports\).
 
@@ -251,7 +250,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 **Checkpoint**: You can compare your changes with the tag `android_step_3` 
 
 ```bash
-git diff android_step_3
+git diff android-step-3
 ```
 {% endhint %}
 
@@ -286,10 +285,8 @@ Add the following method:
 private Realm realm;
 
 private void setUpRealm() {
-    SyncConfiguration configuration = new SyncConfiguration.Builder(
-            SyncUser.current(),
-            REALM_BASE_URL + "/default").build();
-    realm = Realm.getInstance(configuration);
+    Realm.setDefaultConfiguration(SyncConfiguration.automatic());
+    realm = Realm.getDefaultInstance();
 }
 ```
 
@@ -365,7 +362,7 @@ If you create multiple items, be sure to use unique strings for the `itemId`.
 **Checkpoint**: You can compare your changes against the commit `android_step_5`
 
 ```bash
-git diff android_step_5
+git diff android-step-5
 ```
 {% endhint %}
 
@@ -398,7 +395,7 @@ Run the application and see that the changes you make are reflected in the cloud
 This was the final step. You can compare your code with `android_step_6`.
 
 ```bash
-git diff android_step_6
+git diff android-step-6
 ```
 {% endhint %}
 

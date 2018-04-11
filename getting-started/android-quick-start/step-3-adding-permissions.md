@@ -16,42 +16,6 @@ To address this issue we will instead use Realm's permission system to limit acc
 Want to get started right away with the complete source code? [Clone the demo app repository from GitHub](https://github.com/realm/my-first-realm-app), then follow the instructions in `android/objectPermission` to get started. Don't forget to update the `Constants.java` file with your Realm Cloud instance URL before running the app.
 {% endhint %}
 
-## Setting up a new Realm with Realm Studio {#setting-up-a-new-realm-with-realm-studio}
-
-[Realm Studio](../../realm-studio/) is a powerful tool, one of the advanced features is to be able to create a Realm and assign permissions to it, without the need to do this programmatically.
-
-To install Realm Studio, follow the instructions here:
-
-{% page-ref page="../../realm-studio/" %}
-
-### Create the reference Realm {#create-the-reference-realm}
-
-We need to create a global Realm that will contain the `Project` and `Item` objects for all users. This is known as the reference Realm, and it will be opened by each user using partial sync.
-
-1. Open Realm Studio and Click on _Connect to the Server._ By default Realm Studio will use the auto-generated admin user \(`realm-admin`\) to connect as an admin to your instance.
-2. Create a new global Realm.
-   1. Click _Create new Realm_.
-   2. Enter `ToDo-permissions` for the path.
-   3. Click _Create Realm_.
-3. Make the `ToDo-permissions` Realm readable and writable by all authenticated users:
-   1. Open the special `__admin` Realm from Realm Studio, then select `Permission.`
-   2. Click on _Create new Permission_ to add a new permission for our `ToDo-permissions` Realm.
-   3. Click on `realmFile` and select the `ToDo-permissions` Realm.
-   4. Select `true` for `mayRead` and `mayWrite` to give read and write permission on this Realm to all authenticated users.
-   5. Click on _Create_ to create the permission. This will add it to the list of permissions in the `__admin` Realm.
-
-{% hint style="info" %}
-If you don't see the `__admin` Realm, go to the "View" menu and select "Show System Realms":
-
-![](../../.gitbook/assets/image%20%289%29.png)
-{% endhint %}
-
-You can verify that new `ToDo-permissions` Realm is set up correctly by checking that its ownership is reported as `public R W`.
-
-{% hint style="info" %}
-Note: when creating the permission we left the field `user` empty \(`null`\) in the dialog box, this is a way to indicate that the permission will apply to all users \(`*`\)
-{% endhint %}
-
 ## Updating the ToDo application {#updating-the-todo-application}
 
 ### Control access to `Project` instances {#control-access-to-project-instances}
@@ -69,16 +33,7 @@ public class Project extends RealmObject {
 
 The `Permission` class defines the privileges we want to grant and to whom \(which _Role_\). In our scenario we want to create a user specific Role, then grant all permissions to it. This has the consequence to prevent all other users from seeing and modifying our `Project` instance.
 
-### Add a specific Role per user {#add-a-specific-role-per-user}
-
-After a successful login we use the current `SyncUser` to create a specific `Role` that we're going to use later.
-
-```java
-// Create a Role specific to this user
-Role userRole = realm.createObject(Role.class, roleId);
-// add current user to it
-userRole.addMember(user.getIdentity());
-```
+By default, every logged-in user has a private role created for them. This role can be accessed at `PermissionUser.getPrivateRole()`. We'll use this role when creating new projects.
 
 ### Associate a `Permission` object with the created `Project`  {#associate-a-permission-object-with-the-created-project}
 
@@ -91,17 +46,11 @@ project.setName(name);
 project.setTimestamp(new Date());
 
 // Create a restrictive permission to limit read/write access to the current user only
-Role role = realm.where(Role.class).equalTo("name", roleId).findFirst();
-Permission permission = new Permission(role);
-permission.setCanRead(true);
-permission.setCanQuery(true);
-permission.setCanCreate(true);
-permission.setCanUpdate(true);
-permission.setCanUpdate(true);
-permission.setCanDelete(true);
-permission.setCanSetPermissions(true);
-permission.setCanModifySchema(true);
-
+Role role = realm.where(PermissionUser.class)
+        .equalTo("id", SyncUser.current().getIdentity())
+        .findFirst()
+        .getPrivateRole();
+Permission permission = new Permission.Builder(role).allPrivileges().build();
 project.getPermissions().add(permission);
 ```
 
