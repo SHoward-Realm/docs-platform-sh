@@ -162,7 +162,7 @@ SSH to your new CentOS server for the data adapter
 
 [centos@data-adapter-server ~]# sudo npm install realm
 
-[centos@data-adapter-server ~]# sudo ~/Downloads/realm-postgres-adapters-1.0.10.tgz
+[centos@data-adapter-server ~]# sudo npm install ~/Downloads/realm-postgres-adapters-1.0.10.tgz
 ```
 
 You can find the Adapter.js code [here](https://gist.github.com/mgeerling/9cca913539caef4d24f3d7ec6afe3daa).
