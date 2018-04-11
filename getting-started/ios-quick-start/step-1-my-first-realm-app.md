@@ -519,5 +519,7 @@ deinit {
 
 With Xcode 9, select another simulator or attach another device and run two or more apps together. For each app choose a new new nickname for each user and observe two users simultaneously editing the same ToDo List at the same time!
 
-Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+
+
 
