@@ -139,8 +139,10 @@ You should now be able to connect to the Postgres server remotely. There are var
 You'll need to contact [info@realm.io](mailto:info@realm.io) to receive the Postgres Data Adapter Package file.
 {% endhint %}
 
-Now let’s setup the Realm Data Adapter. We will use a remote CentOS server. ** **If you do not yet have a running instance of the Realm Object Server, sign up for a [cloud instance](https://cloud.realm.io/) or see instructions on how to [install a self-hosted Realm Object Server](../../../self-hosted/installation/).  
+Now let’s setup the Realm Data Adapter. We will use a remote CentOS server. ** **If you do not yet have a running instance of the Realm Object Server, sign up for a [cloud instance](https://cloud.realm.io/) or see instructions on how to [install a self-hosted Realm Object Server](../../../self-hosted/installation/).  \(We've also included instructions if you've liked to run locally on a Mac\)
 
+{% tabs %}
+{% tab title="CentOS" %}
 SSH to your new CentOS server for the data adapter
 
 ```bash
@@ -164,6 +166,22 @@ SSH to your new CentOS server for the data adapter
 
 [centos@data-adapter-server ~]# sudo npm install ~/Downloads/realm-postgres-adapters-1.0.10.tgz
 ```
+{% endtab %}
+
+{% tab title="macOS" %}
+```text
+#Now install Realm and the Realm Data Adapter npm package
+
+#create a new npm project (name as you like)
+
+npm init
+
+npm install realm@2.2.19
+
+npm install ~/Downloads/realm-postgres-adapters-1.0.10.tgz
+```
+{% endtab %}
+{% endtabs %}
 
 You can find the Adapter.js code [here](https://gist.github.com/mgeerling/9cca913539caef4d24f3d7ec6afe3daa).
 
