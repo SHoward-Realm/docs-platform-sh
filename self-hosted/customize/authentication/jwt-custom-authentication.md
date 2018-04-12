@@ -50,11 +50,12 @@ To include and customize the JWT provider, create a Realm Object Server project 
 ```javascript
 const RealmObjectServer = require('realm-object-server');
 const path = require('path');
+const auth = RealmObjectServer.auth;
 
 const server = new RealmObjectServer.BasicServer();
 
 // Add your public key from "Generating RS256 key" section
-let jwtProvider = new JwtAuthProvider(
+let jwtProvider = new auth.JwtAuthProvider(
   {
     publicKey: '-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhki...\n-----END PUBLIC KEY-----'
   }
