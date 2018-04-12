@@ -54,7 +54,7 @@ const path = require('path');
 const server = new RealmObjectServer.BasicServer();
 
 // Add your public key from "Generating RS256 key" section
-let jwtProvider = new JWTAuthProvider(
+let jwtProvider = new JwtAuthProvider(
   {
     publicKey: '-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhki...\n-----END PUBLIC KEY-----'
   }
