@@ -99,6 +99,7 @@
     * [Verify Port Access](self-hosted/troubleshoot/verify-port-access.md)
   * [API](https://realm.io/docs/realm-object-server/latest/api/ros/)
 * Guides
+  * [Server-side Code Samples](https://github.com/realm/realm-server-side-samples)
   * [The Realm Data Model](guides/the-realm-data-model.md)
   * [Working with Realm's Data Connectors](https://docs.realm.io/platform/using-synced-realms/server-side-usage/data-integration)
   * [Integrate with a Message Queue](guides/integrate-with-a-message-queue.md)
