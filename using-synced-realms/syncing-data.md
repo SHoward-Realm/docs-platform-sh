@@ -27,7 +27,7 @@ A partially synced Realm will contain no objects upon initially being created an
 
 ### Subscribing to data
 
-By default, a partially synchronized Realm contains no data. Instead, the client application must choose, or subscribe to, which data it wants to partially synchronize from the overall Realm maintained on the server. 
+By default, a partially synchronized Realm contains no data. Instead, the client application must choose, or subscribe to, which data it wants to partially synchronize from the overall Realm maintained on the server.
 
 Subscribing to data is easy as it utilizes Realm's query system. Applications can create any number of queries for data which will be transmitted to the server and evaluated. The results of the query will then be synced to the application. The underlying sync protocol ensures that objects are only sent once in the case that an object matches several queries an application has subscribed to.
 
@@ -88,9 +88,15 @@ let subscription = results.subscribe();
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+var subscription = realm.All<Person>().Where(p => p.Age > 18).Subscribe();
+```
+
+`Subscribe()` registers the query with the server, and returns a `Subscription` object which can be used to observe the current state of the subscription or to remove it. A subscription can also be given an explicit name by passing the desired name to `Subscribe()`:
+
+```csharp
+var subscription = realm.All<Person>().Where(p => p.Age > 18).Subscribe("my-subscription");
+```
 {% endtab %}
 {% endtabs %}
 
@@ -206,9 +212,43 @@ results.addListener((collection, changes) => {
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+var subscription = realm.All<Person>().Where(p => p.Age > 18).Subscribe();
+
+// The Subscription class implements INotifyPropertyChanged so you can
+// pass it directly to the data-binding engine
+subscription.PropertyChanged += (s, e) =>
+{
+    switch (subscription.State)
+    {
+        case SubscriptionState.Creating:
+            // The subscription has not yet been written to the Realm
+            break;
+        case SubscriptionState.Pending:
+            // The subscription has been written to the Realm and is waiting
+            // to be processed by the server
+            break;
+        case SubscriptionState.Complete:
+            // The subscription has been processed by the server and all objects
+            // matching the query are in the local Realm
+            break;
+        case SubscriptionState.Invalidated:
+            // The subscription has been removed
+            break;
+        case SubscriptionState.Error:
+            // An error occurred while processing the subscription
+            var error = subscription.Error;
+            break;
+    }
+};
+
+subscription.Results.CollectionChanged += (s, e) =>
+{
+    // Called whenever the objects in the local Realm which match the query
+    // change, including when a subscription being added or removed changes
+    // which objects are included.
+};
+```
 {% endtab %}
 {% endtabs %}
 
@@ -255,9 +295,16 @@ results.unsubscribe();
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+var subscription = realm.All<Person>().Where(p => p.Age > 18).Subscribe();
+await subscription.UnsubscribeAsync();
+
+// Alternatively, for named subscriptions, you can also unsubscribe
+// by their name:
+var named = realm.All<Person>().Where(p => p.Age > 18).Subscribe("legal-drivers");
+
+await Subscription.UnsubscribeAsync("legal-drivers");
+```
 {% endtab %}
 {% endtabs %}
 

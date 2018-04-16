@@ -126,7 +126,7 @@ SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
     Realm realm = Realm.getInstance(config);
     // Use Realm
   }
-  
+
   @Override
   public void onError(ObjectServerError error) {
     // Handle error
@@ -170,9 +170,25 @@ Realm.Sync.User.login(server, username, password)
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_API Coming Soon!_
-{% endhint %}
+The default synced Realm is provided via an automatic `SyncConfiguration`, which will use the current logged in user from `User.Current` and the server URL used to authenticate.
+
+For example, to log in, then asynchronously open the default synced Realm with the current user:
+
+```csharp
+var user = await User.LoginAsync(credentials, serverUrl);
+RealmConfiguration.DefaultConfiguration = new SyncConfiguration();
+
+var realm = await Realm.GetInstanceAsync();
+```
+
+If you are working with multiple users, you can pass in the specific user as well:
+
+```csharp
+var user = await User.LoginAsync(credentials, serverUrl);
+RealmConfiguration.DefaultConfiguration = new SyncConfiguration(user);
+
+var realm = await Realm.GetInstanceAsync();
+```
 {% endtab %}
 {% endtabs %}
 
@@ -296,17 +312,17 @@ See [Models](https://realm.io/docs/javascript/latest/#models) in the Javascript 
 {% tab title=".Net" %}
 ```csharp
 // Define your models like regular C# classes
-public class Dog : RealmObject 
+public class Dog : RealmObject
 {
     public string Name { get; set; }
     public int Age { get; set; }
     public Person Owner { get; set; }
 }
 
-public class Person : RealmObject 
+public class Person : RealmObject
 {
     public string Name { get; set; }
-    public IList<Dog> Dogs { get; } 
+    public IList<Dog> Dogs { get; }
 }
 ```
 

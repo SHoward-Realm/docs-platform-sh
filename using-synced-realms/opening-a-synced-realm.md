@@ -106,7 +106,7 @@ SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
     Realm realm = Realm.getInstance(config);
     // Use Realm
   }
-  
+
   @Override
   public void onError(ObjectServerError error) {
     // Handle error
@@ -150,9 +150,25 @@ Realm.Sync.User.login(server, username, password)
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_API Coming Soon!_
-{% endhint %}
+The default synced Realm is provided via an automatic `SyncConfiguration`, which will use the current logged in user from `User.Current` and the server URL used to authenticate.
+
+For example, to log in, then asynchronously open the default synced Realm with the current user:
+
+```csharp
+var user = await User.LoginAsync(credentials, serverUrl);
+RealmConfiguration.DefaultConfiguration = new SyncConfiguration();
+
+var realm = await Realm.GetInstanceAsync();
+```
+
+If you are working with multiple users, you can pass in the specific user as well:
+
+```csharp
+var user = await User.LoginAsync(credentials, serverUrl);
+RealmConfiguration.DefaultConfiguration = new SyncConfiguration(user);
+
+var realm = await Realm.GetInstanceAsync();
+```
 {% endtab %}
 {% endtabs %}
 
@@ -164,7 +180,7 @@ If your application is using multiple Realms, you can manually configure a synce
 2. The Realm URL
 
 {% hint style="info" %}
-The Realm URL uses a specific scheme: `realm://` for non-secure connections and `realms://` for secure connections. 
+The Realm URL uses a specific scheme: `realm://` for non-secure connections and `realms://` for secure connections.
 
 For more details, see the [Understanding Realm URLs and Paths](opening-a-synced-realm.md#understanding-realm-urls-and-paths) section below.
 {% endhint %}
@@ -212,7 +228,7 @@ Realms on the Realm Object Server are created using a subclass of the normal `Re
 
 ```java
 // Create the configuration
-SyncUser user = SyncUser.currentUser(); 
+SyncUser user = SyncUser.currentUser();
 String url = "realm://localhost:9080/~/userRealm";
 SyncConfiguration config = new SyncConfiguration.Builder(user, url).build();
 
@@ -310,9 +326,12 @@ const config = {
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+var config = new SyncConfiguration(user, realmUrl)
+{
+    IsPartial = true // <-- this enables a partially synced Realm
+};
+```
 {% endtab %}
 {% endtabs %}
 
@@ -322,7 +341,7 @@ When you configure a Realm to use partial synchronization, it will initially hav
 
 ## Synchronously Opening A Realm
 
-To access a Realm immediately in your application, you can open a Realm "synchronously." This might be confusing since "synchronous" in this case means the API will return the Realm immediately. However, given that we are opening a _synchronized_ Realm, the first time you open the Realm there will always be no data in it. In the background, the Realm will establish a sync session and start downloading any existing data from the server. You can attach a progress listener to track the download activity or you can subscribe to notifications to get events when the data changes. 
+To access a Realm immediately in your application, you can open a Realm "synchronously." This might be confusing since "synchronous" in this case means the API will return the Realm immediately. However, given that we are opening a _synchronized_ Realm, the first time you open the Realm there will always be no data in it. In the background, the Realm will establish a sync session and start downloading any existing data from the server. You can attach a progress listener to track the download activity or you can subscribe to notifications to get events when the data changes.
 
 {% hint style="info" %}
 This API is recommended when your want the user experience to not be blocked while the data is downloaded, such as displaying partial data to the user in the process.
@@ -359,7 +378,7 @@ RLMRealm *realm = [RLMRealm realmWithConfiguration:config error:nil];
 {% tab title="Java" %}
 ```java
 // Create the configuration
-SyncUser user = SyncUser.currentUser(); 
+SyncUser user = SyncUser.currentUser();
 String url = "realm://localhost:9080/~/userRealm";
 SyncConfiguration config = new SyncConfiguration.Builder(user, url).build();
 
@@ -437,12 +456,12 @@ config.syncConfiguration = [[RLMSyncConfiguration alloc] initWithUser:user realm
 
 {% tab title="Java" %}
 ```java
-// Create the configuration specifying that the Realm cannot be opened 
-// the first time until server data has been downloaded. This only 
-// blocks it from being opened the first time. After that the Realm can 
-// be opened immediately. 
+// Create the configuration specifying that the Realm cannot be opened
+// the first time until server data has been downloaded. This only
+// blocks it from being opened the first time. After that the Realm can
+// be opened immediately.
 SyncConfiguration config = new SyncConfiguration.Builder(user, url)
-  .waitForInitialRemoteData(); 
+  .waitForInitialRemoteData();
   .build();
 
 // Open the remote Realm

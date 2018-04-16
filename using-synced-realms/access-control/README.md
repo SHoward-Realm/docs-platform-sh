@@ -2,7 +2,7 @@
 
 ## Overview
 
-As you progress in your app development, eventually you will want to consider the data security. Realm Platform offers a variety of mechanisms to securely control access to your synchronized data. 
+As you progress in your app development, eventually you will want to consider the data security. Realm Platform offers a variety of mechanisms to securely control access to your synchronized data.
 
 ### Path-level Permissions
 
@@ -15,7 +15,7 @@ These permissions should only be used by applications that match the &lt;3.x dat
 ### Fine-Grained Permissions
 
 {% hint style="danger" %}
-This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](path-level-permissions.md) for the APIs and access control behavior for &lt;3.x. 
+This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](path-level-permissions.md) for the APIs and access control behavior for &lt;3.x.
 {% endhint %}
 
 Starting with version 3.x and the introduction of [partial synchronization](../syncing-data.md) and [the default synced Realm](../setting-up-your-realms.md#the-default-synced-realm), we also introduced a fine-grained permission system that works on more levels:
@@ -45,14 +45,14 @@ By default, when a Realm or class is created, all users are granted full access.
 ## Fine-Grained Permissions
 
 {% hint style="danger" %}
-This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](path-level-permissions.md) for the APIs and access control behavior for &lt;3.x. 
+This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](path-level-permissions.md) for the APIs and access control behavior for &lt;3.x.
 {% endhint %}
 
 In addition to path-level permissions, you can control user access to individual objects through fine-grained permissions. This feature is in effect whenever the user is connecting to a Realm file using partial synchronization.
 
 When first starting, any user who can connect to a Realm file can make any change to the data. This is designed to allow you to get up and running quickly, syncing data, and iterating on your data models. Once you are ready to start implementing access control, an admin can then define access control lists inside the Realm file, either on individual objects or whole classes.
 
-Access control is modeled using roles. A user can be a member of as many roles as needed. All users are automatically added to the special role called `everyone` by the server when they first connect. 
+Access control is modeled using roles. A user can be a member of as many roles as needed. All users are automatically added to the special role called `everyone` by the server when they first connect.
 
 {% hint style="warning" %}
 In a new Realm file, the `everyone` role has full admin rights.
@@ -162,11 +162,11 @@ realm.commitTransaction();
 realm.write(() => {
     // Create the role
     let readOnlyRole role = realm.createObject('__Role', { name: 'read-only' });
-    
+
     // Add the user to the role
     let user = getUser();
     readOnlyRole.members.push(user);
-    
+
     // Create a new permission object for the role and add it to the Realm
     // permissions
     let permission = realm.createObject('__Permission', { 'role': role, 'canRead': true, 'canQuery': true });
@@ -177,9 +177,26 @@ realm.write(() => {
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="info" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+// Example creating a new role with only read access to the Realm
+ 
+// Permissions must be modified inside a write transaction
+realm.Write(() =>
+{
+    // Find or create the role
+    var readOnlyRole = PermissionRole.Get(realm, "read-only");
+     
+    // Add the user to the role
+    var user = User.Current;
+    readOnlyRole.Users.Add(user);
+     
+    // Create a new permission object for the role and add it to the Realm
+    // permissions
+    var permission = Permission.Get(realm, readOnlyRole);
+    permission.CanRead = true;
+    permission.CanQuery = true;
+});
+```
 {% endtab %}
 {% endtabs %}
 
@@ -206,7 +223,7 @@ Class permissions are set and modified the same way as Realm permissions:
  
 // Permissions must be modified inside a write transaction
 try! realm.write {
-    // Find an existing Role 
+    // Find an existing Role
     let readOnlyRole = realm.object(ofType: PermissionRole.self, forPrimaryKey: "read-only")!
 
     // Add the user to the role
@@ -227,7 +244,7 @@ try! realm.write {
  
 // Permissions must be modified inside a write transaction
 [realm transactionWithBlock:^{
-    // Find an existing Role 
+    // Find an existing Role
     RLMPermissionRole *readOnlyRole = [RLMPermissionRole objectInRealm:realm forPrimaryKey:@"read-only"];
 
     // Add the user to the role
@@ -250,7 +267,7 @@ try! realm.write {
 realm.beginTransaction();
 ClassPermissions classPermissions = realm.getPermissions(Person.class);
 
-// Find an existing Role 
+// Find an existing Role
 Role role = realm.where(Role.class).equalTo("name", "read-only").findFirst();
 
 // Add the user to the role
@@ -282,7 +299,7 @@ realm.write(() => {
     // Add the user to the role
     let user = getUser();
     role.members.push(user);
-    
+
     // Create a new permission object for the role
     // and add it to the Realm permissions
     let permission = realm.createObject('__Permission', { 'role': role, 'canRead': true, 'canQuery': true });
@@ -293,9 +310,25 @@ realm.write(() => {
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="info" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+// Example of only granting read only access to a class in the Realm
+ 
+// Permissions must be modified inside a write transaction
+realm.Write(() =>
+{
+    // Find or create the role
+    var readOnlyRole = PermissionRole.Get(realm, "read-only");
+
+    // Add the user to the role
+    var user = User.Current;
+    readOnlyRole.Users.Add(user);
+
+    // Create a new permission object for the role and add it to the class permissions
+    var permission = Permission.Get<Person>(realm, readOnlyRole);
+    permission.canRead = true;
+    permission.canQuery = true;
+});
+```
 {% endtab %}
 {% endtabs %}
 
@@ -345,14 +378,20 @@ const PersonSchema = {
         name: 'string',
         permissions: '__Permission[]'
     }
-}; 
+};
 ```
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="info" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+// The ACL property is an `IList<Permission>` property with a user-defined name
+public class Person : RealmObject
+{
+    // Other properties ...
+
+    public IList<Permission> Permissions { get; }
+}
+```
 {% endtab %}
 {% endtabs %}
 
@@ -447,12 +486,12 @@ realm.write(() => {
     // Create role unique to user
     let role = realm.create('__Role', { name: user.identity });
     role.members.push(user);
-    
+
     // Create a new permission object for the role
     // and add it to the objects permissions
     let permission = realm.create('__Permission', { role: role });
     ['canRead', 'canUpdate', 'canDelete', 'canSetPermissions', 'canQuery', 'canCreate', 'canModifySchema'].forEach((p) => permission[p] = true);
-        
+
     let objectPermissions = realm.objects('__Class').filtered(`class_name = 'Person'`)[0];
     objectPermissions.permissions.push(permission);
 };
@@ -460,9 +499,26 @@ realm.write(() => {
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="info" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+// Example of restricting the object to the user creating it.
+ 
+// Permissions must be modified inside a write transaction
+realm.Write(() =>
+{
+    // Get the permission user for the sync user that is currently logged in.
+    var user = PermissionUser.Get(realm, User.Current.Identity);
+
+    var person = realm.Find<Person>(someId);
+
+    // Create a new permission object for the user's private role and
+    // add it to the object's permissions
+    var permission = Permission.Get(user.Role, person);
+    permission.canRead = true;
+    permission.canUpdate = true;
+    permission.canDelete = true;
+    permission.canSetPermissions = true;
+});
+```
 {% endtab %}
 {% endtabs %}
 
@@ -530,9 +586,20 @@ let objectPrivileges = realm.privileges(person);
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="info" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+// Realm privileges
+var privileges = realm.GetPrivileges();
+ 
+// Class privileges for Person
+var privileges = realm.GetPrivileges<Person>();
+
+// Class privileges for Person using the string API
+var privileges = realm.GetPrivileges("Person");
+ 
+// Object privileges
+var person = realm.Find<Person>(someId);
+var privileges = realm.GetPrivileges(person);
+```
 {% endtab %}
 {% endtabs %}
 
@@ -554,7 +621,7 @@ else {
 {% endtab %}
 
 {% tab title="Objective-C" %}
-```swift
+```objectivec
 Person *person = getPerson();
 struct RLMObjectPrivileges privileges = [realm privilegesForObject:person];
 
@@ -594,9 +661,19 @@ if (privileges.canModify) {
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="info" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+var person = realm.Find<Person>(someId)
+var privileges = realm.GetPrivileges(person);
+
+if (privileges.HasFlag(ObjectPrivileges.Update))
+{
+    ShowEditButton();
+}
+else
+{
+    HideEditButton();
+}
+```
 {% endtab %}
 {% endtabs %}
 

@@ -104,7 +104,7 @@ RLMSyncCredentials *anonymousCredentials = [RLMSyncCredentials anonymousCredenti
 {% endtab %}
 
 {% tab title="Java" %}
-```
+```java
 SyncCredentials credentials = SyncCredentials.anonymous();
 ```
 {% endtab %}
@@ -116,9 +116,9 @@ _API Coming Soon!_
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+var credentials = Credentials.Anonymous();
+```
 {% endtab %}
 {% endtabs %}
 
@@ -200,9 +200,11 @@ _API Coming Soon!_
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_API Coming Soon!_
-{% endhint %}
+```csharp
+var credentials = Credentials.Nickname("my-nickname", isAdmin: false);
+```
+
+The `isAdmin` arguments indicates if the user created should be an admin user or not.
 {% endtab %}
 {% endtabs %}
 
