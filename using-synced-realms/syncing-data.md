@@ -43,9 +43,7 @@ let subscription = results.subscribe()
 `subscribe()` registers the query with the server, and returns a `SyncSubscription` object which can be used to observe the current state of the subscription or to remove it. A subscription can also be given an explicit name by passing the desired name to `subscribe()`:
 
 ```swift
-let subscription = realm.objects(Person.self)
-                        .filter("age > 18")
-                        .subscribe(named: "my-subscription")
+let subscription = results.subscribe(named: "my-subscription")
 ```
 {% endtab %}
 
