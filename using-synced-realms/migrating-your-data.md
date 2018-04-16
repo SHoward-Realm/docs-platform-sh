@@ -38,7 +38,7 @@ class Person: Object {
     @objc dynamic var birthdate: NSDate? = nil
 }
 
-let syncServerURL = URL(string: "hhttp://localhost:9080/Dogs")!
+let syncServerURL = URL(string: "http://localhost:9080/Dogs")!
 let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: user, realmURL: syncServerURL))
 
 let realm = try! Realm(configuration: config)
@@ -135,10 +135,10 @@ When your Realm is synced with Realm Object Server, the migration process is a l
 
 * You don’t need to set the schema version \(although you can\).
 * Additive changes, such as adding a class or adding a field to a class, are applied automatically.
-* Removing a field from a schema doesn’t delete the field from the database, but instead instructs Realm to ignore that field. New objects will continue to be created with those properties, but they will be set to null. Non-nullable fields will be set to appropriate zero/empty values: 0 for numeric fields, an empty string for string properties, and so on.
-* You must not include a migration block.
+* Removing a field from a schema doesn’t delete the field from the database, but instead instructs Realm to ignore that field. New objects will continue to be created with those properties, but they will be set to `null`. Non-nullable fields will be set to appropriate zero/empty values: `0` for numeric fields, an empty string for string properties, and so on.
+* You _must not_ include a migration block.
 
-Suppose your application has `Dog`
+Suppose your application has the `Dog` class:
 
 ```javascript
 let schemas.Dog = {
@@ -180,9 +180,41 @@ Realm.open(config).then(realm => { /* ... */ });
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_Coming Soon!_
-{% endhint %}
+When your Realm is synced with Realm Object Server, the migration process is a little different—and in many cases, simpler. Here’s what you need to know:
+
+* You don’t need to set the schema version \(although you can\).
+* Additive changes, such as adding a class or adding a field to a class, are applied automatically.
+* Removing a field from a schema doesn’t delete the field from the database, but instead instructs Realm to ignore that field. New objects will continue to be created with those properties, but they will be set to `null`. Non-nullable fields will be set to appropriate zero/empty values: `0` for numeric fields, an empty string for string properties, and so on.
+* You _must not_ include a migration block.
+
+Suppose your application has the `Dog` class:
+
+```csharp
+public class Dog : RealmObject
+{
+    public string Name { get; set; }
+}
+```
+
+Now you need to add the `Person` class and give it an `Owner` relationship to `Dog`. You don’t need to do anything other than adding the class and associated properties before syncing:
+
+```csharp
+public class Dog : RealmObject
+{
+    public string Name { get; set; }
+    public Person Owner { get; set; }
+}
+
+public class Person : RealmObject {
+    public string Name { get; set; }
+    public DateTimeOffset Birthdate { get; set; }
+}
+
+var syncServerUri = new Uri("http://localhost:9080/Dogs");
+var config = new SyncConfiguration(user, syncServerUri);
+
+var realm = Realm.GetInstance(config);
+```
 {% endtab %}
 {% endtabs %}
 
@@ -371,9 +403,49 @@ let realmV2 = new Realm(configV2);
 {% endtab %}
 
 {% tab title=".Net" %}
-{% hint style="warning" %}
-_Coming Soon!_
-{% endhint %}
+Since synced Realms don’t support migration blocks, destructive changes for a migration—changing a primary key, changing field types of existing fields \(while keeping the same name\), or changing a property from optional to required or vice-versa—need to be handled in a different way. Create a _new_ synchronized Realm with the new schema, and copy data from the old Realm to the new Realm:
+
+```csharp
+public class Dog : RealmObject
+{
+    public string Name { get; set; }
+    public Person Owner { get; set; }
+}
+
+// We can't change the name of the class in Realm, so we're
+// using [MapTo] to avoid collisions between the .NET classes.
+[MapTo("Person")]
+public class Person_Old : RealmObject
+{
+    // By default strings are nullable
+    public string Name { get; set; }
+}
+
+public class Person : RealmObject
+{
+    // Changing optionality is destructive change
+    [Required]
+    public string Name { get; set; }
+}
+
+var initialConfig = new SyncConfiguration(user, new Uri("http://localhost:9080/Dogs"))
+{
+    // Limit to initial object type
+    ObjectClasses = new[] { typeof(Dog), typeof(Person_Old) }
+};
+
+var initialRealm = Realm.GetInstance(initialConfig);
+
+var newConfig = new SyncConfiguration(user, new Uri("http://localhost:9080/DogsV2"))
+{
+    // Limit to new object type
+    ObjectClasses = new[] { typeof(Dog), typeof(Person) }
+};
+
+var newRealm = Realm.GetInstance(newConfig);
+```
+
+Custom migrations can also be applied to synced Realms by writing a [notification handler](https://realm.io/docs/dotnet/latest/#notifications) on the client side to make the changes, or as a [server-side event handler](server-side-usage/data-change-events.md#creating-an-event-handler). However, if the migration makes a destructive change, the Realm will stop syncing with ROS, producing a `Bad changeset received` error.
 {% endtab %}
 {% endtabs %}
 
