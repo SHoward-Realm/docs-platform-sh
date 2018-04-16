@@ -1,9 +1,3 @@
----
-description: >-
-  Learn about Realm's Data Connector API that can be used for complex backend
-  integrations!
----
-
 # Data integration
 
 ## Overview

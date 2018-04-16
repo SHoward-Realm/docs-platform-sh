@@ -1,7 +1,3 @@
----
-description: Build a team oriented field worker application for iOS in Swift!
----
-
 # Building a Field Worker Application in Swift
 
 {% hint style="warning" %}

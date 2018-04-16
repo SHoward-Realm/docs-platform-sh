@@ -6,8 +6,6 @@ The JSON Web Token provider allows you to integrate with an existing authenticat
 
 ### Configuration
 
-{% tabs %}
-{% tab title="Cloud" %}
 {% hint style="warning" %}
 JWT authentication is _disabled_ by default in Cloud as it requires configuration.
 {% endhint %}
@@ -15,30 +13,14 @@ JWT authentication is _disabled_ by default in Cloud as it requires configuratio
 To enable or disable go to the Settings for your instance in the cloud portal:
 
 ![](../../.gitbook/assets/image%20%286%29.png)
-{% endtab %}
 
-{% tab title="Self-Hosted" %}
 For more details on how to enable or disable this provider with Self-Hosted go to:
 
 {% page-ref page="../../self-hosted/customize/authentication/jwt-custom-authentication.md" %}
-{% endtab %}
-{% endtabs %}
 
 ### Client API
 
 {% tabs %}
-{% tab title="Swift" %}
-```swift
-let jwtCredentials = SyncCredentials.jwt(token: "JWT token")
-```
-{% endtab %}
-
-{% tab title="Objective-C" %}
-```objectivec
-RLMSyncCredentials *jwtCredentials = [RLMSyncCredentials credentialsWithJWT:@"JWT Token"];
-```
-{% endtab %}
-
 {% tab title="Java" %}
 ```java
 SyncCredentials credentials = SyncCredentials.jwt("my-jwt-token");
@@ -66,8 +48,6 @@ Sometimes it's useful to create a synchronized Realm for a user without promptin
 
 ### Configuration
 
-{% tabs %}
-{% tab title="Cloud" %}
 {% hint style="success" %}
 By default anonymous authentication is enabled with Cloud
 {% endhint %}
@@ -75,9 +55,7 @@ By default anonymous authentication is enabled with Cloud
 To enable or disable go to the Settings for your instance in the cloud portal:
 
 ![](../../.gitbook/assets/image%20%281%29.png)
-{% endtab %}
 
-{% tab title="Self-Hosted" %}
 {% hint style="success" %}
 By default the `AnonymousAuthProvider` is **enabled** when creating a project via `ros init`.
 {% endhint %}
@@ -85,24 +63,10 @@ By default the `AnonymousAuthProvider` is **enabled** when creating a project vi
 For more details on how to enable or disable this provider with Self-Hosted go to:
 
 {% page-ref page="../../self-hosted/customize/authentication/anonymous-authentication.md" %}
-{% endtab %}
-{% endtabs %}
 
 ### Client API
 
 {% tabs %}
-{% tab title="Swift" %}
-```swift
-let anonymousCredentials = SyncCredentials.anonymous()
-```
-{% endtab %}
-
-{% tab title="Objective-C" %}
-```objectivec
-RLMSyncCredentials *anonymousCredentials = [RLMSyncCredentials anonymousCredentials];
-```
-{% endtab %}
-
 {% tab title="Java" %}
 ```java
 SyncCredentials credentials = SyncCredentials.anonymous();
@@ -122,8 +86,6 @@ var credentials = Credentials.Anonymous();
 {% endtab %}
 {% endtabs %}
 
-
-
 ## Nickname
 
 The Nickname provider allows you to authenticate users just by their nickname without requiring passwords or other identifying information. This is useful when prototyping collaborative features for your app without worrying about the actual login flow until later in the development lifecycle.
@@ -134,8 +96,6 @@ The Nickname provider is not secure and should never be enabled in production de
 
 ### Configuration
 
-{% tabs %}
-{% tab title="Cloud" %}
 {% hint style="warning" %}
 By default Nickname authentication is enabled with Cloud
 {% endhint %}
@@ -143,9 +103,7 @@ By default Nickname authentication is enabled with Cloud
 To enable or disable go to the Settings for your instance in the cloud portal:
 
 ![](../../.gitbook/assets/image%20%2820%29.png)
-{% endtab %}
 
-{% tab title="Self-Hosted" %}
 {% hint style="warning" %}
 By default the Nickname provider is **enabled** when creating a project via `ros init`.
 {% endhint %}
@@ -153,38 +111,10 @@ By default the Nickname provider is **enabled** when creating a project via `ros
 For more details on how to enable or disable this provider with Self-Hosted go to:
 
 {% page-ref page="../../self-hosted/customize/authentication/nickname-authentication.md" %}
-{% endtab %}
-{% endtabs %}
 
 ### Client API
 
 {% tabs %}
-{% tab title="Swift" %}
-```swift
-let nicknameCredentials = SyncCredentials.nickname(nickname: "Adam")
-```
-
-To create an admin user:
-
-```swift
-let nicknameCredentials = SyncCredentials.nickname(nickname: "Adam" isAdmin: true)
-```
-{% endtab %}
-
-{% tab title="Objective-C" %}
-```objectivec
-RLMSyncCredentials *nicknameCredentials = [RLMSyncCredentials credentialsWithNickname:@"Adam"
-                                                                              isAdmin:NO];
-```
-
-To create an admin user:
-
-```objectivec
-RLMSyncCredentials *nicknameCredentials = [RLMSyncCredentials credentialsWithNickname:@"Adam"
-                                                                              isAdmin:YES];
-```
-{% endtab %}
-
 {% tab title="Java" %}
 ```java
 SyncCredentials credentials = SyncCredentials.nickname("my-nickname", false);
@@ -208,8 +138,6 @@ The `isAdmin` arguments indicates if the user created should be an admin user or
 {% endtab %}
 {% endtabs %}
 
-
-
 ## Custom Authentication
 
 {% hint style="warning" %}
@@ -227,14 +155,6 @@ For more details on how to use the custom authentication, see the Self-Hosted do
 ### Client API
 
 {% tabs %}
-{% tab title="Swift" %}
-```swift
-let customCredentials = SyncCredentials(customToken: "token", provider: Provider("myauth"))
-```
-
-Additional information can be passed to the custom credentials initializer as a third parameter. Please see the [API reference](https://realm.io/docs/swift/latest/api/Structs/SyncCredentials.html#/s:ZFV10RealmSwift15SyncCredentials3jwtFSSS0_) for more information.
-{% endtab %}
-
 {% tab title="Objective-C" %}
 ```objectivec
 RLMSyncCredentials *credentials = [[RLMSyncCredentials alloc] initWithCustomToken:@"custom token" provider:@"myauth" userInfo:nil];
@@ -297,12 +217,6 @@ For more details on how to use the Google provider, see the Self-Hosted docs:
 ### Client API
 
 {% tabs %}
-{% tab title="Swift" %}
-```swift
-let googleCredentials = SyncCredentials.google(token: "Google token")
-```
-{% endtab %}
-
 {% tab title="Objective-C" %}
 ```objectivec
 RLMSyncCredentials *googleCredentials = [RLMSyncCredentials credentialsWithGoogleToken:@"Google token"];
@@ -347,12 +261,6 @@ For more details on how to use the Google provider, see the Self-Hosted docs:
 ### Client API
 
 {% tabs %}
-{% tab title="Swift" %}
-```swift
-let facebookCredentials = SyncCredentials.facebook(token: "Facebook token")
-```
-{% endtab %}
-
 {% tab title="Objective-C" %}
 ```objectivec
 RLMSyncCredentials *facebookCredentials = [RLMSyncCredentials credentialsWithFacebookToken:@"Facebook token"];
@@ -396,15 +304,6 @@ For more details on how to use the Azure Active Directory provider, see the Self
 
 ### Client API
 
-{% tabs %}
-{% tab title=".Net" %}
-```aspnet
-var token = "..."; // a string representation of a token obtained by logging in with Azure Active Directory
-var credentials = Credentials.AzureAD(token);
-```
-{% endtab %}
-{% endtabs %}
-
 ## CloudKit
 
 {% hint style="warning" %}
@@ -422,12 +321,6 @@ For more details on how to use the Apple CloudKit provider, see the Self-Hosted 
 ### Client API
 
 {% tabs %}
-{% tab title="Swift" %}
-```swift
-let cloudKitCredentials = SyncCredentials.cloudKit(token: "CloudKit token")
-```
-{% endtab %}
-
 {% tab title="Objective-C" %}
 ```objectivec
 RLMSyncCredentials *cloudKitCredentials = [RLMSyncCredentials credentialsWithCloudKitToken:@"CloudKit token"];
@@ -435,7 +328,5 @@ RLMSyncCredentials *cloudKitCredentials = [RLMSyncCredentials credentialsWithClo
 {% endtab %}
 {% endtabs %}
 
-
-
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

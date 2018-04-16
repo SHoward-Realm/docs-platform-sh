@@ -559,7 +559,5 @@ When working with Realm paths you might quickly realize that it is time-consumin
 "realm://127.0.0.1:9080/12345/myRealm"
 ```
 
-
-
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

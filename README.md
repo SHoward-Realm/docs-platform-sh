@@ -20,9 +20,9 @@ The best way to get started is to try Realm Platform out for yourself!
 
 We have created several tutorials to teach both the fundamentals and more advanced aspects to the platform. Choose your platform to get started:
 
-{% page-ref page="getting-started/ios-quick-start/" %}
+{% page-ref page="getting-started-1/ios-quick-start/" %}
 
-{% page-ref page="getting-started/android-quick-start/" %}
+{% page-ref page="getting-started-1/android-quick-start/" %}
 
 {% hint style="warning" %}
 _**Javascript and .Net coming soon!**_
@@ -43,8 +43,4 @@ Learn how Realm Platform can help you design world-class apps and features.
 
 [Read the white paper](https://www2.realm.io/whitepaper/realm-overview-registration?_ga=2.266659790.1140662478.1513013122-2031688623.1501706764) or [Watch the webinar](https://www2.realm.io/webinar/realm-platform-2-overview-registration?_ga=2.97855199.1140662478.1513013122-2031688623.1501706764)
 {% endhint %}
-
-
-
-
 

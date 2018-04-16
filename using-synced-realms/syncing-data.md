@@ -2,7 +2,7 @@
 
 ## Overview
 
-Data can be synchronized between a local Realm and the server in two modes: _Partial _and _Full _ synchronization.
+Data can be synchronized between a local Realm and the server in two modes: _Partial \_and \_Full _ synchronization.
 
 * **Partial synchronization** is a feature that allows a synchronized Realm to be opened in a such a way that it does _not_ download all objects stored within the remote Realm on the server. Instead, a partially synced Realm allows you to specify what subset of objects you want synchronized to the local copy using queries.
 * **Full synchronization **will automatically synchronize the entire Realm in the background as long as the Realm is open.
@@ -36,7 +36,8 @@ Subscriptions are automatically persisted and maintained by the server. When dat
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-let subscription = realm.objects(Person.self).filter("age > 18").subscribe()
+let results = realm.objects(Person.self).filter("age > 18")
+let subscription = results.subscribe()
 ```
 
 `subscribe()` registers the query with the server, and returns a `SyncSubscription` object which can be used to observe the current state of the subscription or to remove it. A subscription can also be given an explicit name by passing the desired name to `subscribe()`:
@@ -179,7 +180,6 @@ query.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<Pe
         }
     }
 });
-
 ```
 {% endtab %}
 
@@ -312,7 +312,5 @@ await Subscription.UnsubscribeAsync("legal-drivers");
 
 When you open a Realm without partial sync, the entire Realm contents will be kept in sync. You will not need to use the subscription APIs as described [above](syncing-data.md#using-partial-synchronization). Instead, to control what data is synchronized to a client, you will need to split your data up into individual Realms. For example, a common pattern is to use a global Realm for shared data across all data at a base path `/globalRealm` and user-specific data in a Realm at the user's scoped path: `/~/myRealm`.
 
-
-
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 
