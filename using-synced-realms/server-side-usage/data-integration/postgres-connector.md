@@ -6,7 +6,6 @@ This guide walks you through how to use Realm’s data adapter to sync data from
 
 * Postgres 9.x \(we recommend using 9.6\)
 * Realm Object Server 2.x \(or higher\) or Realm Cloud
-* A Realm [Feature Token](https://realm.io/trial/realm-professional-edition/) 
 
 ## Postgres {#postgres:}
 

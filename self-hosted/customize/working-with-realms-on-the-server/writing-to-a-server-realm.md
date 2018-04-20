@@ -15,18 +15,12 @@ realm.write(() => {
 
 If you're looking for some code to get started, the following javascript performs a basic username/password login to the Realm Object Server and then writes to a Realm.
 
-{% hint style="info" %}
-Make sure to have your feature token ready and edit the basic parameters \(i.e. Realm Object Server address, username, password, etc\) 
-{% endhint %}
-
 ```javascript
 const BasicServer = require('realm-object-server').BasicServer
 
 //Params to edit
 var username = 'mycoolusername'; 
 var password = 'password';
-const FEATURE_TOKEN = "INSERT_FEATURE_TOKEN"; 
-Realm.Sync.setFeatureToken(FEATURE_TOKEN);
 
 //set the Schema of your object to be stored in ROS -- depends on Kafka message
 const ProductSchema = {
