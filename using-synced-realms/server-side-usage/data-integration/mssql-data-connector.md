@@ -5,6 +5,7 @@ This guide walks you through how to use Realm’s data adapter to sync data from
 ## Requirements {#postgres}
 
 * Realm Object Server 2.x \(or higher\) or Realm Cloud
+* A Realm [Feature Token](https://realm.io/trial/realm-professional-edition/)
 * MSSQL Server 2014 or newer 
 * The ability to enable Change Tracking and Snapshot Isolation on your MSSQL Server
 * A SQL User with admin privileges \(to run the adapter\)
@@ -162,6 +163,9 @@ module.exports = {
     //self-hosted:"http://10.0.0.7:9080"
     //cloud: https://small-plastic-handle.us1a.cloud.realm.io/
     auth_server_url: "http://<IP_OR_DNS_OF_ROS>",
+    
+    //Get your feature token from a member of the Realm team 
+    feature_token: 'eyjhcd.....', 
 
     //enter as necessary
     admin_username: 'realm-admin',
@@ -281,6 +285,11 @@ if (process.env.NODE_ENV !== 'production') {
 // Print out uncaught exceptions
 process.on('uncaughtException', (err) => console.log(err));
 
+// Unlock Professional Edition APIs
+Realm.Sync.setFeatureToken(Config.feature_token);
+
+
+
 async function main() {
     //login as an admin user 
     var admin_user = await Realm.Sync.User.login(Config.auth_server_url, Config.admin_username, Config.admin_password)
@@ -373,6 +382,9 @@ const Models = require('./realmmodels');
 
 // Print out uncaught exceptions
 process.on('uncaughtException', (err) => console.log(err));
+
+// Unlock Professional Edition APIs
+Realm.Sync.setFeatureToken(Config.feature_token);
 
 async function main() {
     //login as an admin user 

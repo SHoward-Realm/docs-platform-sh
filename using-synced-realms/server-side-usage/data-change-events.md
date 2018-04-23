@@ -180,6 +180,7 @@ Here’s what a sample event handling application might look like:
 ```csharp
 public class Program
 {
+    private const string FeatureToken = "eyhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...";
     private const string AdminUsername = "admin@foo.com";
     private const string AdminPassword = "super-secure-password";
     private const string ServerUrl = "127.0.0.1:9080";
@@ -188,6 +189,8 @@ public class Program
 
     public static async Task MainAsync()
     {
+        // Unlock Professional Edition APIs
+        SyncConfiguration.SetFeatureToken(FeatureToken);
 
         // Login the admin user
         var credentials = Credentials.UsernamePassword(AdminUsername, AdminPassword, createUser: false);

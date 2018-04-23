@@ -34,7 +34,7 @@ To help clarify the differences between the various permissions, this visualizat
 
 Path-level permissions are designed to control access to multiple Realms based on the server URL path. When you open a Realm and supply the URL, the client SDK communicates with the server to obtain an access token. This token will be granted if the user has read or read/write permissions to the Realm. If the user does not have access, then no token is granted, an error will be passed to the client, and no sync session is established.
 
-Fine-grained permissions work differently than path-permissions. When you open a partially synced Realm, such as the default synced Realm, the client will initially contain no data. Once the client subscribes to a query, the access control system evaluates what objects to return through an ordered series of layers. Let's walk through an example of a client simply trying to `Read`\_** **\_data.
+Fine-grained permissions work differently than path-permissions. When you open a partially synced Realm, such as the default synced Realm, the client will initially contain no data. Once the client subscribes to a query, the access control system evaluates what objects to return through an ordered series of layers. Let's walk through an example of a client simply trying to `Read` data.
 
 1. Realm-level permissions are evaluated first to check if the user has `Read` access. If no, then the client Realm will be empty. If yes, then the system continues to the next layer.
 2. Class-level permissions are evaluated second to check if the user has `Read` access to the class used in the query. If no, then the client Realm will be empty since no objects can match the query that the user has access to. If yes, then the system continues to the next layer.
