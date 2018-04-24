@@ -6,8 +6,6 @@ Whenever a change is synchronized to the server, it triggers a notification whic
 
 ## Creating an Event Handler
 
-{% tabs %}
-{% tab title="Node.js" %}
 To use Realm's event handling, you’ll need to create a small Node.js application.
 
 Create a directory to place the server files, then create a file named `package.json`. This JSON file is used by Node.js and npm, its package manager, to describe an application and specify external dependencies.
@@ -139,9 +137,7 @@ var couponIndexes = changeEvent.changes.Coupon.insertions;
 ```
 
 Then, we use `for (let couponIndex of couponIndexes)` to loop through the indexes and to get each changed coupon.
-{% endtab %}
 
-{% tab title=".Net" %}
 To use Realm Event Handling, you’ll need to create a .NET application. It can be a console app or Asp.NET app and can run on all flavours of Linux, macOS, or Windows that the [.NET SDK supports](https://github.com/realm/realm-docs/tree/31514dd9fad29d848cb993e184bc8746e80cee59/docs/dotnet/latest/README.md).
 
 Create a new project or open your existing one and add the [Realm.Server](https://www.nuget.org/packages/Realm.Server) NuGet package.
@@ -265,8 +261,6 @@ public class Program
 * Multiple Notifiers may be started \(via [Notifier.StartAsync](https://github.com/realm/realm-docs/tree/31514dd9fad29d848cb993e184bc8746e80cee59/dotnet/latest/api/reference/Realms.Server.Notifier.html)\) but they need to have a different [WorkingDirectory](https://github.com/realm/realm-docs/tree/31514dd9fad29d848cb993e184bc8746e80cee59/dotnet/latest/api/reference/Realms.Server.NotifierConfiguration.html) specified to avoid errors.
 * `HandleChangesAsync` will be invoked in parallel for different Realms but sequentially for changes on a single Realm. This means that if your code takes a lot of time to return from the function, a queue of notifications may build up for that particular Realm. Make sure to design your architecture with that in mind.
 * Asynchronous calls inside `HandleChangesAsync` **must not** use `ConfigureAwait(false)` as that will dispatch the continuation on a different thread making all Realm and RealmObject instances \(that were open prior to the async operation\) inaccessible from that thread.
-{% endtab %}
-{% endtabs %}
 
 ## Handling Changes {#integrating-with-a-3rd-party-api}
 
@@ -298,7 +292,7 @@ var handleChange = async function (changeEvent) {
   for (let couponIndex of couponIndexes) {
     // Use the Results object to retrieve the inserted/modified object
     var coupon = coupons[couponIndex];
-    
+
     //..
   }
 }
@@ -353,7 +347,7 @@ var handleChange = async function (changeEvent) {
   for (let couponIndex of couponIndexes) {
     // Use the Results object to retrieve the deleted object
     var deletedCoupone = coupons[couponIndex];
-    
+
     //..
   }
 }
@@ -488,5 +482,5 @@ After filling out the constants, you can run the handler with node like:
 node eventHandler.js
 ```
 
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

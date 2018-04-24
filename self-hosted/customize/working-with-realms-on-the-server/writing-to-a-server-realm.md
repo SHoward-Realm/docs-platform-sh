@@ -1,6 +1,6 @@
 # Writing to a Server Realm
 
-After a Realm has been opened, writing to it is as simple as: 
+After a Realm has been opened, writing to it is as simple as:
 
 ```javascript
 const realm = server.openRealm('/products', [ProductSchema])
@@ -56,8 +56,6 @@ server.start({
     console.log('ROS Error' + error);
 });
 ```
-
-
 
 Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE)
 

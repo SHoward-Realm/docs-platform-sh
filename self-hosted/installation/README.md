@@ -21,7 +21,5 @@ curl -s https://raw.githubusercontent.com/realm/realm-object-server/master/insta
 
 ## What's next?  [Learn how to start the server](../running-the-server.md) {#getting-started}
 
-
-
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

@@ -2,7 +2,7 @@
 
 This guide walks you through how to use Realm’s data adapter to sync data from the Realm Object Server to a Postgres Server and vice versa. This shows an installation on a bare CentOS server of both Postgres and the Realm Data Adapter but any other platform that allows the enabling of logical replication could also be used. If you already have an existing Postgres server you can skip to the step that starts with installing the Realm Data Adapter.
 
-## Prerequisites:  {#prerequisites:}
+## Prerequisites: {#prerequisites:}
 
 * Postgres 9.x \(we recommend using 9.6\)
 * Realm Object Server 2.x \(or higher\) or Realm Cloud
@@ -27,7 +27,7 @@ The first thing we need to do is install Postgres on a EC2 instance. SSH to a fr
 [centos@postgres-server ~]# sudo yum install postgresql96-server postgresql96-contrib
 ```
 
-#### Now let’s initialize the Postgres server {#now-let's-initialize-the-postgres-server}
+### Now let’s initialize the Postgres server {#now-let's-initialize-the-postgres-server}
 
 ```bash
 [centos@postgres-server ~]# /usr/pgsql-9.6/bin/postgresql96-setup initdb
@@ -77,9 +77,9 @@ Find the lines that look like this at the bottom and change them to use MD5 and 
 ```bash
 host    all     all        127.0.0.1/32        ident
 
-host    all     all        ::1/128        	ident
+host    all     all        ::1/128            ident
 
-#host replication postgres 127.0.0.1/32 ident 
+#host replication postgres 127.0.0.1/32 ident
 ```
 
 Now they should look like this
@@ -87,7 +87,7 @@ Now they should look like this
 ```bash
 host    all     all        0.0.0.0/0        md5
 
-host    all     all        ::1/128        	md5
+host    all     all        ::1/128            md5
 
 host    replication     postgres        <IP_ADDRESS_OF_ADAPTER_SERVER>/32        md5
 ```
@@ -97,7 +97,7 @@ Now let’s enable and start our Postgres server
 ```bash
 [centos@postgres-server ~]# systemctl enable postgresql-9.6
 
-[centos@postgres-server ~]# systemctl start postgresql-9.6	
+[centos@postgres-server ~]# systemctl start postgresql-9.6
 ```
 
 Now let’s setup a password by switching to the postgres user
@@ -116,7 +116,7 @@ postgres=# \password postgres
 {% endtab %}
 
 {% tab title="Quickstart via Amazon RDS" %}
- [Amazon RDS](https://aws.amazon.com/rds/) provides a way to quickly spin up a database.
+[Amazon RDS](https://aws.amazon.com/rds/) provides a way to quickly spin up a database.
 
 You'll want to start by creating a [Postgres instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html). We suggest using Postgres 9.6. While creating the instance, spec it out however you like. Make sure to make note of the `DB instance identifier` , `master username` and `master password`. We will assume that we are using the default port of `5432`.
 
@@ -130,7 +130,7 @@ More information on logical replication in RDS can be found [here](https://aws.a
 {% endtab %}
 {% endtabs %}
 
-You should now be able to connect to the Postgres server remotely. There are various tools you can use online to connect and browse Postgres such as [Postico](https://eggerapps.at/postico/) .
+You should now be able to connect to the Postgres server remotely. There are various tools you can use online to connect and browse Postgres such as [Postico](https://eggerapps.at/postico/) .
 
 ## Realm Data Adapter {#realm-data-adapter:}
 
@@ -138,7 +138,7 @@ You should now be able to connect to the Postgres server remotely. There are var
 You'll need to contact [info@realm.io](mailto:info@realm.io) to receive the Postgres Data Adapter Package file.
 {% endhint %}
 
-Now let’s setup the Realm Data Adapter. We will use a remote CentOS server. ** **If you do not yet have a running instance of the Realm Object Server, sign up for a [cloud instance](https://cloud.realm.io/) or see instructions on how to [install a self-hosted Realm Object Server](../../../self-hosted/installation/).  \(We've also included instructions if you've liked to run locally on a Mac\)
+Now let’s setup the Realm Data Adapter. We will use a remote CentOS server. ** **If you do not yet have a running instance of the Realm Object Server, sign up for a [cloud instance](https://cloud.realm.io/) or see instructions on how to [install a self-hosted Realm Object Server](../../../self-hosted/installation/). \(We've also included instructions if you've liked to run locally on a Mac\)
 
 {% tabs %}
 {% tab title="CentOS" %}
@@ -214,7 +214,7 @@ The next config option you see is:
 customPostgresTypes?:
 ```
 
-This config option accepts a dictionary of key value pairs in JSON format. Postgres supports the ability to create custom types, if you have these in your Postgres database that you will mapping to Realm then you need to create a corresponding type in Realm that corresponds to your custom Postgres type. You can find the supported Realm types [here](https://realm.io/docs/javascript/latest/#supported-types) 
+This config option accepts a dictionary of key value pairs in JSON format. Postgres supports the ability to create custom types, if you have these in your Postgres database that you will mapping to Realm then you need to create a corresponding type in Realm that corresponds to your custom Postgres type. You can find the supported Realm types [here](https://realm.io/docs/javascript/latest/#supported-types)
 
 ```text
 applyRealmSchemaChangesToPostgres?: boolean
@@ -223,7 +223,7 @@ applyRealmSchemaChangesToPostgres?: boolean
 This option will execute SQL commands to extend the schema anytime the data model in the mapped Realm changes. It will create new tables or add new columns when new fields are added to your Realm objects.
 
 ```text
-realmRegex: 
+realmRegex:
 ```
 
 This option takes a regular expression string and tells the adapter what Realms to monitor for changes.
@@ -243,7 +243,7 @@ realmRegex: ‘^/myRealm$’
 Or let’s say that each user is opening a realm with the URL realm:
 
 ```text
-realm://127.0.0.1/~/myRealm 
+realm://127.0.0.1/~/myRealm
 ```
 
 The `~` here expands into a realmId on the server to get the URL
@@ -309,7 +309,5 @@ All of the default Postgres types are automatically mapped and converted to corr
 | `date` | `timestamp`, `timestamp without time zone`, `timestamp with time zone`, `date` |
 | `data` | not supported currently |
 
-
-
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 
