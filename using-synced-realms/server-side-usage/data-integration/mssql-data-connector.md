@@ -129,9 +129,9 @@ mkdir mssql-test
 cd mssql-test
 #press enter through all the prompts that are returned to create a project
 npm init
-npm install realm@2.1.0
-#replace the path below with your local path to your adapter package
-npm install ~/Downloads/realm-mssql-adapters-1.0.7-1.tgz
+npm install realm
+#replace the path below with your local path to your adapter package -- you will want to cahnge the version accordingly 
+npm install ~/Downloads/realm-mssql-adapters-1.1.1.tgz
 ```
 
 ### Prepare your Config File
