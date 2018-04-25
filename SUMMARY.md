@@ -51,7 +51,7 @@
   * [Customize](self-hosted/customize/README.md)
     * Authentication
       * [Username/Password](self-hosted/customize/authentication/username-password/README.md)
-        * [Resetting a User's Password](self-hosted/customize/authentication/username-password/resetting-a-users-password.md)
+        * [Password Reset and Email Confirmation](self-hosted/customize/authentication/username-password/password-reset-and-email-confirmation.md)
       * [Custom Authentication](self-hosted/customize/authentication/custom-authentication.md)
       * [JWT Custom Authentication](self-hosted/customize/authentication/jwt-custom-authentication.md)
       * [Nickname Authentication](self-hosted/customize/authentication/nickname-authentication.md)
