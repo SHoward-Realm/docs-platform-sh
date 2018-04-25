@@ -8,15 +8,25 @@ Realm Platform provides a built-in username and password authentication provider
 
 {% tabs %}
 {% tab title="Cloud" %}
-{% hint style="warning" %}
-_Details coming soon!_
-{% endhint %}
+Realm Cloud is configured to send emails in order to allow users to complete a password reset or email confirmation flow. This is enabled by default, however, if you want to override this configuration \(example for strong branding\) you can specify a custom SMTP and email sender. 
+
+* Navigate to your instance settings
+
+![](../../.gitbook/assets/screen-shot-2018-04-25-at-12.38.25.png)
+
+* Select the Username / Password provider, then check "send emails" to activate the option.
+
+![](../../.gitbook/assets/screen-shot-2018-04-25-at-15.31.17.png)
+
+You can now keep using the default configuration to send emails, or continue for further customization.  
+
+* Uncheck the default configuration, to override it 
+
+![](../../.gitbook/assets/screen-shot-2018-04-25-at-13.32.12.png)
 {% endtab %}
 
 {% tab title="Self-Hosted" %}
-{% hint style="warning" %}
-_Details coming soon!_
-{% endhint %}
+{% page-ref page="../../self-hosted/customize/authentication/username-password/password-reset-and-email-confirmation.md" %}
 {% endtab %}
 {% endtabs %}
 
@@ -235,11 +245,249 @@ await adminUser.ChangePasswordAsync("some-user-id", "new-secure-password");
 
 ## Reset Password
 
-{% hint style="warning" %}
-_Details coming soon!_
-{% endhint %}
+Users who authenticate using the built-in Realm Object Server username/password credential type may initiate a password reset if they used a valid email as their username, this is done in two steps:
 
+1. Request a password reset: 
 
+{% tabs %}
+{% tab title="Swift" %}
+```swift
+let serverURL = URL(string: "https://foo.us1.realm.cloud.io")
+let email = "user@email.com"
+SyncUser.requestPasswordReset(forAuthServer: serverURL, userEmail: email) { error in
+    if error {
+        // something went wrong
+    }
+}
+```
+{% endtab %}
+
+{% tab title="Objective-C" %}
+```objectivec
+NSURL *serverURL = [NSURL URLWithString:@"https://foo.us1.realm.cloud.io"];
+NSString *email = @"user@email.com";
+[RLMSyncUser requestPasswordResetForAuthServer:serverURL userEmail:email completion:^(NSError *error) {
+    if (error) {
+        // Something went wrong
+    }
+}];
+```
+{% endtab %}
+
+{% tab title="Java" %}
+```java
+SyncUser.requestPasswordResetAsync("user@email.com", "https://foo.us1.realm.cloud.io", new SyncUser.Callback<Void>() {
+    @Override
+    public void onSuccess(Void result) {        
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+    }
+});
+```
+{% endtab %}
+
+{% tab title="Javascript" %}
+```typescript
+Realm.Sync.User.requestPasswordReset('https://foo.us1.realm.cloud.io', 'user@email.com').then(() => {
+    // query sent successfully. 
+}).catch((error) => {
+    // an error has occurred
+});
+```
+{% endtab %}
+
+{% tab title=".NET" %}
+```csharp
+var serverUri = new Uri("https://foo.us1.realm.cloud.io");
+await User.RequestPasswordResetAsync(serverUri, "user@email.com");
+```
+{% endtab %}
+{% endtabs %}
+
+   2. Complete the password reset using the token sent by email, this can be completed by clicking on the link inside the email, or via the API if we manage to extract the token from the email \(using [deep linking](https://en.wikipedia.org/wiki/Mobile_deep_linking) for instance\):
+
+{% tabs %}
+{% tab title="Swift" %}
+```swift
+let serverURL = URL(string: "https://foo.us1.realm.cloud.io")
+let token = "resetToken"
+let newPassword = "newPassword"
+SyncUser.completePasswordReset(forAuthServer: serverURL, token: token, password: newPassword) { error in
+    if error {
+        // something went wrong
+    }
+}
+```
+{% endtab %}
+
+{% tab title="Objective-C" %}
+```objectivec
+NSURL *serverURL = [NSURL URLWithString:@"https://foo.us1.realm.cloud.io"];
+NSString *token = @"reset_token";
+NSString *newPassword = @"newPassword";
+[RLMSyncUser completePasswordResetForAuthServer:serverURL token:token password:newPassword completion:^(NSError *error) {
+    if (error) {
+        // Something went wrong
+    }
+}];
+```
+{% endtab %}
+
+{% tab title="Java" %}
+```java
+SyncUser.completePasswordResetAsync("reset_token", "newPassword", "https://foo.us1.realm.cloud.io", new SyncUser.Callback<Void>() {
+    @Override
+    public void onSuccess(Void result) {
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+    }
+});
+```
+{% endtab %}
+
+{% tab title="Javascript" %}
+```typescript
+Realm.Sync.User.completePasswordReset('https://foo.us1.realm.cloud.io', 'reset_token', 'new_password').then(() => {
+    // query sent successfully. 
+}).catch((error) => {
+    // an error has occurred
+});
+```
+{% endtab %}
+
+{% tab title=".NET" %}
+```csharp
+var serverUri = new Uri("https://foo.us1.realm.cloud.io");
+await User.CompletePasswordResetAsync(serverUri, "reset_token", "newPassword");
+```
+{% endtab %}
+{% endtabs %}
+
+## Confirming email 
+
+After registering a new user, we can perform email confirmation if the username used is a valid email, this is done in two steps:
+
+1. Request email confirmation
+
+{% tabs %}
+{% tab title="Swift" %}
+```swift
+let serverURL = URL(string: "https://foo.us1.realm.cloud.io")
+let email = "user@email.com"
+SyncUser.requestEmailConfirmation(forAuthServer: serverURL, userEmail: email) { error in
+    if error {
+        // something went wrong
+    }
+}
+```
+{% endtab %}
+
+{% tab title="Objective-C" %}
+```objectivec
+NSURL *serverURL = [NSURL URLWithString:@"https://foo.us1.realm.cloud.io"];
+NSString *email = @"user@email.com";
+[RLMSyncUser requestEmailConfirmationForAuthServer:serverURL userEmail:email completion:^(NSError *error) {
+    if (error) {
+        // Something went wrong
+    }
+}];
+```
+{% endtab %}
+
+{% tab title="Java" %}
+```java
+SyncUser.requestEmailConfirmationAsync("user@email.com", "https://foo.us1.realm.cloud.io", new SyncUser.Callback<Void>() {
+    @Override
+    public void onSuccess(Void result) {
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+    }
+});
+```
+{% endtab %}
+
+{% tab title="Javascript" %}
+```typescript
+Realm.Sync.User.requestEmailConfirmation('https://foo.us1.realm.cloud.io', 'user@email.com').then(() => {
+    // query sent successfully. 
+}).catch((error) => {
+    // an error has occurred
+});
+```
+{% endtab %}
+
+{% tab title=".NET" %}
+```csharp
+var serverUri = new Uri("https://foo.us1.realm.cloud.io");
+await User.RequestEmailConfirmationAsync(serverUri, "user@email.com");
+```
+{% endtab %}
+{% endtabs %}
+
+   2. Complete the email confirmation using the token sent by email,  this can be completed by clicking on the link inside the email, or via the API if we manage to extract the token from the email \(using [deep linking](https://en.wikipedia.org/wiki/Mobile_deep_linking) for instance\):
+
+{% tabs %}
+{% tab title="Swift" %}
+```swift
+let serverURL = URL(string: "https://foo.us1.realm.cloud.io")
+let token = "resetToken"
+SyncUser.confirmEmail(forAuthServer: serverURL, token: token) { error in
+    if error {
+        // something went wrong
+    }
+}
+```
+{% endtab %}
+
+{% tab title="Objective-C" %}
+```objectivec
+NSURL *serverURL = [NSURL URLWithString:@"https://foo.us1.realm.cloud.io"];
+NSString *token = @"confirmation_token";
+[RLMSyncUser confirmEmailForAuthServer:serverURL token:token completion:^(NSError *error) {
+    if (error) {
+        // Something went wrong
+    }
+}];
+```
+{% endtab %}
+
+{% tab title="Java" %}
+```java
+SyncUser.confirmEmailAsync("confirmation_token", "https://foo.us1.realm.cloud.io", new SyncUser.Callback<Void>() {
+    @Override
+    public void onSuccess(Void result) {
+    }
+
+    @Override
+    public void onError(ObjectServerError error) {
+    }
+});
+```
+{% endtab %}
+
+{% tab title="Javascript" %}
+```typescript
+Realm.Sync.User.confirmEmail('https://foo.us1.realm.cloud.io', 'confirmation_token').then(() => {
+    // query sent successfully. 
+}).catch((error) => {
+    // an error has occurred
+});
+```
+{% endtab %}
+
+{% tab title=".NET" %}
+```csharp
+var serverUri = new Uri("https://foo.us1.realm.cloud.io");
+await User.ConfirmEmailAsync(serverUri, "confirmation_token");
+```
+{% endtab %}
+{% endtabs %}
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 
