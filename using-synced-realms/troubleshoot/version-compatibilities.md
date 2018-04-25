@@ -6,7 +6,9 @@ Realm Object Server 3.x is backwards compatible with older SDK's. So always upda
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | &gt;= 2.3 | &gt;= 3.2 | &gt;= 5.0 | &gt;= 3.0 | &gt;= 1.1 | &gt;= 1.0 |
 
-Besides that, Node.js 6.0 or later is required for installation of the server.
+{% hint style="info" %}
+Node.js 6.0 or later is required for installation of the server.
+{% endhint %}
 
 Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE)
 
