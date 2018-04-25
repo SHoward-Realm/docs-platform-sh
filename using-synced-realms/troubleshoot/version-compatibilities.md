@@ -8,7 +8,7 @@ This includes support for [Query-based Synchronization](../syncing-data.md#using
 
 | Desktop Client | Node.js \(Required for Install\) | Realm JS | Realm Swift + Objective-C | Realm Java | Realm .Net | Realm Data Adapter |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Realm Studio | &gt;= 6.0 | &gt;= 2.0  | &gt;= 3.2.0 | &gt;= 5.0.0 | &gt;= 2.0 | &gt;= 1.0.0 |
+| Realm Studio | &gt;= 6.0 | &gt;= 2.3.2 | &gt;= 3.2.0 | &gt;= 5.0.0 | &gt;= 2.0 | &gt;= 1.0.0 |
 
 
 
