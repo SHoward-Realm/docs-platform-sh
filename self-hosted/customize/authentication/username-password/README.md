@@ -15,7 +15,7 @@ username = 'realm-admin'
 password = '' // Empty string
 ```
 
-To customize the username/password provider, create a ROS project via `ros init`:
+To customize the username/password provider, create a ROS project via `ros init`: \(then start the server with `npm start` to use the custom configuration\)
 
 ```javascript
 const RealmObjectServer = require('realm-object-server');
