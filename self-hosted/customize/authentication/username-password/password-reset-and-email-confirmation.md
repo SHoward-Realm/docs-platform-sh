@@ -8,9 +8,11 @@ Sending a confirmation email or password reset email only applies to the [Passwo
 
 #### emailHandlerConfig
 
-It's an object that contains the configuration options for the built-in email handler. It allows  you to configure some basic properties, such as sender email, smtp, or an email template.  
-  
-_We're going to edit the `my-app/src/index.ts` configuration of our project \(_[_generated previously_](https://docs.realm.io/platform/self-hosted/running-the-server)_ by `ros init my-app`\)_
+It's an object that contains the configuration options for the built-in email handler. It allows  you to configure some basic properties, such as sender email, smtp, or an email template.
+
+{% hint style="info" %}
+We're going to edit the `my-app/src/index.ts` configuration of our project \([generated previously](https://docs.realm.io/platform/self-hosted/running-the-server) by `ros init my-app`\)
+{% endhint %}
 
 ### SMTP parameters
 
