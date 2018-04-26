@@ -306,7 +306,7 @@ await User.RequestPasswordResetAsync(serverUri, "user@email.com");
 {% endtab %}
 {% endtabs %}
 
-   2. Complete the password reset using the token sent by email, this can be completed by clicking on the link inside the email, or via the API if we manage to extract the token from the email \(using [deep linking](https://en.wikipedia.org/wiki/Mobile_deep_linking) for instance\):
+   2. Complete the password reset using the token sent by email, this can be completed by clicking on the link inside the email or via the API if we manage to extract the token from the email \(using [deep linking](https://en.wikipedia.org/wiki/Mobile_deep_linking) for instance\):
 
 {% tabs %}
 {% tab title="Swift" %}
@@ -430,7 +430,7 @@ await User.RequestEmailConfirmationAsync(serverUri, "user@email.com");
 {% endtab %}
 {% endtabs %}
 
-   2. Complete the email confirmation using the token sent by email,  this can be completed by clicking on the link inside the email, or via the API if we manage to extract the token from the email \(using [deep linking](https://en.wikipedia.org/wiki/Mobile_deep_linking) for instance\):
+   2. Complete the email confirmation using the token sent by email,  this can be completed by clicking on the link inside the email or via the API if we manage to extract the token from the email \(using [deep linking](https://en.wikipedia.org/wiki/Mobile_deep_linking) for instance\):
 
 {% tabs %}
 {% tab title="Swift" %}
