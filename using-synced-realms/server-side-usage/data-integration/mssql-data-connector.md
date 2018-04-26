@@ -827,6 +827,82 @@ Updating an EmployeeRoute \(or a JOIN object\) is not possible because the PK is
 
 Deleting an Employee or a Route while any EmployeeRoute referencing them still exists causes an error. If you wish to do this please delete the JOIN object first and then delete the corresponding related object. MSSQL will through a FK constraint violation if you attempt to do this.
 
+## Mapping and Renaming 
+
+When integrating with your existing MSSQL database, it is not uncommon to want to rename some of your SQL tables or columns.  For example, you may have a SQL column whose name is a reserved keyword within your client SDK \(like "description" is in Swift\).  
+
+### Mapping a SQL table name to a Realm class name
+
+This is achieved by using the `mapSQLServerTableName`and the `mapRealmClassName` functions.  These functions can be considered sibling functions.  They are typically defined within your configuration or constants files and then called from your `loader` and `adapter` scripts.  `mapSQLServerTableName` is required in both your loader and adapter.  `mapRealmClassName` is only required within your adapter since the loader does not perform bidirectional sync.
+
+For example, let's imagine we have a SQL table called `UserData`  that we would like to rename `RealmUserData`
+
+You can do this with the follow functions: 
+
+```javascript
+   //from SQL to Realm 
+   mapSQLServerTableName?: (name: string) => {
+      if (name === 'UserData') {
+         out_name = 'RealmUserData';
+         }
+      return out_name;
+   }
+   //from Realm to SQL
+   mapRealmClassName?: (class_name) => {
+   if (class_name === 'RealmUserData') {
+         out_name = 'UserData';
+         }
+      return out_name;
+   }
+```
+
+### Mapping a SQL column name to a Realm property name 
+
+This is achieved by using the `mapSQLServerColumnName`and the `mapRealmPropertyName` functions.  These functions can be considered sibling functions.  They are typically defined within your configuration or constants files and then called from your `loader` and `adapter` scripts.  `mapSqlServerColumnName` is required in both your loader and adapter.  `mapRealmPropertyName` is only required within your adapter since the loader does not perform bidirectional sync.    
+
+For example, if your SQL schema looks like: 
+
+```sql
+CREATE TABLE MapTest.dbo.MapTable 
+(
+  id INT NOT NULL IDENTITY(1,1),
+  RealmId VARCHAR(255),
+  name VARCHAR(255),
+  age INT,
+  CONSTRAINT PK_id PRIMARY KEY (id)
+)
+```
+
+If you wanted to rename the `name` column in SQL to be called `firstname` in realm.  You can do this with the following: 
+
+```javascript
+        //table_name denotes the name of the table in SQL and is optional
+        //column_name denotes the column to be renamed.  
+        //simply, return the value of the new name in Realm 
+        mapSQLServerColumnName: (table_name, column_name) => {
+            let out_name = column_name;
+            if (table_name === 'MapTable') {
+                if (column_name === 'name') {
+                    out_name = 'firstname';
+                }
+            }
+            return out_name;
+        },
+        
+        //class_name denotes the name of the class/model in Realm and is optional
+        //property_name denotes the name of the Realm property 
+        //simply, return the value of the new name in Realm 
+        mapRealmPropertyName: (class_name, property_name) => {
+            let out_name = property_name;
+            if (class_name === 'MapTable') {
+                if (property_name === 'firstname') {
+                    out_name = 'name';
+                }
+            }
+            return out_name;
+        },
+```
+
 
 
 
