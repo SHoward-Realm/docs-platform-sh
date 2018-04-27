@@ -250,7 +250,7 @@ ubuntu@coreServices-01:~/coreServices$ vi coreServices.js
 
 Now take the [CoreServices JS App](https://gist.github.com/ianpward/110bbab70c2227070e9515213647a469) and paste in the code, fill in any variables specific to your environment, then save the changes. 
 
-You will need to fill in the `advertiseAddress` with IP or DNS address of the host you install core services on. The consulHost should be an IP or DNS address of the cluster of Consul hosts. You can use a load balancer round-robin scheme or a DNS name with all three Consul hosts. If you only place one IP in there then you will not have failover if one Consul host fails.  
+You will need to fill in the `advertiseAddress` with IP or DNS address of the NATed address of CoreServices if you are behind a NAT. The consulHost should be an IP or DNS address of the cluster of Consul hosts. You can use a load balancer round-robin scheme or a DNS name with all three Consul hosts. If you only place one IP in there then you will not have failover if one Consul host fails.  
 
 
 Now create a `package.json` file in the same folder and put in your dependencies, it should look like this:
