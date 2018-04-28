@@ -93,7 +93,7 @@ function verifyCouponForUser(coupon, userId) {
 // register the event handler callback
 async function main() {
     adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, 'realm-admin', '')
-    Realm.Sync.addListener(`realm:${SERVER_URL}`, adminUser, NOTIFIER_PATH, 'change', handleChange);
+    Realm.Sync.addListener(`realms:${SERVER_URL}`, adminUser, NOTIFIER_PATH, 'change', handleChange);
 }
 
 main()
