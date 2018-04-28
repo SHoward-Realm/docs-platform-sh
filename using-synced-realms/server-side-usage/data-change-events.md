@@ -54,7 +54,7 @@ var SERVER_URL = '//127.0.0.1:9080';
 // The regular expression you provide restricts the observed Realm files to only the subset you
 // are actually interested in. This is done in a separate step to avoid the cost
 // of computing the fine-grained change set if it's not necessary.
-var NOTIFIER_PATH = '.*/private';
+var NOTIFIER_PATH = '^/([^/]+)/private$';
 
 //declare admin user 
 let adminUser = undefined
