@@ -171,7 +171,7 @@ The `HandleChangesAsync` method is the heart of the event handler - it gets invo
   *  [CurrentIndex](https://github.com/realm/realm-docs/tree/31514dd9fad29d848cb993e184bc8746e80cee59/dotnet/latest/api/reference/Realms.Server.IModificationDetails.html) indicates the index of the changed object in the `CurrentRealm` view. It will be `-1` if the object was deleted.
   *  [CurrentObject](https://github.com/realm/realm-docs/tree/31514dd9fad29d848cb993e184bc8746e80cee59/dotnet/latest/api/reference/Realms.Server.IModificationDetails.html) is the state of the object just after it has changed. It will be `null` if the object was deleted.
 
-Here’s what a sample event handling application might look like:
+Here’s what a sample event handling application might look like in .NET:
 
 ```csharp
 public class Program
