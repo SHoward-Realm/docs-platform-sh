@@ -300,8 +300,8 @@ const PersonSchema = {
   properties: {
     name:     'string',
     birthday: 'date',
-    cars:     'Car[]',
-    picture:  'data?' // optional property
+    cars:     'Car[]', // list of cars
+    picture:  'data?'  // optional property
   }
 };
 ```
