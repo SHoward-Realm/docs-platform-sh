@@ -4,7 +4,7 @@ Realm Platform offers the ability to register for data change events, also calle
 
 Whenever a change is synchronized to the server, it triggers a notification which allows you to run custom server-side logic in response to the change. The notification will inform you about the virtual path of the updated Realm and provide the Realm object and fine-grained information on which objects changed. The change set provides the object indexes broken down by class name for any inserted, deleted, or modified object in the last synchronized transaction.
 
-## Creating an Event Handler
+## Creating Event Handlers in Node.js
 
 To use Realm's event handling, you’ll need to create a small Node.js application.
 
@@ -136,6 +136,8 @@ var couponIndexes = changeEvent.changes.Coupon.insertions;
 ```
 
 Then, we use `for (let couponIndex of couponIndexes)` to loop through the indexes and to get each changed coupon.
+
+## Creating Event Handlers in .NET
 
 To use Realm Event Handling, you’ll need to create a .NET application. It can be a console app or Asp.NET app and can run on all flavours of Linux, macOS, or Windows that the [.NET SDK supports](https://github.com/realm/realm-docs/tree/31514dd9fad29d848cb993e184bc8746e80cee59/docs/dotnet/latest/README.md).
 
