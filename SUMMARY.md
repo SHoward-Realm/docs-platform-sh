@@ -11,10 +11,6 @@
     * [Step 2 - Adding Partial Sync](getting-started-1/android-quick-start/step-2-adding-partial-sync.md)
     * [Step 3 - Adding Permissions](getting-started-1/android-quick-start/step-3-adding-permissions.md)
     * [Step 4 - Chat Room \(Permission API\)](getting-started-1/android-quick-start/step-4-chat-room-permission-api.md)
-* [GraphQL - Web Access](graphql-web-access/README.md)
-  * [How to use the API](graphql-web-access/how-to-use-the-api.md)
-  * [Using the GraphQL Client](graphql-web-access/using-the-graphql-client.md)
-  * [GraphiQL Explorer](graphql-web-access/graphiql-explorer.md)
 * Using Synced Realms
   * [Setting Up Your Realms](using-synced-realms/setting-up-your-realms.md)
   * [Opening A Synced Realm](using-synced-realms/opening-a-synced-realm.md)
@@ -38,6 +34,10 @@
   * Troubleshoot
     * [Errors](using-synced-realms/troubleshoot/errors.md)
     * [Version Compatibilities](using-synced-realms/troubleshoot/version-compatibilities.md)
+* [GraphQL - Web Access](graphql-web-access/README.md)
+  * [How to use the API](graphql-web-access/how-to-use-the-api.md)
+  * [Using the GraphQL Client](graphql-web-access/using-the-graphql-client.md)
+  * [GraphiQL Explorer](graphql-web-access/graphiql-explorer.md)
 * [Realm Studio](realm-studio/README.md)
   * [View Your Data](realm-studio/view-your-data.md)
   * [Administer Users](realm-studio/administer-users.md)
