@@ -253,7 +253,7 @@ module.exports = [
 This models file is built specifically to work with the SQL data which we loaded into our SQL Server. You will edit this schema to match your own data that you wish to synchronize.
 {% endhint %}
 
-### Perform a one time import of the existing SQL Data into ROS
+### Load the existing SQL Data into ROS
 
 Create your loader file by running the following command:
 
@@ -301,6 +301,8 @@ async function main() {
         // Set to true to create the SQL Server DB if not already created
         createSQLServerDB: false,
         initializeRealmFromSQLServer: false,
+        // Enable and set this function if you'd like to speed up your loader 
+        //loaderSQLBatchSize: 1000,
 
         // Set to true to indicate SQL Server tables should be created and
         // properties added to these tables based on schema additions
@@ -343,9 +345,12 @@ Now you should be able to run the loader to import your SQL data into the Realm 
 node loader.js
 ```
 
-{% hint style="info" %}
-For improved performance with JOIN tables, seed the RealmId field with a uuid on the SQL side before running the loader script.
-{% endhint %}
+#### Improving the Performance of your Loader
+
+Importing a large amount of data can sometimes take a fair amount of time.  Here's a few tips to increase the performance of your loader
+
+* Increase the batch size from the default size of 1000 by using the `loaderSQLBatchSize`parameter in your loader file. 
+* When using JOIN tables, seed the RealmID field with a uuid on the SQL side before running the loader script.
 
 You should now be able to use Realm Studio to see that the data was synchronized to your Realm Object Server.
 
