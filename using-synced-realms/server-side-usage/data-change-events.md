@@ -392,7 +392,8 @@ The following example was made to be easily used with our ToDo app tutorial. It 
 Before running the event handler, install the dependencies via NPM
 
 ```bash
-npm install realmnpm install node-wit
+npm install realm
+npm install node-wit
 ```
 
 If you choose to use this same API, you'll need to sign up to get an API token, and you'll need to configure a `wit/datetime` entity.
