@@ -14,11 +14,15 @@ Want to take a deeper look? Read the [Realm Overview White Paper](https://www2.r
 
 ## Where do I start? {#where-do-i-start}
 
-The best way to get started is to try Realm Platform out for yourself!
+The best way to get started is to try Realm Platform out for yourself!  The platform is offered as both a hosted cloud or a self-hosted plan.  Take a look below to learn how to try either option depending on your own requirements.  
 
 ### [Sign-up for a free cloud account](https://cloud.realm.io/) {#sign-up-for-a-free-cloud-account}
 
 We have created several tutorials to teach both the fundamentals and more advanced aspects to the platform. Choose your platform to get started:
+
+### [Sign-Up for Self-Hosted Standard Plan trial](https://realm.io/trial/self-hosted-standard-plan) {#sign-up-for-self-hosted-standard-plan-trial}
+
+To learn about how to install, configure, and operate the self-hosted version see this section in the documentation:
 
 {% page-ref page="getting-started-1/ios-quick-start/" %}
 
@@ -30,17 +34,9 @@ _**Javascript and .Net coming soon!**_
 
 ## What comes next? {#what-comes-next}
 
-Realm Platform is also available in a self-hosted version with the same functionality as cloud. To learn more about this version:
-
-### [Sign-Up for Self-Hosted Standard Plan trial](https://realm.io/trial/self-hosted-standard-plan) {#sign-up-for-self-hosted-standard-plan-trial}
-
-To learn about how to install, configure, and operate the self-hosted version see this section in the documentation:
-
-{% hint style="info" %}
 **Want to learn more about Realm?**
 
 Learn how Realm Platform can help you design world-class apps and features.
 
 [Read the white paper](https://www2.realm.io/whitepaper/realm-overview-registration?_ga=2.266659790.1140662478.1513013122-2031688623.1501706764) or [Watch the webinar](https://www2.realm.io/webinar/realm-platform-2-overview-registration?_ga=2.97855199.1140662478.1513013122-2031688623.1501706764)
-{% endhint %}
 
