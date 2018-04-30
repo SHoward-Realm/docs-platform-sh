@@ -45,7 +45,6 @@ A sample `index.js` file might look something like this. This example listens fo
 ```javascript
 'use strict';
 
-var fs = require('fs');
 var Realm = require('realm'); 
 
 // the URL to the Realm Object Server
