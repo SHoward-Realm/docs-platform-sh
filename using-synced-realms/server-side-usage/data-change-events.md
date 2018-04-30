@@ -14,13 +14,11 @@ You can create this file interactively by using `npm init`. You can also fill in
 
 ```javascript
 {
-  "name":"MyApp",
-  "version":"0.0.1",
-  "main":"index.js",
-  "author":
-  "Your Name",
-  "description":
-  "My Cool Realm App",
+  "name": "MyApp",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Your Name",
+  "description": "My Cool Realm App",
   "dependencies":
     {
       "realm":"latest"
