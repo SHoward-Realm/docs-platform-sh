@@ -38,11 +38,11 @@ var Realm = require('realm');
 const server_address = "INSERT SERVER ADDRESS";
 
 async function main() {
-    const adminUser = await Realm.Sync.User.login(`http://${server_address}`, 'admin', 'password');
+    const adminUser = await Realm.Sync.User.login(`https://${server_address}`, 'admin', 'password');
     const realm = await Realm.open({
         sync: {
             user: adminUser,
-            url: `realm://${server_address}/aRealm`,
+            url: `realms://${server_address}/aRealm`,
         }
     });
     
