@@ -18,11 +18,15 @@ The best way to get started is to try Realm Platform out for yourself!  The plat
 
 ### [Sign-up for a free cloud account](https://cloud.realm.io/) {#sign-up-for-a-free-cloud-account}
 
-We have created several tutorials to teach both the fundamentals and more advanced aspects to the platform. Choose your platform to get started:
+Head over to our cloud page and sign up for a free cloud account which provides a 30-day trial experience.  
 
 ### [Sign-Up for Self-Hosted Standard Plan trial](https://realm.io/trial/self-hosted-standard-plan) {#sign-up-for-self-hosted-standard-plan-trial}
 
-To learn about how to install, configure, and operate the self-hosted version see this section in the documentation:
+For various reason, you may need to host your own server.  To learn about how to install, configure, and operate the self-hosted version see this [section](self-hosted/) in the documentation.  You'll likely want to start by [installing the server](self-hosted/installation/).  
+
+### Pick your Platform
+
+We have created several tutorials to teach both the fundamentals and more advanced aspects to the platform. Choose your platform to get started:
 
 {% page-ref page="getting-started-1/ios-quick-start/" %}
 
