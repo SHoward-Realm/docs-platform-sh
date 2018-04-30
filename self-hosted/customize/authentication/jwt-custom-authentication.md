@@ -12,7 +12,7 @@ The only prerequisite is that your authentication server can issue RS256 signed 
 
 To generate an RS256 key, you can use the following snippet:
 
-```text
+```bash
 openssl genrsa -des3 -out private.pem 4096
 // Enter and confirm password when prompted
 openssl rsa -in private.pem -outform PEM -pubout -out public.pem
@@ -26,7 +26,7 @@ There are a variety of libraries that support generating and signing custom toke
 
 To issue a custom token, add `jsonwebtoken` to your project by running `npm install jsonwebtoken`. Then copy `private.pem` generated in the previous step to a well known location and execute the following js code:
 
-```text
+```typescript
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const key = fs.readFileSync('private.pem');
@@ -44,6 +44,18 @@ const token = jwt.sign(payload, { key:  key, passphrase: 'your-passphrase' }, { 
 The `isAdmin` field in the payload is optional and if it is set to `true`, Realm Object Server will authenticate the user as admin user. If not set or set to `false`, the user will be a regular user. You can add additional properties in the payload but they'll be ignored by Realm Object Server.
 
 **Enabling the JWT provider**
+
+Let's assume we have a publicKey that looks like: 
+
+{% code-tabs %}
+{% code-tabs-item title="key.pub" %}
+```text
+-----BEGIN PUBLIC KEY-----
+MIICIjANBgkqhki...
+-----END PUBLIC KEY-----
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 To include and customize the JWT provider, create a Realm Object Server project via `ros init`:
 
@@ -69,7 +81,9 @@ server.start({
 });
 ```
 
-
+{% hint style="info" %}
+It is safest to copy and paste your public key into the index file.  Use `\n` to preserve newlines within your token.  
+{% endhint %}
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 
