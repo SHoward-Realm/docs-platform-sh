@@ -534,6 +534,19 @@ SET IDENTITY_INSERT Person OFF
 
 Now run the loader and it should then finish without errors and then run the adapter. If you take a look in Realm Studio you should see the Person objects populated with links to a Passport objects.
 
+```javascript
+const Money = {
+    name: 'Money',
+    primaryKey: 'RealmId',
+    sqlserverPrimaryKey: 'MoneyId',
+    properties: {
+        RealmId: 'string',
+        MoneyId: { type: 'int', optional: true },
+        change: 'string',
+    }
+}
+```
+
 ![1-1 Relationships in Realm Studio](https://lh5.googleusercontent.com/K7GFz8O1X_lrcVt8mJX41PxsboDSKysG1qCB_AtOLwLZpQqqYzMwy06xGjPty1gVIURGUlNxh9Sm7uJWDEb6bqIZLzRBlYbAIFV-XwyTbqMz1deHuS4VpcmBgmJU8PhSLKf373Ys)
 
 If you now run the adapter you can insert into Realm or SQL and watch as the data is replicated to the opposite side. If you are inserting from the Realm side - do not worry about inserting the SQL primary key - the database should take care of that for you. Conversely, if you are inserting from the SQL side the Realm object will automatically have a RealmId generated for it from the adapter. 
@@ -908,7 +921,77 @@ If you wanted to rename the `name` column in SQL to be called `firstname` in rea
         },
 ```
 
+### Converting a SQL Value Type to a different Realm Value Type
 
+While integrating with your SQL server you may want to remap one of your existing SQL types to a new type for easier use in your mobile applications.  You can do this with the a pair of convert sibling functions.  
 
+For example, if your SQL schema looks like:
 
+```sql
+CREATE TABLE dbo.Money  
+(  
+MoneyId INT NOT NULL IDENTITY(1,1),
+RealmId VARCHAR(255),
+Change decimal(5,2),
+CONSTRAINT PK_Money PRIMARY KEY (MoneyId)
+);
+```
+
+If you wanted to convert the `change` column in SQL from a `decimal` to a `string` in Realm.  You'll start by declaring your corresponding desired realm schema: 
+
+```javascript
+const Money = {
+    name: 'Money',
+    primaryKey: 'RealmId',
+    sqlserverPrimaryKey: 'MoneyId',
+    properties: {
+        RealmId: 'string',
+        MoneyId: { type: 'int', optional: true },
+        change: 'string',
+    }
+}
+```
+
+Then you'll implement these conversion functions in your loader and adapter scripts.  
+
+```text
+    convertSQLServerValueToRealm: (table_name, column_name, value) => {
+        //handle some base cases 
+        if (value === null) {
+            return value;
+        }
+        if (value === undefined) {
+            return value;
+        }
+        //performn the value conversion 
+        if (table_name === 'Money') {
+            if (column_name === 'change') {
+                console.log('BEFORE ' + 'TABLENAME: ' + table_name + 'COLUMNNAME: ' + column_name + 'VALUE: ' + value);
+                newVal = value.toString();
+                console.log('AFTER ' + newVal);
+                return newVal;
+            }
+        }
+        return value;
+    },
+    convertRealmValueToSQLServer: (class_name, property_name, value) => {
+        //handle some base cases
+        if (value === null) {
+            return value;
+        }
+        if (value === undefined) {
+            return value;
+        }
+        //performn the value conversion
+        if (class_name === 'Money') {
+            if (property_name === 'change') {
+                console.log('BEFORE ' + 'TABLENAME: ' + table_name + 'COLUMNNAME: ' + column_name + 'VALUE: ' + value);
+                newVal = parseFloat(value);
+                console.log('AFTER ' + newVal);
+                return newVal;
+            }
+        }
+        return value;
+    },
+```
 
