@@ -175,7 +175,7 @@ SSH to your new CentOS server for the data adapter
 
 npm init
 
-npm install realm@2.2.19
+npm install realm
 
 npm install ~/Downloads/realm-postgres-adapters-1.0.10.tgz
 ```

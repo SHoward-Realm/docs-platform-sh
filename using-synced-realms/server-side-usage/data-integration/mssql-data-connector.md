@@ -954,7 +954,7 @@ const Money = {
 
 Then you'll implement these conversion functions in your loader and adapter scripts.  
 
-```text
+```javascript
     convertSQLServerValueToRealm: (table_name, column_name, value) => {
         //handle some base cases 
         if (value === null) {
