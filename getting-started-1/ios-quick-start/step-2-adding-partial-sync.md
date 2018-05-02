@@ -7,7 +7,7 @@ The API may change, and we encourage you to give [feedback](https://forums.realm
 {% endhint %}
 
 {% hint style="info" %}
-Want to get started right away with the complete source code? Check out [https://github.com/realm/my-first-realm-app/](https://github.com/realm/my-first-realm-app/) the ios/PartialSync directory has the complete, ready-to-compile source code.
+Want to get started right away with the complete source code? Check out our [Github](https://github.com/realm/my-first-realm-app/tree/master/ios/PartialSync) with ready-to-compile source code  then follow the instructions in `README.md` to get started. Don't forget to update the `Constants.swift` file with your Realm Cloud  or self-hosted instance URL before running the app.
 {% endhint %}
 
 ## Prerequisites {#prerequisites}

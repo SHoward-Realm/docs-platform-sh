@@ -11,6 +11,10 @@ Before we get started we need a few things setup; the prerequisites for this pro
 
 This tutorial should take around 20-30 minutes
 
+{% hint style="info" %}
+Want to get started right away with the complete source code? Check out our [Github](https://github.com/realm/my-first-realm-app/tree/master/ios/SyncIntro) with ready-to-compile source code  then follow the instructions in `README.md` to get started. Don't forget to update the `Constants.swift` file with your Realm Cloud  or self-hosted instance URL before running the app.
+{% endhint %}
+
 ## Step 1: Create a New iOS Project {#step-1:-create-a-new-ios-project}
 
 1. Open Xcode, create a new iOS Project \(we recommend the "Single View" application\). Let's name it "**iOSToDoApp**." When prompted, save it to a convenient place such as your desktop.

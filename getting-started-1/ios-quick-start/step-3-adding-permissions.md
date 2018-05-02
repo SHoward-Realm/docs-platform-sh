@@ -21,8 +21,8 @@ To address this issue we will instead use Realm's permission system to limit acc
 
 This tutorial builds off the previous two steps. We recommend that you complete these first then continue with this. If not, you can follow the instructions below to clone the existing project:
 
-{% hint style="success" %}
-Want to get started right away with the complete source code? [Clone the demo app repository from GitHub](https://github.com/realm/my-first-realm-app), then follow the instructions in [`ios/ObjectPermissions/README.md`](https://github.com/realm/my-first-realm-app/blob/master/ios/ObjectPermissions/README.md) to get started. Don't forget to update the `Constants.swift` file with your Realm Cloud instance URL before running the app.
+{% hint style="info" %}
+Want to get started right away with the complete source code? [Clone the demo app repository from GitHub](https://github.com/realm/my-first-realm-app), then follow the instructions in [`ios/ObjectPermissions/README.md`](https://github.com/realm/my-first-realm-app/blob/master/ios/ObjectPermissions/README.md) to get started. Don't forget to update the `Constants.swift` file with your Realm Cloud or self-hosted instance URL before running the app.
 {% endhint %}
 
 ## Updating the ToDo application {#updating-the-todo-application}
