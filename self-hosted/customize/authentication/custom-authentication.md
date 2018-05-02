@@ -144,9 +144,11 @@ server.start({
 
     6. Try out your authentication with a client login
 
+{% tabs %}
+{% tab title="Javascript" %}
 In Realm-JS you can call your custom authentication handler with the `Realm.Sync.User.registerWithProvider`
 
-```text
+```javascript
 import * as Realm from 'realm'
 
 return Realm
@@ -158,6 +160,22 @@ return Realm
       "pin", 1234
     }})
 ```
+{% endtab %}
+
+{% tab title="Realm Studio" %}
+While attempting to login via Realm Studio, select the "Other" tab and login with a request body like: 
+
+```javascript
+{
+    "provider": "mycustomauthprovider",
+    "userInfo": {
+        "email": "joe@mycompany.com",
+        "pin": 1234
+        }
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ## Specifying a custom userId {#specifying-a-custom-userid}
 
