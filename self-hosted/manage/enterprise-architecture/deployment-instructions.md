@@ -210,7 +210,8 @@ Now create a `package.json` file in the same folder and put in your dependencies
 { 
     "dependencies": 
     { 
-        "realm-object-server-enterprise": "^2.1.5" 
+        "realm-object-server-enterprise": "^3.0.2",
+        "realm-object-server": "^3.1.0"
     } 
 }
 ```
@@ -261,7 +262,8 @@ Now create a `package.json` file in the same folder and put in your dependencies
 { 
     "dependencies": 
     { 
-        "realm-object-server-enterprise": "^2.1.5" 
+        "realm-object-server-enterprise": "^3.0.2",
+        "realm-object-server": "^3.1.0"
     } 
 }
 ```
