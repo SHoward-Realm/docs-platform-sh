@@ -2,12 +2,6 @@
 
 ## Quick Start {#quick-start}
 
-{% hint style="danger" %}
-## This tutorial uses new APIs still in beta.
-
-The API may change, and we encourage you to give [feedback](https://forums.realm.io/t/partial-synchronization-and-object-level-permissions-feedback/1109)!
-{% endhint %}
-
 {% hint style="success" %}
 Want to get started right away with the complete source code? [Check it out here](https://github.com/realm/my-first-realm-app/tree/master/android/PartialSync)  
 {% endhint %}

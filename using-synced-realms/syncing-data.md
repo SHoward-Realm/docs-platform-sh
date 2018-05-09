@@ -19,10 +19,6 @@ For more information on how to setup a synchronized Realm and open it see the fo
 
 ## Using Partial Synchronization
 
-{% hint style="danger" %}
-This API is new to Realm Platform 3.0 and is currently in beta.
-{% endhint %}
-
 A partially synced Realm will contain no objects upon initially being created and opened, but data will be synchronized when [subscribed](syncing-data.md#subscribing-to-data) to.
 
 ### Subscribing to data

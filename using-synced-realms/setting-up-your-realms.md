@@ -20,10 +20,6 @@ If you're used to working with other kinds of databases, here are some things th
 
 ## The Default Synced Realm
 
-{% hint style="danger" %}
-This API is new to Realm Platform 3.x and is currently in beta. Refer to the [Other Synced Realms ](setting-up-your-realms.md#other-synced-realms)section for description of behavior &lt;3.x.
-{% endhint %}
-
 The easiest way to get started with Realm Platform is to use the default synchronized Realm. With Realm Platform - Cloud each cloud instance will have a single default Realm. For Self-Hosted each server installation will include a single default Realm.
 
 For most apps, you can include all of your application data within the default synchronized Realm. Realm Platform supports query-based sync, so that you can control what data from the default synced Realm is synchronized to the client application.

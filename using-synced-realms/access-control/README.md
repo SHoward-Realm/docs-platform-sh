@@ -14,10 +14,6 @@ These permissions should only be used by applications that match the &lt;3.x dat
 
 ### Fine-Grained Permissions
 
-{% hint style="danger" %}
-This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](path-level-permissions.md) for the APIs and access control behavior for &lt;3.x.
-{% endhint %}
-
 Starting with version 3.x and the introduction of [partial synchronization](../syncing-data.md) and [the default synced Realm](../setting-up-your-realms.md#the-default-synced-realm), we also introduced a fine-grained permission system that works on more levels:
 
 * [**Realm-level permissions**](./#realm-level) - permissions that apply to the entire Realm file \(this is similar to path-level permissions, but has a different API that aligns with class/object-level permissions\)
@@ -43,10 +39,6 @@ Fine-grained permissions work differently than path-permissions. When you open a
 By default, when a Realm or class is created, all users are granted full access. Whereas when objects are created, they do not contain an ACL, because by default, objects lacking an ACL are accessible by everyone. Following the example above, by default, this means that clients subscribing to a query will pass through the hierarchy at the Realm and class-level since they have `Read` access and then all objects would be used to evaluate the query since no objects will contain an ACL initially.
 
 ## Fine-Grained Permissions
-
-{% hint style="danger" %}
-This API is new to Realm Platform 3.x and is currently in beta. Please refer to [**path-level permissions**](path-level-permissions.md) for the APIs and access control behavior for &lt;3.x.
-{% endhint %}
 
 In addition to path-level permissions, you can control user access to individual objects through fine-grained permissions. This feature is in effect whenever the user is connecting to a Realm file using partial synchronization.
 

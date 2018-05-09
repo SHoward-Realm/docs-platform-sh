@@ -1,11 +1,5 @@
 # Step 2- Adding Partial Sync
 
-{% hint style="danger" %}
-## This tutorial uses new APIs still in beta.
-
-The API may change, and we encourage you to give [feedback](https://forums.realm.io/t/partial-synchronization-and-object-level-permissions-feedback/1109)!
-{% endhint %}
-
 {% hint style="info" %}
 Want to get started right away with the complete source code? Check out our [Github](https://github.com/realm/my-first-realm-app/tree/master/ios/PartialSync) with ready-to-compile source code  then follow the instructions in `README.md` to get started. Don't forget to update the `Constants.swift` file with your Realm Cloud  or self-hosted instance URL before running the app.
 {% endhint %}
@@ -43,7 +37,7 @@ git clone https://github.com/realm/my-first-realm-app.git
 
 In order to be ready to add our new functionality, we need to install the Realm framework; this is done using CocoaPods.
 
-This tutorial uses a beta version of our sync APIs that adds our query-based selective sync mechanism. This API was introduced in Realm Swift v3.2.0. The [SyncIntro](step-1-my-first-realm-app.md) code has a `Podfile` that contains the following:
+The [SyncIntro](step-1-my-first-realm-app.md) code has a `Podfile` that contains the following:
 
 {% code-tabs %}
 {% code-tabs-item title="Podfile" %}

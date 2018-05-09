@@ -6,10 +6,6 @@ Before you can open a synced Realm, you must first provide a configuration for i
 
 ### The Default Synced Realm
 
-{% hint style="danger" %}
-This API is new to Realm Platform 3.0 and is currently in beta. Refer to the [Manually Configuring Synced Realms](opening-a-synced-realm.md#manually-configuring-synced-realms)[ ](setting-up-your-realms.md#other-synced-realms)section for description of behavior &lt;3.0.
-{% endhint %}
-
 The easiest way to get started with Realm Platform is to use the default synchronized Realm. With Realm Platform - Cloud each cloud instance will have a single default Realm. For Self-Hosted each server installation will include a single default Realm.
 
 For most apps, you can include all of your application data within the default synchronized Realm. Realm Platform supports [query-based sync](syncing-data.md#partial-synchronization), so that you can control what data from the default synced Realm is synchronized to the client application.
@@ -277,10 +273,6 @@ var realm = Realm.GetInstance(configuration);
 {% endtabs %}
 
 ### Partial Synchronization
-
-{% hint style="danger" %}
-This API is new to Realm Platform 3.0 and is currently in beta. Refer to the [Manually Configuring Synced Realms](opening-a-synced-realm.md#manually-configuring-synced-realms)[ ](setting-up-your-realms.md#other-synced-realms)section for description of behavior &lt;3.0.
-{% endhint %}
 
 If you intend to use partial synchronization, it is recommended you use the [Default Synced Realm](opening-a-synced-realm.md#the-default-synced-realm), which uses this by default. However, you are not limited to just this Realm. You can manually open additional Realms with partial synchronization by following the [manual process](opening-a-synced-realm.md#manually-configuring-synced-realms) described above, but adjusting another parameter in the sync configuration.
 

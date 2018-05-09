@@ -7,12 +7,6 @@ description: >-
 
 # Step 3 - Adding Permissions
 
-{% hint style="danger" %}
-## This tutorial uses new APIs still in beta.
-
-The API may change, and we encourage you to give [feedback](https://forums.realm.io/t/partial-synchronization-and-object-level-permissions-feedback/1109)!
-{% endhint %}
-
 In the previous tutorial we used partial sync to synchronize only projects owned by the current user. However, nothing prevented a malicious user from seeing another user's projects by subscribing with a query that matches a broader set of `Project` instances.
 
 To address this issue we will instead use Realm's permission system to limit access to each `Project` instance so only the user that created it can read, modify, or delete it.
