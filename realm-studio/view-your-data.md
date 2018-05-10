@@ -36,8 +36,6 @@ widget,2,FALSE
 
 This will result in a model named `data`that has three properties: `device` which will be a `string`, `number` which will be an `int` and `flag` which will be a `bool`
 
-test name,test number,test boolgadget,1,TRUEwidget,2,FALSE
-
 ## Realm Platform
 
 Realm Studio allows you to connect to a Realm Object Server, including Self-Hosted or Cloud instances. Once connected you can browser all of the synchronized Realms on the server and open them to view the data. Any changes you make to the data while viewing, will be automatically synchronized to any other devices sharing the data.
