@@ -22,6 +22,22 @@ Note that when importing from CSV, the first row will be used as the object prop
 
 ![](../.gitbook/assets/image%20%283%29.png)
 
+For example, a CSV formatted like: 
+
+{% code-tabs %}
+{% code-tabs-item title="data.csv" %}
+```text
+device,number,flag
+gizmo,1,TRUE
+widget,2,FALSE
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+This will result in a model named `data`that has three properties: `device` which will be a `string`, `number` which will be an `int` and `flag` which will be a `bool`
+
+test name,test number,test boolgadget,1,TRUEwidget,2,FALSE
+
 ## Realm Platform
 
 Realm Studio allows you to connect to a Realm Object Server, including Self-Hosted or Cloud instances. Once connected you can browser all of the synchronized Realms on the server and open them to view the data. Any changes you make to the data while viewing, will be automatically synchronized to any other devices sharing the data.

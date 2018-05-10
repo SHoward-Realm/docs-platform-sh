@@ -1,7 +1,7 @@
 # Designing an Architecture with Multiple Realms
 
 {% hint style="warning" %}
-Multiple Realm architectures will become less common after the GA release of Query-based sync which will allow finer grain \(object-level\) permissions.  
+Multiple Realm architectures will become less common after the GA release of Query-based sync which will allow finer grain \(object-level\) permissions.
 {% endhint %}
 
 ## Intro {#intro}
@@ -38,32 +38,32 @@ static let defaultSyncHost = "1.2.3.4"
 static let syncRealmPath   = "RealmBingo"
 static let personalCards   = "myCards"
 static let ApplicationName = "RealmBingo"
-    
- 
+
+
 // this is purely for talking to the RMP auth system
-static let syncAuthURL	= URL(string: "http://\(defaultSyncHost):9080")!
-    
+static let syncAuthURL    = URL(string: "http://\(defaultSyncHost):9080")!
+
 // The following URLs and URI fragments are about talking to the 
 // synchronization service and the Realms it manages on behalf of your application:
-static let syncServerURL	= URL(string: "realm://\(defaultSyncHost):9080/\(ApplicationName)-\(syncRealmPath)")
-    
+static let syncServerURL    = URL(string: "realm://\(defaultSyncHost):9080/\(ApplicationName)-\(syncRealmPath)")
+
 // Note: When we say Realm file we mean literally the entire collection 
 // of models/schemas inside that Realm...
 // So we need to be very clear what models that are represented by a given Realm.  
 // For example:
-    
+
 static let commonRealmURL = URL(string: "realm://\(defaultSyncHost):9080/\(ApplicationName)-CommonRealm")!
-    
+
 func commonRealmConfig(user: SyncUser) -> Realm.Configuration  {
     let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: SyncUser.current!, realmURL: TeamWorkConstants.commonRealmURL), objectTypes: [CommonModel_1.self, CommonModel_2.self, ..., CommonModel_N.self])
     return config
 }
- 
- 
+
+
 // This is the private realm in every user's home path - it's where we keep user profile info and responses
 static let privateRealmURL   = URL(string: "realm://\(defaultSyncHost):9080/~/RealmBingo")!
- 
- 
+
+
 func privateRealmConfig(user: SyncUser) -> Realm.Configuration  {
     let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: SyncUser.current!, realmURL: TeamWorkConstants.privateRealmURL), objectTypes: [PrivateModel_1.self, PrivateModel_2.self, ..., PrivateModel_N.self])
     return config
@@ -163,5 +163,5 @@ SyncUser.current?.retrievePermissions { permissions, error in
 
 The permission objects returned would each represent a Realm to which you has some kind of access rights. However, this does not include Realms for which you have permissions by virtue of a wildcard permission available to all users.
 
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

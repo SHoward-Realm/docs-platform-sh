@@ -13,29 +13,29 @@ Want to get started right away? Follow these quick steps.
 
 ### Clone repository from GitHub
 
-```
+```text
 git clone https://github.com/realm/my-first-realm-app
 ```
 
 ### Open in Android Studio
 
-Use Android Studio version 3.0 or higher, to open the existing Android project under `<root>/my-first-realm-app/android/SyncIntro` 
+Use Android Studio version 3.0 or higher, to open the existing Android project under `<root>/my-first-realm-app/android/SyncIntro`
 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L3VQ0F54YSkamg0tzyZ%2F-L3VS8adGNKd5jsTAoIP%2FScreen%20Shot%202018-01-23%20at%2000.38.47.png?alt=media&token=49feeb1f-bf2a-42e1-b606-1c00ad646d3b)
 
 ### Set the URL
 
-Edit `Constants.java` and set `INSTANCE_ADDRESS` to the URL of your Cloud instance . Be sure to paste in only the host name part \("your-app-name.cloud.realm.io"\).
+Edit `Constants.java` and set `INSTANCE_ADDRESS` to the URL of your Cloud instance . Be sure to paste in only the host name part \("your-app-name.cloud.realm.io"\).
 
 ![](../../.gitbook/assets/screen-shot-2018-04-10-at-19.26.27.png)
 
 ### Build the application
 
-Now build and run the application. Add tasks and observe how they sync on your Realm Cloud instance using Realm Studio :
+Now build and run the application. Add tasks and observe how they sync on your Realm Cloud instance using Realm Studio :
 
 ![](../../.gitbook/assets/screen-shot-2018-04-10-at-19.33.19.png)
 
-### Collaborate!  {#next-step}
+### Collaborate! {#next-step}
 
 To see sync in practice, attach another device/emulator; start the app for each; choose a nickname for each user and observe the two simultaneously editing the same ToDo List at the same time!
 
@@ -47,7 +47,7 @@ Now that you have seen the ToDo app in action, the rest of this tutorial will wa
 
 Alternatively you can continue to our advanced tutorial that will teach you about a new feature, called Query-based sync, included with Realm Cloud. This functionality will enable you to synchronize a subset of data from the server, via a query. As an example, we will use it such that the ToDo app will only sync the data specific for the user.
 
-{% page-ref page="step-2-adding-partial-sync.md" %}
+{% page-ref page="step-2-adding-query-based-sync.md" %}
 
 ## How the ToDo application was built {#step-1-create-a-new-android-project}
 
@@ -61,9 +61,9 @@ cd my-first-realm-app
 git checkout -b develop android-step-1
 ```
 
-Open the Android Project with the name of `SyncIntro` found under `my-first-realm-app/android`. 
+Open the Android Project with the name of `SyncIntro` found under `my-first-realm-app/android`.
 
-You should now be able to compile and run the application, the UI should look similar to: 
+You should now be able to compile and run the application, the UI should look similar to:
 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L3F_hZYacv22HcEljCi%2F-L3FdASl3em9Dzz9jMW-%2Fimage.png?alt=media&token=07ff080d-4afe-46da-b8ae-fbe0ac4f2b5e)
 
@@ -88,11 +88,11 @@ buildscript {
 }
 ```
 
-Next we will change the app-level `build.gradle` which is shown here: 
+Next we will change the app-level `build.gradle` which is shown here:
 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L3EpQfXvYEVUU5CLu1k%2F-L3EpfgJKcsiPzJMaGDU%2Fimage.png?alt=media&token=0f8c7760-673e-47d8-9978-cf04bd5c5277)
 
-**Step 2a:** Apply the `realm-android` plugin under the Android one \(`com.android.application`\) int he  `build.gradle` file.
+**Step 2a:** Apply the `realm-android` plugin under the Android one \(`com.android.application`\) int he `build.gradle` file.
 
 ```groovy
 apply plugin: 'realm-android'
@@ -130,7 +130,7 @@ final class Constants {
 Assign to `INSTANCE_ADDRESS`the actual instance address. It can be found on the 'Getting started' tab in Realm Studio.
 
 {% hint style="warning" %}
-**Self-Hosted:** The code snippet above is optimized for cloud. When using a self-hosted version of Realm Object Server, directly set the `AUTH_URL` variable. _It is likely you won't initially have SSL/TLS setup, so be careful with_ _`http[s]`_.
+**Self-Hosted:** The code snippet above is optimized for cloud. When using a self-hosted version of Realm Object Server, directly set the `AUTH_URL` variable. _It is likely you won't initially have SSL/TLS setup, so be careful with_ `http[s]`.
 {% endhint %}
 
 ![](../../.gitbook/assets/screen-shot-2018-03-18-at-14.33.55.png)
@@ -182,7 +182,7 @@ Now locate the `WelcomeActivity` class. This activity is responsible of authenti
 In production you will most likely be using a password based provider like `usernamePassword` or OAuth based like `facebook` or `Google.`
 {% endhint %}
 
-Replace the  `goToItemsActivity();` line in `attemptLogin()` function with this code snippet:
+Replace the `goToItemsActivity();` line in `attemptLogin()` function with this code snippet:
 
 ```java
 SyncCredentials credentials = SyncCredentials.nickname(nickname, false);
@@ -203,7 +203,7 @@ SyncUser.logInAsync(credentials, AUTH_URL, new SyncUser.Callback<SyncUser>() {
 });
 ```
 
- After a successful login, the `SyncUser` is persisted internally, there's no need to login again on the next app startup. We do check in `onCreate` if there's already a `SyncUser`. If we have one we do not attempt to login a user, instead we navigate directly to the next Activity. Add the following right before setting up the login form:
+After a successful login, the `SyncUser` is persisted internally, there's no need to login again on the next app startup. We do check in `onCreate` if there's already a `SyncUser`. If we have one we do not attempt to login a user, instead we navigate directly to the next Activity. Add the following right before setting up the login form:
 
 ```java
 // onCreate
@@ -244,10 +244,10 @@ public boolean onOptionsItemSelected(MenuItem item) {
 }
 ```
 
- As you can see we will logout the user before jumping back to the login screen. You may now try to log out and log in using another name.
+As you can see we will logout the user before jumping back to the login screen. You may now try to log out and log in using another name.
 
 {% hint style="success" %}
-**Checkpoint**: You can compare your changes with the tag `android_step_3` 
+**Checkpoint**: You can compare your changes with the tag `android_step_3`
 
 ```bash
 git diff android-step-3
@@ -320,9 +320,9 @@ git diff android_step_4
 ```
 {% endhint %}
 
-### Step 5 Using the Realm data  {#step-8-adding-the-itemsrecycleradapter-class}
+### Step 5 Using the Realm data {#step-8-adding-the-itemsrecycleradapter-class}
 
-We will now query the Realm asynchronously \(from a background thread\) to fetch all `Item` sorted by date. Add the following line after `setUpRealm()` 
+We will now query the Realm asynchronously \(from a background thread\) to fetch all `Item` sorted by date. Add the following line after `setUpRealm()`
 
 ```java
 RealmResults<Item> items = realm.where(Item.class).sort("timestamp", Sort.DESCENDING).findAllAsync();
@@ -405,9 +405,7 @@ _Congrats on creating your first synchronized app with Realm Cloud!_
 
 Now that you have seen the ToDo app in action, you can continue to our advanced tutorial that will teach you about a new feature, called Query-based sync, included with Realm Cloud. This functionality will enable you to synchronize a subset of data from the server, via a query. As an example, we will use it such that the ToDo app will only sync the data specific for the user.
 
-{% page-ref page="step-2-adding-partial-sync.md" %}
+{% page-ref page="step-2-adding-query-based-sync.md" %}
 
-
-
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

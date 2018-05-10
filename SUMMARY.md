@@ -4,11 +4,11 @@
 * [Getting Started](getting-started-1/README.md)
   * [iOS Quick Start](getting-started-1/ios-quick-start/README.md)
     * [Step 1 - My First Realm App](getting-started-1/ios-quick-start/step-1-my-first-realm-app.md)
-    * [Step 2- Adding Query-based sync](getting-started-1/ios-quick-start/step-2-adding-partial-sync.md)
+    * [Step 2- Adding Query-based sync](getting-started-1/ios-quick-start/step-2-adding-query-based-sync.md)
     * [Step 3 - Adding Permissions](getting-started-1/ios-quick-start/step-3-adding-permissions.md)
   * [Android Quick Start](getting-started-1/android-quick-start/README.md)
     * [Step 1 - My First Realm App](getting-started-1/android-quick-start/step-1-my-first-realm-app.md)
-    * [Step 2 - Adding Query-based sync](getting-started-1/android-quick-start/step-2-adding-partial-sync.md)
+    * [Step 2 - Adding Query-based sync](getting-started-1/android-quick-start/step-2-adding-query-based-sync.md)
     * [Step 3 - Adding Permissions](getting-started-1/android-quick-start/step-3-adding-permissions.md)
     * [Step 4 - Chat Room \(Permission API\)](getting-started-1/android-quick-start/step-4-chat-room-permission-api.md)
 * Using Synced Realms
