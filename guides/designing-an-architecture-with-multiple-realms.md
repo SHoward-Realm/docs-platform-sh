@@ -1,7 +1,7 @@
 # Designing an Architecture with Multiple Realms
 
 {% hint style="warning" %}
-Multiple Realm architectures will become less common after the GA release of partial sync which will allow finer grain \(object-level\) permissions.  
+Multiple Realm architectures will become less common after the GA release of Query-based sync which will allow finer grain \(object-level\) permissions.  
 {% endhint %}
 
 ## Intro {#intro}

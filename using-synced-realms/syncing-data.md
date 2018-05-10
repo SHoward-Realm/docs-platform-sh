@@ -4,12 +4,12 @@
 
 Data can be synchronized between a local Realm and the server in two modes: _Partial \_and_ Full \_ synchronization.
 
-* **Partial synchronization** is a feature that allows a synchronized Realm to be opened in a such a way that it does _not_ download all objects stored within the remote Realm on the server. Instead, a partially synced Realm allows you to specify what subset of objects you want synchronized to the local copy using queries.
+* **Query-based synchronization** is a feature that allows a synchronized Realm to be opened in a such a way that it does _not_ download all objects stored within the remote Realm on the server. Instead, a partially synced Realm allows you to specify what subset of objects you want synchronized to the local copy using queries.
 * **Full synchronization **will automatically synchronize the entire Realm in the background as long as the Realm is open.
 
-The [Default Synced Realm](opening-a-synced-realm.md#the-default-synced-realm) is automatically created for you by the server and is the recommended way to get started using partial synchronization.
+The [Default Synced Realm](opening-a-synced-realm.md#the-default-synced-realm) is automatically created for you by the server and is the recommended way to get started using Query-based synchronization.
 
-For all other Realms, the current default behavior is _Full Synchronization_ as described in the [Manually Configuring Synced Realms](opening-a-synced-realm.md#manually-configuring-synced-realms). You can choose to manually enable partial sync on other Realms as well, as described [here](opening-a-synced-realm.md#partial-synchronization).
+For all other Realms, the current default behavior is _Full Synchronization_ as described in the [Manually Configuring Synced Realms](opening-a-synced-realm.md#manually-configuring-synced-realms). You can choose to manually enable Query-based sync on other Realms as well, as described [here](opening-a-synced-realm.md#partial-synchronization).
 
 For more information on how to setup a synchronized Realm and open it see the following sections:
 
@@ -17,7 +17,7 @@ For more information on how to setup a synchronized Realm and open it see the fo
 
 {% page-ref page="opening-a-synced-realm.md" %}
 
-## Using Partial Synchronization
+## Using Query-based synchronization
 
 A partially synced Realm will contain no objects upon initially being created and opened, but data will be synchronized when [subscribed](syncing-data.md#subscribing-to-data) to.
 
@@ -99,7 +99,7 @@ var subscription = realm.All<Person>().Where(p => p.Age > 18).Subscribe("my-subs
 
 Working with a synced Realm is no different than a local Realm \(other than it is automatically synchronized\). As a result, you can utilize Realm's existing notification functionality to register for changes that occur through synchronization.
 
-When you are using partial synchronization, the notification system is critical because you will need to know when the server has fulfilled the initial subscription in addition to later data changes.
+When you are using Query-based synchronization, the notification system is critical because you will need to know when the server has fulfilled the initial subscription in addition to later data changes.
 
 {% tabs %}
 {% tab title="Swift" %}
@@ -304,7 +304,7 @@ await Subscription.UnsubscribeAsync("legal-drivers");
 
 ## Full Synchronization
 
-When you open a Realm without partial sync, the entire Realm contents will be kept in sync. You will not need to use the subscription APIs as described [above](syncing-data.md#using-partial-synchronization). Instead, to control what data is synchronized to a client, you will need to split your data up into individual Realms. For example, a common pattern is to use a global Realm for shared data across all data at a base path `/globalRealm` and user-specific data in a Realm at the user's scoped path: `/~/myRealm`.
+When you open a Realm without Query-based sync, the entire Realm contents will be kept in sync. You will not need to use the subscription APIs as described [above](syncing-data.md#using-partial-synchronization). Instead, to control what data is synchronized to a client, you will need to split your data up into individual Realms. For example, a common pattern is to use a global Realm for shared data across all data at a base path `/globalRealm` and user-specific data in a Realm at the user's scoped path: `/~/myRealm`.
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

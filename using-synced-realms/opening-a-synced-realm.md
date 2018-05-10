@@ -272,9 +272,9 @@ var realm = Realm.GetInstance(configuration);
 {% endtab %}
 {% endtabs %}
 
-### Partial Synchronization
+### Query-based synchronization
 
-If you intend to use partial synchronization, it is recommended you use the [Default Synced Realm](opening-a-synced-realm.md#the-default-synced-realm), which uses this by default. However, you are not limited to just this Realm. You can manually open additional Realms with partial synchronization by following the [manual process](opening-a-synced-realm.md#manually-configuring-synced-realms) described above, but adjusting another parameter in the sync configuration.
+If you intend to use Query-based synchronization, it is recommended you use the [Default Synced Realm](opening-a-synced-realm.md#the-default-synced-realm), which uses this by default. However, you are not limited to just this Realm. You can manually open additional Realms with Query-based synchronization by following the [manual process](opening-a-synced-realm.md#manually-configuring-synced-realms) described above, but adjusting another parameter in the sync configuration.
 
 {% tabs %}
 {% tab title="Swift" %}
@@ -327,7 +327,7 @@ var config = new SyncConfiguration(user, realmUrl)
 {% endtab %}
 {% endtabs %}
 
-When you configure a Realm to use partial synchronization, it will initially have no data in it. For more information on how to sync data see the guide:
+When you configure a Realm to use Query-based synchronization, it will initially have no data in it. For more information on how to sync data see the guide:
 
 {% page-ref page="syncing-data.md" %}
 

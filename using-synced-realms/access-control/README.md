@@ -14,13 +14,13 @@ These permissions should only be used by applications that match the &lt;3.x dat
 
 ### Fine-Grained Permissions
 
-Starting with version 3.x and the introduction of [partial synchronization](../syncing-data.md) and [the default synced Realm](../setting-up-your-realms.md#the-default-synced-realm), we also introduced a fine-grained permission system that works on more levels:
+Starting with version 3.x and the introduction of [Query-based synchronization](../syncing-data.md) and [the default synced Realm](../setting-up-your-realms.md#the-default-synced-realm), we also introduced a fine-grained permission system that works on more levels:
 
 * [**Realm-level permissions**](./#realm-level) - permissions that apply to the entire Realm file \(this is similar to path-level permissions, but has a different API that aligns with class/object-level permissions\)
 * [**Class-level permissions**](./#class-level) - permissions that apply only to a specific object class within a Realm file
 * [**Object-level permissions**](./#object-level) - permissions that apply only to a specific object within a Realm file
 
-With this fine-grained permission system you do not need to use the [**path-level permissions**](path-level-permissions.md) anymore. Instead, we recommend to start with the [default synced Realm](../setting-up-your-realms.md#the-default-synced-realm), which is designed for partial sync and fine-grained permissions.
+With this fine-grained permission system you do not need to use the [**path-level permissions**](path-level-permissions.md) anymore. Instead, we recommend to start with the [default synced Realm](../setting-up-your-realms.md#the-default-synced-realm), which is designed for Query-based sync and fine-grained permissions.
 
 ### Comparison
 
@@ -40,7 +40,7 @@ By default, when a Realm or class is created, all users are granted full access.
 
 ## Fine-Grained Permissions
 
-In addition to path-level permissions, you can control user access to individual objects through fine-grained permissions. This feature is in effect whenever the user is connecting to a Realm file using partial synchronization.
+In addition to path-level permissions, you can control user access to individual objects through fine-grained permissions. This feature is in effect whenever the user is connecting to a Realm file using Query-based synchronization.
 
 When first starting, any user who can connect to a Realm file can make any change to the data. This is designed to allow you to get up and running quickly, syncing data, and iterating on your data models. Once you are ready to start implementing access control, an admin can then define access control lists inside the Realm file, either on individual objects or whole classes.
 

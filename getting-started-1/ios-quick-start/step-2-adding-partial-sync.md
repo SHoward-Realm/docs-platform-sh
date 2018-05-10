@@ -1,4 +1,4 @@
-# Step 2- Adding Partial Sync
+# Step 2- Adding Query-based sync
 
 {% hint style="info" %}
 Want to get started right away with the complete source code? Check out our [Github](https://github.com/realm/my-first-realm-app/tree/master/ios/PartialSync) with ready-to-compile source code then follow the instructions in `README.md` to get started. Don't forget to update the `Constants.swift` file with your Realm Cloud or self-hosted instance URL before running the app.
@@ -31,7 +31,7 @@ git clone https://github.com/realm/my-first-realm-app.git
 3. Change directory into the ios directory with `cd ios`
 4. Change directory into the SyncIntro directory with `cd SyncIntro`
 
-> Note: there is a _PartialSync_ folder here as well - in this tutorial we will be adding to the basic sync tutorial to bring it up to the level of the completed partial sync version.
+> Note: there is a _PartialSync_ folder here as well - in this tutorial we will be adding to the basic sync tutorial to bring it up to the level of the completed Query-based sync version.
 
 ## Step 2: Install the Realm SDK with CocoaPods {#step-2:-updateinstall-the-realm-sdk-with-cocoapods}
 
@@ -129,13 +129,13 @@ Now that we have a model to work with, we can create a view controller in which 
 
 Before we add the entire contents needed for this file we will look at the relevant code fragments that make this different from the previous simple full-synced version of the ToDo list app:
 
-**Opening the Realm with Partial Sync**:
+**Opening the Realm with Query-based sync**:
 
 ```swift
 realm = try! Realm(configuration: SyncConfiguration.automatic())
 ```
 
-We've changed from constructing a sync configuration manually, to using Realm's automatic sync configuration. The automatic sync configuration determines which sync server to contact based on the user that is currently logged in, and opts into the query-based partial synchronization mode. This mode tells the server not to download all of the Realm's data, but rather to only download the portion of the object graph that matches queries that the client has explicitly subscribed to.
+We've changed from constructing a sync configuration manually, to using Realm's automatic sync configuration. The automatic sync configuration determines which sync server to contact based on the user that is currently logged in, and opts into the query-based Query-based synchronization mode. This mode tells the server not to download all of the Realm's data, but rather to only download the portion of the object graph that matches queries that the client has explicitly subscribed to.
 
 **Setting up the Sync Query**:
 
@@ -145,7 +145,7 @@ projects = realm.objects(Project.self).filter("owner = %@", SyncUser.current!.id
 
 Here the syntax we used with a fully-synced Realm and a partially-synced Realm is the same - the difference is with a _with a fully synced Realm the data is already synchronized_ \(or may be in the process of being downloaded\). The query is selecting `Project` model records where the `owner` property matches the ID of the currently logged in user \(`SyncUser.current!.identity!`\), and these will be sorted in date order, newest first.
 
-It's important to note that with partial sync, _no data is synchronized from the server to the client until a subscription is created._ In our application the subscription is created as we are preparing to display the data in the controller's `viewDidLoad` method as follows:
+It's important to note that with Query-based sync, _no data is synchronized from the server to the client until a subscription is created._ In our application the subscription is created as we are preparing to display the data in the controller's `viewDidLoad` method as follows:
 
 ```swift
 subscription = projects.subscribe(named: "my-projects")
@@ -229,7 +229,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItemButtonDidClick))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonDidClick))
 
-        // In a Partial Sync use case this is where we tell the server we want to
+        // In a Query-based sync use case this is where we tell the server we want to
         // subscribe to a particular query.
         subscription = projects.subscribe(named: "my-projects")
 
@@ -389,7 +389,7 @@ SyncUser.logIn(with: creds, server: Constants.AUTH_URL, onCompletion: { [weak se
 
 The big difference between the simple version of the application where we created a simple ToDo list and the version we are creating here is the idea of a project as a container for collections of ToDo items. We selectively subscribe to `Project` records in order to get only the data we need, not all the possible data that may exist inside a Realm.
 
-Let's recap what we have done so far; in our partial sync powered ToDo app, we...
+Let's recap what we have done so far; in our Query-based sync powered ToDo app, we...
 
 1. Allow the user to log in with a nick name, but instead of jumping right to a list to the ToDo's in the ItemsViewController we present a ProjectsViewController.
 2. Allow the user to see a list of their existing projects, or to create one or more new projects that act a grouping mechanism \(via the `ProjectsViewController`\) for ToDo items. We know about \(can find\) these projects because of the ability to _subscribe_ to `Project` records that _match a specific query_ we are interested in. In this case projects that were created by our own user - represented by the `SyncUser.current.identity` which is Realm's way of tracking the currently logged in user.
@@ -418,9 +418,9 @@ The change in type for the `items` variable is so that it matches the type decla
 
 ### Adding new ToDo Items to the Project {#adding-new-todo-items-to-the-project}
 
-Adding new to do Items works exactly as it did in the non-partial sync version; the difference becomes clear a the point where we save the new ToDo item. Rather than add the new item to the Realm directly, we append the new item to the list of items managed by the `Project`. This is accomplished by changing the addition code \(in the method `addItemButtonDidClick`\) :
+Adding new to do Items works exactly as it did in the non-Query-based sync version; the difference becomes clear a the point where we save the new ToDo item. Rather than add the new item to the Realm directly, we append the new item to the list of items managed by the `Project`. This is accomplished by changing the addition code \(in the method `addItemButtonDidClick`\) :
 
-The non-partial sync version writes to the Realm using a local instance of the Realm which is created at the time the class was loaded \(lines 7-8\):
+The non-Query-based sync version writes to the Realm using a local instance of the Realm which is created at the time the class was loaded \(lines 7-8\):
 
 ```swift
 alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
@@ -436,7 +436,7 @@ alertController.addAction(UIAlertAction(title: "Save", style: .default, handler:
 }))
 ```
 
-Here's the updated version. Notice the difference? The partial sync version uses the Realm instance attached to the project record like this:
+Here's the updated version. Notice the difference? The Query-based sync version uses the Realm instance attached to the project record like this:
 
 ```swift
 alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {

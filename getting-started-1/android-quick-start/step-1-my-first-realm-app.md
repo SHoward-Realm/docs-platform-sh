@@ -45,7 +45,7 @@ To see sync in practice, attach another device/emulator; start the app for each;
 
 Now that you have seen the ToDo app in action, the rest of this tutorial will walk you through how we took a basic ToDo app and added persistence and synchronization in just a few steps.
 
-Alternatively you can continue to our advanced tutorial that will teach you about a new feature, called Partial Sync, included with Realm Cloud. This functionality will enable you to synchronize a subset of data from the server, via a query. As an example, we will use it such that the ToDo app will only sync the data specific for the user.
+Alternatively you can continue to our advanced tutorial that will teach you about a new feature, called Query-based sync, included with Realm Cloud. This functionality will enable you to synchronize a subset of data from the server, via a query. As an example, we will use it such that the ToDo app will only sync the data specific for the user.
 
 {% page-ref page="step-2-adding-partial-sync.md" %}
 
@@ -403,7 +403,7 @@ _Congrats on creating your first synchronized app with Realm Cloud!_
 
 ### Next step {#continue-to-the-advanced-tutorial}
 
-Now that you have seen the ToDo app in action, you can continue to our advanced tutorial that will teach you about a new feature, called Partial Sync, included with Realm Cloud. This functionality will enable you to synchronize a subset of data from the server, via a query. As an example, we will use it such that the ToDo app will only sync the data specific for the user.
+Now that you have seen the ToDo app in action, you can continue to our advanced tutorial that will teach you about a new feature, called Query-based sync, included with Realm Cloud. This functionality will enable you to synchronize a subset of data from the server, via a query. As an example, we will use it such that the ToDo app will only sync the data specific for the user.
 
 {% page-ref page="step-2-adding-partial-sync.md" %}
 
