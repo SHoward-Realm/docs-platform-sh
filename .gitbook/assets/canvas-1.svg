@@ -336,7 +336,7 @@
       </g>
       <g id="Graphic_98">
         <text transform="translate(542 832)" fill="#1c233f">
-          <tspan font-family="Effra" font-size="24" font-style="italic" font-weight="400" fill="#1c233f" x="34.188" y="22">Partial Sync</tspan>
+          <tspan font-family="Effra" font-size="24" font-style="italic" font-weight="400" fill="#1c233f" x="34.188" y="22">Query-based sync</tspan>
           <tspan font-family="Effra" font-size="24" font-style="italic" font-weight="400" fill="#1c233f" x="35.856" y="50">via Queries</tspan>
         </text>
       </g>
