@@ -339,7 +339,7 @@ var handleChange = async function (changeEvent) {
   // Get the old Realm that is at the state before the change
   var oldRealm = changeEvent.oldRealm;
   // Retrieve all objects of the relevant type
-  var coupons = realm.objects('Coupon');
+  var coupons = oldRealm.objects('Coupon');
   // Retrieve the indexes for the deletions
   var couponIndexes = changeEvent.changes.Coupon.deletions;
 
