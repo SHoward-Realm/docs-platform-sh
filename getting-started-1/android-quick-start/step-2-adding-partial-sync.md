@@ -1,4 +1,4 @@
-# Step 2 - Adding Partial Sync
+# Step 2 - Adding Query-based sync
 
 ## Quick Start {#quick-start}
 
@@ -10,7 +10,7 @@ Want to get started right away with the complete source code? [Check it out here
 
 By default Realm's synchronization will ensure that all the data that is in the Realm in the server will be mirrored to client devices, and vice versa. This behavior is simple and works well for global shared datasets or when you have user-specific data that can be easily split into separate Realms per user. However, this behavior can be limiting when you are working with more complex shared data or if you want to control exactly how much data syncs to a client device.
 
-Partial synchronization is new functionality provided by Realm Cloud that allows a client device to selectively choose which subset of data from the server-side Realm it wants. This allows the client Realm to act as a dynamic cache, where it can subscribe via a query to data, in addition to unsubscribing to evict the data from the client Realm.
+Query-based synchronization is new functionality provided by Realm Cloud that allows a client device to selectively choose which subset of data from the server-side Realm it wants. This allows the client Realm to act as a dynamic cache, where it can subscribe via a query to data, in addition to unsubscribing to evict the data from the client Realm.
 
 To illustrate the concept, let's take our `ToDo` App as an example:
 
@@ -19,7 +19,7 @@ Currently after you login you're presented with a list of all `Item` or Tasks. I
 1. Group tasks by _project_. A project is composed by a list of tasks.
 2. Work with only our projects \(i.e. projects created by our user\).
 
-Partial sync will allow us to synchronize only our projects via a query, while avoiding pulling projects and tasks from other users. This is technically achieved by two steps:
+Query-based sync will allow us to synchronize only our projects via a query, while avoiding pulling projects and tasks from other users. This is technically achieved by two steps:
 
 * Add `partialRealm` option to the `SyncConfiguration`
 
@@ -44,7 +44,7 @@ RealmResults<Project> myProjects = realm
 
 The above query will run on the Cloud instance, then return **only** projects belonging to our user. These projects contains links to their corresponding tasks, so they will also be synced as well.
 
-That's it! Following these two steps we enabled partial sync in our app.
+That's it! Following these two steps we enabled Query-based sync in our app.
 
 In the following sections, we're going to walk you in detail through the modifications you need to perform, in order to transform our ToDo App.
 
@@ -54,7 +54,7 @@ If you want to jump into the final code directly, check it out from the [reposit
 
 ## Update build.gradle {#update-build.gradle}
 
-Partial Sync feature is released as a snapshot for the time being. To be able to resolve the dependency, update your project's `build.gradle` to include the snapshot repository and reference the correct version.
+Query-based sync feature is released as a snapshot for the time being. To be able to resolve the dependency, update your project's `build.gradle` to include the snapshot repository and reference the correct version.
 
 ```groovy
 buildscript {
@@ -156,9 +156,9 @@ public class Project extends RealmObject {
 
 The `owner` property represents the id of the currently connected user. This is a way to filter our projects compared to others.
 
-## Creating a partial sync configuration {#creating-a-partial-sync-configuration}
+## Creating a Query-based sync configuration {#creating-a-partial-sync-configuration}
 
-As mentioned in the introduction, we need to specify the `partialSync` option when building our `SyncConfiguration` to chose partial sync of the Realm. For conveniency, we set this `SyncConfiguration` as the default, so we can obtain easily a Realm instance in the app.
+As mentioned in the introduction, we need to specify the `partialSync` option when building our `SyncConfiguration` to chose Query-based sync of the Realm. For conveniency, we set this `SyncConfiguration` as the default, so we can obtain easily a Realm instance in the app.
 
 This is done by modifying the `WelcomeActivity` . We replace the `goToItemsActivity` method by `setUpRealmAndGoToListTaskActivity` as follow
 

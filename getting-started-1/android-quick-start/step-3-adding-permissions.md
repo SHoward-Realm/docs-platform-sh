@@ -1,6 +1,6 @@
 # Step 3 - Adding Permissions
 
-In the previous tutorial we used partial sync to synchronize only projects owned by the current user. However, nothing prevented a malicious user from seeing another user's projects by subscribing with a query that matches a broader set of `Project` instances.
+In the previous tutorial we used Query-based sync to synchronize only projects owned by the current user. However, nothing prevented a malicious user from seeing another user's projects by subscribing with a query that matches a broader set of `Project` instances.
 
 To address this issue we will instead use Realm's permission system to limit access to each `Project` instance so only the user that created it can read, modify, or delete it.
 
@@ -14,7 +14,7 @@ Want to get started right away with the complete source code? [Clone the demo ap
 
 ### Control access to `Project` instances {#control-access-to-project-instances}
 
-In the previous tutorial we used to perform partial sync by filtering the projects by their owners. However nothing prevents a malicious user to modify someone else's project by registering a query for all `Project`.
+In the previous tutorial we used to perform Query-based sync by filtering the projects by their owners. However nothing prevents a malicious user to modify someone else's project by registering a query for all `Project`.
 
 To alleviate this issue, we can choose to restrict the access to the `Project` instance so only the user who created it, can read and modify it. Thanks to the new permission system, we can implement this restriction by adding an ACL to the `Project` model.
 
@@ -91,7 +91,7 @@ everyonePermission.setCanSetPermissions(false);
 
 ## Conclusion {#conclusion}
 
-We've seen through this tutorial how easy it is to modify our earlier partial sync demo app to provide a level of security that prevents a user from accessing projects that don't belong to them.
+We've seen through this tutorial how easy it is to modify our earlier Query-based sync demo app to provide a level of security that prevents a user from accessing projects that don't belong to them.
 
 We've discussed the default permissions created by Realm Cloud, and how to tighten these permissions before deploying your application.
 
