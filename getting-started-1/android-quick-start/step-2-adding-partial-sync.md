@@ -3,7 +3,7 @@
 ## Quick Start {#quick-start}
 
 {% hint style="success" %}
-Want to get started right away with the complete source code? [Check it out here](https://github.com/realm/my-first-realm-app/tree/master/android/PartialSync)  
+Want to get started right away with the complete source code? [Check it out here](https://github.com/realm/my-first-realm-app/tree/master/android/PartialSync)
 {% endhint %}
 
 ## Introduction {#introduction}
@@ -58,7 +58,7 @@ Partial Sync feature is released as a snapshot for the time being. To be able to
 
 ```groovy
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
@@ -156,7 +156,7 @@ public class Project extends RealmObject {
 
 The `owner` property represents the id of the currently connected user. This is a way to filter our projects compared to others.
 
-## Creating a partial sync configuration  {#creating-a-partial-sync-configuration}
+## Creating a partial sync configuration {#creating-a-partial-sync-configuration}
 
 As mentioned in the introduction, we need to specify the `partialSync` option when building our `SyncConfiguration` to chose partial sync of the Realm. For conveniency, we set this `SyncConfiguration` as the default, so we can obtain easily a Realm instance in the app.
 
@@ -477,7 +477,7 @@ public class ProjectsRecyclerAdapter extends RealmRecyclerViewAdapter<Project, P
 }
 ```
 
-## Tweaking ItemsActivity  {#tweaking-itemsactivity}
+## Tweaking ItemsActivity {#tweaking-itemsactivity}
 
 Since we're getting to this Activity from `ProjectsActivity` we need to obtain the id of the project we want to display, this is done inside `onCreate`
 
@@ -621,10 +621,10 @@ public class ItemsActivity extends AppCompatActivity {
 Now you can use two different users on two different devices, you should only see each user's project/tasks.
 
 {% hint style="info" %}
-You can also pull the Realm file from the device then open it using [Realm Studio](../../realm-studio/), you'll see effectively that your local Realm contains only `Item` and `Project` related to your user. 
+You can also pull the Realm file from the device then open it using [Realm Studio](../../realm-studio/), you'll see effectively that your local Realm contains only `Item` and `Project` related to your user.
 {% endhint %}
 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L3ie62rQOBxzmQJGkjW%2F-L3ieAaekz-HwrwKeBkp%2FPartialSync.gif?alt=media&token=a60749b3-b0c0-4d1d-b787-cee0cf98ad90)
 
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

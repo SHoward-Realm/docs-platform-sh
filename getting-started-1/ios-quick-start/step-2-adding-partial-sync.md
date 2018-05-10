@@ -1,7 +1,7 @@
 # Step 2- Adding Partial Sync
 
 {% hint style="info" %}
-Want to get started right away with the complete source code? Check out our [Github](https://github.com/realm/my-first-realm-app/tree/master/ios/PartialSync) with ready-to-compile source code  then follow the instructions in `README.md` to get started. Don't forget to update the `Constants.swift` file with your Realm Cloud  or self-hosted instance URL before running the app.
+Want to get started right away with the complete source code? Check out our [Github](https://github.com/realm/my-first-realm-app/tree/master/ios/PartialSync) with ready-to-compile source code then follow the instructions in `README.md` to get started. Don't forget to update the `Constants.swift` file with your Realm Cloud or self-hosted instance URL before running the app.
 {% endhint %}
 
 ## Prerequisites {#prerequisites}
@@ -67,7 +67,7 @@ This will download the Realm frameworks and update the Xcode workspace file. Onc
 Locate and open the `Constants.swift` file in the Xcode file navigator, then update the value of `MY_INSTANCE_ADDRESS` with the hostname portion of the Realm Cloud instance you copied from the Realm Cloud Portal \(e.g., mycoolapp.us1.cloud.realm.io\).
 
 {% hint style="warning" %}
-**Self-Hosted:** The code snippet below is optimized for cloud. When using a self-hosted version of Realm Object Server, directly set the `AUTH_URL` and `REALM_URL` variables. _It is likely you won't initially have SSL/TLS setup, so be careful with_ _`http[s]`_ _and_ _`realm[s]`_.
+**Self-Hosted:** The code snippet below is optimized for cloud. When using a self-hosted version of Realm Object Server, directly set the `AUTH_URL` and `REALM_URL` variables. _It is likely you won't initially have SSL/TLS setup, so be careful with_ `http[s]` _and_ `realm[s]`.
 {% endhint %}
 
 {% code-tabs %}
@@ -83,7 +83,7 @@ struct Constants {
     // **** ROS On-Premises Users
     // **** Replace the AUTH_URL string with the fully qualified versions of
     // **** address of your ROS server, e.g.: "http://127.0.0.1:9080"
-    
+
     static let MY_INSTANCE_ADDRESS = "MY_INSTANCE_ADDRESS" // <- update this
 
     static let AUTH_URL  = URL(string: "https://\(MY_INSTANCE_ADDRESS)")!
@@ -112,7 +112,7 @@ class Project: Object {
     @objc dynamic var timestamp: Date = Date()
 
     let items = List<Item>()
-    
+
     override static func primaryKey() -> String? {
         return "projectId"
     }   
@@ -190,28 +190,28 @@ import UIKit
 import RealmSwift
 
 class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+
     let realm: Realm
     let projects: Results<Project>
     var notificationToken: NotificationToken?
     var subscriptionToken: NotificationToken?
     var subscription: SyncSubscription<Project>!
-    
+
     var tableView = UITableView()
     let activityIndicator = UIActivityIndicatorView()
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         realm = try! Realm(configuration: SyncConfiguration.automatic())
-        
+
         projects = realm.objects(Project.self).filter("owner = %@", SyncUser.current!.identity!).sorted(byKeyPath: "timestamp", ascending: false)
-        
+
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Projects"
@@ -221,18 +221,18 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         activityIndicator.color = .darkGray
         activityIndicator.isHidden = false
         activityIndicator.hidesWhenStopped = true
-        
+
         tableView.frame = self.view.frame
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItemButtonDidClick))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonDidClick))
-        
+
         // In a Partial Sync use case this is where we tell the server we want to
         // subscribe to a particular query.
         subscription = projects.subscribe(named: "my-projects")
-        
+
         activityIndicator.startAnimating()
         subscriptionToken = subscription.observe(\.state, options: .initial) { state in
             if state == .complete {
@@ -241,8 +241,8 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Subscription State: \(state)")
             }
         }
-        
-        
+
+
         notificationToken = projects.observe { [weak self] (changes) in
             guard let tableView = self?.tableView else { return }
             switch changes {
@@ -265,16 +265,16 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-    
+
     deinit {
         notificationToken?.invalidate()
         subscriptionToken?.invalidate()
         activityIndicator.stopAnimating()
     }
-    
+
     @objc func addItemButtonDidClick() {
         let alertController = UIAlertController(title: "Add New Project", message: "", preferredStyle: .alert)
-        
+
         alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {
             alert -> Void in
             let textField = alertController.textFields![0] as UITextField
@@ -292,7 +292,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         })
         self.present(alertController, animated: true, completion: nil)
     }
-    
+
     @objc func logoutButtonDidClick() {
         let alertController = UIAlertController(title: "Logout", message: "", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Yes, Logout", style: .destructive, handler: {
@@ -303,11 +303,11 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return projects.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         cell.selectionStyle = .none
@@ -316,14 +316,14 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.detailTextLabel?.text = project.items.count > 0 ? "\(project.items.count) task(s)" : "No tasks"
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let project = projects[indexPath.row]
         let itemsVC = ItemsViewController()
         itemsVC.project = project
         self.navigationController?.pushViewController(itemsVC, animated: true)
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         let project = projects[indexPath.row]
@@ -333,7 +333,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             deleteProject(project)
         }
     }
-    
+
     @objc func confirmDeleteProjectAndTasks(project: Project) {
         let alertController = UIAlertController(title: "Delete \(project.name)?", message: "This will delete \(project.items.count) task(s)", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Yes, Delete \(project.name)", style: .destructive, handler: {
@@ -428,7 +428,7 @@ alertController.addAction(UIAlertAction(title: "Save", style: .default, handler:
     let textField = alertController.textFields![0] as UITextField
     let item = Item()
     item.body = textField.text ?? ""
-            
+
     try! self.realm.write {
         self.realm.add(item)
     }
@@ -461,7 +461,7 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         item!.isDone = !(item!.isDone)
     }
 }
-    
+
 func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     guard editingStyle == .delete else { return }
     let item = items?[indexPath.row]
@@ -488,7 +488,5 @@ You should now be able to build and run the application, log in and create proje
 
 ![](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-L22PAstP49i9mPl4sPN%2F-L4307kfLEbsr_KglEYD%2F-L430AZfLqJfrAVoaUQJ%2Fios-partalSync.gif?alt=media&token=2c910be8-9a55-4f4a-a4de-30903d46ad9e)
 
-
-
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

@@ -32,7 +32,7 @@ npm install realm
 
 Then create a script that logs in with an admin user and open any synchronized Realm:
 
-```text
+```javascript
 var Realm = require('realm');
 
 const server_address = "INSERT SERVER ADDRESS";

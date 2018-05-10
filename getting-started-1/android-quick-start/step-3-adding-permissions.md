@@ -4,7 +4,7 @@ In the previous tutorial we used partial sync to synchronize only projects owned
 
 To address this issue we will instead use Realm's permission system to limit access to each `Project` instance so only the user that created it can read, modify, or delete it.
 
-## Quick Start  {#quick-start}
+## Quick Start {#quick-start}
 
 {% hint style="success" %}
 Want to get started right away with the complete source code? [Clone the demo app repository from GitHub](https://github.com/realm/my-first-realm-app), then follow the instructions in `android/objectPermission` to get started. Don't forget to update the `Constants.java` file with your Realm Cloud instance URL before running the app.
@@ -29,7 +29,7 @@ The `Permission` class defines the privileges we want to grant and to whom \(whi
 
 By default, every logged-in user has a private role created for them. This role can be accessed at `PermissionUser.getPrivateRole()`. We'll use this role when creating new projects.
 
-### Associate a `Permission` object with the created `Project`  {#associate-a-permission-object-with-the-created-project}
+### Associate a `Permission` object with the created `Project` {#associate-a-permission-object-with-the-created-project}
 
 As we create a new `Project` we now associate with it a new `Permission` instance to protect it.
 
