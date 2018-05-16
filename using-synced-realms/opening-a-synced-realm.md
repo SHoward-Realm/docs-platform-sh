@@ -409,7 +409,7 @@ var realm = Realm.GetInstance(configuration);
 {% hint style="danger" %}
 If a Realm has read-only [file-level permissions](access-control/path-level-permissions.md), then you _must_ asynchronously open the Realm as described in [Asynchronously Opening A Realm](opening-a-synced-realm.md#asynchronously-opening-a-realm). Opening a file-level read-only Realm without the asynchronous API will cause an error.
 
-_This behavior does not apply to partially synced Realms that use the _[_finer-grainer access controls_](access-control/)_._
+_This behavior does not apply to partially synced Realms that use the_ [_finer-grainer access controls_](access-control/)_._
 {% endhint %}
 
 ## Asynchronously Opening A Realm

@@ -257,7 +257,7 @@ public class Program
 
 **Notes**
 
-* Multiple Notifiers may be started \(via [Notifier.StartAsync](https://realm.io/docs/dotnet/latest/api/reference/Realms.Server.Notifier.html)\) but they need to have a different [WorkingDirectory](https://realm.io/docs/dotnet/latest/api/reference/Realms.Server.NotifierConfiguration.html) specified to avoid errors.
+* Multiple Notifiers may be started \(via [Notifier.StartAsync](https://realm.io/docs/dotnet/latest/api/reference/Realms.Server.Notifier.html#Realms_Server_Notifier_StartAsync_Realms_Server_NotifierConfiguration_)\) but they need to have a different [WorkingDirectory](https://realm.io/docs/dotnet/latest/api/reference/Realms.Server.NotifierConfiguration.html#Realms_Server_NotifierConfiguration_WorkingDirectory) specified to avoid errors.
 * `HandleChangesAsync` will be invoked in parallel for different Realms but sequentially for changes on a single Realm. This means that if your code takes a lot of time to return from the function, a queue of notifications may build up for that particular Realm. Make sure to design your architecture with that in mind.
 * Asynchronous calls inside `HandleChangesAsync` **must not** use `ConfigureAwait(false)` as that will dispatch the continuation on a different thread making all Realm and RealmObject instances \(that were open prior to the async operation\) inaccessible from that thread.
 

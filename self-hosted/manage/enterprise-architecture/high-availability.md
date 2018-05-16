@@ -44,8 +44,8 @@ In the event of failure for sync-worker master the slave will immediately take o
 In the event of failure of a ROS Core services node the network monitoring tool should send a trigger to immediately deploy a replacement ROS Core services node. Because the Core services is stateless multiple can be deployed in tandem and the load shared - spread out by the public load balancer. The network monitoring tool should also update the public load balancer with the DNS or IP of the new and healthy ROS core services module. Many software LBs such as nginx or HAproxy can be configured to do this themselves.  
 
 
-In the event of consul failover the network monitoring tool should trigger a redeploy of the consul node to rejoin the cluster as specified in the consul documentation [here](https://www.consul.io/docs/guides/outage.html).**  
-**
+In the event of consul failover the network monitoring tool should trigger a redeploy of the consul node to rejoin the cluster as specified in the consul documentation [here](https://www.consul.io/docs/guides/outage.html).  
+****
 
 ![ROS Failover in practice](https://lh3.googleusercontent.com/cQ4-G9won4LTRtYEyiMkaqkjv_uytfvO4fuXogW6tYaJn1899RStTq6vyHNgwVBmL9SS9Bw69oijpvPhnOYaAwWFO-LCgEgHX26d8tDW8mC0-XxfwBegb6hc66sdvVianCKhkGWT)
 

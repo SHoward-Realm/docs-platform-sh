@@ -5,7 +5,7 @@
 Data can be synchronized between a local Realm and the server in two modes: _Partial \_and_ Full \_ synchronization.
 
 * **Query-based synchronization** is a feature that allows a synchronized Realm to be opened in a such a way that it does _not_ download all objects stored within the remote Realm on the server. Instead, a partially synced Realm allows you to specify what subset of objects you want synchronized to the local copy using queries.
-* **Full synchronization **will automatically synchronize the entire Realm in the background as long as the Realm is open.
+* **Full synchronization** will automatically synchronize the entire Realm in the background as long as the Realm is open.
 
 The [Default Synced Realm](opening-a-synced-realm.md#the-default-synced-realm) is automatically created for you by the server and is the recommended way to get started using Query-based synchronization.
 

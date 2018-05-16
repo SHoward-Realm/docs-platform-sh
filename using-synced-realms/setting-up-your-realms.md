@@ -8,14 +8,14 @@ description: >-
 
 ## What is a Realm?
 
-A **Realm **is an instance of a Realm Database. Realms can be_ local, in-memory_, _or synchronized_. In practice, your application works with any kind of Realm the same way. Local Realms are the standard use-case, where the Realm simply persists data locally on the device. In-memory Realms have no persistence mechanism, and are meant for temporary storage. With Realm Platform, you will be working with a synchronized Realm.
+A **Realm** is an instance of a Realm Database. Realms can be _local, in-memory_, _or synchronized_. In practice, your application works with any kind of Realm the same way. Local Realms are the standard use-case, where the Realm simply persists data locally on the device. In-memory Realms have no persistence mechanism, and are meant for temporary storage. With Realm Platform, you will be working with a synchronized Realm.
 
 A synchronized Realm uses the Realm Platform to transparently synchronize its contents with other devices. While your application continues working with a synchronized Realm as if it's a local Realm, the data in that Realm might be updated by any device with write access to that Realm--so the Realm could represent a channel in a chat application, for instance, being updated by any user talking in that channel. Or, it could be a shopping cart, accessible only to devices owned by you.
 
 If you're used to working with other kinds of databases, here are some things that a Realm is _not:_
 
-* **A Realm is not a table. **Tables typically only store one kind of information: user records, email messages, and so on. But a Realm can contain multiple kinds of objects.
-* **A Realm is not a schemaless document store. **Because object properties are analogous to key/value pairs, it's easy to think of a Realm as a document store, but objects in a Realm have defined schemas that support giving values defaults or marking them as required or optional.
+* **A Realm is not a table.** Tables typically only store one kind of information: user records, email messages, and so on. But a Realm can contain multiple kinds of objects.
+* **A Realm is not a schemaless document store.** Because object properties are analogous to key/value pairs, it's easy to think of a Realm as a document store, but objects in a Realm have defined schemas that support giving values defaults or marking them as required or optional.
 * **A Realm is not a traditional relational database.** A Realm is an object database in which links between objects are a first-class type. The links do not require the use of key lookups and are instead analogous to pointers.
 
 ## The Default Synced Realm

@@ -91,7 +91,7 @@ Edit your `package.json` to include the following:
 
 Use the Eclipse tool or CF CLI tool: 
 
-Sample URL: `http://samplenodejsapp.kpsj001.us-west.mybluemix.net/ `
+Sample URL: `http://samplenodejsapp.kpsj001.us-west.mybluemix.net/` 
 
 ## Additional Reference Links
 

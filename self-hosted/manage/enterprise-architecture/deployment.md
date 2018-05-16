@@ -2,8 +2,8 @@
 
 The ROS components are designed to be deployed as node applications. The prerequisites for the server that any ROS service gets installed on can be found [here](https://realm.io/docs/realm-object-server/latest/#install-realm-object-server%20).
 
-Once the prerequisites are installed the ROS services can be run as regular node applications as in executing the command: `node index.js` from the command-line**  
-**
+Once the prerequisites are installed the ROS services can be run as regular node applications as in executing the command: `node index.js` from the command-line  
+****
 
 These commands and the installation of prerequisites are typically not done manually by an operator but instead is done with a configuration management tool like Chef, Puppet, Ansible, or Salt. These scripts are triggered on failure of a server which can be provided by a monitoring tool or for initial deployment which is usually manually started.  
 
