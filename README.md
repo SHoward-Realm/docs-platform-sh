@@ -12,6 +12,8 @@ The Realm Platform is made up of two major components. The Realm Database and th
 
 Want to take a deeper look? Read the [Realm Overview White Paper](https://www2.realm.io/whitepaper/realm-overview-registration), a comprehensive overview that covers core concepts, key use cases, and implementation examples.
 
+![](.gitbook/assets/artboard%20%281%29.png)
+
 ## Where do I start? {#where-do-i-start}
 
 The best way to get started is to try Realm Platform out for yourself!  The platform is offered as both a hosted cloud or a self-hosted plan.  Take a look below to learn how to try either option depending on your own requirements.  
