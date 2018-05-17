@@ -2,7 +2,7 @@
 
 ## Overview
 
-Data can be synchronized between a local Realm and the server in two modes: _Partial \_and_ Full \_ synchronization.
+Data can be synchronized between a local Realm and the server in two modes: _Query-based \_and_ Full \_ synchronization.
 
 * **Query-based synchronization** is a feature that allows a synchronized Realm to be opened in a such a way that it does _not_ download all objects stored within the remote Realm on the server. Instead, a partially synced Realm allows you to specify what subset of objects you want synchronized to the local copy using queries.
 * **Full synchronization** will automatically synchronize the entire Realm in the background as long as the Realm is open.
@@ -19,11 +19,11 @@ For more information on how to setup a synchronized Realm and open it see the fo
 
 ## Using Query-based synchronization
 
-A partially synced Realm will contain no objects upon initially being created and opened, but data will be synchronized when [subscribed](syncing-data.md#subscribing-to-data) to.
+A query-based Realm will contain no objects upon initially being created and opened, but data will be synchronized when [subscribed](syncing-data.md#subscribing-to-data) to.
 
 ### Subscribing to data
 
-By default, a partially synchronized Realm contains no data. Instead, the client application must choose, or subscribe to, which data it wants to partially synchronize from the overall Realm maintained on the server.
+By default, a query-based synchronized Realm contains no data. Instead, the client application must choose, or subscribe to, which data it wants to partially synchronize from the overall Realm maintained on the server.
 
 Subscribing to data is easy as it utilizes Realm's query system. Applications can create any number of queries for data which will be transmitted to the server and evaluated. The results of the query will then be synced to the application. The underlying sync protocol ensures that objects are only sent once in the case that an object matches several queries an application has subscribed to.
 
