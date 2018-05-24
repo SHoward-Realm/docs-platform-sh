@@ -189,7 +189,7 @@ Realms on the Realm Object Server are using the same `Realm.Configuration` and f
 
 ```swift
 // Create the configuration
-let syncServerURL = URL(string: "realm://localhost:9080/~/userRealm")!
+let syncServerURL = URL(string: "realms://myinstance.cloud.realm.io/~/userRealm")!
 let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: user, realmURL: syncServerURL))
 
 // Open the remote Realm
@@ -207,7 +207,7 @@ Realms on the Realm Object Server are using the same `RLMRealmConfiguration` and
 RLMSyncUser *user = [RLMSyncUser currentUser];
 
 // Create the configuration
-NSURL *syncServerURL = [NSURL URLWithString: @"realm://localhost:9080/~/userRealm"];
+NSURL *syncServerURL = [NSURL URLWithString: @"realms://myinstance.cloud.realm.io/~/userRealm"];
 RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
 config.syncConfiguration = [[RLMSyncConfiguration alloc] initWithUser:user realmURL:syncServerURL];
 
@@ -225,7 +225,7 @@ Realms on the Realm Object Server are created using a subclass of the normal `Re
 ```java
 // Create the configuration
 SyncUser user = SyncUser.currentUser();
-String url = "realm://localhost:9080/~/userRealm";
+String url = "realms://myinstance.cloud.realm.io/~/userRealm";
 SyncConfiguration config = new SyncConfiguration.Builder(user, url).build();
 
 // Open the remote Realm
@@ -247,7 +247,7 @@ The error handling is set up by registering a callback \(`error`\) as part of th
 const user = Realm.Sync.User.current;
 const config = {
   sync: { user: user,
-          url: "realm://localhost:9080/~/userRealm",
+          url: "realms://myinstance.cloud.realm.io/~/userRealm",
           error: err => console.log(err)
         },
   schema: // ...
@@ -264,7 +264,7 @@ The configuration ties together an authenticated user and a sync server URL. The
 
 ```csharp
 var user = User.Current;
-var serverURL = new Uri("realm://my.realm-server.com:9080/~/default");
+var serverURL = new Uri("realms://myinstance.cloud.realm.io/~/default");
 var configuration = new SyncConfiguration(user, serverURL);
 
 var realm = Realm.GetInstance(configuration);
@@ -343,7 +343,7 @@ This API is recommended when your want the user experience to not be blocked whi
 {% tab title="Swift" %}
 ```swift
 // Create the configuration
-let syncServerURL = URL(string: "realm://localhost:9080/~/userRealm")!
+let syncServerURL = URL(string: "realms://myinstance.cloud.realm.io/~/userRealm")!
 let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: user, realmURL: syncServerURL))
 
 // Open the remote Realm
@@ -357,7 +357,7 @@ let realm = try! Realm(configuration: config)
 RLMSyncUser *user = [RLMSyncUser currentUser];
 
 // Create the configuration
-NSURL *syncServerURL = [NSURL URLWithString: @"realm://localhost:9080/~/userRealm"];
+NSURL *syncServerURL = [NSURL URLWithString: @"realms://myinstance.cloud.realm.io/~/userRealm"];
 RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
 config.syncConfiguration = [[RLMSyncConfiguration alloc] initWithUser:user realmURL:syncServerURL];
 
@@ -371,7 +371,7 @@ RLMRealm *realm = [RLMRealm realmWithConfiguration:config error:nil];
 ```java
 // Create the configuration
 SyncUser user = SyncUser.currentUser();
-String url = "realm://localhost:9080/~/userRealm";
+String url = "realms://myinstance.cloud.realm.io/~/userRealm";
 SyncConfiguration config = new SyncConfiguration.Builder(user, url).build();
 
 // Open the remote Realm
@@ -385,7 +385,7 @@ Realm realm = Realm.getInstance(config);
 const user = Realm.Sync.User.current;
 const config = {
   sync: { user: user,
-          url: "realm://localhost:9080/~/userRealm",
+          url: "realms://myinstance.cloud.realm.io/~/userRealm",
           error: err => console.log(err)
         },
   schema: // ...
@@ -398,7 +398,7 @@ var realm = new Realm(config);
 {% tab title=".Net" %}
 ```csharp
 var user = User.Current;
-var serverURL = new Uri("realm://my.realm-server.com:9080/~/default");
+var serverURL = new Uri("realms://myinstance.cloud.realm.io/~/default");
 var configuration = new SyncConfiguration(user, serverURL);
 
 var realm = Realm.GetInstance(configuration);
@@ -544,11 +544,11 @@ You can learn more about the details of path-level permissions in its dedicated 
 When working with Realm paths you might quickly realize that it is time-consuming to keep track of the `userId` in a scoped-path. To simplify, Realm paths accept as shorthand the use of the tilde `~` character in exchange for the `userId`. For example, if you open a Realm with a `user` whose `userId` is `12345`, you can use either of these URL paths to open the same Realm:
 
 ```text
-"realm://127.0.0.1:9080/~/myRealm"
+"realms://myinstance.cloud.realm.io/~/myRealm"
 ```
 
 ```text
-"realm://127.0.0.1:9080/12345/myRealm"
+"realms://myinstance.cloud.realm.io/12345/myRealm"
 ```
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)

@@ -60,5 +60,16 @@ With synchronized Realms, you can make changes to the schema. This is limited to
 
 ![](../.gitbook/assets/image%20%2821%29.png)
 
+### \_\_ Models
+
+When using query-based synchronization, you'll notice that a number of special models are created inside of your Realm.  They are prefaced with "\_\_" and are used for implementation purposes.  These models are as follows: 
+
+* \_\_Class
+* \_\_DefaultRealmVersion
+* \_\_Permission
+* \_\_Realm
+* \_\_Role
+* \_\_User
+
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 
