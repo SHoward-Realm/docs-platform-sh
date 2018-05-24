@@ -73,7 +73,7 @@ By default Realm Cloud creates a set of permissive default permissions and roles
 By default, all users are added to an `everyone` role, and this role has access to all objects within the Realm. As part of lowering the default permissions, we will limit the access of this `everyone` role.
 
 {% hint style="warning" %}
-In this demo, we lower the privileges programmatically the first time a user logs in to our ToDo application. In practice, you'll want to configure these privileges using [Realm Studio](../../realm-studio/) or a script prior to your users running the application.
+In this demo, we lower the privileges programmatically the first time a user logs in to our ToDo application. In practice, you'll want to configure these privileges using [Realm Studio](../realm-studio/) or a script prior to your users running the application.
 {% endhint %}
 
 There are two levels of permissions that we will lower: class-level permissions, and Realm-level permissions.
