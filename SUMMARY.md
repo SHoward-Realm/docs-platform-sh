@@ -42,7 +42,7 @@
   * [View Your Data](realm-studio/view-your-data.md)
   * [Administer Users](realm-studio/administer-users.md)
   * [View Logs](realm-studio/view-logs.md)
-* Self-Hosted
+* Self-Hosting
   * [Installation](self-hosted/installation/README.md)
     * [Installing via Docker](self-hosted/installation/installing-via-docker.md)
     * [Deploy to Bluemix Cloud Foundry](self-hosted/installation/deploy-to-bluemix-cloud-foundry.md)
