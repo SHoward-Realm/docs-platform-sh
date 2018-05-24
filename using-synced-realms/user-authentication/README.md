@@ -9,7 +9,7 @@ Creating and logging in a user requires two things:
 
 ## Server URL
 
-To authenticate, you must supply a server URL. This is the base URL for your server, such as `htts://my-instance.us1a.cloud.realm.io` or `http://127.0.0.1:9080`.
+To authenticate, you must supply a server URL. This is the base URL for your server, such as `https://myinstance.cloud.realm.io` or `http://127.0.0.1:9080`.
 
 {% hint style="warning" %}
 Note this URL uses the `http`/`https` scheme as user authentication is handled via standard HTTP. Be careful not to confuse this with the Realm URL and its `realm`/`realms` scheme.
@@ -20,7 +20,7 @@ Note this URL uses the `http`/`https` scheme as user authentication is handled v
 The _authentication server URL_ is simply a `URL` representing the location of the Realm Object Server.
 
 ```swift
-let authURL = URL(string: "http://my.realmServer.com:9080")!
+let authURL = URL(string: "https://myinstance.cloud.realm.io")!
 ```
 {% endtab %}
 
@@ -28,7 +28,7 @@ let authURL = URL(string: "http://my.realmServer.com:9080")!
 The _authentication server URL_ is simply a `NSURL` representing the location of the Realm Object Server.
 
 ```objectivec
-NSURL *authURL = [NSURL URLWithString:@"http://my.realmServer.com:9080"];
+NSURL *authURL = [NSURL URLWithString:@"https://myinstance.cloud.realm.io"];
 ```
 {% endtab %}
 
@@ -36,19 +36,19 @@ NSURL *authURL = [NSURL URLWithString:@"http://my.realmServer.com:9080"];
 The _authentication server URL_ is simply a `URL` representing the location of the Realm Object Server.
 
 ```java
-String authURL = "http://my.realmServer.com:9080"
+String authURL = "https://myinstance.cloud.realm.io"
 ```
 {% endtab %}
 
 {% tab title="Javascript" %}
 ```javascript
-const authURL = "http://my.realmServer.com:9080"
+const authURL = "https://myinstance.cloud.realm.io";
 ```
 {% endtab %}
 
 {% tab title=".Net" %}
 ```csharp
-var authURL = new Uri("http://my.realm-auth-server.com:9080");
+var authURL = new Uri("https://myinstance.cloud.realm.io");
 ```
 {% endtab %}
 {% endtabs %}
