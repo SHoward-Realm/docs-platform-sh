@@ -9,7 +9,7 @@ Note that iCloud client support is only available on Apple platforms: iOS, macOS
 {% tabs %}
 {% tab title="macOS" %}
 1. Open a terminal and `cd` to the Realm Object Server directory.
-2. Generate a private key: `openssl ecparam -name prime256v1 -genkey -noout -out cloudkit_eckey.pem `
+2. Generate a private key: `openssl ecparam -name prime256v1 -genkey -noout -out cloudkit_eckey.pem` 
 3. Generate a public key to be submitted to the CloudKit Dashboard: `openssl ec -in cloudkit_eckey.pem -pubout`
 {% endtab %}
 

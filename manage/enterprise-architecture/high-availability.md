@@ -44,8 +44,8 @@ In the event of failure for sync-worker master the slave will immediately take o
 In the event of failure of a ROS Core services node the network monitoring tool should send a trigger to immediately deploy a replacement ROS Core services node. Because the Core services is stateless multiple can be deployed in tandem and the load shared - spread out by the public load balancer. The network monitoring tool should also update the public load balancer with the DNS or IP of the new and healthy ROS core services module. Many software LBs such as nginx or HAproxy can be configured to do this themselves.  
 
 
-In the event of consul failover the network monitoring tool should trigger a redeploy of the consul node to rejoin the cluster as specified in the consul documentation [here](https://www.consul.io/docs/guides/outage.html).**  
-**
+In the event of consul failover the network monitoring tool should trigger a redeploy of the consul node to rejoin the cluster as specified in the consul documentation [here](https://www.consul.io/docs/guides/outage.html).  
+****
 
 ![ROS Failover in practice](https://lh3.googleusercontent.com/cQ4-G9won4LTRtYEyiMkaqkjv_uytfvO4fuXogW6tYaJn1899RStTq6vyHNgwVBmL9SS9Bw69oijpvPhnOYaAwWFO-LCgEgHX26d8tDW8mC0-XxfwBegb6hc66sdvVianCKhkGWT)
 
@@ -57,8 +57,8 @@ In the event that an entire datacenter goes down and traffic must be served from
 Once failure of a DC has been determined by the network monitoring tool - CM scripts can be used to redeploy the entire ROS cluster as if it were an initial deployment except this time the scripts will use the backup restore functionality and point to the latest backup file. Once this cluster is up the public load balancer can be adjusted to point to the new ROS proxy in the new datacenter.  
 
 
-If downtime must be kept to a minimum the ROS cluster can be kept in a “warm spare” mode where the nodes are ready but not serving traffic.The ROS sync-worker group can always be deployed with the most recent backup once one occurs. Once failure is detected the only thing needed to do is to adjust the forwarding address on the public load balancer.**  
-**
+If downtime must be kept to a minimum the ROS cluster can be kept in a “warm spare” mode where the nodes are ready but not serving traffic.The ROS sync-worker group can always be deployed with the most recent backup once one occurs. Once failure is detected the only thing needed to do is to adjust the forwarding address on the public load balancer.  
+****
 
 ![Disaster Recovery](https://lh6.googleusercontent.com/JmQb8_KsOw0u1QDUJ29B-0pKU8r3P0riUo6rsxF-BwjaDvfJByair-teBr90m8o3Ujyl60qS533nSJ7mcULTakf0sGt5EoY6byJ8Hxjl3Fa3DeHo2ghAJWQvMAChNjlkJdw8jqmO)
 

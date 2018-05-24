@@ -48,7 +48,7 @@ You can delete a Realm in the Realm Object Server by making an HTTP DELETE in th
 
 This is the following example 
 
-**Let's say I had a database at the path \(in a locally running ROS instance\): **
+**Let's say I had a database at the path \(in a locally running ROS instance\):** 
 
 ```text
 /abc/products

@@ -17,9 +17,9 @@ Realm Sync Workers is a stateful node application that stores the realms, serves
 
 ### Consul Cluster
 
-Consul Cluster is a cluster of at least three consul servers that acts as a distributed key-value store for consensus and service discovery in the ROS cluster. It has built-in failure detection which the ROS cluster continually checks. If failure is detected the ROS Core services proxy module shifts the traffic to the new sync-worker master \(the old slave\) and the spare becomes the new slave. In small deployments the consul process can be run on the same server as the sync-workers and core services as shown below:**  
+Consul Cluster is a cluster of at least three consul servers that acts as a distributed key-value store for consensus and service discovery in the ROS cluster. It has built-in failure detection which the ROS cluster continually checks. If failure is detected the ROS Core services proxy module shifts the traffic to the new sync-worker master \(the old slave\) and the spare becomes the new slave. In small deployments the consul process can be run on the same server as the sync-workers and core services as shown below:  
   
-**
+****
 
 ![](https://lh4.googleusercontent.com/HUc9FY3RD1ntJKpDrw_UUntEQHJITH-yaXTByNZZ4quasu9ej7BR1e928aubRfzz9vEIkerqx31IWms90LBy9XDddOCSMCXPQdJkbEqwdKae_qOa-QfdBwAP2OWxDdBBX-2Ew6yV)
 
@@ -31,9 +31,9 @@ This is typically a geo-distributed load balancer that is designed to forward an
 
 ## Cluster Deployment
 
-The following diagram shows the component pieces of the Realm Object Server Enterprise Edition deployed across a cluster. This also reiterates which of the components services are stateful vs stateless.  Deployment mediums should be considered based on these properties.  **  
+The following diagram shows the component pieces of the Realm Object Server Enterprise Edition deployed across a cluster. This also reiterates which of the components services are stateful vs stateless.  Deployment mediums should be considered based on these properties.    
   
-**
+****
 
 ![](https://lh5.googleusercontent.com/6HiFsj46qLrI76UdoOrnL54gcYNu2WYZcU51gsndb-ToGQ04uCZIkyPrblzPRuJBzfl7f8FYm3VQoCvVaaLWPuojJLCnUcXc9TCJIcRJp4CxMF-ykqQoHmcNxmGWgB3ufRj5_Qns)
 

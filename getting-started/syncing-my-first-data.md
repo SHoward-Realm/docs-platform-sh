@@ -2,7 +2,7 @@
 
 ## Objective: 
 
-Use `Node.js `and `realm-js` to load a sample dataset into the Realm Object Server and view the data through Realm Studio
+Use `Node.js` and `realm-js` to load a sample dataset into the Realm Object Server and view the data through Realm Studio
 
 ## Installing Realm Studio
 
@@ -25,7 +25,7 @@ Realm Studio is Realm’s GUI console utility for managing and inspecting both l
 Since there is no data yet in the server, let’s use `realm-js` to create a sample data set.
 
 {% hint style="info" %}
-**To complete this step, you will need to sign up for our Professional Edition trial **[**here**](https://realm.io/trial/realm-professional-edition/).
+**To complete this step, you will need to sign up for our Professional Edition trial** [**here**](https://realm.io/trial/realm-professional-edition/).
 
 A token will be emailed to you that you can use in the sample application.
 {% endhint %}
