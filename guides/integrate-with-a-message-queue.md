@@ -23,15 +23,15 @@ Looking to get started right away?  You can find our code [here](https://github.
 The syntax of the terminal commands assumes you are working in a Linux environment.
 {% endhint %}
 
-[Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/0.11.0.1/kafka_2.11-0.11.0.1.tgz) the 0.11.0.1 release and un-tar it
+[Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/0.11.0.1/kafka_2.11-0.11.0.1.tgz) the 1.1.0 release and un-tar it
 
 ```bash
+#you may need to install wget if you don't already have it
+ubuntu@kafka-server:~$ wget http://apache.mirrors.pair.com/kafka/1.1.0/kafka_2.12-1.1.0.tgz
 
-ubuntu@kafka-server:~$ wget http://apache.mirrors.pair.com/kafka/0.11.0.1/kafka_2.11-0.11.0.1.tgz
+ubuntu@kafka-server:~$ tar -xzf kafka_2.12-1.1.0.tgz
 
-ubuntu@kafka-server:~$ tar -xzf kafka_2.11-0.11.0.1.tgz
-
-ubuntu@kafka-server:~$ cd kafka_2.11-0.11.0.1
+ubuntu@kafka-server:~$ cd kafka_2.12-1.1.0
 ```
 
 ### **Step 2: Start the Server** {#step-2-start-the-server}
@@ -52,6 +52,10 @@ Now, start the Kafka server:
 
 `ubuntu@kafka-server:~/kafka_2.11-0.11.0.1$ bin/kafka-server-start.sh config/server.properties &`
 
+{% hint style="warning" %}
+If you run receive the error: `Unrecognized VM option 'PrintGCDateStamps` see the issue and fix [here](https://issues.apache.org/jira/browse/KAFKA-6855).
+{% endhint %}
+
 ### **Step 3: Create a topic** {#step-3-create-a-topic}
 
 In a new terminal window, create a Kafka topic
@@ -68,7 +72,7 @@ You can print out all of your existing topics via the following command:
 
 ### **Step 4: Create a consumer that ingests Kafka and writes to ROS** {#step-4-create-a-consumer-that-ingests-kafka-and-writes-to-ros}
 
-Next, we need to create a Kafka consumer to take messages from the Kafka queue and write them to the ROS. We are going to do this via node.js
+Next, we need to create a Kafka consumer to take messages from the Kafka queue and write them to the ROS. We are going to do this via node.js.
 
 This relies on `realm-js` and `kafka-node` npm packages being installed in the working directory. You will need to install npm:
 
@@ -82,7 +86,9 @@ ubuntu@kafka-server:~/kafka_2.11-0.11.0.1$ npm install realm
 ubuntu@kafka-server:~/kafka_2.11-0.11.0.1$ npm install kafka-node
 ```
 
+{% hint style="info" %}
 You can find the code for our consumer [here](https://github.com/realm/realm-server-side-samples/tree/master/12-kafka-integration).
+{% endhint %}
 
 Within this code, you will need to edit a few things such as the ROS Address, your login credentials for Realm, and the name of your Kafka topic:
 
@@ -109,7 +115,11 @@ You can do this via the terminal window with the following command:
 
 `ubuntu@kafka-server:~/kafka_2.11-0.11.0.1$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafkaTest`
 
+You can then just type messages into the terminal window to write them to your topic.  
+
+{% hint style="info" %}
 You can find the code for our producer [here](https://github.com/realm/realm-server-side-samples/blob/master/12-kafka-integration/producer.js).
+{% endhint %}
 
 {% hint style="warning" %}
 This relies on `no-kafka` being installed in the working directory. If you are using the same directory as your consumer, this dependency was already installed.
