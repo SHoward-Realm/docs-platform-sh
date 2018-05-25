@@ -12,7 +12,7 @@ If you are working with Realm files on a device, you will need to transfer them 
 
 ![View and edit local Realm files - a demo file is available to try it out!](../.gitbook/assets/image%20%2822%29.png)
 
-### Import Data
+### Importing Data
 
 Realm Studio supports the ability to create a Realm file from CSV. To do so, go to `File` then `Create Realm from` --&gt; `CSV`.
 
