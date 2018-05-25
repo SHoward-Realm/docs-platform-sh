@@ -4,13 +4,36 @@
 
 Realm Object Server is a Node package which requires a Node project to run within. To make it easy to get going, the installation includes a command-line interface to bootstrap a project for you!
 
-Simply run:
+### Create a new ROS project instance:
 
 ```bash
 ros init my-app
 ```
 
 This creates a Typescript-based Node project for you. Later on you can explore customizing it but for now simply start the server with defaults by:
+
+### Add your feature token:
+
+{% hint style="info" %}
+Starting with Realm Object Server 3.5.1, a feature token is required to run the server.  **You can** [**get your own feature token here**](https://realm.io/trial/self-hosted-standard-plan/)**.**    
+{% endhint %}
+
+From inside of your project folder, you'll need to open the index file which can be found at `src/index.ts`You'll need to paste in your feature token as shown below: 
+
+```typescript
+import { BasicServer, FileConsoleLogger } from 'realm-object-server'
+import * as path from 'path'
+
+const server = new BasicServer()
+
+server.start({
+        // ..
+        featureToken: '<INSERT YOUR FEATURE TOKEN HERE>',
+        //....
+    })
+```
+
+### Start the server
 
 ```bash
 cd my-app/
