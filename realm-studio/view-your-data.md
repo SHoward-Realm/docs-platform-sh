@@ -35,9 +35,29 @@ Realm.open({}).then(realm => {
 });
 ```
 {% endtab %}
-{% endtabs %}
 
-### Importing Data
+{% tab title="Java" %}
+The filesystem used by Android emulators are unfortunately not directly accessible from the machine running Realm Studio. In this case you need to download the file from the emulator before it can be accessed.
+
+```java
+// Run this on the device to find the path on the emulator
+Realm realm = Realm.getDefaultInstance();
+Log.i("Realm", realm.getPath());
+```
+
+Then download the file using ADB. This can be done even while the app is running.
+
+```bash
+> adb pull <path>
+```
+
+You can also upload the modified file again using ADB, but only do this while the app is not running  as it otherwise can corrupt the file.
+
+```bash
+> adb push <file> <path>
+```
+{% endtab %}
+{% endtabs %}
 
 Realm Studio supports the ability to create a Realm file from CSV. To do so, go to `File` then `Create Realm from` --&gt; `CSV`.
 
