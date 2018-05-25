@@ -14,7 +14,7 @@ If you are working with Realm files on a device, you will need to transfer them 
 
 ### Viewing realms from emulators
 
-Studio allows you to live observe \(and edit\) any local realm, which can be very useful when developing mobile apps and testing them in the emulator. Since the emulator is running locally you can open the realm\(s\) and observe them in realtime as you are debugging your app. The only problem is that emulators in general makes it hard to find out where they are storing their local files.
+Studio allows you to live observe \(and edit\) any local realm, which can be very useful when developing mobile apps and testing them in the emulator. Since the emulator is running locally you can open the realm\(s\) and observe them in realtime as you are debugging your app. The only problem is that emulators in general make it really hard to find out where they are storing their local files.
 
 Fortunately there is a way to find out where any given realm is located. You can get the on-disk storage location from the configuration,  dump it to the debug console, and then use that path to open the Realm in Studio:
 
