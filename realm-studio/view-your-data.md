@@ -12,6 +12,31 @@ If you are working with Realm files on a device, you will need to transfer them 
 
 ![View and edit local Realm files - a demo file is available to try it out!](../.gitbook/assets/image%20%2822%29.png)
 
+### Viewing realms from emulators
+
+Studio allows you to live observe \(and edit\) any local realm, which can be very useful when developing mobile apps and testing them in the emulator. Since the emulator is running locally you can open the realm\(s\) and observe them in realtime as you are debugging your app. The only problem is that emulators in general makes it hard to find out where they are storing their local files.
+
+Fortunately there is a way to find out where any given realm is located. You can get the on-disk storage location from the configuration,  dump it to the debug console, and then use that path to open the Realm in Studio:
+
+{% tabs %}
+{% tab title="Swift" %}
+```swift
+// Get on-disk location of the default Realm
+let realm = try! Realm()
+print("Realm is located at:", realm.configuration.fileURL!)
+```
+{% endtab %}
+
+{% tab title="JavaScript" %}
+```javascript
+// Get on-disk location of the default Realm
+Realm.open({}).then(realm => {
+    console.log("Realm is located at: " + realm.path);
+});
+```
+{% endtab %}
+{% endtabs %}
+
 ### Importing Data
 
 Realm Studio supports the ability to create a Realm file from CSV. To do so, go to `File` then `Create Realm from` --&gt; `CSV`.
