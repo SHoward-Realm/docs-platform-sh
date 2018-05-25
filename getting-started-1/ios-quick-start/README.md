@@ -10,7 +10,7 @@ Next, in step 2, you will adapt the ToDo list app to use the new query-based syn
 
 Finally, in step 3, you will add class and object-level permissions to the ToDo list app to learn about Realm Platform 3.0's access control functionality:
 
-{% page-ref page="../step-3-adding-permissions.md" %}
+{% page-ref page="step-3-adding-permissions.md" %}
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 
