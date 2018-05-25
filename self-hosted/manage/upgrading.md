@@ -1,6 +1,6 @@
 # Upgrading
 
-**Migrating from ROS 1.x**
+## **Migrating from ROS 1.x**
 
 There is a built-in migration tool in the CLI which converts the old ROS \(1.x\) metadata into the new schema and \(optionally\) copies the user Realms to the new location. The user Realms are not converted by this tool, because ROS itself performs the necessary low-level conversion of the Realms when it starts.
 
@@ -37,7 +37,7 @@ Migration consists of the following steps.
    ros start -d /srv/new-ros
    ```
 
-**Compatibility With 1.x**
+### **Compatibility With 1.x**
 
 The 2.0 server is not backwards compatible with 1.x-compatible client SDKs. This means that if you upgrade your server in production, apps running 1.x-compatible SDKs will stop syncing until they are updated to 2.0-compatible SDKs.
 
@@ -45,7 +45,7 @@ _**What is the cause of the backwards compatibility?**_
 
 The unique capability of Realm Platform is our ability to sync data changes that occurred offline seamlessly. The algorithms powering this functionality are novel and we identified a way to drastically improve the performance when merging out-of-order operations. These optimizations required that we add a unique and stable identifier to every object. This identifier is internal \(we might expose in the future given that applications could utilize it\), so it doesn’t change the outward experience at all, but at a protocol-level this is where the lack of backwards compatibility comes from.
 
-**Upgrading Deployed 1.x app**
+### **Upgrading Deployed 1.x app**
 
 {% hint style="info" %}
 _**These instructions are subject to change but are provided for reference.**_
@@ -63,6 +63,18 @@ The resulting user experience should be that a user on the 1.x version of the ap
 For apps deployed through enterprise App Stores that can control when the app gets updated, this process will be simpler. The complicated nature is due to the fact that developers of apps on the public App Stores have less control over their users’ upgrade process.
 
 Finally, we can provide custom workarounds to enable running two Realm Object Servers in parallel to further ease the upgrade experience for end-users for paid customers.
+
+## Upgrading from ROS 2.x to 3.x
+
+The upgrade process from ROS 2.x to 3.x is fairly straight forward.  Additionally, any of the 2.x client SDKs will continue to function with a 3.x server though it will not be as full featured.  To upgrade, it is just a matter of upgrading like any other npm package
+
+{% hint style="warning" %}
+There are a number of things that changed between 2.x and 3.x.  Most notably the way that permissions are handled if you used our partial sync beta.  You'll want to take a look at how permissions are handled [here](https://docs.realm.io/platform/~/edit/primary/using-synced-realms/access-control) 
+{% endhint %}
+
+```bash
+npm install realm-object-server@latest
+```
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 
