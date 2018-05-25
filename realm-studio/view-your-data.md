@@ -45,7 +45,7 @@ Realm realm = Realm.getDefaultInstance();
 Log.i("Realm", realm.getPath());
 ```
 
-Then download the file using ADB. This can be done even while the app is running.
+Then download the file using ADB. This can be done while the app is running.
 
 ```bash
 > adb pull <path>
