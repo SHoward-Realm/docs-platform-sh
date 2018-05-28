@@ -57,6 +57,13 @@ You can also upload the modified file again using ADB, but only do this while th
 > adb push <file> <path>
 ```
 {% endtab %}
+
+{% tab title=".NET" %}
+```csharp
+var realm = Realm.GetInstance();
+Console.WriteLine($"Realm is located at: {realm.Config.DatabasePath}");
+```
+{% endtab %}
 {% endtabs %}
 
 Realm Studio supports the ability to create a Realm file from CSV. To do so, go to `File` then `Create Realm from` --&gt; `CSV`.
