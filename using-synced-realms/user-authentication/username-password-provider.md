@@ -132,8 +132,9 @@ Realm.Sync.User.login('https://myinstance.cloud.realm.io', 'username', 'p@s$w0rd
 
 {% tab title=".Net" %}
 ```csharp
+var authUrl = new Uri("https://myinstance.cloud.realm.io");
 var credentials = Credentials.UsernamePassword(username, password, createUser: false);
-var user = await User.LoginAsync(credentials);
+var user = await User.LoginAsync(credentials, authUrl);
 ```
 {% endtab %}
 {% endtabs %}
