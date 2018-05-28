@@ -80,7 +80,7 @@ The third parameter of [UsernamePassword\(\)](https://realm.io/docs/dotnet/lates
 {% tab title="Swift" %}
 ```swift
 let auth_url = URL(string: "https://myinstance.cloud.realm.io")!
-let creds    = SyncCredentials.usernamePassword(username: "username", password: "password", register: true)
+let creds    = SyncCredentials.usernamePassword(username: "username", password: "password", register: false)
 
 SyncUser.logIn(with: creds, server: auth_url, onCompletion: { [weak self](user, err) in
     if let _ = user {
