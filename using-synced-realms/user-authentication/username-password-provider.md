@@ -79,7 +79,7 @@ The third parameter of [UsernamePassword\(\)](https://realm.io/docs/dotnet/lates
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-let auth_url = URL(string: "https://myinstance.realm.io")!
+let auth_url = URL(string: "https://myinstance.cloud.realm.io")!
 let creds    = SyncCredentials.usernamePassword(username: "username", password: "password", register: true)
 
 SyncUser.logIn(with: creds, server: auth_url, onCompletion: { [weak self](user, err) in
@@ -108,7 +108,7 @@ SyncCredentials myCredentials = SyncCredentials.usernamePassword(username, passw
 
 {% tab title="Javascript" %}
 ```javascript
-Realm.Sync.User.login('http://my.realm-auth-server.com:9080', 'username', 'p@s$w0rd').then(user => {
+Realm.Sync.User.login('https://myinstance.cloud.realm.io', 'username', 'p@s$w0rd').then(user => {
   // user is logged in
   // do stuff ...
 }).catch(error => {
