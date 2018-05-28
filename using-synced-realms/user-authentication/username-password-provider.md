@@ -102,7 +102,20 @@ RLMSyncCredentials *usernameCredentials = [RLMSyncCredentials credentialsWithUse
 
 {% tab title="Java" %}
 ```java
-SyncCredentials myCredentials = SyncCredentials.usernamePassword(username, password, false);
+String authURL = "https://myinstance.cloud.realm.io";
+SyncCredentials credentials = SyncCredentials.usernamePassword(username, password, false);
+
+SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
+  @Override
+  public void onSuccess(SyncUser user) {
+    // User is logged
+  }
+​
+  @Override
+  public void onError(ObjectServerError error) {
+    // Handle error
+  }
+});
 ```
 {% endtab %}
 
