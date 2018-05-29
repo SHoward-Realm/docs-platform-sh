@@ -15,7 +15,7 @@ This creates a Typescript-based Node project for you. Later on you can explore c
 ### Add your feature token:
 
 {% hint style="info" %}
-Starting with Realm Object Server 3.5.1, a feature token is required to run the server.  **You can** [**get your own feature token here**](https://realm.io/trial/self-hosted-standard-plan/)**.**    
+Starting with Realm Object Server 3.5.0, a feature token is required to run the server.  **You can** [**get your own feature token here**](https://realm.io/trial/self-hosted-standard-plan/)**.**    
 {% endhint %}
 
 From inside of your project folder, you'll need to open the index file which can be found at `src/index.ts`You'll need to paste in your feature token as shown below: 
