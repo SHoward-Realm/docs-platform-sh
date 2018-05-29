@@ -66,6 +66,8 @@ Console.WriteLine($"Realm is located at: {realm.Config.DatabasePath}");
 {% endtab %}
 {% endtabs %}
 
+### Importing Data
+
 Realm Studio supports the ability to create a Realm file from CSV. To do so, go to `File` then `Create Realm from` --&gt; `CSV`.
 
 {% hint style="warning" %}
