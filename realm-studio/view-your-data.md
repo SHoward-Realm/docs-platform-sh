@@ -1,6 +1,6 @@
 # View Your Data
 
-## Realm Database
+## Local Realms
 
 Realm Studio allows you to open up a local Realm file and view the data. Once opened, you can edit the data and it will save changes into the Realm.
 
@@ -88,7 +88,7 @@ widget,2,FALSE
 
 This will result in a model named `data`that has three properties: `device` which will be a `string`, `number` which will be an `int` and `flag` which will be a `bool`
 
-## Realm Platform
+## Realms on Realm Cloud
 
 Realm Studio allows you to connect to a Realm Object Server, including Self-Hosted or Cloud instances. Once connected you can browser all of the synchronized Realms on the server and open them to view the data. Any changes you make to the data while viewing, will be automatically synchronized to any other devices sharing the data.
 
