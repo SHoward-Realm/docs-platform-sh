@@ -8,9 +8,9 @@ While our [install script](../installation/) typically provides a smooth install
 
 Before running a `ros` command try running: `nvm use 8` in your terminal.  
 
+## error: \[sync\] Your feature token does not allow synchronization
 
-
-
+Starting with the release of Realm Object Server 3.5.0, a feature token is required for operation.  Depending on when your feature token was generated, it may not be compatibly with the new tokening system.  If you receive this error, please [contact us](https://support.realm.io/support/home), and we will generate a new token for your usage.  
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 
