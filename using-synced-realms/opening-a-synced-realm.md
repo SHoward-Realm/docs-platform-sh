@@ -16,27 +16,14 @@ The purpose of the default synchronized Realm is to simplify getting started and
 
 {% tabs %}
 {% tab title="Swift" %}
-The default synced Realm is provided via an automatic `SyncConfiguration`, which will use the current logged in user from `SyncUser.current` and the server URL used to authenticate.
+The default synced Realm is provided via an automatic `SyncConfiguration` that can be accessed from the logged in `SyncUser`.
 
-For example, to log in, then asynchronously open the default synced Realm with the current user:
-
-```swift
-SyncUser.logIn(with: credentials, server: serverURL) { user, error in
-    if let user = user {
-        Realm.Configuration.defaultConfiguration = SyncConfiguration.automatic()
-        Realm.asyncOpen() { realm in
-            // ...
-        }
-    }
-}
-```
-
-If you are working with multiple users, you can pass in the specific user as well:
+For example, to log in, then asynchronously open the default synced Realm:
 
 ```swift
 SyncUser.logIn(with: credentials, server: serverURL) { user, error in
     if let user = user {
-        Realm.Configuration.defaultConfiguration = SyncConfiguration.automatic(user: user)
+        Realm.Configuration.defaultConfiguration = user.configuration()
         Realm.asyncOpen() { realm in
             // ...
         }
@@ -46,35 +33,16 @@ SyncUser.logIn(with: credentials, server: serverURL) { user, error in
 {% endtab %}
 
 {% tab title="Objective-C" %}
-The default synced Realm is provided via an automatic `RLMSyncConfiguration`, which will use the current logged in user from `[RLMSyncUser currentUser]` and the server URL used to authenticate.
+The default synced Realm is provided via an automatic `RLMSyncConfiguration` that can be accessed from the logged in `RLMSyncUser`. 
 
-For example, to log in, then asynchronously open the default synced Realm with the current user:
-
-```objectivec
-[RLMSyncUser logInWithCredentials:credentials
-                    authServerURL:serverURL
-                     onCompletion:^(RLMSyncUser *user, NSError *error) {
-    if (user) {
-        RLMRealmConfiguration *config = [RLMSyncConfiguration automaticConfiguration];
-        [RLMRealm asyncOpenWithConfiguration:config
-                       callbackQueue:dispatch_get_main_queue()
-                            callback:^(RLMRealm *realm, NSError *error) {
-            if (realm) {
-                // ...
-            }
-        }];
-    }
-}];
-```
-
-If you are working with multiple users, you can pass in the specific user as well:
+For example, to log in, then asynchronously open the default synced Realm:
 
 ```objectivec
 [RLMSyncUser logInWithCredentials:credentials
                     authServerURL:serverURL
                      onCompletion:^(RLMSyncUser *user, NSError *error) {
     if (user) {
-        RLMRealmConfiguration *config = [RLMSyncConfiguration automaticConfigurationForUser:user];
+        RLMRealmConfiguration *config = [user configuration];
         [RLMRealm asyncOpenWithConfiguration:config
                        callbackQueue:dispatch_get_main_queue()
                             callback:^(RLMRealm *realm, NSError *error) {
@@ -88,9 +56,9 @@ If you are working with multiple users, you can pass in the specific user as wel
 {% endtab %}
 
 {% tab title="Java" %}
-The default synced Realm is provided via an automatic SyncConfiguration, which will use the current logged in user from `SyncUser.currentUser()` and the server URL used to authenticate.
+The default synced Realm is provided via an automatic `SyncConfiguration` that can be accessed from the logged in `SyncUser`. 
 
-For example, to log in, then asynchronously open the default synced Realm with the current user:
+For example, to log in and open the default synced Realm:
 
 ```java
 SyncCredentials credentials = getCredentials();
@@ -98,7 +66,7 @@ String url = getUrl();
 SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
   @Override
   public void onSuccess(SyncUser user) {
-    SyncConfiguration config = SyncConfiguration.automatic();
+    SyncConfiguration config = user.getDefaultConfiguration();
     Realm realm = Realm.getInstance(config);
     // Use Realm
   }
@@ -109,35 +77,17 @@ SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
   }
 });
 ```
-
-If you are working with multiple users, you can pass in the specific user as well:
-
-```java
-SyncUser user = getUser();
-SyncConfiguration config = SyncConfiguration.automatic(user);
-Realm realm = Realm.getInstance(config);
-```
 {% endtab %}
 
 {% tab title="Javascript" %}
-The default synced Realm is provided via the default configuration which will use the current logged in user from `Realm.Sync.User.current` and the server URL used to authenticate.
+The default synced Realm is provided via the default configuration which can be accessed from the logged in `Realm.Sync.User`.
+
+For example, to log in and open the default synced Realm:
 
 ```javascript
 Realm.Sync.User.login(server, username, password)
 .then((user) => {
-      let config = Realm.automaticSyncConfiguration();
-      Realm.open(config).then((realm) => {
-          // ...
-      });
-})
-```
-
-If you are working with multiple users, you can pass in the specific user as well:
-
-```javascript
-Realm.Sync.User.login(server, username, password)
-.then((user) => {
-      let config = Realm.automaticSyncConfiguration(user);
+      let config = user.createConfiguration();
       Realm.open(config).then((realm) => {
           // ...
       });
@@ -185,12 +135,12 @@ To obtain an authenticated user, you must login via any of the supported authent
 
 {% tabs %}
 {% tab title="Swift" %}
-Realms on the Realm Object Server are using the same `Realm.Configuration` and factory methods that are used to create standalone Realms, but with the `syncConfiguration` property on their `Realm.Configuration` set to a `SyncConfiguration` value. Synchronized realms are located by [URLs](https://realm.io/docs/swift/latest/#server-url).
+Realms on the Realm Object Server are using the same `Realm.Configuration` used to create standalone Realms, but with the `syncConfiguration` property on their `Realm.Configuration` set to a `SyncConfiguration` value. Synchronized realms are located by [URLs](https://realm.io/docs/swift/latest/#server-url).
 
 ```swift
 // Create the configuration
 let syncServerURL = URL(string: "realms://myinstance.cloud.realm.io/~/userRealm")!
-let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: user, realmURL: syncServerURL))
+let config = user.configuration(realmURL: syncServerURL);
 
 // Open the remote Realm
 let realm = try! Realm(configuration: config)
@@ -201,15 +151,14 @@ The configuration values for a synced Realm cannot have an `inMemoryIdentifier` 
 {% endtab %}
 
 {% tab title="Objective-C" %}
-Realms on the Realm Object Server are using the same `RLMRealmConfiguration` and factory methods that are used to create standalone Realms, but with the `syncConfiguration` property on their `RLMRealmConfiguration` set to a `RLMSyncConfiguration` value. Synchronized realms are located by [URLs](https://realm.io/docs/objc/latest/#server-url).
+Realms on the Realm Object Server are using the same `RLMRealmConfiguration` that are used to create standalone Realms, but with the `syncConfiguration` property on their `RLMRealmConfiguration` set to a `RLMSyncConfiguration` value. Synchronized realms are located by [URLs](https://realm.io/docs/objc/latest/#server-url).
 
 ```objectivec
 RLMSyncUser *user = [RLMSyncUser currentUser];
 
 // Create the configuration
 NSURL *syncServerURL = [NSURL URLWithString: @"realms://myinstance.cloud.realm.io/~/userRealm"];
-RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
-config.syncConfiguration = [[RLMSyncConfiguration alloc] initWithUser:user realmURL:syncServerURL];
+RLMRealmConfiguration *config = [user configurationWithUrl:syncServerURL];
 
 // Open the remote Realm
 RLMRealm *realm = [RLMRealm realmWithConfiguration:config error:nil];
@@ -226,7 +175,7 @@ Realms on the Realm Object Server are created using a subclass of the normal `Re
 // Create the configuration
 SyncUser user = SyncUser.currentUser();
 String url = "realms://myinstance.cloud.realm.io/~/userRealm";
-SyncConfiguration config = new SyncConfiguration.Builder(user, url).build();
+SyncConfiguration config = user.createConfiguration(url).build();
 
 // Open the remote Realm
 Realm realm = Realm.getInstance(config);
@@ -240,18 +189,18 @@ You open a synchronized Realm the same say as you open any other Realm. The [con
 * `error` - a callback for error handling/reporting
 * `validate_ssl` - indicating if SSL certificates must be validated
 * `ssl_trust_certificate_path` - a path where to find trusted SSL certificates
+* `url` - if no url is provided the url to the default Realm will be used.
 
 The error handling is set up by registering a callback \(`error`\) as part of the configuration:
 
 ```javascript
 const user = Realm.Sync.User.current;
-const config = {
-  sync: { user: user,
-          url: "realms://myinstance.cloud.realm.io/~/userRealm",
+user.createConfiguration({
+  sync: { url: "realms://myinstance.cloud.realm.io/~/userRealm",
           error: err => console.log(err)
         },
   schema: // ...
-};
+});
 
 var realm = new Realm(config);
 ```
@@ -272,35 +221,33 @@ var realm = Realm.GetInstance(configuration);
 {% endtab %}
 {% endtabs %}
 
-### Query-based synchronization
+### Fully synchronized Realms
 
-If you intend to use Query-based synchronization, it is recommended you use the [Default Synced Realm](opening-a-synced-realm.md#the-default-synced-realm), which uses this by default. However, you are not limited to just this Realm. You can manually open additional Realms with Query-based synchronization by following the [manual process](opening-a-synced-realm.md#manually-configuring-synced-realms) described above, but adjusting another parameter in the sync configuration.
+Synchronized Realms come in two flavors: Query-based and Fully synchronized. You can read more about the differences [here](https://docs.realm.io/platform/using-synced-realms/syncing-data).
+
+{% hint style="info" %}
+When connecting to a synchronized Realm it is important that the configuration matches the type of the server Realm, otherwise the connection will fail. Query-based Realms are the default if not otherwise specified.
+{% endhint %}
+
+If you intend to use fully synchronized Realms, you can do so by adjusting a parameter on the sync configuration:
 
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-const config = {
-  sync: { user: user,
-          url: realmUrl,
-          partial: true,  // <-- this enables a partially synced Realm
-        },
-  // ...
-};
+user.configuration(realmURL: realmURL, fullSynchronization: true)
 ```
 {% endtab %}
 
 {% tab title="Objective-C" %}
 ```objectivec
-RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
-config.syncConfiguration = [[RLMSyncConfiguration alloc] initWithUser:user realmURL:realmURL];
-config.syncConfiguration.isPartial = YES;
+RLMRealmConfiguration *config = [RLMRealmConfiguration configurationWithUrl:realmURL fullSynchronization:YES];
 ```
 {% endtab %}
 
 {% tab title="Java" %}
 ```java
-SyncConfiguration config = new SyncConfiguration.Builder(getUser(), getUrl())
-  .partialRealm()
+SyncConfiguration config = user.createConfiguration(getUrl())
+  .fullSynchronization()
   .build();
 ```
 {% endtab %}
@@ -308,9 +255,8 @@ SyncConfiguration config = new SyncConfiguration.Builder(getUser(), getUrl())
 {% tab title="Javascript" %}
 ```javascript
 const config = {
-  sync: { user: userA,
-          url: realmUrl,
-          partial: true,  // <-- this enables a partially synced Realm
+  sync: { url: realmUrl,
+          fullSynchronization: true,
         },
   // ...
 };
@@ -318,6 +264,9 @@ const config = {
 {% endtab %}
 
 {% tab title=".Net" %}
+
+When using the .NET API fully synchronized Realms are the default instead of query-based Realms.
+
 ```csharp
 var config = new SyncConfiguration(user, realmUrl)
 {
@@ -326,10 +275,6 @@ var config = new SyncConfiguration(user, realmUrl)
 ```
 {% endtab %}
 {% endtabs %}
-
-When you configure a Realm to use Query-based synchronization, it will initially have no data in it. For more information on how to sync data see the guide:
-
-{% page-ref page="syncing-data.md" %}
 
 ## Synchronously Opening A Realm
 
@@ -344,7 +289,7 @@ This API is recommended when your want the user experience to not be blocked whi
 ```swift
 // Create the configuration
 let syncServerURL = URL(string: "realms://myinstance.cloud.realm.io/~/userRealm")!
-let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: user, realmURL: syncServerURL))
+let config = user.configuration(realmURL: syncServerURL))
 
 // Open the remote Realm
 let realm = try! Realm(configuration: config)
@@ -358,8 +303,7 @@ RLMSyncUser *user = [RLMSyncUser currentUser];
 
 // Create the configuration
 NSURL *syncServerURL = [NSURL URLWithString: @"realms://myinstance.cloud.realm.io/~/userRealm"];
-RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
-config.syncConfiguration = [[RLMSyncConfiguration alloc] initWithUser:user realmURL:syncServerURL];
+RLMRealmConfiguration *config = [user configurationWithUrl:syncServerURL];
 
 // Open the remote Realm
 RLMRealm *realm = [RLMRealm realmWithConfiguration:config error:nil];
@@ -372,7 +316,7 @@ RLMRealm *realm = [RLMRealm realmWithConfiguration:config error:nil];
 // Create the configuration
 SyncUser user = SyncUser.currentUser();
 String url = "realms://myinstance.cloud.realm.io/~/userRealm";
-SyncConfiguration config = new SyncConfiguration.Builder(user, url).build();
+SyncConfiguration config = user.createConfiguration(url).build();
 
 // Open the remote Realm
 Realm realm = Realm.getInstance(config);
@@ -383,13 +327,12 @@ Realm realm = Realm.getInstance(config);
 {% tab title="Javascript" %}
 ```javascript
 const user = Realm.Sync.User.current;
-const config = {
-  sync: { user: user,
-          url: "realms://myinstance.cloud.realm.io/~/userRealm",
+const config = user.createConfiguration({
+  sync: { url: "realms://myinstance.cloud.realm.io/~/userRealm",
           error: err => console.log(err)
         },
   schema: // ...
-};
+});
 
 var realm = new Realm(config);
 ```
@@ -419,7 +362,7 @@ In some cases, you might not want to open a Realm until it has all remote data a
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-let config = Realm.Configuration(syncConfiguration: SyncConfiguration(user: user, realmURL: realmURL))
+let config = user.configuration(realmURL: realmURL))
 Realm.asyncOpen(configuration: config) { realm, error in
     if let realm = realm {
         // Realm successfully opened, with all remote data available
@@ -432,8 +375,7 @@ Realm.asyncOpen(configuration: config) { realm, error in
 
 {% tab title="Objective-C" %}
 ```objectivec
-RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
-config.syncConfiguration = [[RLMSyncConfiguration alloc] initWithUser:user realmURL:realmURL];
+RLMRealmConfiguration *config = [user configurationWithUrl:realmURL];
 [RLMRealm asyncOpenWithConfiguration:config
                        callbackQueue:dispatch_get_main_queue()
                             callback:^(RLMRealm *realm, NSError *error) {
@@ -452,7 +394,7 @@ config.syncConfiguration = [[RLMSyncConfiguration alloc] initWithUser:user realm
 // the first time until server data has been downloaded. This only
 // blocks it from being opened the first time. After that the Realm can
 // be opened immediately.
-SyncConfiguration config = new SyncConfiguration.Builder(user, url)
+SyncConfiguration config = user.createConfiguration(url)
   .waitForInitialRemoteData();
   .build();
 
@@ -474,13 +416,12 @@ Realm realm = Realm.getInstanceAsync(config, new Realm.Callback() {
 {% tab title="Javascript" %}
 ```javascript
 const user = Realm.Sync.User.current;
-const config = {
-  sync: { user: user,
-          url: "realm://localhost:9080/~/userRealm",
+const config = user.createConfiguration({
+  sync: { url: "realm://localhost:9080/~/userRealm",
           error: err => console.log(err)
         },
   schema: // ...
-};
+});
 
 Realm.open(config)
   .then(realm => {
