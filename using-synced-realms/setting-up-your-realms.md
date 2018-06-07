@@ -53,7 +53,7 @@ SyncUser.logIn(with: credentials, server: serverURL) { user, error in
 {% endtab %}
 
 {% tab title="Objective-C" %}
-The default synced Realm is provided via an automatic `RLMSyncConfiguration` that can be accessed from the logged in `RLMSyncUser`. 
+The default synced Realm is provided via an automatic `RLMSyncConfiguration` that can be accessed from the logged in `RLMSyncUser`.
 
 For example, to log in, then asynchronously open the default synced Realm:
 
@@ -76,7 +76,7 @@ For example, to log in, then asynchronously open the default synced Realm:
 {% endtab %}
 
 {% tab title="Java" %}
-The default synced Realm is provided via an automatic `SyncConfiguration` that can be accessed from the logged in `SyncUser`. 
+The default synced Realm is provided via an automatic `SyncConfiguration` that can be accessed from the logged in `SyncUser`.
 
 For example, to log in and open the default synced Realm:
 

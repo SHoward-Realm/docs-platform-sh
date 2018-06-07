@@ -16,7 +16,7 @@ To enable or disable go to the Settings for your instance in the cloud portal:
 
 For more details on how to enable or disable this provider with Self-Hosted go to:
 
-{% page-ref page="../../self-hosted/customize/authentication/jwt-custom-authentication.md" %}
+{% page-ref page="../../self-hosting/customize/authentication/jwt-custom-authentication.md" %}
 
 ### Client API
 
@@ -62,7 +62,7 @@ By default the `AnonymousAuthProvider` is **enabled** when creating a project vi
 
 For more details on how to enable or disable this provider with Self-Hosted go to:
 
-{% page-ref page="../../self-hosted/customize/authentication/anonymous-authentication.md" %}
+{% page-ref page="../../self-hosting/customize/authentication/anonymous-authentication.md" %}
 
 ### Client API
 
@@ -110,7 +110,7 @@ By default the Nickname provider is **enabled** when creating a project via `ros
 
 For more details on how to enable or disable this provider with Self-Hosted go to:
 
-{% page-ref page="../../self-hosted/customize/authentication/nickname-authentication.md" %}
+{% page-ref page="../../self-hosting/customize/authentication/nickname-authentication.md" %}
 
 ### Client API
 
@@ -150,7 +150,7 @@ With Realm Platform - Self-Hosted you have the ability to directly customize the
 
 For more details on how to use the custom authentication, see the Self-Hosted docs:
 
-{% page-ref page="../../self-hosted/customize/authentication/custom-authentication.md" %}
+{% page-ref page="../../self-hosting/customize/authentication/custom-authentication.md" %}
 
 ### Client API
 
@@ -212,7 +212,7 @@ The Realm Object Server package includes a pre-built provider for Google. Client
 
 For more details on how to use the Google provider, see the Self-Hosted docs:
 
-{% page-ref page="../../self-hosted/customize/authentication/included-third-party-auth-providers/google-authentication.md" %}
+{% page-ref page="../../self-hosting/customize/authentication/included-third-party-auth-providers/google-authentication.md" %}
 
 ### Client API
 
@@ -256,7 +256,7 @@ The Realm Object Server package includes a pre-built provider for Facebook. Clie
 
 For more details on how to use the Google provider, see the Self-Hosted docs:
 
-{% page-ref page="../../self-hosted/customize/authentication/included-third-party-auth-providers/facebook-authentication.md" %}
+{% page-ref page="../../self-hosting/customize/authentication/included-third-party-auth-providers/facebook-authentication.md" %}
 
 ### Client API
 
@@ -300,7 +300,7 @@ The Realm Object Server package includes a pre-built provider for Azure Active D
 
 For more details on how to use the Azure Active Directory provider, see the Self-Hosted docs:
 
-{% page-ref page="../../self-hosted/customize/authentication/included-third-party-auth-providers/azure-authentication.md" %}
+{% page-ref page="../../self-hosting/customize/authentication/included-third-party-auth-providers/azure-authentication.md" %}
 
 ### Client API
 
@@ -316,7 +316,7 @@ The Realm Object Server package includes a pre-built provider for Apple's CloudK
 
 For more details on how to use the Apple CloudKit provider, see the Self-Hosted docs:
 
-{% page-ref page="../../self-hosted/customize/authentication/included-third-party-auth-providers/cloudkit-authentication.md" %}
+{% page-ref page="../../self-hosting/customize/authentication/included-third-party-auth-providers/cloudkit-authentication.md" %}
 
 ### Client API
 
