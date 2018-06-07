@@ -19,7 +19,7 @@
     * [Writing to a Server Realm](develop/working-with-realms-on-the-server/writing-to-a-server-realm.md)
     * [Deleting Realms](develop/working-with-realms-on-the-server/deleting-realms.md)
   * [Event Handling](develop/event-handling.md)
-  * Integration
+  * [Integration](develop/integration/README.md)
     * [Web Integration](develop/integration/web-integration.md)
     * [Data Connector API](develop/integration/data-connector-api/README.md)
       * [Postgres Data Connector](develop/integration/data-connector-api/postgres-data-connector.md)
@@ -27,14 +27,14 @@
   * [Server-Side Code Samples](https://github.com/realm/realm-server-side-samples)
   * [Full API Docs](https://realm.io/docs/realm-object-server/latest/api/ros/)
 * [Customize](customize/README.md)
-  * Authentication
+  * [Authentication](customize/authentication/README.md)
     * [Username/Password](customize/authentication/usernamepassword/README.md)
       * [Resetting a User's Password](customize/authentication/usernamepassword/resetting-a-users-password.md)
     * [Custom Authentication](customize/authentication/custom-authentication.md)
     * [JWT Custom Authentication](customize/authentication/jwt-custom-authentication.md)
     * [Nickname Authentication](customize/authentication/nickname-authentication.md)
     * [Anonymous Authentication](customize/authentication/anonymous-authentication.md)
-    * Included Third-party Auth Providers
+    * [Included Third-party Auth Providers](customize/authentication/included-third-party-auth-providers/README.md)
       * [Azure Authentication](customize/authentication/included-third-party-auth-providers/azure-authentication.md)
       * [CloudKit Authentication](customize/authentication/included-third-party-auth-providers/cloudkit-authentication.md)
       * [Facebook Authentication](customize/authentication/included-third-party-auth-providers/facebook-authentication.md)
@@ -64,17 +64,17 @@
   * [Command-line Interface for ROS](manage/command-line-interface-for-ros.md)
   * [Run ROS in the Background](manage/run-ros-in-the-background.md)
 * [Learn](learn/README.md)
-  * Guides
+  * [Guides](learn/guides/README.md)
     * [Integrate with a Message Queue](learn/guides/integrate-with-a-message-queue.md)
     * [Building a Field Worker Application in Swift](learn/guides/building-a-field-worker-application-in-swift.md)
     * [Sample UI for Login](learn/guides/sample-ui-for-login.md)
     * [Create a ROS Instance on Bluemix Cloud Foundry](learn/guides/create-a-ros-instance-on-bluemix-cloud-foundry.md)
-  * Advanced
+  * [Advanced](learn/advanced/README.md)
     * [The Realm Data Model](learn/advanced/the-realm-data-model.md)
     * [Convert a Local Realm to a Synced Realm](learn/advanced/convert-a-local-realm-to-a-synced-realm.md)
     * [Log Compaction](learn/advanced/log-compaction.md)
     * [Designing an Architecture with Multiple Realms](learn/advanced/designing-an-architecture-with-multiple-realms.md)
-* Troubleshoot
+* [Troubleshoot](troubleshoot/README.md)
   * [Version Compatibilities](troubleshoot/version-compatibilities.md)
   * [Verify Port Access](troubleshoot/verify-port-access.md)
   * [Errors](troubleshoot/errors.md)
