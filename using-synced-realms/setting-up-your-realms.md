@@ -50,6 +50,14 @@ SyncUser.logIn(with: credentials, server: serverURL) { user, error in
     }
 }
 ```
+
+{% hint style="info" %}
+Your Server URL will follow a format like: 
+
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 
 {% tab title="Objective-C" %}
@@ -73,6 +81,14 @@ For example, to log in, then asynchronously open the default synced Realm:
     }
 }];
 ```
+
+{% hint style="info" %}
+Your Server URL will follow a format like: 
+
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 
 {% tab title="Java" %}
@@ -97,6 +113,14 @@ SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
   }
 });
 ```
+
+{% hint style="info" %}
+Your Server URL will follow a format like: 
+
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 
 {% tab title="Javascript" %}
@@ -113,6 +137,14 @@ Realm.Sync.User.login(server, username, password)
       });
 })
 ```
+
+{% hint style="info" %}
+Your Server URL will follow a format like: 
+
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 
 {% tab title=".Net" %}
@@ -135,6 +167,14 @@ RealmConfiguration.DefaultConfiguration = new SyncConfiguration(user);
 
 var realm = await Realm.GetInstanceAsync();
 ```
+
+{% hint style="info" %}
+Your Server URL will follow a format like: 
+
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 {% endtabs %}
 
