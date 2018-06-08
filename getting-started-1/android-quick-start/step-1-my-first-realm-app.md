@@ -285,7 +285,7 @@ Add the following method:
 private Realm realm;
 
 private void setUpRealm() {
-    Realm.setDefaultConfiguration(SyncConfiguration.automatic());
+    Realm.setDefaultConfiguration(SyncUser.current().getDefaultConfiguration());
     realm = Realm.getDefaultInstance();
 }
 ```

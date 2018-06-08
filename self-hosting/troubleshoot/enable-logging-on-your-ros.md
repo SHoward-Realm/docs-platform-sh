@@ -1,8 +1,6 @@
 # Viewing your server logs
 
-## Where can I find the server 
-
-## logs? 
+## Where can I find the server logs? 
 
 While debugging your application, you'll fine the server logs to be very useful.  In 3.x versions, logging is enabled by default and is output to a `log.txt`file within the working directory of your ROS project.   If this file is not created, you can easily enable a logger by editing your server's index file like so: 
 
