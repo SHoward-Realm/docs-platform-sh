@@ -84,6 +84,10 @@ npm install -g realm-object-server
 
 This will install the server globally which is the easiest way to try it out since it includes a CLI. For Linux, if you are installing as root \(not recommended\), you may need to add `--unsafe-perm` to the `npm install` commands.
 
+## Connecting to the Server
+
+Connections to the server are made via websockets which communicate \(by default\) over port 9080, so you'll need to be sure to open this port.  The port number can be reconfigured within your server's index file.  The simplest way to [test connectivity is by using Realm Studio](../../realm-studio/).
+
 ## Upgrading the Server
 
 Upgrading the server is as simple as running an NPM install command within your ROS project
