@@ -11,7 +11,7 @@ We currently support the following operating systems:
 * RHEL 6+
 * CentOS 7+
 
-We plan to add native support for Windows. In the meantime, you may run the server for development purposes only via [Docker](https://docs.realm.io/platform/~/revisions/-L7Ry-Hl-dUJQWPWE8Nx/getting-started/install-realm-object-server/installing-via-docker).
+We plan to add native support for Windows. In the meantime, you can run the server for development purposes via [Docker](https://docs.realm.io/platform/~/revisions/-L7Ry-Hl-dUJQWPWE8Nx/getting-started/install-realm-object-server/installing-via-docker).
 
 ## Quick Start Install
 
