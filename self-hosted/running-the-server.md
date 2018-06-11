@@ -12,7 +12,7 @@ ros init my-app
 
 This creates a Typescript-based Node project for you. Later on you can explore customizing it but for now simply start the server with defaults by:
 
-### Add your feature token:
+#### 1\) Add your feature token:
 
 {% hint style="info" %}
 Starting with Realm Object Server 3.5.0, a feature token is required to run the server.  **You can** [**get your own feature token here**](https://realm.io/trial/self-hosted-standard-plan/)**.**    
@@ -33,7 +33,7 @@ server.start({
     })
 ```
 
-### Start the server
+#### 2\) Start the server
 
 ```bash
 cd my-app/
