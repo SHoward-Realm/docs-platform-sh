@@ -24,7 +24,7 @@ Head over to our cloud page and sign up for a free cloud account which provides 
 
 ### [Sign-Up for Self-Hosted Standard Plan trial](https://realm.io/trial/self-hosted-standard-plan) {#sign-up-for-self-hosted-standard-plan-trial}
 
-For various reason, you may need to host your own server.  To learn about how to install, configure, and operate the self-hosted version see this [section]() in the documentation.  You'll likely want to start by [installing the server](self-hosted/installation/).  
+For various reason, you may need to host your own server.  To learn about how to install, configure, and operate the self-hosted version see this [section](self-hosted/) in the documentation.  You'll likely want to start by [installing the server](self-hosted/installation/).  
 
 ### Pick your Platform
 
