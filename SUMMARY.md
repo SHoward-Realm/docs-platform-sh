@@ -44,7 +44,6 @@
   * [View Logs](realm-studio/view-logs.md)
 * [Self-Hosting](self-hosted/README.md)
   * [Installation](self-hosted/installation/README.md)
-    * [Installing via Docker](self-hosted/installation/installing-via-docker.md)
     * [Deploy to Bluemix Cloud Foundry](self-hosted/installation/deploy-to-bluemix-cloud-foundry.md)
   * [Running the Server](self-hosted/running-the-server.md)
   * [Customize](self-hosted/customize/README.md)
