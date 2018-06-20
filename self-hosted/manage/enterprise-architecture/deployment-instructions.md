@@ -1,4 +1,4 @@
-# Deployment Instructions
+# Manual Deployment Instructions
 
 ## Background
 
