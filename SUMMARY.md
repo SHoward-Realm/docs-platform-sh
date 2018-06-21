@@ -92,7 +92,6 @@
       * [Security Recommendations](self-hosting/manage/security/security-recommendations.md)
       * [Securing with Let's Encrypt](self-hosting/manage/security/securing-with-lets-encrypt.md)
     * [Command-line Interface for ROS](self-hosting/manage/command-line-interface-for-ros.md)
-    * [Run ROS in the Background](self-hosting/manage/run-ros-in-the-background.md)
   * [Troubleshoot](self-hosting/troubleshoot/README.md)
     * [Installation Errors](self-hosting/troubleshoot/installation-errors.md)
     * [Viewing your server logs](self-hosting/troubleshoot/viewing-your-server-logs.md)

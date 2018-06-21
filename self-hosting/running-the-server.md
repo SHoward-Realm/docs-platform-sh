@@ -15,10 +15,10 @@ This creates a Typescript-based Node project for you. Later on you can explore c
 #### 1\) Add your feature token:
 
 {% hint style="info" %}
-Starting with Realm Object Server 3.5.0, a feature token is required to run the server.  **You can** [**get your own feature token here**](https://realm.io/trial/self-hosted-standard-plan/)**.**    
+Starting with Realm Object Server 3.5.0, a feature token is required to run the server. **You can** [**get your own feature token here**](https://realm.io/trial/self-hosted-standard-plan/)**.**
 {% endhint %}
 
-From inside of your project folder, you'll need to open the index file which can be found at `src/index.ts`You'll need to paste in your feature token as shown below: 
+From inside of your project folder, you'll need to open the index file which can be found at `src/index.ts`You'll need to paste in your feature token as shown below:
 
 ```typescript
 import { BasicServer, FileConsoleLogger } from 'realm-object-server'
@@ -43,10 +43,10 @@ npm start
 That’s it! You now have a functioning Realm Object Server running locally on port 9080! The server is tied to your terminal window for now and can be stopped by pressing Ctrl-C.
 
 {% hint style="info" %}
-If you have trouble running a `ros` command it may be due to your version of `NVM`.  Try running `nvm use 8` in your terminal.
+If you have trouble running a `ros` command it may be due to your version of `NVM`. Try running `nvm use 8` in your terminal.
 {% endhint %}
 
-Once you are ready to go into production with the server you will want to run it in the background. See the documentation section ["Going Into Production"]() for more details.
+Once you are ready to go into production with the server you will want to run it in the background. See the documentation section ["Going Into Production"](running-the-server.md) for more details.
 
 {% hint style="info" %}
 Click [here](manage/command-line-interface-for-ros.md) for more information on the command-line interface for ROS.
@@ -64,9 +64,7 @@ You can install pm2 in your machine using npm with:
 npm install pm2 -g
 ```
 
-
-
-### Start ROS 
+### Start ROS
 
 {% tabs %}
 {% tab title="JavaScript" %}
@@ -106,13 +104,13 @@ pm2 start path/to/myserver/dist/index.ts --name my-ros
 {% endtab %}
 {% endtabs %}
 
-### Stop ROS 
+### Stop ROS
 
 ```bash
 pm2 stop my-ros
 ```
 
-### Restart ROS 
+### Restart ROS
 
 ```bash
 pm2 restart my-ros
@@ -128,5 +126,5 @@ pm2 delete my-ros
 
 ## What's next - [Install Realm Studio](../realm-studio/#installation)
 
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 
