@@ -18,13 +18,13 @@ password = '' // Empty string
 To customize the username/password provider, create a ROS project via `ros init`: \(then start the server with `npm start` to use the custom configuration\)
 
 ```javascript
-const RealmObjectServer = require('realm-object-server');
-const path = require('path');
+import { auth, BasicServer, FileConsoleLogger } from 'realm-object-server'
+import * as path from 'path'
 
-const server = new RealmObjectServer.BasicServer();
+const server = new BasicServer()
 
 // Customize username/password provider
-let usernamePasswordProvider = new RealmObjectServer.auth.PasswordAuthProvider({
+let usernamePasswordProvider = new auth.PasswordAuthProvider({
     autoCreateAdminUser: true,
     saltLength: 32,
     iterations: 10000,
@@ -33,7 +33,7 @@ let usernamePasswordProvider = new RealmObjectServer.auth.PasswordAuthProvider({
 });
 
 server.start({
-  dataPath: path.join(__dirname, '../data'),
+  // Other options...
   authProviders: [ usernamePasswordProvider ],
 }).catch((err) => {
   console.error("There was an error starting your custom ROS Server", err);

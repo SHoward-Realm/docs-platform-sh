@@ -26,7 +26,7 @@ You can now keep using the default configuration to send emails, or continue for
 {% endtab %}
 
 {% tab title="Self-Hosted" %}
-{% page-ref page="../../self-hosted/customize/authentication/username-password/password-reset-and-email-confirmation.md" %}
+{% page-ref page="../../self-hosting/customize/authentication/username-password/password-reset-and-email-confirmation.md" %}
 {% endtab %}
 {% endtabs %}
 
@@ -79,7 +79,16 @@ The third parameter of [UsernamePassword\(\)](https://realm.io/docs/dotnet/lates
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-let usernameCredentials = SyncCredentials.usernamePassword(username: "username", password: "password")
+let auth_url = URL(string: "https://myinstance.cloud.realm.io")!
+let creds    = SyncCredentials.usernamePassword(username: "username", password: "password", register: false)
+
+SyncUser.logIn(with: creds, server: auth_url, onCompletion: { [weak self](user, err) in
+    if let _ = user {
+        // User is logged in
+    } else if let error = err {
+        fatalError(error.localizedDescription)
+    }
+})
 ```
 {% endtab %}
 
@@ -93,13 +102,26 @@ RLMSyncCredentials *usernameCredentials = [RLMSyncCredentials credentialsWithUse
 
 {% tab title="Java" %}
 ```java
-SyncCredentials myCredentials = SyncCredentials.usernamePassword(username, password, false);
+String authURL = "https://myinstance.cloud.realm.io";
+SyncCredentials credentials = SyncCredentials.usernamePassword(username, password, false);
+
+SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
+  @Override
+  public void onSuccess(SyncUser user) {
+    // User is logged
+  }
+​
+  @Override
+  public void onError(ObjectServerError error) {
+    // Handle error
+  }
+});
 ```
 {% endtab %}
 
 {% tab title="Javascript" %}
 ```javascript
-Realm.Sync.User.login('http://my.realm-auth-server.com:9080', 'username', 'p@s$w0rd').then(user => {
+Realm.Sync.User.login('https://myinstance.cloud.realm.io', 'username', 'p@s$w0rd').then(user => {
   // user is logged in
   // do stuff ...
 }).catch(error => {
@@ -110,7 +132,9 @@ Realm.Sync.User.login('http://my.realm-auth-server.com:9080', 'username', 'p@s$w
 
 {% tab title=".Net" %}
 ```csharp
+var authUrl = new Uri("https://myinstance.cloud.realm.io");
 var credentials = Credentials.UsernamePassword(username, password, createUser: false);
+var user = await User.LoginAsync(credentials, authUrl);
 ```
 {% endtab %}
 {% endtabs %}

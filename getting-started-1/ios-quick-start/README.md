@@ -8,6 +8,8 @@ In step 1, you will create your first Realm app, a simple ToDo list that automat
 
 Next, in step 2, you will adapt the ToDo list app to use the new query-based sync provided in Realm Platform 3.0:
 
+{% page-ref page="step-2-adding-query-based-sync.md" %}
+
 Finally, in step 3, you will add class and object-level permissions to the ToDo list app to learn about Realm Platform 3.0's access control functionality:
 
 {% page-ref page="step-3-adding-permissions.md" %}

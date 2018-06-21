@@ -19,6 +19,7 @@ We're going to edit the `my-app/src/index.ts` configuration of our project \([ge
 ```typescript
 authProviders: [new auth.PasswordAuthProvider({
     emailHandlerConfig: {
+        baseUrl: 'http://localhost:9080' // Used to replace %BASE_URL% in email templates
         connectionString: 'smtp://smtp_username:smtp_password@smtp.example.com',
         from: 'foo@bar.com'
     }

@@ -36,14 +36,14 @@ Interacting with the default synced Realm has built-in APIs in the Realm SDKs:
 
 {% tabs %}
 {% tab title="Swift" %}
-The default synced Realm is provided via an automatic `SyncConfiguration`, which will use the current logged in user from `SyncUser.current` and the server URL used to authenticate.
+The default synced Realm is provided via an automatic `SyncConfiguration` that can be accessed from the logged in `SyncUser`.
 
-For example, to log in, then asynchronously open the default synced Realm with the current user:
+For example, to log in, then asynchronously open the default synced Realm:
 
 ```swift
 SyncUser.logIn(with: credentials, server: serverURL) { user, error in
     if let user = user {
-        Realm.Configuration.defaultConfiguration = SyncConfiguration.automatic()
+        Realm.Configuration.defaultConfiguration = user.configuration()
         Realm.asyncOpen() { realm in
             // ...
         }
@@ -51,31 +51,26 @@ SyncUser.logIn(with: credentials, server: serverURL) { user, error in
 }
 ```
 
-If you are working with multiple users, you can pass in the specific user as well:
+{% hint style="info" %}
+Your Server URL will follow a format like: 
 
-```swift
-SyncUser.logIn(with: credentials, server: serverURL) { user, error in
-    if let user = user {
-        Realm.Configuration.defaultConfiguration = SyncConfiguration.automatic(user: user)
-        Realm.asyncOpen() { realm in
-            // ...
-        }
-    }
-}
-```
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 
 {% tab title="Objective-C" %}
-The default synced Realm is provided via an automatic `RLMSyncConfiguration`, which will use the current logged in user from `[RLMSyncUser currentUser]` and the server URL used to authenticate.
+The default synced Realm is provided via an automatic `RLMSyncConfiguration` that can be accessed from the logged in `RLMSyncUser`.
 
-For example, to log in, then asynchronously open the default synced Realm with the current user:
+For example, to log in, then asynchronously open the default synced Realm:
 
 ```objectivec
 [RLMSyncUser logInWithCredentials:credentials
                     authServerURL:serverURL
                      onCompletion:^(RLMSyncUser *user, NSError *error) {
     if (user) {
-        RLMRealmConfiguration *config = [RLMSyncConfiguration automaticConfiguration];
+        RLMRealmConfiguration *config = [user configuration];
         [RLMRealm asyncOpenWithConfiguration:config
                        callbackQueue:dispatch_get_main_queue()
                             callback:^(RLMRealm *realm, NSError *error) {
@@ -87,30 +82,19 @@ For example, to log in, then asynchronously open the default synced Realm with t
 }];
 ```
 
-If you are working with multiple users, you can pass in the specific user as well:
+{% hint style="info" %}
+Your Server URL will follow a format like: 
 
-```objectivec
-[RLMSyncUser logInWithCredentials:credentials
-                    authServerURL:serverURL
-                     onCompletion:^(RLMSyncUser *user, NSError *error) {
-    if (user) {
-        RLMRealmConfiguration *config = [RLMSyncConfiguration automaticConfigurationForUser:user];
-        [RLMRealm asyncOpenWithConfiguration:config
-                       callbackQueue:dispatch_get_main_queue()
-                            callback:^(RLMRealm *realm, NSError *error) {
-            if (realm) {
-                // ...
-            }
-        }];
-    }
-}];
-```
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 
 {% tab title="Java" %}
-The default synced Realm is provided via an automatic SyncConfiguration, which will use the current logged in user from `SyncUser.currentUser()` and the server URL used to authenticate.
+The default synced Realm is provided via an automatic `SyncConfiguration` that can be accessed from the logged in `SyncUser`.
 
-For example, to log in, then asynchronously open the default synced Realm with the current user:
+For example, to log in and open the default synced Realm:
 
 ```java
 SyncCredentials credentials = getCredentials();
@@ -118,7 +102,7 @@ String url = getUrl();
 SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
   @Override
   public void onSuccess(SyncUser user) {
-    SyncConfiguration config = SyncConfiguration.automatic();
+    SyncConfiguration config = user.getDefaultConfiguration();
     Realm realm = Realm.getInstance(config);
     // Use Realm
   }
@@ -130,39 +114,37 @@ SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
 });
 ```
 
-If you are working with multiple users, you can pass in the specific user as well:
+{% hint style="info" %}
+Your Server URL will follow a format like: 
 
-```java
-SyncUser user = getUser();
-SyncConfiguration config = SyncConfiguration.automatic(user);
-Realm realm = Realm.getInstance(config);
-```
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 
 {% tab title="Javascript" %}
-The default synced Realm is provided via the default configuration which will use the current logged in user from `Realm.Sync.User.current` and the server URL used to authenticate.
+The default synced Realm is provided via the default configuration which can be accessed from the logged in `Realm.Sync.User`.
+
+For example, to log in and open the default synced Realm:
 
 ```javascript
 Realm.Sync.User.login(server, username, password)
 .then((user) => {
-      let config = Realm.automaticSyncConfiguration();
+      let config = user.createConfiguration();
       Realm.open(config).then((realm) => {
           // ...
       });
 })
 ```
 
-If you are working with multiple users, you can pass in the specific user as well:
+{% hint style="info" %}
+Your Server URL will follow a format like: 
 
-```javascript
-Realm.Sync.User.login(server, username, password)
-.then((user) => {
-      let config = Realm.automaticSyncConfiguration(user);
-      Realm.open(config).then((realm) => {
-          // ...
-      });
-})
-```
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 
 {% tab title=".Net" %}
@@ -185,6 +167,14 @@ RealmConfiguration.DefaultConfiguration = new SyncConfiguration(user);
 
 var realm = await Realm.GetInstanceAsync();
 ```
+
+{% hint style="info" %}
+Your Server URL will follow a format like: 
+
+**Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
+
+**Self-hosting**: `http://127.0.0.1:9080` 
+{% endhint %}
 {% endtab %}
 {% endtabs %}
 

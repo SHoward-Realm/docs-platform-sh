@@ -8,7 +8,7 @@ Once the prerequisites are installed the ROS services can be run as regular node
 These commands and the installation of prerequisites are typically not done manually by an operator but instead is done with a configuration management tool like Chef, Puppet, Ansible, or Salt. These scripts are triggered on failure of a server which can be provided by a monitoring tool or for initial deployment which is usually manually started.  
 
 
-Additionally, it is recommended to use a process monitor like pm2 to ensure that the process stays up or is restarted in the event of error or reboot, see [here](../run-ros-in-the-background.md) for instructions.  
+Additionally, it is recommended to use a process monitor like pm2 to ensure that the process stays up or is restarted in the event of error or reboot, see [here]() for instructions.  
 
 ## Starting the various Services
 

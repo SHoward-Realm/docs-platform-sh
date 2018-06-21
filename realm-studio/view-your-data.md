@@ -1,6 +1,6 @@
 # View Your Data
 
-## Realm Database
+## Local Realms
 
 Realm Studio allows you to open up a local Realm file and view the data. Once opened, you can edit the data and it will save changes into the Realm.
 
@@ -12,7 +12,61 @@ If you are working with Realm files on a device, you will need to transfer them 
 
 ![View and edit local Realm files - a demo file is available to try it out!](../.gitbook/assets/image%20%2822%29.png)
 
-### Import Data
+### Viewing realms from emulators
+
+Studio allows you to live observe \(and edit\) any local realm, which can be very useful when developing mobile apps and testing them in the emulator. Since the emulator is running locally you can open the realm\(s\) and observe them in realtime as you are debugging your app. The only problem is that emulators in general make it really hard to find out where they are storing their local files.
+
+Fortunately there is a way to find out where any given realm is located. You can get the on-disk storage location from the configuration,  dump it to the debug console, and then use that path to open the Realm in Studio:
+
+{% tabs %}
+{% tab title="Swift" %}
+```swift
+// Get on-disk location of the default Realm
+let realm = try! Realm()
+print("Realm is located at:", realm.configuration.fileURL!)
+```
+{% endtab %}
+
+{% tab title="JavaScript" %}
+```javascript
+// Get on-disk location of the default Realm
+Realm.open({}).then(realm => {
+    console.log("Realm is located at: " + realm.path);
+});
+```
+{% endtab %}
+
+{% tab title="Java" %}
+The filesystem used by Android emulators are unfortunately not directly accessible from the machine running Realm Studio. In this case you need to download the file from the emulator before it can be accessed.
+
+```java
+// Run this on the device to find the path on the emulator
+Realm realm = Realm.getDefaultInstance();
+Log.i("Realm", realm.getPath());
+```
+
+Then download the file using ADB. This can be done while the app is running.
+
+```bash
+> adb pull <path>
+```
+
+You can also upload the modified file again using ADB, but only do this while the app is not running  as it otherwise can corrupt the file.
+
+```bash
+> adb push <file> <path>
+```
+{% endtab %}
+
+{% tab title=".NET" %}
+```csharp
+var realm = Realm.GetInstance();
+Console.WriteLine($"Realm is located at: {realm.Config.DatabasePath}");
+```
+{% endtab %}
+{% endtabs %}
+
+### Importing Data
 
 Realm Studio supports the ability to create a Realm file from CSV. To do so, go to `File` then `Create Realm from` --&gt; `CSV`.
 
@@ -36,7 +90,7 @@ widget,2,FALSE
 
 This will result in a model named `data`that has three properties: `device` which will be a `string`, `number` which will be an `int` and `flag` which will be a `bool`
 
-## Realm Platform
+## Realms on Realm Cloud
 
 Realm Studio allows you to connect to a Realm Object Server, including Self-Hosted or Cloud instances. Once connected you can browser all of the synchronized Realms on the server and open them to view the data. Any changes you make to the data while viewing, will be automatically synchronized to any other devices sharing the data.
 
@@ -59,6 +113,17 @@ With synchronized Realms, you can make changes to the schema. This is limited to
 ![](../.gitbook/assets/image%20%284%29.png)
 
 ![](../.gitbook/assets/image%20%2821%29.png)
+
+### \_\_ Models
+
+When using query-based synchronization, you'll notice that a number of special models are created inside of your Realm.  They are prefaced with "\_\_" and are used for implementation purposes.  These models are as follows: 
+
+* \_\_Class
+* \_\_DefaultRealmVersion
+* \_\_Permission
+* \_\_Realm
+* \_\_Role
+* \_\_User
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

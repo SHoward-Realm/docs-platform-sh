@@ -8,9 +8,7 @@ Want to get started right away with the complete source code? [Check it out here
 
 ## Introduction {#introduction}
 
-By default Realm's synchronization will ensure that all the data that is in the Realm in the server will be mirrored to client devices, and vice versa. This behavior is simple and works well for global shared datasets or when you have user-specific data that can be easily split into separate Realms per user. However, this behavior can be limiting when you are working with more complex shared data or if you want to control exactly how much data syncs to a client device.
-
-Query-based synchronization is new functionality provided by Realm Cloud that allows a client device to selectively choose which subset of data from the server-side Realm it wants. This allows the client Realm to act as a dynamic cache, where it can subscribe via a query to data, in addition to unsubscribing to evict the data from the client Realm.
+By default Realm's synchronization uses something called Query-based synchronization. This mode allows a client device to selectively choose which subset of data from the server-side Realm it wants. This allows the client Realm to act as a dynamic cache, where it can subscribe via a query to data, in addition to unsubscribing to evict the data from the client Realm.
 
 To illustrate the concept, let's take our `ToDo` App as an example:
 
@@ -21,24 +19,23 @@ Currently after you login you're presented with a list of all `Item` or Tasks. I
 
 Query-based sync will allow us to synchronize only our projects via a query, while avoiding pulling projects and tasks from other users. This is technically achieved by two steps:
 
-* Add `partialRealm` option to the `SyncConfiguration`
+* Create a `SyncConfiguration`. 
 
 ```java
-SyncConfiguration configuration = new SyncConfiguration.Builder(
-                SyncUser.currentUser(),
-                REALM_BASE_URL + "/default")
-                .partialRealm()
+String url = REALM_BASE_URL + "/default";
+SyncConfiguration configuration = SyncUser.current()
+                .createConfiguration(url)
                 .build();
 ```
 
-Alternatively we can use `SyncConfiguration.automatic()` which achieve the same thing.
+Alternatively we can use `SyncUser.current().getDefaultConfiguration()` which achieve the same thing.
 
 * Using async queries to subscribe to the data from the server:
 
 ```java
 RealmResults<Project> myProjects = realm
                 .where(Project.class)
-                .equalTo("owner", SyncUser.currentUser().getIdentity())
+                .equalTo("owner", SyncUser.current().getIdentity())
                 .findAllAsync();
 ```
 
@@ -164,7 +161,7 @@ This is done by modifying the `WelcomeActivity` . We replace the `goToItemsActiv
 
 ```java
 private void setUpRealmAndGoToListTaskActivity(){
-        Realm.setDefaultConfiguration(SyncConfiguration.automatic());
+        Realm.setDefaultConfiguration(SyncUser.current().getDefaultConfiguration());
         Intent intent = new Intent(WelcomeActivity.this, ProjectsActivity.class);
         startActivity(intent);
 }
@@ -602,7 +599,7 @@ public class ItemsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
-            SyncUser syncUser = SyncUser.currentUser();
+            SyncUser syncUser = SyncUser.current();
             if (syncUser != null) {
                 syncUser.logout();
                 Intent intent = new Intent(this, WelcomeActivity.class);

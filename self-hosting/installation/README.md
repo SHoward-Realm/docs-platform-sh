@@ -1,5 +1,7 @@
 # Installation
 
+Realm Object Server is a Node application that is distributed via npm.  To help get you started quickly, we have a few different installation options.  If you are already familiar with Node and NPM, we suggest using the [manual install via npm](./#manual-install).  If not, we suggest using our [quick start install](./#quick-start-install) via our own curl script.  
+
 ## Supported Operating Systems {#supported-operating-systems}
 
 We currently support the following operating systems:
@@ -9,9 +11,13 @@ We currently support the following operating systems:
 * RHEL 6+
 * CentOS 7+
 
-We plan to add native support for Windows. In the meantime, you may run the server for development purposes only via [Docker](https://docs.realm.io/platform/~/revisions/-L7Ry-Hl-dUJQWPWE8Nx/getting-started/install-realm-object-server/installing-via-docker).
+We plan to add native support for Windows. In the meantime, you can [**run the server for development purposes via Docker**](https://github.com/realm/realm-server-side-samples/tree/master/15-running-ros-with-docker)**.**
 
-## Quick Start Install (For those unfamiliar with Node and NPM)
+## Quick Start Install
+
+{% hint style="info" %}
+This will install a number of items like NVM, Node, NPM at a global level.  If you have existing installations, they may potentially be upgraded / downgraded.  If this is an issue, please use our [manual install ](./#manual-install)
+{% endhint %}
 
 The simplest method of installation is by using our install script, which will resolve all prerequisites for you:
 
@@ -19,9 +25,7 @@ The simplest method of installation is by using our install script, which will r
 curl -s https://raw.githubusercontent.com/realm/realm-object-server/master/install.sh | bash
 ```
 
-## Manual Install (For those familiar with Node and NPM)
-
-Realm Object Server is a Node application that is distributed via npm. It’s a prerequisite that Node.js \(6 or later\) is installed on your system. If you don’t have that, click below to see how to do that.
+## Manual Install
 
 ### Prerequisites {#prerequisites}
 
@@ -80,13 +84,27 @@ npm install -g realm-object-server
 
 This will install the server globally which is the easiest way to try it out since it includes a CLI. For Linux, if you are installing as root \(not recommended\), you may need to add `--unsafe-perm` to the `npm install` commands.
 
+## Connecting to the Server
 
-Upgrading the server is as simple as running an NPM install command within your ROS project 
+Connections to the server are made via websockets which communicate \(by default\) over port 9080, so you'll need to be sure to open this port.  The port number can be reconfigured within your server's index file.  The simplest way to [test connectivity is by using Realm Studio](../../realm-studio/).
+
+## Upgrading the Server
+
+Upgrading the server is as simple as running an NPM install command within your ROS project
 
 ```bash
 #specify specific version after the @
 npm install realm-object-server@latest
 ```
+
+## Troubleshooting a failed installation
+
+Having issues with your installation?  We're here to help.  Please [contact us](https://support.realm.io/) via our support channel.  If possible, include the following information: 
+
+* Steps that you followed during the installation 
+* Relevant error messages and/or logs
+* Versions of NPM and Node
+* Operating system information
 
 ## What's next?  [Learn how to start the server](../running-the-server.md) {#getting-started}
 

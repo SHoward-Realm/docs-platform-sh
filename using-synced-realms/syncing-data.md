@@ -183,7 +183,7 @@ let results = realm.objects('Person').filtered('age >= 18');
 let subscription = results.subscribe();
 results.addListener((collection, changes) => {
     switch (state) {
-    case Realm.Sync.SubscriptyionState.Creating
+    case Realm.Sync.SubscriptionState.Creating
         // The subscription has not yet been written to the Realm
         break;
     case Realm.Sync.SubscriptionState.Pending

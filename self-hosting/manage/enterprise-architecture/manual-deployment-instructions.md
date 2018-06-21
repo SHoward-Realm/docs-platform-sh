@@ -1,4 +1,4 @@
-# Deployment Instructions
+# Manual Deployment Instructions
 
 ## Background
 
@@ -7,7 +7,7 @@ This document will walk you through how to set-up a small Realm Enterprise Clust
 {% hint style="info" %}
 These commands and the installation of prerequisites are typically not done manually by an operator but instead is done with a configuration management tool like Chef, Puppet, Ansible, or Salt. These scripts are triggered on failure of a server which can be provided by a monitoring tool or for initial deployment which is usually manually started.
 
-Additionally, it is recommended to use a process monitor like pm2 to ensure that the process stays up or is restarted in the event of error or reboot, see [here](../run-ros-in-the-background.md#install-pm2) for instructions.
+Additionally, it is recommended to use a process monitor like pm2 to ensure that the process stays up or is restarted in the event of error or reboot, see [here]() for instructions.
 {% endhint %}
 
 ![ROS EE Architecture](../../../.gitbook/assets/ros-architecture.png)
@@ -182,7 +182,7 @@ The ReplicatedSyncService is the workhorse of the Realm Enterprise Cluster and i
 
 ### Installing the Sync Workers 
 
-Now let’s set-up your sync worker group, `ssh` to your first consul node. It is assumed that you have followed the instructions to install the Realm prerequisites [here](../../installation/manual-install.md#prerequisites)
+Now let’s set-up your sync worker group, `ssh` to your first consul node. It is assumed that you have followed the instructions to install the Realm prerequisites [here]()
 
 However, we will proceed assuming that none of the Realm related packages are installed globally, instead they will be part of the local node packages. This is more analogous to Enterprise servers which may have global packages locked down and root access prohibited.
 
@@ -239,9 +239,9 @@ You can now start each sync worker with the command:
 ubuntu@consul-01:~/syncWorker1$ node syncWorker.js
 ```
 
-You should see a “Server Started” message and then you should go check the consul UI by going to the IP on port 8500 in a web browser. The sync service should show up green and healthy. This will bind the node process to the terminal window, to run the process in the background you could set up a Unit file or use a tool like [pm2](../run-ros-in-the-background.md#install-pm2)
+You should see a “Server Started” message and then you should go check the consul UI by going to the IP on port 8500 in a web browser. The sync service should show up green and healthy. This will bind the node process to the terminal window, to run the process in the background you could set up a Unit file or use a tool like [pm2]()
 
-Now we will setup the final piece of our cluster: the CoreServices node. `SSH` to this new node and [install the Realm prerequisites](../../installation/manual-install.md#prerequisites) like you did with the sync workers.
+Now we will setup the final piece of our cluster: the CoreServices node. `SSH` to this new node and [install the Realm prerequisites]() like you did with the sync workers.
 
 ```bash
 ubuntu@coreServices-01:~$ mkdir coreServices

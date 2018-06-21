@@ -71,7 +71,7 @@ class MyCustomAuthProvider extends auth.AuthProvider {
 
   name = "mycustomauthprovider"
 
-  authenticateOrCreateUser(body: any) {
+  authenticateOrCreateUser(body: any): Promise<User> {
     const departmentId: string = body.departmentId;
     const email: string = body.email
     const pin: string = body.pin

@@ -2,7 +2,7 @@
 
 Once you are ready to go into production, you will want to daemonize your application project so that it runs in the background and automatically on server startup. We recommend using [pm2](https://github.com/Unitech/pm2) to maintain instances of Realm Object Server in production. PM2 is a battle tested process manager that allows your applications to stay alive forever and helps with mission critical administration during downtime.
 
-### Install PM2
+## Install PM2
 
 You can install pm2 in your machine using npm with:
 
@@ -10,14 +10,12 @@ You can install pm2 in your machine using npm with:
 npm install pm2 -g
 ```
 
-
-
-### Start ROS 
+## Start ROS
 
 {% tabs %}
 {% tab title="JavaScript" %}
 ```bash
-pm2 start path/to/myserver/dist/index.js
+pm2 start path/to/myserver/src/index.js
 ```
 
 Now your ROS instance is daemonized, monitored and kept alive forever.
@@ -25,7 +23,7 @@ Now your ROS instance is daemonized, monitored and kept alive forever.
 You can supply a name to your started instance with the `--name` option:
 
 ```bash
-pm2 start path/to/myserver/dist/index.js --name my-ros
+pm2 start path/to/myserver/src/index.js --name my-ros
 ```
 {% endtab %}
 
@@ -52,27 +50,25 @@ pm2 start path/to/myserver/dist/index.ts --name my-ros
 {% endtab %}
 {% endtabs %}
 
-### Stop ROS 
+## Stop ROS
 
 ```bash
 pm2 stop my-ros
 ```
 
-### Restart ROS 
+## Restart ROS
 
 ```bash
 pm2 restart my-ros
 ```
 
-### Delete ROS
+## Delete ROS
 
 When you are no longer interested in registering a daemonized and monitored instance you can use `delete`:
 
 ```text
 pm2 delete my-ros
 ```
-
-
 
 Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE)
 
