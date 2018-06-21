@@ -1,6 +1,6 @@
 # Installation
 
-Realm Object Server is a Node application that is distributed via npm.  To help get you started quickly, we have a few different installation options.  If you are already familiar with Node and NPM, we suggest using the [manual install via npm](./#manual-install-for-those-familiar-with-node-and-npm).  If not, we suggest using our [quick start install](./#quick-start-install-for-those-unfamiliar-with-node-and-npm) via our own curl script.  
+Realm Object Server is a Node application that is distributed via npm.  To help get you started quickly, we have a few different installation options.  If you are already familiar with Node and NPM, we suggest using the [manual install via npm](./#manual-install).  If not, we suggest using our [quick start install](./#quick-start-install) via our own curl script.  
 
 ## Supported Operating Systems {#supported-operating-systems}
 
