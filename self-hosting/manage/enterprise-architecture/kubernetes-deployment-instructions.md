@@ -180,11 +180,13 @@ Helm uses a "chart," which is simply a set of templates that define what Kuberne
 * Service
 * Ingress
 
-These are all basic building blocks for running apps in Kubernetes, and you should be familiar with them before proceeding. To find out more, refer to [Kubernetes Basics](https://docs.realm.io/platform/~/edit/drafts/-LFU0Ph9lX_0sovJ7t3s/self-hosted/manage/enterprise-architecture/kubernetes-instructions#what-is-kubernetes).
+These are all basic building blocks for running apps in Kubernetes, and you should be familiar with them before proceeding. To find out more, refer to [Kubernetes Basics](kubernetes-deployment-instructions.md#what-is-kubernetes).
 
 ### Prerequisites
 
-To get started using Docker for Mac, please refer to [Kubernetes on macOS](https://docs.realm.io/platform/~/edit/drafts/-LFU0Ph9lX_0sovJ7t3s/self-hosted/manage/enterprise-architecture/kubernetes-instructions#kubernetes-on-macos).
+To get started using Docker for Mac, please refer to [Kubernetes on macOS](kubernetes-deployment-instructions.md#kubernetes-on-macos).
+
+Ensure you've installed [Helm](https://docs.helm.sh/using_helm/#installing-helm).
 
 ### Deploying the ROS using the Helm Chart
 

@@ -4,7 +4,7 @@ This guide will go over the process to setup disaster recovery for your Realm Ob
 
 ## Prerequisites: 
 
-You'll need to install a second cluster just like your first cluster.  You can do this by following the instructions [here](deployment-instructions.md).  
+You'll need to install a second cluster just like your first cluster.  You can do this by following the instructions [here](manual-deployment-instructions.md).  
 
 {% hint style="danger" %}
 Do not start the cluster as you might trigger a client reset when you actually need to recover.
