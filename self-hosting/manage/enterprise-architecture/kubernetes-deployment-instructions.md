@@ -105,51 +105,55 @@ helm install realm-object-server -f overrides.yaml
 
 When successful, you should see some output similar to this:
 
-```text
-NAME: foolish-octopus
+```
+NAME:   foolish-octopus
 LAST DEPLOYED: Thu Jun 21 20:11:02 2018
 NAMESPACE: default
 STATUS: DEPLOYED
-RESOURCES: ==> v1/Role
-NAME AGE
-foolish-octopus-sync-default 1s
-==> v1/StatefulSet
-NAME DESIRED CURRENT AGE
-foolish-octopus-sync-default 1 1 1s
-==> v1/RoleBinding
-NAME AGE
-foolish-octopus-sync-default 1s
-==> v1/Service
-NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
-foolish-octopus-realm-object-server ClusterIP 10.103.219.36  80:30080/TCP 1s
-foolish-octopus-metrics ClusterIP 10.110.66.250  9081/TCP 1s
-foolish-octopus-sync-default ClusterIP 10.105.177.213  7800/TCP,9080/TCP 1s
-==> v1/Secret NAME TYPE DATA AGE
-foolish-octopus Opaque 1 1s
-==> v1/ConfigMap NAME DATA AGE
-foolish-octopus 3 1s
-==> v1/PersistentVolumeClaim
-NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE
-foolish-octopus-prometheus Bound pvc-75835137-757e-11e8-bf49-025000000001 1Gi RWO hostpath 1s
-==> v1/ServiceAccount
-NAME SECRETS AGE
-foolish-octopus-prometheus 1 1s
-foolish-octopus-sync-default 1 1s
-==> v1beta1/Role
-NAME AGE
-foolish-octopus-prometheus 1s
-==> v1beta1/RoleBinding
-NAME AGE
-foolish-octopus-prometheus 1s
-==> v1/Deployment NAME DESIRED CURRENT UP-TO-DATE AVAILABLE AGE
-foolish-octopus-realm-object-server 1 1 1 0 1s
-==> v1/Endpoints
-NAME ENDPOINTS AGE
+
+RESOURCES:
+==> v1/Role
+NAME                          AGE
 foolish-octopus-sync-default  1s
+
+==> v1/StatefulSet
+NAME                          DESIRED  CURRENT  AGE
+foolish-octopus-sync-default  1        1        1s
+
+==> v1/RoleBinding
+NAME                          AGE
+foolish-octopus-sync-default  1s
+
+==> v1/Service
+NAME                                 TYPE       CLUSTER-IP      EXTERNAL-IP  PORT(S)            AGE
+foolish-octopus-realm-object-server  NodePort   10.103.219.36   <none>       80:30080/TCP       1s
+foolish-octopus-metrics              ClusterIP  10.110.66.250   <none>       9081/TCP           1s
+foolish-octopus-sync-default         ClusterIP  10.105.177.213  <none>       7800/TCP,9080/TCP  1s
+
+==> v1/Secret
+NAME             TYPE    DATA  AGE
+foolish-octopus  Opaque  1     1s
+
+==> v1/ConfigMap
+NAME                                 DATA  AGE
+foolish-octopus                      3     1s
+
+==> v1/ServiceAccount
+NAME                          SECRETS  AGE
+foolish-octopus-sync-default  1        1s
+
+==> v1/Deployment
+NAME                                 DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+foolish-octopus-realm-object-server  1        1        1           0          1s
+
+==> v1/Endpoints
+NAME                          ENDPOINTS  AGE
+foolish-octopus-sync-default  <none>     1s
+
 ==> v1/Pod(related)
-NAME READY STATUS RESTARTS AGE
-foolish-octopus-realm-object-server-547948d998-zgwbq 0/1 ContainerCreating 0 1s
-foolish-octopus-sync-default-0 0/1 ContainerCreating 0 1s
+NAME                                                  READY  STATUS             RESTARTS  AGE
+foolish-octopus-realm-object-server-547948d998-zgwbq  0/1    ContainerCreating  0         1s
+foolish-octopus-sync-default-0                        0/1    ContainerCreating  0         1s
 ```
 
 As you can see, Helm has named our deployment `foolish-octopus`. If you like, you can provide your own name for the deployment upon installation by using the `--name` parameter. Now check the status of your deployment:
