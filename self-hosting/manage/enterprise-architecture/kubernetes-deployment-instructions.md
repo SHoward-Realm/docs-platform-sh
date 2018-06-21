@@ -79,7 +79,7 @@ Realm maintains a [Helm Chart](https://docs.helm.sh/developing_charts/#charts) t
 Our charts are hosted at Github, and can be added to Helm with the following command:
 
 ```text
-helm repo add realm https://realm.github.io/charts 
+helm repo add realm https://realm.github.io/charts
 ```
 
 ### Prepare overrides file
@@ -105,7 +105,7 @@ helm install realm-object-server -f overrides.yaml
 
 When successful, you should see some output similar to this:
 
-```
+```text
 NAME:   foolish-octopus
 LAST DEPLOYED: Thu Jun 21 20:11:02 2018
 NAMESPACE: default
@@ -160,9 +160,9 @@ As you can see, Helm has named our deployment `foolish-octopus`. If you like, yo
 
 ```text
 $ helm list
-NAME                	REVISION	UPDATED                 	STATUS  	CHART                     	NAMESPACE  
-kubernetes-dashboard	1       	Thu Jun  7 16:00:46 2018	DEPLOYED	kubernetes-dashboard-0.7.0	kube-system
-foolish-octopus         3       	Thu Jun 21 20:11:02 2018	DEPLOYED	realm-object-server-0.1.0 	default    
+NAME                    REVISION    UPDATED                     STATUS      CHART                         NAMESPACE  
+kubernetes-dashboard    1           Thu Jun  7 16:00:46 2018    DEPLOYED    kubernetes-dashboard-0.7.0    kube-system
+foolish-octopus         3           Thu Jun 21 20:11:02 2018    DEPLOYED    realm-object-server-0.1.0     default
 ```
 
 For future reference, you an uninstall Realm Object Server using the following command. If you get stuck, this might be the best course of action after which you can start over:
