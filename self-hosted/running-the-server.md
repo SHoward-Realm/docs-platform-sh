@@ -99,7 +99,7 @@ pm2 start my-ros/src/index.ts
 You can supply a name to your started instance with the `--name` option:
 
 ```bash
-pm2 start path/to/myserver/dist/index.ts --name my-ros
+pm2 start my-ros/src/index.ts --name my-ros
 ```
 {% endtab %}
 {% endtabs %}
