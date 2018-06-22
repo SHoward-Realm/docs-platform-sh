@@ -79,7 +79,7 @@ Edit your `package.json` to include the following:
 "devDependencies": {
     "typescript":"2.5.3"
 },
-"dependencies: {
+"dependencies": {
     "node-pre-gyp":"*",
     "realm-object-server":"^2.2.0"
 }
