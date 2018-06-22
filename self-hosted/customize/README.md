@@ -1,6 +1,6 @@
 # Customize
 
-Realm Object Server 2.x and later is also a fully featured web framework! Adding functionality is simple, modular, and service oriented. A ROS custom service is just a class that you can add to a Server instance. This section covers a number of the various customizations that possible.
+Realm Object Server 2.x and later is also a fully featured web framework! Adding functionality is simple, modular, and service oriented. A ROS custom service is just a class that you can add to a Server instance. This section covers a number of the various customizations that are possible.
 
 ## Where to get started?
 
