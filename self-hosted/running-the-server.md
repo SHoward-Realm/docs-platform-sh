@@ -12,6 +12,10 @@ ros init my-app
 
 This creates a Typescript-based Node project for you. Later on you can explore customizing it but for now simply start the server with defaults by:
 
+{% hint style="info" %}
+If you have trouble running a `ros` command it may be due to your version of `NVM`. Try running `nvm use 8` in your terminal.
+{% endhint %}
+
 #### 1\) Add your feature token:
 
 {% hint style="info" %}
@@ -41,12 +45,6 @@ npm start
 ```
 
 That’s it! You now have a functioning Realm Object Server running locally on port 9080! The server is tied to your terminal window for now and can be stopped by pressing Ctrl-C.
-
-{% hint style="info" %}
-If you have trouble running a `ros` command it may be due to your version of `NVM`. Try running `nvm use 8` in your terminal.
-{% endhint %}
-
-Once you are ready to go into production with the server you will want to run it in the background. See the documentation section ["Going Into Production"](running-the-server.md) for more details.
 
 {% hint style="info" %}
 Click [here](manage/command-line-interface-for-ros.md) for more information on the command-line interface for ROS.
