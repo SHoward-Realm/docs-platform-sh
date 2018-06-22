@@ -69,7 +69,7 @@ npm install pm2 -g
 {% tabs %}
 {% tab title="JavaScript" %}
 ```bash
-pm2 start path/to/myserver/dist/index.js
+pm2 start path/to/myserver/src/index.js
 ```
 
 Now your ROS instance is daemonized, monitored and kept alive forever.
@@ -77,7 +77,7 @@ Now your ROS instance is daemonized, monitored and kept alive forever.
 You can supply a name to your started instance with the `--name` option:
 
 ```bash
-pm2 start path/to/myserver/dist/index.js --name my-ros
+pm2 start path/to/myserver/src/index.js --name my-ros
 ```
 {% endtab %}
 
