@@ -17,7 +17,9 @@ password = '' // Empty string
 
 To customize the username/password provider, create a ROS project via `ros init`: \(then start the server with `npm start` to use the custom configuration\)
 
-```javascript
+{% code-tabs %}
+{% code-tabs-item title="src/index.ts" %}
+```typescript
 import { auth, BasicServer, FileConsoleLogger } from 'realm-object-server'
 import * as path from 'path'
 
@@ -39,6 +41,8 @@ server.start({
   console.error("There was an error starting your custom ROS Server", err);
 });
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 
 
