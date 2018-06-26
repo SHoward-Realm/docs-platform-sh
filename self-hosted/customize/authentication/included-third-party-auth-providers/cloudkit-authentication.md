@@ -29,7 +29,7 @@ Security note: Create a new private key for each application you plan on using w
 
 To include or customize the CloudKit provider, create a ROS project via `ros init`:
 
-```text
+```javascript
 const RealmObjectServer = require('realm-object-server');
 const path = require('path');
 
