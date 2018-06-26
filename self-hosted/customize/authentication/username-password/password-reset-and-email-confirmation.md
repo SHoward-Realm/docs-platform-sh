@@ -16,15 +16,22 @@ We're going to edit the `my-app/src/index.ts` configuration of our project \([ge
 
 ### SMTP parameters
 
+{% code-tabs %}
+{% code-tabs-item title="src/index.ts" %}
 ```typescript
-authProviders: [new auth.PasswordAuthProvider({
-    emailHandlerConfig: {
-        baseUrl: '80' // Used to replace %BASE_URL% in email templates
-        connectionString: 'smtp://smtp_username:smtp_password@smtp.example.com',
-        from: 'foo@bar.com'
-    }
-})],
+server.start({
+  // Other options...
+    authProviders: [new auth.PasswordAuthProvider({
+        emailHandlerConfig: {
+            baseUrl: 'https://example.com', // Used to replace %BASE_URL% in email templates
+            connectionString: 'smtp://smtp_username:smtp_password@smtp.example.com',
+            from: 'foo@bar.com'
+        }
+    })],
+    
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 {% hint style="info" %}
 The built-in email handler uses [nodemailer](https://nodemailer.com) to send out emails.
