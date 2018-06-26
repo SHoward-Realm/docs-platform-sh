@@ -38,7 +38,7 @@ const RealmObjectServer = require('realm-object-server');
 const path = require('path');
 const server = new RealmObjectServer.BasicServer();
 
-const nicknameProvider = new NicknameAuthProvider();
+const nicknameProvider = new RealmObjectServer.auth.NicknameAuthProvider();
 
 server.start({
     dataPath: path.join(__dirname, '../data'),

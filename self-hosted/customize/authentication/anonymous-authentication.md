@@ -35,7 +35,7 @@ const path = require('path');
 
 const server = new RealmObjectServer.BasicServer();
 
-const anonymousProvider = new AnonymousAuthProvider();
+const anonymousProvider = new RealmObjectServer.auth.AnonymousAuthProvider();
 
 server.start({
     dataPath: path.join(__dirname, '../data'),
