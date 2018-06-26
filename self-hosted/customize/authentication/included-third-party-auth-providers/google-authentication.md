@@ -4,14 +4,14 @@ The Realm Object Server package includes a pre-built provider for Google. Client
 
 To include the Google provider, create a ROS project via `ros init`:
 
-```text
+```javascript
 const RealmObjectServer = require('realm-object-server');
 const path = require('path');
 
 const server = new RealmObjectServer.BasicServer();
-const googleProvider = new GoogleAuthProvider({
+const googleProvider = new RealmObjectServer.auth.GoogleAuthProvider({
     clientId: '012345678901-abcdefghijklmnopqrstvuvwxyz01234.apps.googleusercontent.com'
-})
+});
 
 server.start({
     dataPath: path.join(__dirname, '../data'),

@@ -4,7 +4,7 @@ The Realm Object Server package includes a pre-built provider for Facebook. Clie
 
 To include the Facebook provider, create a ROS project via `ros init`:
 
-```text
+```javascript
 import { auth } from 'realm-object-server';
 
 const facebookProvider = new auth.FacebookAuthProvider()
@@ -13,7 +13,6 @@ const RealmObjectServer = require('realm-object-server');
 const path = require('path');
 
 const server = new RealmObjectServer.BasicServer();
-const facebookProvider = new FacebookAuthProvider()
 
 server.start({
     dataPath: path.join(__dirname, '../data'),
