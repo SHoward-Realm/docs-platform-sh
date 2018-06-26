@@ -98,7 +98,7 @@ In the event that the custom authentication fails, maybe due to bad credentials 
 
 In the catch block, return an error with a detail like so:
 
-```text
+```typescript
 import { BasicServer, auth, User, errors } from 'realm-object-server'
 import { post } from 'superagent'
 
@@ -135,7 +135,7 @@ class MyCustomAuthProvider extends auth.AuthProvider {
 
     5. Add the custom auth provider to the server instance
 
-```text
+```typescript
 server.start({
   // This is the location where ROS will store its runtime data
   authProviders: [ new MyCustomAuthProvider() ]
@@ -181,7 +181,7 @@ While attempting to login via Realm Studio, select the "Other" tab and login wit
 
 In the event you want to specify your own custom userId instead of the automatically generated userId, then you can add the final optional parameter to set the userId to your liking. Note only userIds with characters of alpha-numeric \(0-9, A-Z, a-z\), “\_”, and “-“ are allowed.
 
-```text
+```javascript
 this.service.createOrUpdateUser(
   successResponseJSON.companyUserId
   this.name, // this is the name of the provider,
@@ -191,7 +191,7 @@ this.service.createOrUpdateUser(
 )
 ```
 
-Upon login in your client SDKs, your `Realm.Sync.User` or `SyncUser` identity will be \`MYCUSTOMUSERID123\`.
+Upon login in your client SDKs, your `Realm.Sync.User` or `SyncUser` identity will be `MYCUSTOMUSERID123`.
 
 
 
