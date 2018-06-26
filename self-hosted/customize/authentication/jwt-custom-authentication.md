@@ -43,7 +43,7 @@ const token = jwt.sign(payload, { key:  key, passphrase: 'your-passphrase' }, { 
 
 The `isAdmin` field in the payload is optional and if it is set to `true`, Realm Object Server will authenticate the user as admin user. If not set or set to `false`, the user will be a regular user. You can add additional properties in the payload but they'll be ignored by Realm Object Server.
 
-**Enabling the JWT provider**
+#### **Enabling the JWT provider**
 
 Let's assume we have a publicKey that looks like: 
 
