@@ -108,7 +108,144 @@ else
 fi
 ```
 
+Below is a node script you can run that accomplishes the same effect but includes fault tolerance.
 
+```javascript
+#!/usr/bin/env node
+
+const configuration = {
+    /** Path to the sync worker on this and the destination servers */
+    syncWorkerPath: "/apps/syncworker",
+    consulHost: "realm-ecc.nndc.kp.org",
+    /** Network interface that the sync worker is listening on. Used to compare sync services addresses. */
+    networkInterface: "eth0",
+    destination: {
+        servers: [ 
+            "cskpcloudxp3258.cloud.kp.org",
+            "cskpcloudxp3259.cloud.kp.org",
+            "cskpcloudxp3260.cloud.kp.org"
+        ],
+        /** SSH username for the remote servers */
+        username: "ecc",
+        /** SSH keyfile to authenticate as `username` with */
+        pathToKeyfile: `${__dirname}/keyfile.pem`
+    },
+    /** How long do we wait for a single rsync job before we kill it and bail */
+    rsyncTimeout: 30 * 60 * 1000, // 30 minutes, in milliseconds,
+    emailErrorHandling: {
+        /** Who to send error messages to. */
+        mailbox: "info@example.tld",
+        /** Options for `nodemailer.createTransport`. See https://nodemailer.com/smtp */
+        nodemailerTransportOptions: undefined
+    },
+}
+
+const { promisify } = require("util");
+const { networkInterfaces, hostname } = require("os");
+const exec = promisify(require("child_process").exec);
+
+const Rsync = require("rsync");
+const Consul = require("consul");
+const nodemailer = require("nodemailer");
+const mkdirp = promisify(require("mkdirp"));
+const rimraf = promisify(require("rimraf"));
+const chmodr = promisify(require("chmodr"));
+
+async function getSyncMasterAddress() {
+    const consul = new Consul({
+        host: configuration.consulHost,
+        promisify: true
+    });
+
+    const services = await consul.catalog.service.nodes({ service: "sync", tag: "role=master" });
+    if (services.length !== 1) {
+        throw new Error(`Expected exactly one sync master in Consul but got ${services.length}`);
+    }
+    return services[0].ServiceAddress;
+}
+
+async function runRealmBackup() {
+    await rimraf(`${configuration.syncWorkerPath}/backup`); // rm -rf
+    await mkdirp(`${configuration.syncWorkerPath}/backup`); // mkdir -p
+
+    console.log('Running ROS backup command.');
+    await exec('node_modules/.bin/ros backup -f data -t backup', {
+        cwd: configuration.syncWorkerPath,
+        env: {
+            "ROS_SKIP_PROMPTS": "1",
+            ...process.env
+        }
+    });
+    await chmodr(`${config.syncWorkerPath}/backup`, 0777); // chmod -R
+}
+
+async function runRsync(server) {
+    const rsync = new Rsync()
+        .shell(`ssh -i ${configuration.destination.pathToKeyfile}`)
+        .source(`${configuration.syncWorkerPath}/backup/`)
+        .destination(`${configuration.destination.username}@${server}${configuration.syncWorkerPath}`)
+        .archive()
+        .compress()
+        .set("omit-dir-times");
+    
+    try {
+        await exec(rsync.command(), { timeout: configuration.rsyncTimeout });
+    } catch (e) {
+        if (e.code === null && e.signal === "SIGTERM") {
+            throw new Error(`rsync to ${server} timed out.`);
+            console.error(e);
+        } else {
+            throw e;
+        }
+    }
+}
+
+async function main() {
+    console.log(`Starting backup job at ${Date()}`);
+
+    const currentSyncMasterAddress = await getSyncMasterAddress();
+    console.log(`${currentSyncMasterAddress} is sync master.`);
+
+    const localAddress = networkInterfaces()[configuration.networkInterface].filter(i => i.family === "IPv4")[0].address;
+    if (localAddress !== currentSyncMasterAddress) {
+        console.log('I am not sync master. Exiting.');
+        return;
+    }
+
+    console.log('I am sync master. Proceeding with backup.');
+    await runRealmBackup();
+
+    for (let server of configuration.destination.servers) {
+        console.log(`Running rsync to ${server}`);
+        await runRsync(server);
+    }
+
+    console.log(`Backup done at ${Date()}. Cleaning up.`);
+    await rimraf(`${configuration.syncWorkerPath}/backup`); // rm -rf
+}
+
+async function sendErrorEmail(error) {
+    const transport = nodemailer.createTransport(configuration.emailErrorHandling.nodemailerTransportOptions);
+
+    await transport.sendMail({
+        from: `realm-backup-script@${hostname()}`,
+        to: configuration.emailErrorHandling.mailbox,
+        subject: "Error",
+        text: JSON.stringify(error)
+    });
+}
+
+main().catch(async error => {
+    console.error("Backup failed.");
+    console.error(error);
+    
+    if (configuration.emailErrorHandling.nodemailerTransportOptions) {
+        await sendErrorEmail(error);
+    }
+
+    process.exit(1);
+});
+```
 
 To make a seamless user experience you will want to add a client reset callback in the event that a DR event occurs. See [here](https://realm.io/docs/swift/latest/#client-reset) for more details. 
 
