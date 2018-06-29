@@ -138,7 +138,7 @@ You should now be able to connect to the Postgres server remotely. There are var
 You'll need to contact [info@realm.io](mailto:info@realm.io) to receive the Postgres Data Adapter Package file.
 {% endhint %}
 
-Now let’s setup the Realm Data Adapter. We will use a remote CentOS server.  ****If you do not yet have a running instance of the Realm Object Server, sign up for a [cloud instance](https://cloud.realm.io/) or see instructions on how to [install a self-hosted Realm Object Server](../../../self-hosting/installation/). \(We've also included instructions if you've liked to run locally on a Mac\)
+Now let’s setup the Realm Data Adapter. We will use a remote CentOS server.  ****If you do not yet have a running instance of the Realm Object Server, sign up for a [cloud instance](https://cloud.realm.io/) or see instructions on how to [install a self-hosted Realm Object Server](../../../self-hosted/installation/). \(We've also included instructions if you've liked to run locally on a Mac\)
 
 {% tabs %}
 {% tab title="CentOS" %}

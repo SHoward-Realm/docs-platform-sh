@@ -20,7 +20,7 @@ Once you've signed up, you'll [create a new instance from our instances manageme
 {% endtab %}
 
 {% tab title="Self-hosting" %}
-To get an instance of the self-hosted Realm Object Server, you'll need to [sign up for a trial here](https://realm.io/trial/self-hosted-standard-plan). You'll receive an email with your trial token and some installation instructions. [You can also find those instructions here](../self-hosting/installation/).
+To get an instance of the self-hosted Realm Object Server, you'll need to [sign up for a trial here](https://realm.io/trial/self-hosted-standard-plan). You'll receive an email with your trial token and some installation instructions. [You can also find those instructions here](../self-hosted/installation/).
 {% endtab %}
 {% endtabs %}
 
@@ -157,7 +157,7 @@ const Project = {
 
 ### Login to Realm Platform and Open a Realm
 
-Next we'll authenticate against our instance of the Realm Object Server and open up the default realm. We'll also add a basic error handler to catch errors in case of a failure. You can find [more details on authentication here](../self-hosting/customize/authentication/) \(in case you'd like to use an alternate provider\). You can find some of the [specifics of opening a realm here](../using-synced-realms/opening-a-synced-realm.md).
+Next we'll authenticate against our instance of the Realm Object Server and open up the default realm. We'll also add a basic error handler to catch errors in case of a failure. You can find [more details on authentication here](../self-hosted/customize/authentication/) \(in case you'd like to use an alternate provider\). You can find some of the [specifics of opening a realm here](../using-synced-realms/opening-a-synced-realm.md).
 
 ```javascript
 const errorCallback = function errorCallback(message, isFatal, category, code) {
@@ -272,7 +272,7 @@ Since the Realm database is an embedded database, it cannot be embedded directly
 We're going to show you how to call the GraphQL API from a basic Javascript client using a few helpers and convenience APIs for the [Apollo Client](https://www.apollographql.com/client), a popular Javascript client that supports a variety of web frameworks as well as Node.js
 
 {% hint style="info" %}
-If you are working with the self-hosted version of Realm Platform, you will need to enable the GraphQL API on your Realm Object Server. [More details here](../self-hosting/customize/web-integration.md).
+If you are working with the self-hosted version of Realm Platform, you will need to enable the GraphQL API on your Realm Object Server. [More details here](../self-hosted/customize/web-integration.md).
 {% endhint %}
 
 ### Prerequisites
