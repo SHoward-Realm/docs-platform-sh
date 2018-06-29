@@ -108,6 +108,8 @@ else
 fi
 ```
 
+To make a seamless user experience you will want to add a client reset callback in the event that a DR event occurs. See [here](https://realm.io/docs/swift/latest/#client-reset) for more details. 
+
 Below is a node script you can run that accomplishes the same effect but includes fault tolerance.
 
 ```javascript
@@ -247,7 +249,23 @@ main().catch(async error => {
 });
 ```
 
-To make a seamless user experience you will want to add a client reset callback in the event that a DR event occurs. See [here](https://realm.io/docs/swift/latest/#client-reset) for more details. 
+### Creating a cronjob
+
+You can set up a cronjob through the use of crontab with the command:
+
+```text
+env EDITOR=nano crontab -e
+```
+
+In the text editor you can edit the frequency at which the following commands will be executed. You can read more about the syntax [here](https://code.tutsplus.com/tutorials/scheduling-tasks-with-cron-jobs--net-8800).
+
+An example cronjob may look like this:
+
+```text
+30 * * * *  cd ~/Desktop && ./script.sh
+```
+
+This creates a command to run hourly at the 30th minute \(1:30, 2:30, etc.\) by changing to the Desktop directory and running the desired script.
 
   
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
