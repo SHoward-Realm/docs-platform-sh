@@ -272,7 +272,7 @@ Since the Realm database is an embedded database, it cannot be embedded directly
 We're going to show you how to call the GraphQL API from a basic Javascript client using a few helpers and convenience APIs for the [Apollo Client](https://www.apollographql.com/client), a popular Javascript client that supports a variety of web frameworks as well as Node.js
 
 {% hint style="info" %}
-If you are working with the self-hosted version of Realm Platform, you will need to enable the GraphQL API on your Realm Object Server. [More details here](../self-hosted/customize/web-integration.md).
+If you are working with the self-hosted version of Realm Platform, you will need to enable the GraphQL API on your Realm Object Server. [More details here]().
 {% endhint %}
 
 ### Prerequisites

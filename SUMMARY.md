@@ -65,7 +65,7 @@
       * [Changing Permissions of a Server Realm](self-hosted/customize/working-with-realms-on-the-server/changing-permissions-of-a-server-realm.md)
       * [Writing to a Server Realm](self-hosted/customize/working-with-realms-on-the-server/writing-to-a-server-realm.md)
       * [Deleting Realms](self-hosted/customize/working-with-realms-on-the-server/deleting-realms.md)
-    * [Web Integration](self-hosted/customize/web-integration.md)
+    * [Web Integration with GraphQL](self-hosted/customize/web-integration.md)
     * [Conflict Resolution](self-hosted/customize/conflict-resolution.md)
     * [Log Compaction](self-hosted/customize/log-compaction.md)
     * [Services](self-hosted/customize/services/README.md)

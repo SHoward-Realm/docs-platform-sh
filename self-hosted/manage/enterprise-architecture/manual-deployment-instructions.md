@@ -174,7 +174,7 @@ The WelcomeService displays a webpage at the configured server port that directs
 
 #### GraphQLService
 
-The GraphQLService allows for web integration into Realm Enterprise Cluster, allowing a REST query to retrieve or manipulate data using the GraphQL query language. It is pulled in by a separate NPM package and is deployed as part of the Core Services app. See [here](../../customize/web-integration.md) for more information.
+The GraphQLService allows for web integration into Realm Enterprise Cluster, allowing a REST query to retrieve or manipulate data using the GraphQL query language. It is pulled in by a separate NPM package and is deployed as part of the Core Services app. See [here]() for more information.
 
 #### ReplicatedSyncService
 
