@@ -1,0 +1,6 @@
+#documentation here: https://docs.gitbook.com/integrations/github#content-configuration
+#creating this so that we can properly redirect self-hosting docs 
+root: ./
+
+redirects:
+  self-hosted: ./self-hosting.md
