@@ -233,10 +233,10 @@ SyncUser.loginAsync(credentials, url, new SyncUser.Callback<SyncUser>() {
   @Override
   public void onSuccess(SyncUser user) {
     // User is ready
-    // Can also be accessed using `SyncUser.currentUser()` if only one 
+    // Can also be accessed using `SyncUser.currentUser()` if only one
     // user is logged in.
   }
-  
+
   @Override
   public void onError(ObjectServerError error) {
     // Something went wrong
@@ -298,7 +298,7 @@ When a user is logged out, the synchronization will stop. A logged out user can 
 user.LogOut();
 ```
 
-When a user is logged out, the synchronization will stop. A logged out user can no longer open a Realm using a [SyncConfiguration](https://realm.io/docs/dotnet/latest/api/reference/Realms.Sync.SyncConfiguration.html).
+When a user is logged out, the synchronization will stop. A logged out user can no longer open a Realm using a [SyncConfiguration](https://realm.io/docs/dotnet/latest/api/reference/Realms.Sync.SyncConfigurationBase.html).
 {% endtab %}
 {% endtabs %}
 
