@@ -1,6 +1,6 @@
 # User Authentication
 
-The central object in the Realm Object Server is the Realm User \(`SyncUser`\). A Realm User is used to identify the end-user of the application and is used with the server's [access control](../access-control/) functionality to securely control what data is synchronized.  A `SyncUser` [authenticates](./#login), or performs a [login](./#login), via a username/password scheme, or through a number of third-party authentication methods.
+The central object in the Realm Object Server is the Realm User \(`SyncUser`\). A Realm User is used to identify the end-user of the application and is used with the server's [access control](../access-control/) functionality to securely control what data is synchronized. A `SyncUser` [authenticates](./#login), or performs a [login](./#login), via a username/password scheme, or through a number of third-party authentication methods.
 
 Creating and logging in a user requires two things:
 
@@ -302,5 +302,5 @@ When a user is logged out, the synchronization will stop. A logged out user can 
 {% endtab %}
 {% endtabs %}
 
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

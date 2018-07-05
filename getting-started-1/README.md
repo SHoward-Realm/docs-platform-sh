@@ -20,7 +20,7 @@ Once you've signed up, you'll [create a new instance from our instances manageme
 {% endtab %}
 
 {% tab title="Self-hosting" %}
-To get an instance of the self-hosted Realm Object Server, you'll need to [sign up for a trial here](https://realm.io/trial/self-hosted-standard-plan). You'll receive an email with your trial token and some installation instructions. [You can also find those instructions here](../self-hosted/installation/).
+To get an instance of the self-hosted Realm Object Server, you'll need to [sign up for a trial here](https://realm.io/trial/self-hosted-standard-plan). You'll receive an email with your trial token and some installation instructions. [You can also find those instructions here](../self-hosting/installation/).
 {% endtab %}
 {% endtabs %}
 
@@ -157,7 +157,7 @@ const Project = {
 
 ### Login to Realm Platform and Open a Realm
 
-Next we'll authenticate against our instance of the Realm Object Server and open up the default realm. We'll also add a basic error handler to catch errors in case of a failure. You can find [more details on authentication here](../self-hosted/customize/authentication/) \(in case you'd like to use an alternate provider\). You can find some of the [specifics of opening a realm here](../using-synced-realms/opening-a-synced-realm.md).
+Next we'll authenticate against our instance of the Realm Object Server and open up the default realm. We'll also add a basic error handler to catch errors in case of a failure. You can find [more details on authentication here](../self-hosting/customize/authentication/) \(in case you'd like to use an alternate provider\). You can find some of the [specifics of opening a realm here](../using-synced-realms/opening-a-synced-realm.md).
 
 ```javascript
 const errorCallback = function errorCallback(message, isFatal, category, code) {

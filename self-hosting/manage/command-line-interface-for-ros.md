@@ -1,5 +1,7 @@
 # Command-line Interface for ROS
 
+## General Usage
+
 The Realm Object Server command-line utility provides additional functionality as well as a means to configure your server:
 
 ```javascript
@@ -28,9 +30,13 @@ $ ros --help
     ros backup --help
 ```
 
-### init
+## init
 
 The `ros init` command will create a Javascript or Typescript project that includes Realm Object Server for you.
+
+{% hint style="info" %}
+When running a `ros init` you will receive the latest version of the Realm Object Server even if your ROS cli is an older version.  If you need to use a specific version of ROS, you can make these adjustments via NPM within your newly created project folder.  
+{% endhint %}
 
 {% tabs %}
 {% tab title="TypeScript" %}
@@ -233,7 +239,11 @@ server.start({
 {% endtab %}
 {% endtabs %}
 
-### start
+## start
+
+{% hint style="warning" %}
+This command is meant for demo purposes only
+{% endhint %}
 
 The `start` command will start the Realm Object Server and listen for connections. This mode is perfect for demoing or quickly starting the server. However, it will be tied to your terminal window and isn't recommended for production \(use `ros init`\). By default, no arguments are needed. However, if you would like to adjust some behavior of Realm Object Server, you can provide some configuration options:
 
