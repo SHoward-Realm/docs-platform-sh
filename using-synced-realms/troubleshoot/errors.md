@@ -105,7 +105,7 @@ While developing your application, you will likely need to troubleshoot unexpect
 The synchronization subsystem supports a number of logging levels, useful while developing an app. These can be selected by setting the `logLevel` property on the `SyncManager` singleton to the desired verbosity:
 
 ```text
-SyncManager.shared.logLevel = .off
+SyncManager.shared.logLevel = .debug
 ```
 
 The logging level **must be set before any synced Realms are opened**. Changing it after the first synced Realm is opened will have no effect.
@@ -115,7 +115,7 @@ The logging level **must be set before any synced Realms are opened**. Changing 
 The synchronization subsystem supports a number of logging levels, useful while developing an app. These can be selected by setting the `logLevel` property on the `RLMSyncManager` singleton to the desired verbosity:
 
 ```text
-[[RLMSyncManager sharedManager] setLogLevel:RLMSyncLogLevelOff];
+[[RLMSyncManager sharedManager] setLogLevel:RLMSyncLogLevelDebug];
 ```
 
 The logging level **must be set before any synced Realms are opened**. Changing it after the first synced Realm is opened will have no effect.
@@ -125,7 +125,7 @@ The logging level **must be set before any synced Realms are opened**. Changing 
 By enabling more verbose logs, you can better see what is happening through Android `logcat`.
 
 ```text
-RealmLog.setLevel(Log.VERBOSE);
+RealmLog.setLevel(Log.DEBUG);
 ```
 {% endtab %}
 
@@ -133,7 +133,7 @@ RealmLog.setLevel(Log.VERBOSE);
 These can be selected by setting the `logLevel` property on `Realm.sync` to the desired verbosity. For example:
 
 ```text
-Realm.Sync.setLogLevel("error");
+Realm.Sync.setLogLevel("debug");
 ```
 {% endtab %}
 
