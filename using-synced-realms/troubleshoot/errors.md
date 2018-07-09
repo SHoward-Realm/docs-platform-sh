@@ -96,6 +96,62 @@ Session.Error += (session, errorArgs) =>
 {% endtab %}
 {% endtabs %}
 
+## Setting the client logging level 
+
+While developing your application, you will likely need to troubleshoot unexpected behavior.  When doing this, it is useful to increase the Realm logging level within your application.  
+
+{% tabs %}
+{% tab title="Swift" %}
+The synchronization subsystem supports a number of logging levels, useful while developing an app. These can be selected by setting the `logLevel` property on the `SyncManager` singleton to the desired verbosity:
+
+```text
+SyncManager.shared.logLevel = .off
+```
+
+The logging level **must be set before any synced Realms are opened**. Changing it after the first synced Realm is opened will have no effect.
+{% endtab %}
+
+{% tab title="Objective-C" %}
+The synchronization subsystem supports a number of logging levels, useful while developing an app. These can be selected by setting the `logLevel` property on the `RLMSyncManager` singleton to the desired verbosity:
+
+```text
+[[RLMSyncManager sharedManager] setLogLevel:RLMSyncLogLevelOff];
+```
+
+The logging level **must be set before any synced Realms are opened**. Changing it after the first synced Realm is opened will have no effect.
+{% endtab %}
+
+{% tab title="Java" %}
+By enabling more verbose logs, you can better see what is happening through Android `logcat`.
+
+```text
+RealmLog.setLevel(Log.VERBOSE);
+```
+{% endtab %}
+
+{% tab title="Javascript" %}
+These can be selected by setting the `logLevel` property on `Realm.sync` to the desired verbosity. For example:
+
+```text
+Realm.Sync.setLogLevel("error");
+```
+{% endtab %}
+
+{% tab title=".Net" %}
+_Coming soon_
+{% endtab %}
+{% endtabs %}
+
+Available levels are as follows: 
+
+* `fatal`
+* `error`
+* `warn`
+* `info`
+* `detail`
+* `debug`
+* `trace`
+
 ## Errors
 
 ### Client Reset
