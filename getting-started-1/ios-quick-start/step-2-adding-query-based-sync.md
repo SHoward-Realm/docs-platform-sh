@@ -183,6 +183,10 @@ This gets the project we selected from the list of projects we own that were ret
 
 Now that we have the important concepts covered, add the following code to your new view controller file:
 
+{% hint style="warning" %}
+Be sure to copy to use the 'copy to clipboard' button \(on the top right\) instead of highlighting the code. This correctly copies the newlines.
+{% endhint %}
+
 {% code-tabs %}
 {% code-tabs-item title="ProjectViewController.swift" %}
 ```swift
@@ -408,6 +412,12 @@ var items: List<Item>?
 var project: Project?
 ```
 
+With the new declaration of Items we will need to adjust our reference to it in `viewDidLoad`:
+
+```swift
+notificationToken = items?.observe { [weak self] (changes) in
+```
+
 Next we are going to use the `Project` object that was passed in to get the list \(if any\) of existing items for this project. In the viewDidLoad method, just after the `super.viewDidLoad()` call, add the following line:
 
 ```swift
@@ -418,7 +428,7 @@ The change in type for the `items` variable is so that it matches the type decla
 
 ### Adding new ToDo Items to the Project {#adding-new-todo-items-to-the-project}
 
-Adding new to do Items works exactly as it did in the non-Query-based sync version; the difference becomes clear a the point where we save the new ToDo item. Rather than add the new item to the Realm directly, we append the new item to the list of items managed by the `Project`. This is accomplished by changing the addition code \(in the method `addItemButtonDidClick`\) :
+Adding new to do Items works exactly as it did in the non-Query-based sync version; the difference becomes clear at the point where we save the new ToDo item. Rather than add the new item to the Realm directly, we append the new item to the list of items managed by the `Project`. This is accomplished by changing the addition code \(in the method `addItemButtonDidClick`\) :
 
 The non-Query-based sync version writes to the Realm using a local instance of the Realm which is created at the time the class was loaded \(lines 7-8\):
 
@@ -455,13 +465,26 @@ alertController.addAction(UIAlertAction(title: "Save", style: .default, handler:
 Whenever we need to write or update a record we do the same thing - use the reference to the Realm that is held by the project the user selected and we passed into the `ItemsViewController`: `self.project?.realm` Now that we have the basics down, we can replace the all of the references to the local Realm in the other table view methods that support editing or deleting ToDo Item rows:
 
 ```swift
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items?.count ?? 0
+    }
+    
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
+    cell.selectionStyle = .none
+    let item = items?[indexPath.row]
+    cell.textLabel?.text = item?.body
+    cell.accessoryType = item!.isDone ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
+    return cell
+}
+    
 func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let item = items?[indexPath.row]
     try! self.project?.realm?.write {
         item!.isDone = !(item!.isDone)
     }
 }
-
+    
 func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     guard editingStyle == .delete else { return }
     let item = items?[indexPath.row]
@@ -482,6 +505,7 @@ and the references to it in the class's init method:
 ```swift
 let syncConfig = SyncConfiguration(user: SyncUser.current!, realmURL: Constants.REALM_URL)
 self.realm = try! Realm(configuration: Realm.Configuration(syncConfiguration: syncConfig))
+self.items = realm.objects(Item.self).sorted(byKeyPath: "timestamp", ascending: false)
 ```
 
 You should now be able to build and run the application, log in and create projects and ToDo Items:
