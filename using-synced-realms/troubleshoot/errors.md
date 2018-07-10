@@ -138,7 +138,13 @@ Realm.Sync.setLogLevel("debug");
 {% endtab %}
 
 {% tab title=".Net" %}
-_Coming soon_
+The `LogLevel` is a [static property on the SyncConfiguration class](https://www.realm.io/docs/dotnet/3.0.0/api/reference/realms.sync.syncconfiguration#Realms_Sync_SyncConfiguration_LogLevel)
+
+It can be set like so: 
+
+```csharp
+configuration.LogLevel = debug;
+```
 {% endtab %}
 {% endtabs %}
 
