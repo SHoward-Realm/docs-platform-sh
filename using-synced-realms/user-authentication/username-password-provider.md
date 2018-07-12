@@ -26,7 +26,7 @@ You can now keep using the default configuration to send emails, or continue for
 {% endtab %}
 
 {% tab title="Self-Hosted" %}
-{% page-ref page="../../self-hosting/customize/authentication/username-password/password-reset-and-email-confirmation.md" %}
+{% page-ref page="../../self-hosted/customize/authentication/username-password/password-reset-and-email-confirmation.md" %}
 {% endtab %}
 {% endtabs %}
 
