@@ -111,6 +111,7 @@
   * [Designing an Architecture with Multiple Realms](guides/designing-an-architecture-with-multiple-realms.md)
   * [Learn Realm Sync and Integrate with a Proxy](guides/learn-realm-sync-and-integrate-with-a-proxy.md)
   * [White Papers](https://realm.io/resources)
+  * [Firebase Authentication with Realm Cloud](guides/firebase-authentication-with-realm-cloud.md)
 
 ## Have a Question?
 
