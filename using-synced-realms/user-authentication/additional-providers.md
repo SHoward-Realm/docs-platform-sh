@@ -14,6 +14,10 @@ To enable or disable go to the Settings for your instance in the cloud portal:
 
 ![](../../.gitbook/assets/image%20%286%29.png)
 
+{% hint style="info" %}
+Looking to get started quickly with JWT and Realm Cloud?  Check out our [guide for authentication with Firebase](../../guides/firebase-authentication-with-realm-cloud.md)
+{% endhint %}
+
 For more details on how to enable or disable this provider with Self-Hosted go to:
 
 {% page-ref page="../../self-hosted/customize/authentication/jwt-custom-authentication.md" %}
