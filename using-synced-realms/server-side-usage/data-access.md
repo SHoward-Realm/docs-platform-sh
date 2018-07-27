@@ -45,7 +45,7 @@ async function main() {
             url: `realms://${server_address}/aRealm`,
         }
     });
-    
+
     // Use the Realm for querying or writing to push data to clients
 }
  
@@ -83,7 +83,7 @@ async Task UseRealm()
 {
     var credentials = Credentials.UsernamePassword("admin", "password", createUser: false);
     var adminUser = await User.LoginAsync(credentials, new Uri($"https://{ServerUrl}"));
-    var configuration = new SyncConfiguration(adminUser, new Uri($"realms://{ServerUrl}/aRealm"))
+    var configuration = new FullSyncConfiguration(new Uri("/aRealm", UriKind.Relative), adminUser)
     {
         IsDynamic = true
     };
@@ -94,7 +94,7 @@ async Task UseRealm()
 
 static void Main()
 {
-    // Make sure to use a thread with a synchronization context in order 
+    // Make sure to use a thread with a synchronization context in order
     // to ensure that task continuations will be dispatched on the same
     // thread. In this example, we're using AsyncContext Nito.AsyncEx
     // package: https://www.nuget.org/packages/Nito.AsyncEx
@@ -114,7 +114,5 @@ For more information on Realm Platform's GraphQL support consult the full docume
 
 {% page-ref page="../../graphql-web-access/" %}
 
-
-
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 

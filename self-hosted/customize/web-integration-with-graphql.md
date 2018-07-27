@@ -1,6 +1,5 @@
-# Web Integration
+# Web Integration with GraphQL
 
-  
 Realm Object Server offers a web API through [GraphQL](http://graphql.org/). This enables retrieving Realm data in a web browser or in other backend language environments unsupported with Realm SDKs currently. The GraphQL API is provided through an additional service that can be run within the Realm Object Server alongside the default services \(sync, authentication, etc\) or it can be run within another Realm Object Server standalone.
 
 The GraphQL service supports [query](http://graphql.org/learn/queries/) and [mutation](http://graphql.org/learn/queries/#mutations) via standard HTTP requests and realtime [subscription](https://github.com/facebook/graphql/blob/master/rfcs/Subscriptions.md) events via a websocket connection.
@@ -55,7 +54,7 @@ Start the server with your GraphQL service:
 npm start
 ```
 
-You can verify that the service is running by opening up:[`http://localhost:9080/graphql/explore/%2F__admin`](http://localhost:9080/graphql/explore/%2F__admin) which displays [GraphiQL](https://github.com/graphql/graphiql), the in-browser IDE for exploring GraphQL.  This url connects to your admin realm.  Connect to a different realm like: `http://localhost:9080/graphql/explore/<realm_path>`
+You can verify that the service is running by opening up:[`http://localhost:9080/graphql/explore/%2F__admin`](http://localhost:9080/graphql/explore/%2F__admin) which displays [GraphiQL](https://github.com/graphql/graphiql), the in-browser IDE for exploring GraphQL. This url connects to your admin realm. Connect to a different realm like: `http://localhost:9080/graphql/explore/<realm_path>`
 
 {% hint style="info" %}
 For a detailed overview of the customization options, refer to the [GraphQL Service API Reference](https://realm.io/docs/realm-object-server/latest/api/graphql-service/).
@@ -123,7 +122,7 @@ The response will now contain:
 
 We'll need this access token to perform all graphql actions. This token must be refreshed before it expires using the refresh token obtained earlier to avoid getting `Unauthorized` responses.
 
-### Query and Mutations 
+### Query and Mutations
 
 Since the query and mutation actions are regular GET/POST requests, the authentication happens with a standard `Authorization` header:
 
@@ -150,10 +149,6 @@ Subscriptions use websocket, which requires that authentication happens after th
 The full GraphQL client API reference docs are located [here](https://realm.io/docs/realm-object-server/latest/api/graphql/).
 
 The GraphQL Service API reference docs are [here](https://realm.io/docs/realm-object-server/latest/api/graphql-service/).
-
-
-
-
 
 Not what you were looking for? [Leave Feedback](https://www.getfeedback.com/r/uO1Zl0vE)
 

@@ -52,11 +52,11 @@ SyncUser.logIn(with: credentials, server: serverURL) { user, error in
 ```
 
 {% hint style="info" %}
-Your Server URL will follow a format like: 
+Your Server URL will follow a format like:
 
 **Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
 
-**Self-hosting**: `http://127.0.0.1:9080` 
+**Self-hosting**: `http://127.0.0.1:9080`
 {% endhint %}
 {% endtab %}
 
@@ -83,11 +83,11 @@ For example, to log in, then asynchronously open the default synced Realm:
 ```
 
 {% hint style="info" %}
-Your Server URL will follow a format like: 
+Your Server URL will follow a format like:
 
 **Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
 
-**Self-hosting**: `http://127.0.0.1:9080` 
+**Self-hosting**: `http://127.0.0.1:9080`
 {% endhint %}
 {% endtab %}
 
@@ -115,11 +115,11 @@ SyncUser.login(credentials, url, new SyncUser.Callback<SyncUser>() {
 ```
 
 {% hint style="info" %}
-Your Server URL will follow a format like: 
+Your Server URL will follow a format like:
 
 **Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
 
-**Self-hosting**: `http://127.0.0.1:9080` 
+**Self-hosting**: `http://127.0.0.1:9080`
 {% endhint %}
 {% endtab %}
 
@@ -139,22 +139,22 @@ Realm.Sync.User.login(server, username, password)
 ```
 
 {% hint style="info" %}
-Your Server URL will follow a format like: 
+Your Server URL will follow a format like:
 
 **Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
 
-**Self-hosting**: `http://127.0.0.1:9080` 
+**Self-hosting**: `http://127.0.0.1:9080`
 {% endhint %}
 {% endtab %}
 
 {% tab title=".Net" %}
-The default synced Realm is provided via an automatic `SyncConfiguration`, which will use the current logged in user from `User.Current` and the server URL used to authenticate.
+The default synced Realm is provided via an automatic `QueryBasedSyncConfiguration`, which will use the current logged in user from `User.Current` and the server URL used to authenticate.
 
 For example, to log in, then asynchronously open the default synced Realm with the current user:
 
 ```csharp
 var user = await User.LoginAsync(credentials, serverUrl);
-RealmConfiguration.DefaultConfiguration = new SyncConfiguration();
+RealmConfiguration.DefaultConfiguration = new QueryBasedSyncConfiguration();
 
 var realm = await Realm.GetInstanceAsync();
 ```
@@ -163,17 +163,17 @@ If you are working with multiple users, you can pass in the specific user as wel
 
 ```csharp
 var user = await User.LoginAsync(credentials, serverUrl);
-RealmConfiguration.DefaultConfiguration = new SyncConfiguration(user);
+RealmConfiguration.DefaultConfiguration = new QueryBasedSyncConfiguration(user: user);
 
 var realm = await Realm.GetInstanceAsync();
 ```
 
 {% hint style="info" %}
-Your Server URL will follow a format like: 
+Your Server URL will follow a format like:
 
 **Cloud**: `https://my-cloud-url.us1.cloud.realm.io`
 
-**Self-hosting**: `http://127.0.0.1:9080` 
+**Self-hosting**: `http://127.0.0.1:9080`
 {% endhint %}
 {% endtab %}
 {% endtabs %}

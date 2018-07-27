@@ -1,6 +1,8 @@
 # Installation
 
-Realm Object Server is a Node application that is distributed via npm.  To help get you started quickly, we have a few different installation options.  If you are already familiar with Node and NPM, we suggest using the [manual install via npm](./#manual-install).  If not, we suggest using our [quick start install](./#quick-start-install) via our own curl script.  
+Realm Object Server is a Node application that is distributed via npm.  To help get you started quickly, we have a few different installation options.  If you are already familiar with Node and NPM, we suggest using the [manual install via npm](./#manual-install).  If not, we suggest using our [quick start install](./#quick-start-install) via our own curl script.
+
+These instructions detail the base install which is used for getting started and basic testing.  Once it is time to move into a production environment, you will want to [follow our enterprise architecture guidelines to support your application at scale](../manage/enterprise-architecture/).    
 
 ## Supported Operating Systems {#supported-operating-systems}
 
@@ -12,6 +14,10 @@ We currently support the following operating systems:
 * CentOS 7+
 
 We plan to add native support for Windows. In the meantime, you can [**run the server for development purposes via Docker**](https://github.com/realm/realm-server-side-samples/tree/master/15-running-ros-with-docker)**.**
+
+### Ports
+
+The Realm Object Server utilizes websocket connections over TCP to synchronize data.  This means that you will need to make sure your firewall allows TCP communication over whichever ports your ROS is configured to use.  By default, this is **port 9080** for HTTP traffic.  We recommend securing your server by enabling HTTPs communication which is done over **port 443**.  
 
 ## Quick Start Install
 

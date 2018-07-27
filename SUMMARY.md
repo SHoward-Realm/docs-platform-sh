@@ -34,6 +34,7 @@
   * [Troubleshoot](using-synced-realms/troubleshoot/README.md)
     * [Errors](using-synced-realms/troubleshoot/errors.md)
     * [Version Compatibilities](using-synced-realms/troubleshoot/version-compatibilities.md)
+    * [FAQs](https://support.realm.io/support/solutions/folders/36000104549)
 * [GraphQL - Web Access](graphql-web-access/README.md)
   * [How to use the API](graphql-web-access/how-to-use-the-api.md)
   * [Using the GraphQL Client](graphql-web-access/using-the-graphql-client.md)
@@ -65,7 +66,7 @@
       * [Changing Permissions of a Server Realm](self-hosted/customize/working-with-realms-on-the-server/changing-permissions-of-a-server-realm.md)
       * [Writing to a Server Realm](self-hosted/customize/working-with-realms-on-the-server/writing-to-a-server-realm.md)
       * [Deleting Realms](self-hosted/customize/working-with-realms-on-the-server/deleting-realms.md)
-    * [Web Integration](self-hosted/customize/web-integration.md)
+    * [Web Integration with GraphQL](self-hosted/customize/web-integration-with-graphql.md)
     * [Conflict Resolution](self-hosted/customize/conflict-resolution.md)
     * [Log Compaction](self-hosted/customize/log-compaction.md)
     * [Services](self-hosted/customize/services/README.md)
@@ -92,10 +93,12 @@
       * [Security Recommendations](self-hosted/manage/security/security-recommendations.md)
       * [Securing with Let's Encrypt](self-hosted/manage/security/securing-with-lets-encrypt.md)
     * [Command-line Interface for ROS](self-hosted/manage/command-line-interface-for-ros.md)
+    * [Server Side File Growth](self-hosted/manage/server-side-file-growth.md)
   * [Troubleshoot](self-hosted/troubleshoot/README.md)
     * [Installation Errors](self-hosted/troubleshoot/installation-errors.md)
     * [Viewing your server logs](self-hosted/troubleshoot/viewing-your-server-logs.md)
     * [Verify Port Access](self-hosted/troubleshoot/verify-port-access.md)
+    * [FAQs](https://support.realm.io/support/solutions/folders/36000104549)
   * [API](https://realm.io/docs/realm-object-server/latest/api/ros/)
 * [Guides](guides/README.md)
   * [Server-side Code Samples](https://github.com/realm/realm-server-side-samples)
@@ -108,6 +111,7 @@
   * [Designing an Architecture with Multiple Realms](guides/designing-an-architecture-with-multiple-realms.md)
   * [Learn Realm Sync and Integrate with a Proxy](guides/learn-realm-sync-and-integrate-with-a-proxy.md)
   * [White Papers](https://realm.io/resources)
+  * [Firebase Authentication with Realm Cloud](guides/firebase-authentication-with-realm-cloud.md)
 
 ## Have a Question?
 

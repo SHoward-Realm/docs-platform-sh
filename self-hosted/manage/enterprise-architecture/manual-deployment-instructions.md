@@ -174,7 +174,7 @@ The WelcomeService displays a webpage at the configured server port that directs
 
 #### GraphQLService
 
-The GraphQLService allows for web integration into Realm Enterprise Cluster, allowing a REST query to retrieve or manipulate data using the GraphQL query language. It is pulled in by a separate NPM package and is deployed as part of the Core Services app. See [here](../../customize/web-integration.md) for more information.
+The GraphQLService allows for web integration into Realm Enterprise Cluster, allowing a REST query to retrieve or manipulate data using the GraphQL query language. It is pulled in by a separate NPM package and is deployed as part of the Core Services app. See [here]() for more information.
 
 #### ReplicatedSyncService
 
@@ -251,7 +251,7 @@ ubuntu@coreServices-01:~/coreServices$ vi coreServices.js
 
 Now take the [CoreServices JS App](https://gist.github.com/mgeerling/6a1df6a00a1d6293d51fe2e9c094234a) and paste in the code, fill in any variables specific to your environment, then save the changes. 
 
-You will need to fill in the `advertiseAddress` with IP or DNS address of the NATed address of CoreServices if you are behind a NAT. The consulHost should be an IP or DNS address of the cluster of Consul hosts. You can use a load balancer round-robin scheme or a DNS name with all three Consul hosts. If you only place one IP in there then you will not have failover if one Consul host fails.  
+You will need to fill in the `advertiseAddress` with IP or DNS address of the NATed address of CoreServices if you are behind a NAT. The consulHost should be an IP or DNS address of the cluster of Consul hosts. Generally, you would use a Consul agent deployed on the localhost and point coreServices to `127.0.0.1` If you are unable to deploy a Consul Agent onto the coreServices host then you can use a load balancer round-robin scheme or a DNS name with all three Consul hosts. If you only place one IP in there then you will not have failover if one Consul host fails.  
 
 
 Now create a `package.json` file in the same folder and put in your dependencies, it should look like this:

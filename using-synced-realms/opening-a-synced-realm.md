@@ -96,13 +96,13 @@ Realm.Sync.User.login(server, username, password)
 {% endtab %}
 
 {% tab title=".Net" %}
-The default synced Realm is provided via an automatic `SyncConfiguration`, which will use the current logged in user from `User.Current` and the server URL used to authenticate.
+The default synced Realm is provided via an automatic `QueryBasedSyncConfiguration`, which will use the current logged in user from `User.Current` and the server URL used to authenticate.
 
 For example, to log in, then asynchronously open the default synced Realm with the current user:
 
 ```csharp
 var user = await User.LoginAsync(credentials, serverUrl);
-RealmConfiguration.DefaultConfiguration = new SyncConfiguration();
+RealmConfiguration.DefaultConfiguration = new QueryBasedSyncConfiguration();
 
 var realm = await Realm.GetInstanceAsync();
 ```
@@ -111,7 +111,7 @@ If you are working with multiple users, you can pass in the specific user as wel
 
 ```csharp
 var user = await User.LoginAsync(credentials, serverUrl);
-RealmConfiguration.DefaultConfiguration = new SyncConfiguration(user);
+RealmConfiguration.DefaultConfiguration = new QueryBasedSyncConfiguration(user: user);
 
 var realm = await Realm.GetInstanceAsync();
 ```
@@ -207,14 +207,14 @@ var realm = new Realm(config);
 {% endtab %}
 
 {% tab title=".Net" %}
-For standalone Realms, [RealmConfiguration](https://realm.io/docs/dotnet/latest/api/reference/Realms.RealmConfiguration.html) is used to configure the options for a Realm. Synchronized Realms on the other hand, are configured using an extended configuration class called [SyncConfiguration](https://realm.io/docs/dotnet/latest/api/reference/Realms.Sync.SyncConfiguration.html).
+For standalone Realms, [RealmConfiguration](https://realm.io/docs/dotnet/latest/api/reference/Realms.RealmConfiguration.html) is used to configure the options for a Realm. Synchronized Realms on the other hand, are configured using extended configuration classes called [QueryBasedSyncConfiguration](https://realm.io/docs/dotnet/latest/api/reference/Realms.Sync.QueryBasedSyncConfiguration.html) or [FullSyncConfiguration](https://realm.io/docs/dotnet/latest/api/reference/Realms.Sync.FullSyncConfiguration.html).
 
 The configuration ties together an authenticated user and a sync server URL. The sync server URL may contain the tilde character \(“~”\) which will be transparently expanded to represent the user’s unique identifier. This scheme easily allows you to write your app to cater to its individual users. The location on disk for shared Realms is managed by the framework, but can be overridden if desired.
 
 ```csharp
 var user = User.Current;
-var serverURL = new Uri("realms://myinstance.cloud.realm.io/~/default");
-var configuration = new SyncConfiguration(user, serverURL);
+var serverURL = new Uri("/~/default", UriKind.Relative);
+var configuration = new QueryBasedSyncConfiguration(serverURL, user);
 
 var realm = Realm.GetInstance(configuration);
 ```
@@ -264,13 +264,8 @@ const config = {
 {% endtab %}
 
 {% tab title=".Net" %}
-When using the .NET API fully synchronized Realms are the default instead of query-based Realms.
-
 ```csharp
-var config = new SyncConfiguration(user, realmUrl)
-{
-    IsPartial = true // <-- this enables a partially synced Realm
-};
+var config = new FullSyncConfiguration(realmUrl, user);
 ```
 {% endtab %}
 {% endtabs %}
@@ -340,8 +335,8 @@ var realm = new Realm(config);
 {% tab title=".Net" %}
 ```csharp
 var user = User.Current;
-var serverURL = new Uri("realms://myinstance.cloud.realm.io/~/default");
-var configuration = new SyncConfiguration(user, serverURL);
+var serverURL = new Uri("/~/default", UriKind.Relative);
+var configuration = new QueryBasedSyncConfiguration(serverURL, user);
 
 var realm = Realm.GetInstance(configuration);
 ```
@@ -434,8 +429,8 @@ Realm.open(config)
 
 {% tab title=".Net" %}
 ```csharp
-var serverURL = new Uri("realm://my.realm-server.com:9080/~/default");
-var config = new SyncConfiguration(user, serverURL));
+var serverURL = new Uri("/~/default", UriKind.Relative);
+var config = new QueryBasedSyncConfiguration(serverURL, user);
 try
 {
     var realm = await Realm.GetInstanceAsync(config);

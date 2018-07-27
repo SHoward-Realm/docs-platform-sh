@@ -223,3 +223,9 @@ For a complete list of supported subscription operations, refer to the GraphQL S
 
 For a detailed documentation on the Apollo Client subscription capabilities, refer to the [Apollo docs](https://www.apollographql.com/docs/angular/features/subscriptions.html).
 
+## Errors: 
+
+### "Cannot access realm that has been closed."
+
+Realm's GraphQL Service works by querying cached Realm files from the server. While these cached files should always be available, there are a few rare conditions where they may get closed. In this event, you'll want to reach out to our [support team](https://support.realm.io).  When you do this please provide the following: instance information \(i.e. cloud URL or self-hosting version information for all packages\) and a reproduction case.
+
