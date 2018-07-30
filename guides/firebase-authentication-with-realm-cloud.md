@@ -1,7 +1,3 @@
----
-description: Learn how to use Firebase Auth + JWTs to authentication with Realm Cloud
----
-
 # Firebase Authentication with Realm Cloud
 
 Firebase provides a safe and secure authentication system. Firebase even have ready built UI components you can use which will save you many developer hours. This guide will show you how to connect your existing Firebase-powered Authentication system to use with Realm Cloud.   
