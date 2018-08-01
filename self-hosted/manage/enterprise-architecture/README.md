@@ -18,12 +18,13 @@ Realm Sync Workers is a stateful node application that stores the realms, serves
 ### Consul Cluster
 
 Consul Cluster is a cluster of at least three consul servers that acts as a distributed key-value store for consensus and service discovery in the ROS cluster. It has built-in failure detection which the ROS cluster continually checks. If failure is detected the ROS Core services proxy module shifts the traffic to the new sync-worker master \(the old slave\) and the spare becomes the new slave. In small deployments the consul process can be run on the same server as the sync-workers and core services as shown below:  
-  
 ****
 
 ![](https://lh4.googleusercontent.com/HUc9FY3RD1ntJKpDrw_UUntEQHJITH-yaXTByNZZ4quasu9ej7BR1e928aubRfzz9vEIkerqx31IWms90LBy9XDddOCSMCXPQdJkbEqwdKae_qOa-QfdBwAP2OWxDdBBX-2Ew6yV)
 
-However in larger deployments like with 10 or more ROS nodes it is recommended to split out the consul cluster into its own standalone cluster of at least three separate servers. 
+While it is not required, we recommend a fourth Consul agent instance sitting on the same node core services are deployed on. The agent serves to merely forward traffic to and from the Consul servers so that core services doesn't need to be hard-coded to connect to a single Consul server, but the agent does not participate in Consul consensus. 
+
+In larger deployments with 10 or more ROS nodes, it is recommended to split out the consul cluster into its own standalone cluster of at least three separate servers. 
 
 ### Public Load Balancer
 
