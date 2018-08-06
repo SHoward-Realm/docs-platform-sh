@@ -9,7 +9,7 @@ Realm Studio is our developer tool, built so you can easily manage the [Realm Da
 ### Supported Platforms
 
 | ![](../.gitbook/assets/apple%20%283%29.svg) | Mac OSX 10.12+ |
-| --- | --- | --- |
+| :--- | :--- |
 | ![](../.gitbook/assets/linux.svg) | Ubuntu 14.04+ Debian 8+ CentOS/RHEL 7+ |
 | ![](../.gitbook/assets/windows.svg) | Windows 8+ Windows Server 2012+ |
 
@@ -18,7 +18,7 @@ Realm Studio is our developer tool, built so you can easily manage the [Realm Da
 To get started, pick your platform and download the application:
 
 | ![](../.gitbook/assets/apple%20%283%29.svg) | [**Download for Mac**](https://studio-releases.realm.io/latest/download/mac-dmg) |
-| --- | --- | --- |
+| :--- | :--- |
 | ![](../.gitbook/assets/linux.svg) | [**Download for Linux**](https://studio-releases.realm.io/latest/download/linux-appimage) |
 | ![](../.gitbook/assets/windows.svg) | [**Download for Windows**](https://studio-releases.realm.io/latest/download/win-setup) |
 

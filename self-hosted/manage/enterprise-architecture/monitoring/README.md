@@ -18,7 +18,7 @@ realm.example.com.authentication.failed
 ### Available **Metrics**
 
 | Name | Type | Description |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `<prefix>.client.unsyncable` | counter | Triggered every time a client fails to initiate synchronization of a realm because of messed up history. Such clients need their realm file deleted and then recovered from the server. This might happen if the server crashes and is recovered from a backup. |
 |  |  |  |
 | `<prefix>.session.started` | counter | Triggered every time a session is started. A session is considered started even before the authentication. |
@@ -144,18 +144,22 @@ sudo systemctl start grafana-server
 
 Now let’s browse to the Grafana server in a web browser by going to port 3000 of the monitoring server’s public IP. The default login is `admin/admin`.
 
-![Grafana Web Browser Login Page](../../../.gitbook/assets/grafana-login.png)
+![Grafana Web Browser Login Page](../../../../.gitbook/assets/grafana-login.png)
 
 Then, click **Add a Data Source** and fill in the information for InfluxDB:  
 
 
-![Adding a new data source in Grafana](../../../.gitbook/assets/grafana-add-source.png)
+![Adding a new data source in Grafana](../../../../.gitbook/assets/grafana-add-source.png)
 
 Now, you can select **New Dashboard** and start adding metrics to graphs. Realm-specific metrics will be prepended with `realm_`. Add Telegraf on each Realm host in your distributed system.
 
-![Creating a new dashboard in Grafana](../../../.gitbook/assets/grafana-new-dash.png)
+![Creating a new dashboard in Grafana](../../../../.gitbook/assets/grafana-new-dash.png)
 
-All available metrics can be found [above](monitoring.md#available-metrics).  
+All available metrics can be found [above](./#available-metrics).  
+
+## What's next?
+
+After you've taken a look at some of our basic monitoring tips, we recommend following our [Advanced Monitoring Guide](advanced-monitoring.md) which shows you how to monitor all kinds of metrics of your ROS deployment using Prometheus and Grafana.  
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

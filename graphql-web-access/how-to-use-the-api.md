@@ -1,6 +1,6 @@
 # How to use the API
 
-### Endpoints {#endpoints}
+## Endpoints
 
 The GraphQL endpoint is mounted on `/graphql/:path` where path is the url-encoded relative path of the Realm.
 
@@ -8,7 +8,7 @@ The subscription endpoint is `ws://ROS-URL:ROS-PORT/graphql/:path`.
 
 The GraphiQL \(visual exploratory tool\) endpoint is mounted on `/graphql/explore/:path` where path, again, is the path of the Realm.
 
-### Query {#query}
+## Query
 
 To query, you start with a `query` node. The schema of the Realm file is automatically used to generate the GraphQL schema that exposes the following operations:
 
@@ -20,9 +20,13 @@ To query, you start with a `query` node. The schema of the Realm file is automat
   * `take`: maximum number of items to return.
 * Query for object by primary key: object types that have a primary key defined will have a singularized node, e.g. `user`, `realmFile`, etc. It accepts a single argument that is the primary key of the object.
 
+{% hint style="warning" %}
+For models which already have a plural name definition in your schema, you will need to add another "s" to your query.  \(i.e. "cars" becomes "carss", "data" becomes "datas", etc\)
+{% endhint %}
+
 For more information on how to use `query` see the [GraphQL documentation](http://graphql.org/learn/queries/).
 
-### Mutation {#mutation}
+## Mutation
 
 To mutate an object, start with a `mutation` node. The schema of the Realm file is automatically used to generate the GraphQL schema that exposes the following operations:
 
@@ -34,7 +38,7 @@ To mutate an object, start with a `mutation` node. The schema of the Realm file 
 
 For more information on how to use `mutation` see the [GraphQL documentation](http://graphql.org/learn/queries/#mutations).
 
-### Subscription {#subscription}
+## Subscription
 
 To subscribe for change notifications, start with a `subscription` node. The schema of the Realm file is automatically used to generate the GraphQL schema that exposes the following operations:
 
@@ -44,4 +48,6 @@ To subscribe for change notifications, start with a `subscription` node. The sch
   * `descending`: sorting direction \(default is `false`, i.e. ascending\).
   * `skip`: offset to start taking objects from.
   * `take`: maximum number of items to return.
+
+
 

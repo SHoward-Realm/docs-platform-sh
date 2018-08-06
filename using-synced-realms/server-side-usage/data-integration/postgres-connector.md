@@ -301,7 +301,7 @@ The concept of lists does not typically exist in relational databases, the data 
 All of the default Postgres types are automatically mapped and converted to corresponding [Realm types](https://realm.io/docs/javascript/latest/#supported-types) as shown here:
 
 | Realm type | Postgres types |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- |
 | `string` | `text`, `varchar`, `character`, `character varying`, `tsvector`, `json`, `bytea`, `uuid` |
 | `float` | `numeric`, `decimal`, `double precision` |
 | `int` | `bigint`, `smallint`, `integer` |
