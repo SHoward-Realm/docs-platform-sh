@@ -118,17 +118,17 @@ Below is a node script you can run that accomplishes the same effect but include
 const configuration = {
     /** Path to the sync worker on this and the destination servers */
     syncWorkerPath: "/apps/syncworker",
-    consulHost: "realm-ecc.nndc.kp.org",
+    consulHost: "realm.consul.org",
     /** Network interface that the sync worker is listening on. Used to compare sync services addresses. */
     networkInterface: "eth0",
     destination: {
         servers: [ 
-            "cskpcloudxp3258.cloud.kp.org",
-            "cskpcloudxp3259.cloud.kp.org",
-            "cskpcloudxp3260.cloud.kp.org"
+            "syncWorker1.cloud.org",
+            "syncWorker2.cloud.org",
+            "syncWorker3.cloud.org"
         ],
         /** SSH username for the remote servers */
-        username: "ecc",
+        username: "admin",
         /** SSH keyfile to authenticate as `username` with */
         pathToKeyfile: `${__dirname}/keyfile.pem`
     },
