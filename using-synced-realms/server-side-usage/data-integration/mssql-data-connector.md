@@ -154,12 +154,12 @@ module.exports = {
     database_schema: 'dbo',
 
     // Realm Object Server URL
-    //self-hosted: "realm://10.0.0.7:9080"
-    //cloud: https://small-plastic-handle.us1a.cloud.realm.io/
+    //self-hosted: realm://10.0.0.7:9080
+    //cloud: realms://small-plastic-handle.us1a.cloud.realm.io/
     //note: port only required for self-hosted
     realm_object_server_url: "realm://<IP_OR_DNS_OF_ROS>",
 
-    //self-hosted:"http://10.0.0.7:9080"
+    //self-hosted:http://10.0.0.7:9080
     //cloud: https://small-plastic-handle.us1a.cloud.realm.io/
     auth_server_url: "http://<IP_OR_DNS_OF_ROS>",
 
