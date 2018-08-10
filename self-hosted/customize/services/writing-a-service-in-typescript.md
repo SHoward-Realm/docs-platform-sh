@@ -225,7 +225,7 @@ class ProductsService {
 
   @ServerStarted()
   async serverStarted(server: Server) {
-    this.realm = await this.server.realmFactory.open('/products', [ProductSchema])
+    this.realm = await server.openRealm(‘/path to realm’,[schema])
   }
 } 
 ```
@@ -251,9 +251,9 @@ class ProductsService {
 
   realm: Realm
 
-  @ServerStarted()
+@ServerStarted()
   async serverStarted(server: Server) {
-    this.realm = await this.server.realmFactory.open('/products', [ProductSchema])
+    this.realm = await server.openRealm(‘/path to realm’,[schema])
   }
   
   @Get('/')
@@ -261,9 +261,9 @@ class ProductsService {
     return this.realm.objects("Product").filtered(filterQuery).slice()
   }
   
-  @Get('/:productId')
-  async getByProductId(productId: string) {
-    return this.realm.objectByPrimaryKey("Product", productId)
+  @Get('/')
+  async get() {
+    return this.realm.objectByPrimaryKey(Product.name, productId)
   }
 } 
 ```
