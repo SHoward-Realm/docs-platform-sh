@@ -380,14 +380,5 @@ A permission denied error will be denoted by the code `ErrorCode.PermissionDenie
 | 203 “Bad user authentication \(BIND, REFRESH\)” | Indicates that the server has produced a bad token, or that the SDK has done something wrong. |
 | 206 “Permission denied \(BIND, REFRESH\)” | Indicates that the user does not have permission to access the Realm at the given path. |
 
-### Operational Errors
-
-Occasionally it can be useful for debugging purposes to check the Realm Object Server logs - which are output to the terminal by default but can easily be output to the file system or an external logger by extending your `index.ts`. Realm Object Server produces two specific classes of error and warning diagnostics that may be useful to system admins and developers.
-
-| **Error Message** | **Solution** |
-| :--- | :--- |
-| Failed to accept a connection due to the file descriptor limit, consider increasing the limit in your system config | Increase the file descriptor limit on your machine.  Instructions on how to do this can be found [here](https://www.tecmint.com/increase-set-open-file-limits-in-linux/).   |
-| mmap\(\) failed: Cannot allocate memory  | Consider increasing the amount of memory available on your server.  If you believe that your server has ample resources, please [contact us](https://support.realm.io/).   |
-
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) 
 

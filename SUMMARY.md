@@ -99,6 +99,7 @@
     * [Installation Errors](self-hosted/troubleshoot/installation-errors.md)
     * [Viewing your server logs](self-hosted/troubleshoot/viewing-your-server-logs.md)
     * [Verify Port Access](self-hosted/troubleshoot/verify-port-access.md)
+    * [Operational Errors](self-hosted/troubleshoot/operational-errors.md)
     * [FAQs](https://support.realm.io/support/solutions/folders/36000104549)
   * [API](https://realm.io/docs/realm-object-server/latest/api/ros/)
 * [Guides](guides/README.md)
