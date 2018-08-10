@@ -2,6 +2,8 @@
 
 ## Quick Start {#quick-start}
 
+This tutorial builds off the previous step. We recommend that you complete these first then continue with this. If not, you can follow the instructions below to clone the existing project:
+
 {% hint style="success" %}
 Want to get started right away with the complete source code? [Check it out here](https://github.com/realm/my-first-realm-app/tree/master/android/PartialSync)
 {% endhint %}
