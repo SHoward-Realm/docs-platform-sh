@@ -170,13 +170,22 @@ module.exports = {
     // The synced Realm path for the data
     target_realm_path: '/SQLDemoNew',
 
-    // Postgres config used for all connections - replace with your data
+    // MSSQL config used for all connections - replace with your data
     sqlserver_config: {
         user:       'realm',
         password:   'my-sql-password',
         server:     'mydbinstanceAddress.us-east-1.rds.amazonaws.com',
         port:        1433
-    },
+        connectionTimeout: 300000,
+        requestTimeout:    300000,
+        pool: {
+           idleTimeoutMillis: 300000
+       },
+      options: {
+          //only if needed for server 
+          encrypt: true
+      }    
+  },
 }
 ```
 {% endcode-tabs-item %}
