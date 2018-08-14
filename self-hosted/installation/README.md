@@ -13,11 +13,11 @@ We currently support the following operating systems:
 * RHEL 6+
 * CentOS 7+
 
-We plan to add native support for Windows. In the meantime, you can [**run the server for development purposes via Docker**](https://github.com/realm/realm-server-side-samples/tree/master/15-running-ros-with-docker)**.**
+We plan to add native support for Windows. In the meantime, you can use [Docker during your development period](./#running-on-an-unsupported-os).  
 
 ### Ports
 
-The Realm Object Server utilizes websocket connections over TCP to synchronize data.  This means that you will need to make sure your firewall allows TCP communication over whichever ports your ROS is configured to use.  By default, this is **port 9080** for HTTP traffic.  We recommend securing your server by enabling HTTPs communication which is done over **port 443**.  
+The Realm Object Server utilizes websocket connections over TCP to synchronize data.  This means that you will need to make sure your firewall allows TCP communication over whichever ports your ROS is configured to use.  By default, this is **port 9080** for HTTP traffic.  We recommend securing your server by enabling HTTPs communication which is done over **port 9443**.  
 
 ## Quick Start Install
 
@@ -111,6 +111,20 @@ Having issues with your installation?  We're here to help.  Please [contact us](
 * Relevant error messages and/or logs
 * Versions of NPM and Node
 * Operating system information
+
+## Running on an unsupported OS
+
+For users who need to run on Windows for development purposes, Docker can be used though we ultimately recommend moving to a Linux environment when ready for production.  
+
+We have a prebuilt docker image which can be run like so: 
+
+```bash
+docker pull realm/realm-object-server
+##make sure to input your own feature token 
+docker run -it --rm -e SYNC_WORKER_FEATURE_TOKEN="[FEATURE_TOKEN]" realm/realm-object-server
+```
+
+To customize your docker deployment \(adding special auth, GraphQL, etc\), [you may see the following guide for creating your own Dockerfile](https://github.com/realm/realm-server-side-samples/tree/master/15-running-ros-with-docker).  
 
 ## What's next?  [Learn how to start the server](../running-the-server.md) {#getting-started}
 
