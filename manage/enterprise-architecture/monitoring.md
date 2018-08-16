@@ -16,7 +16,7 @@ realm.example.com.authentication.failed
 **Metrics**
 
 | Name | Type | Description |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `<prefix>.client.unsyncable` | counter | Triggered every time a client fails to initiate synchronization of a realm because of messed up history. Such clients need their realm file deleted and then recovered from the server. This might happen if the server crashes and is recovered from a backup. |
 |  |  |  |
 | `<prefix>.session.started` | counter | Triggered every time a session is started. A session is considered started even before the authentication. |

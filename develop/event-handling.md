@@ -84,8 +84,6 @@ var handleChange = async function (changeEvent) {
     var coupon = coupons[couponIndex];
     if (coupon.isValid !== undefined) {
       var isValid = verifyCouponForUser(coupon, userId);
-      // Attention: Writes here will trigger a subsequent notification.
-      // Take care that this doesn't cause infinite changes!
       realm.write(function() {
         coupon.isValid = isValid;
       });
