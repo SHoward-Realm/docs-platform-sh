@@ -458,7 +458,7 @@ The Realm Platform is comprised of both mobile SDKs and server components. As a 
 
 ### Mobile Development
 
-[General Documentation for our Client SDKs](https://realm.io/docs/) can be found here. From this landing page, you'll want to select your language of choice \(i.e. Swift, Java, etc\) From within each language binding, you'll be able to learn syntax, find code snippets, and learn about best practices.
+[General Documentation for our Client SDKs](https://realm.io/docs/) can be found here. From this landing page, you'll want to select your language of choice \(i.e. Swift, Java, etc\) From within each Client SDK, you'll be able to learn syntax, find code snippets, and learn about best practices.
 
 ### Working with Realm Platform
 
@@ -470,10 +470,11 @@ Users who have chosen to self-host the Realm Platform will need to delve into on
 
 ### Getting Help
 
-Having an issue with Realm Platform that you don't feel you can solve from the documentation? There are a number of avenues for you.
+Having an issue with Realm Platform that you don't feel you can solve from the documentation? There are a number of avenues for you:
 
 * [Check our support FAQs ](https://support.realm.io/solution/categories/36000068636)
-* [Check our forums ](https://forums.realm.io/)
+* [Check our Forums ](https://forums.realm.io/)
+* [Check StackOverflow](https://stackoverflow.com/questions/tagged/realm)
 * [Submit a support ticket ](https://support.realm.io/helpdesk)
 * [File an issue on our Github](https://github.com/realm) if you believe you've found an issue
 
