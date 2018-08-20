@@ -354,6 +354,10 @@ Now you should be able to run the loader to import your SQL data into the Realm 
 node loader.js
 ```
 
+{% hint style="warning" %}
+**Note:** At this point, you might check to see if the data is available in Realm Studio. If you see the Realm files created but no resulting data, this is due to the loader / adapter design. After completion, the loader will attempt to upload all local data to your Realm Object Server instance. If it does not complete within the `loaderUploadMaxWaitTime` \(default 60 seconds\), it will simply persist the data locally until it is ultimately uploaded when the adapter process is run.
+{% endhint %}
+
 #### Improving the Performance of your Loader
 
 Importing a large amount of data can sometimes take a fair amount of time.  Here's a few tips to increase the performance of your loader
