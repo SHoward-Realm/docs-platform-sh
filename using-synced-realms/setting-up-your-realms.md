@@ -126,12 +126,15 @@ Your Server URL will follow a format like:
 {% tab title="Javascript" %}
 The default synced Realm is provided via the default configuration which can be accessed from the logged in `Realm.Sync.User`.
 
+When using query-based sync with Javascript, you are required to pass in a schema for your Realm.
+
 For example, to log in and open the default synced Realm:
 
 ```javascript
 Realm.Sync.User.login(server, username, password)
 .then((user) => {
       let config = user.createConfiguration();
+      config.schema = [Schema];
       Realm.open(config).then((realm) => {
           // ...
       });
