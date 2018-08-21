@@ -163,7 +163,7 @@ SSH to your new CentOS server for the data adapter
 
 [centos@data-adapter-server ~]# sudo npm install realm
 #you will need to update your path and version information according to the package you received
-[centos@data-adapter-server ~]# sudo npm install ~/Downloads/realm-postgres-adapters-1.0.10.tgz
+[centos@data-adapter-server ~]# sudo npm install ~/Downloads/realm-postgres-adapters-1.2.1.tgz
 ```
 {% endtab %}
 
