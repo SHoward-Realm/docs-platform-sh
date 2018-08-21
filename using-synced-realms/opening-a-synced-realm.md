@@ -88,6 +88,7 @@ For example, to log in and open the default synced Realm:
 Realm.Sync.User.login(server, username, password)
 .then((user) => {
       let config = user.createConfiguration();
+      config.schema = [Schema];
       Realm.open(config).then((realm) => {
           // ...
       });
