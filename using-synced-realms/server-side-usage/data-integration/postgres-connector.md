@@ -7,7 +7,11 @@ This guide walks you through how to use Realm’s data adapter to sync data from
 * Postgres 9.x \(we recommend using 9.6\)
 * Realm Object Server 2.x \(or higher\) or Realm Cloud
 
-## Postgres {#postgres:}
+## Setting up your Postgres Instance {#postgres:}
+
+{% hint style="info" %}
+Already have a Postgres Server that you'd like to use? You'll need to enable logical replication on your server. More detailed instructions can be found in the install walkthrough below.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Manual Install via CentOS" %}
@@ -138,7 +142,9 @@ You should now be able to connect to the Postgres server remotely. There are var
 You'll need to contact [info@realm.io](mailto:info@realm.io) to receive the Postgres Data Adapter Package file.
 {% endhint %}
 
-Now let’s setup the Realm Data Adapter. We will use a remote CentOS server.  ****If you do not yet have a running instance of the Realm Object Server, sign up for a [cloud instance](https://cloud.realm.io/) or see instructions on how to [install a self-hosted Realm Object Server](../../../self-hosted/installation/). \(We've also included instructions if you've liked to run locally on a Mac\)
+The following section will walk you through the setup of the Realm Data Adapter which facilitates bidirectional sync between the Realm Object Server and a Postgres Server. ****The Realm Data Adapter is a node process which will run using Realm-JS and its own NPM package. If you do not yet have a running instance of the Realm Object Server, sign up for a [cloud instance](https://cloud.realm.io/) or see instructions on how to [install a self-hosted Realm Object Server](../../../self-hosted/installation/). 
+
+### Installation
 
 {% tabs %}
 {% tab title="CentOS" %}
@@ -168,7 +174,7 @@ SSH to your new CentOS server for the data adapter
 {% endtab %}
 
 {% tab title="macOS" %}
-```text
+```bash
 #Now install Realm and the Realm Data Adapter npm package
 
 #create a new npm project (name as you like)
@@ -182,15 +188,212 @@ npm install ~/Downloads/realm-postgres-adapters-1.0.10.tgz
 {% endtab %}
 {% endtabs %}
 
-You can find the Adapter.js code [here](https://gist.github.com/mgeerling/9cca913539caef4d24f3d7ec6afe3daa).
+### Components
 
-And we use Config.js to set up your variables [here](https://gist.github.com/mgeerling/81ec8eba70accb0e2feae7155c49d82f).
+The data adapter relies on a number of components for two way data synchronization.
 
-When in development it may be necessary to reset your environment as you test things. You can use this [Reset.js script](https://gist.github.com/ianpward/6aa25df804a14b4a4d6e7156322a9747) to do so
+* Data Adapter Package: This contains the core codebase of the adapter
+* An adapter script: This runs as a process to facilitate synchronization
+* Model definition: This defines the schema to be synchronized
+* Configuration variables: this defines a number of variables which are used during adapter configuration
 
-Place them all in a new folder you create and let’s begin by editing `config.js` with your environment variables. The postgres variables should all come from your previous setup and you can find the admin token at `/data/keys` on the Realm Object Server. The last thing you will need to enter is `database_name:` If you are connecting to an already existing Postgres database then you want to match the name of your already existing database otherwise you can choose something unique and you can configure the Realm Data Adapter to automatically create that database and insert the schema and data being pulled from Realm Object Server.
+While the breakdown of these components could be done in many ways, we'll show you a basic architecture with three files.
 
-Let’s take a look at the adapter.js code and look at some of the parameters we can set. Most of the code has to do with setting up the adapter for your environment - the first is:
+### Prepare your Config File 
+
+This file will contain the information required to connect to your Postgres Server. You'll need your connection information for both Realm and Postgres available. You might outline your file like so: 
+
+{% code-tabs %}
+{% code-tabs-item title="config.js" %}
+```javascript
+module.exports = {
+    // Database name
+    database_name: "<INSERT_PG_DATABASE_NAME>",
+
+    // Realm Object Server Information
+    
+    //examples:
+    //self-hosted: realm://10.0.0.7:9080/
+    //cloud: realms://small-plastic-handle.us1a.cloud.realm.io/
+    realm_object_server_url: "realm://<IP_OR_DNS_OF_ROS>",
+    
+    //self-hosted: http://10.0.0.7:9080
+    //cloud: https://small-plastic-handle.us1a.cloud.realm.io/
+    auth_server_url: "http://<IP_OR_DNS_OF_ROS>",
+    
+    admin_username: "<ADMIN_USER>",
+
+    admin_password: "<ADMIN_USER_PASSWORD>",
+
+    // The synced Realm path for the data ie. 'postgresRealm'
+    // Note: be careful not to start this path with a `/` if you have a trailing slash in your realm_object_server_url above 
+    target_realm_path: '<URI_OF_REALM>',
+
+    // Postgres config used for all connections - replace with your data
+    postgres_config: {
+        host:     '<POSTGRES_SERVER_IP>',
+        port:     5432,
+        user:     '<POSTGRES_USER>',
+        password: '<POSTGRES_PASSWORD>'
+    },
+}
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+### Define your Models
+
+You will need to let the adapter know which data you would like to sync between Realm and Postgres. You will do this by defining the schema of your data models which is then passed into the adapter process. This schema definition follows the [syntax used by our Javascript SDK.](https://realm.io/docs/javascript/latest/#models)
+
+Below you'll find an example models file: 
+
+```javascript
+const Bus = {
+    name: 'Bus',
+    primaryKey: 'vehicle',
+    properties: {
+        Scheduleid: {type: 'Schedule'},
+        vehicle: 'int',
+        fleet_id: { type: 'string', optional: true },
+        last_main: { type: 'date', optional: true }
+    }
+};
+
+const Driver = {
+    name: 'Driver',
+    primaryKey: 'id',
+    properties: {
+        Busvehicle: {type: 'Bus'},
+        id: 'int',
+        name: { type: 'string', optional: true },
+        employ_date: { type: 'date', optional: true }
+    }
+};
+
+const Schedule = {
+    name: 'Schedule',
+    primaryKey: 'id',
+    properties: {
+        id: 'int',
+        Routeid: {type: 'Route'},
+        departure: { type: 'date', optional: true },
+        arrival: { type: 'date', optional: true }
+    }
+};
+
+const Route = {
+    name: 'Route',
+    primaryKey: 'id',
+    properties: {
+        id: 'string'
+    }
+};
+
+
+module.exports = [
+    Bus,
+    Driver,
+    Schedule,
+    Route
+  ];
+```
+
+There are a couple of things to notice when looking at the code and comparing it to the Postgres schema. The first thing you will notice is that not all the tables are reflected as Realm objects. By only listing a subset, the adapter will ignore the other tables and only sync Bus, Schedule, Driver, and Route tables. Additionally, any fields that you do not care about syncing can be dropped from the data model, you can see that fare is missing from Route schema. In order for the Postgres adapter to work all Object must have a primary key so that lookups can resolve in a timely manner.
+
+#### Foreign Keys
+
+The other important point demonstrated in this mapping is the Routeid property which in Postgres is a foreign key to the primary key in the Route table. However, instead of defining this as a string in Realm, we use Realm's link support to define this as a link to the corresponding Route object. The adapter will automatically resolve the foreign key relationship into a Realm link!
+
+The data structure between Route and Schedule is that each Route row/object will link to 0 or more Schedule row/object\(s\). The number of linked Schedules represents the number of schedules of each route. Thus in the app as you add more schedules to a route object, the app will create Schedule object which the adapter will then convert into a new row in the Schedule table.
+
+Similarly, the reverse will happen, such that if you remove a Schedule row from Postgres, the adapter will convert this change and delete the corresponding Schedule object in Realm.
+
+#### Lists
+
+Realm also has the ability to support List properties as shown [here](https://realm.io/docs/javascript/latest/#to-many-relationships).
+
+When the data adapter encounters a List property it will go and create a subtable on Postgres with three columns: oid, idx, and target. The oid is the primary key of the main table, target is the primary key of the list table, idx is the index into an array.
+
+The concept of lists does not typically exist in relational databases, the data adapter was designed to be one-way only for lists so if you want to maintain order you will need to use a stored procedure in Postgres. The indexes are zero-based and they need to be contiguous and unique. If you don't need ordered lists you can change your model to reference the parent object which means list properties are no longer needed
+
+### Your Adapter Script
+
+Finally, we'll need to prepare and ultimately run our adapter script to test the synchronization. We'll present an example script below and then go through many of the [configuration options which are available in a section below](postgres-connector.md#detailed-configuration-options).  You'll notice that our constants point to the configuration and models files which we prepared above.
+
+```javascript
+const Realm = require('realm');
+const fs = require('fs');
+const path = require('path');
+const PostgresAdapter = require('realm-postgres-adapters').PostgresAdapter;
+const Config = require('./config');
+const Models = require('./realmmodels');
+
+async function main() {
+  //login as an admin user 
+  var admin_user = await Realm.Sync.User.login(Config.auth_server_url, Config.admin_username, Config.admin_password)
+
+  // Print out uncaught exceptions
+  process.on('uncaughtException', (err) => console.log(err));
+
+  var adapter = new PostgresAdapter({
+      // Realm configuration parameters for connecting to ROS
+      realmConfig: {
+          server: Config.realm_object_server_url, // or specify your realm-object-server location
+          user:   admin_user,
+      },
+      dbName: Config.database_name,
+      // Postgres configuration and database name
+      postgresConfig: Config.postgres_config,
+      resetPostgresReplicationSlot: true,
+
+      // Set to true to create the Postgres DB if not already created
+      createPostgresDB: true,
+      initializeRealmFromPostgres: false,
+      // Map of custom types to Postgres types
+      /*customPostgresTypes: {
+          'USER-DEFINED': 'text',
+          'ARRAY':        'text',
+          'mpaa_rating':  'text',
+          'year':         'integer',
+      },*/
+      // Set to true to indicate Postgres tables should be created and
+      // properties added to these tables based on schema additions
+      // made in Realm. If set to false any desired changes to the
+      // Postgres schema will need to be made external to the adapter.
+      applyRealmSchemaChangesToPostgres: true,
+
+      // Only match a single Realm called 'myRealm'
+      realmRegex: Config.target_realm_path,
+
+      // Specify the Realm name all Postgres changes should be applied to
+      mapPostgresChangeToRealmPath: Config.target_realm_path,
+
+      // Specify the Realm objects we want to replicate in Postgres.
+      // Any types or properties not specified here will not be replicated
+      schema: Models,
+
+      printCommandsToConsole: true,
+  });
+}
+
+main();
+```
+
+After you've finishing setting up your adapter file, you can run it with node via your terminal:
+
+```text
+node adapter
+```
+
+{% hint style="warning" %}
+When in development it may be necessary to reset your environment as you test things. For example, you may be solidifying your model configuration and make a change which is considered destructive. We've created a simple reset script which you can use to clean up your environment.  [You can find it here.](https://gist.github.com/ianpward/6aa25df804a14b4a4d6e7156322a9747) 
+{% endhint %}
+
+### Detailed Configuration Options 
+
+#### Environment Setup and Rules
+
+From the explanations above, we know that the adapter uses Postgres replication slots to facilitate sync from Postgres to Realm. 
 
 ```text
 resetPostgresReplicationSlot?: boolean,
@@ -198,7 +401,7 @@ resetPostgresReplicationSlot?: boolean,
 
 This optional config variable will reset the replication slot on the Postgres server when the adapter first boots up, this is useful for starting from the beginning.
 
-The next two options you will see are:
+When first running the adapter, you will need to make a few selections for handling the flow of data.
 
 ```text
 createPostgresDB?: boolean,
@@ -208,7 +411,15 @@ initializeRealmFromPostgres?: boolean,
 
 The first option creates the Postgres database assuming it does not already exist using the configuration parameters you provided and creates tables using the realm object schema. The second option does the reverse, it creates the realms on the Realm Object Server matching the already existing Postgres schema. Typically, these are configured with one true and the other false. If you are adding a Postgres server to an already existing deployment of Realm Object Server you would set createPostgresDB to true and initializeRealmFromPostgres to false to ease in the setup of your Postgres server and minimize any schema mismatch issues. If you are adding Realm Object Server onto your existing Postgres database you will set createPostgresDB to false and initializeRealmFromPostgres to true for the same reasons.
 
-The next config option you see is:
+While your adapter runs \(especially in development\), it is possible that you may decide to change your Realm model schema.
+
+```text
+applyRealmSchemaChangesToPostgres?: boolean
+```
+
+This option will execute SQL commands to extend the schema anytime the data model in the mapped Realm changes. It will create new tables or add new columns when new fields are added to your Realm objects.
+
+#### Custom Types
 
 ```text
 customPostgresTypes?:
@@ -216,11 +427,7 @@ customPostgresTypes?:
 
 This config option accepts a dictionary of key value pairs in JSON format. Postgres supports the ability to create custom types, if you have these in your Postgres database that you will mapping to Realm then you need to create a corresponding type in Realm that corresponds to your custom Postgres type. You can find the supported Realm types [here](https://realm.io/docs/javascript/latest/#supported-types)
 
-```text
-applyRealmSchemaChangesToPostgres?: boolean
-```
-
-This option will execute SQL commands to extend the schema anytime the data model in the mapped Realm changes. It will create new tables or add new columns when new fields are added to your Realm objects.
+#### Mapping the data
 
 ```text
 realmRegex:
@@ -246,7 +453,7 @@ Or let’s say that each user is opening a realm with the URL realm:
 realm://127.0.0.1/~/myRealm
 ```
 
-The `~` here expands into a realmId on the server to get the URL
+The `~` here expands into a userID on the server to get the URL
 
 `fb80255953a5eba491671781778d3e91/myRealm` for example. In this case there would be a realm created per user and you could match all of them with:
 
@@ -254,7 +461,7 @@ The `~` here expands into a realmId on the server to get the URL
 realmRegex: ‘^/(.*?)/myRealm$’
 ```
 
-The next config is:
+#### Mapping a Postgres Table to a Specific Realm
 
 ```text
 mapPostgresChangeToRealmPath:
@@ -282,21 +489,56 @@ mapRealmChangeToPostgresTable?: (realmPath) => { tableName: string, extraPropert
 
 Given the realmPath that the change occurred on you must return the tableName in Postgres that you want to write the change to and a extraProperties Javascript object which allows mapping realm data into other Postgres columns. You want to support more columns to convert data that is in realm as a single property. Such as if you wanted to assign an ID in Realm to two columns in Postgres.
 
-The last thing we need to configure is the schema for the objects and tables we are using the data adapter for. You can place the schema directly into `adapter.js` or more commonly you will export the schema from another Javascript file. See [this sample realmmodels.js file](https://gist.github.com/ianpward/727e93e8ec8e85218f0231ed1fb5ebfc).
+#### Mapping Postgres Columns to Realm Models
 
-There are a couple of things to notice when looking at the code and comparing it to the Postgres schema. The first thing you will notice is that not all the tables are reflected as Realm objects. By only listing a subset, the adapter will ignore the other tables and only sync Bus, Schedule, Driver, and Route tables. Additionally, any fields that you do not care about syncing can be dropped from the data model, you can see that fare is missing from Route schema. In order for the Postgres adapter to work all Object must have a primary key so that lookups can resolve in a timely manner.
+By default, the adapter will sync a Postgres column to a Realm model of the same name. However, configuration options are exposed in the event that you'd like to rename your Postgres columns into something that is more friendly for your app developers. 
 
-The other important point demonstrated in this mapping is the Routeid property which in Postgres is a foreign key to the primary key in the Route table. However, instead of defining this as a string in Realm, we use Realm's link support to define this as a link to the corresponding Route object. The adapter will automatically resolve the foreign key relationship into a Realm link!
+You can accomplish this with the following functions: 
 
-The data structure between Route and Schedule is that each Route row/object will link to 0 or more Schedule row/object\(s\). The number of linked Schedules represents the number of schedules of each route. Thus in the app as you add more schedules to a route object, the app will create Schedule object which the adapter will then convert into a new row in the Schedule table.
+```text
+mapPostgresTableName: (table_name)
 
-Similarly, the reverse will happen, such that if you remove a Schedule row from Postgres, the adapter will convert this change and delete the corresponding Schedule object in Realm.
+mapRealmClassName: (class_name)
+```
 
-Realm also has the ability to support List properties as shown [here](https://realm.io/docs/javascript/latest/#to-many-relationships).
+where the table\_name is the name of your column/table in Postgres and the class\_name is the desired name of your class/model within the Realm Object Server. 
 
-When the data adapter encounters a List property it will go and create a subtable on Postgres with three columns: oid, idx, and target. The oid is the primary key of the main table, target is the primary key of the list table, idx is the index into an array.
+For example: 
 
-The concept of lists does not typically exist in relational databases, the data adapter was designed to be one-way only for lists so if you want to maintain order you will need to use a stored procedure in Postgres. The indexes are zero-based and they need to be contiguous and unique. If you don't need ordered lists you can change your model to reference the parent object which means list properties are no longer needed
+Let's imagine that we have a table in Postgres called Driver which we'd like to rename to a Realm class called Chauffeur. The following configuration options would be used from your adapter script. 
+
+```javascript
+mapPostgresTableName: (table_name) => { 
+        if (table_name === 'Driver') {
+            return 'Chauffeur';
+        }
+        return table_name;
+    },
+    
+    mapRealmClassName: (class_name) => {
+        if (class_name === 'Chauffeur') {
+            return 'Driver';
+        } 
+        return class_name;
+    },
+```
+
+You will also need to make sure your class name is defined correctly within your models definition. For example: 
+
+```javascript
+const Driver = {
+    name: 'Chauffeur',
+    primaryKey: 'id',
+    properties: {
+        Busvehicle: {type: 'Bus'},
+        id: 'int',
+        name: { type: 'string', optional: true },
+        employ_date: { type: 'date', optional: true }
+    }
+};
+```
+
+### Natively Supported Postgres Types
 
 All of the default Postgres types are automatically mapped and converted to corresponding [Realm types](https://realm.io/docs/javascript/latest/#supported-types) as shown here:
 
