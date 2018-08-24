@@ -2,7 +2,7 @@
 
 ## Overview
 
-This walkthrough will take you through all of the basics of using the Realm Platform whether you are using our cloud or self-hosting. During the course, you will learn how to sign up and connect to your instance. You will learn basic terminologies and how to navigate our documentation. You will make a basic mobile app and see how web and API integrations are possible.
+This walkthrough will take you through all of the basics of using the Realm Platform whether you are using our cloud or self-hosting. During the course, you will learn how to sign up and connect to your instance. You will learn basic terminology and how to navigate our documentation. You will make a basic mobile app and see how web and API integrations are possible.
 
 ## What is Realm Platform? {#the-realm-platform}
 
@@ -67,10 +67,12 @@ For some of our server examples, we'll need an admin user. Luckily, it is very e
 
 ## Learn how to pre-populate data with our server SDKs
 
-Many of our users have existing data sets that they'd like to import into the Realm Platform. One of the most common ways to do this is via our server-side SDKs. We'll show you how to build a basic import script using our Node.JS SDK.
+Many of our users have existing data sets that they'd like to import into the Realm Platform. One of the most common ways to do this is via our server-side SDKs. We'll show you how to build a basic import script using our Node.js SDK.
 
 {% hint style="info" %}
-Looking for the quickest way to get started? [Just clone the repository here and follow the read me](https://github.com/realm/realm-server-side-samples/tree/master/17-RMP-walkthrough).
+Looking for the quickest way to get started? [Check out the code for the walkthrough here and follow the README](https://github.com/realm/realm-server-side-samples/tree/master/17-RMP-walkthrough)  
+
+[You can find all of our Realm sync code samples here.](https://github.com/realm/realm-server-side-samples)
 {% endhint %}
 
 ### Prerequisites
@@ -90,7 +92,7 @@ After copying this to your working directory, simply perform an `npm install`fro
 
 ### Create a constants file with your server information
 
-Since we'll be using our server information a few times during this walkthrough, we can store it in a constants file to save some time. Simply create a `constants.js`, I've put mine with a `src` directory. Then make sure to fill in your instance and user info. If you aren't sure of your URL, refer to the [Realm Studio section](./#connect-with-realm-studio):
+Since we'll be using our server information a few times during this walkthrough, we can store it in a constants file to save some time. Simply create a `constants.js` Then make sure to fill in your instance and user info. If you aren't sure of your URL, refer to the [Realm Studio section](./#connect-with-realm-studio):
 
 {% code-tabs %}
 {% code-tabs-item title="constants.js" %}
@@ -157,7 +159,7 @@ const Project = {
 
 ### Login to Realm Platform and Open a Realm
 
-Next we'll authenticate against our instance of the Realm Object Server and open up the default realm. We'll also add a basic error handler to catch errors in case of a failure. You can find [more details on authentication here](../self-hosted/customize/authentication/) \(in case you'd like to use an alternate provider\). You can find some of the [specifics of opening a realm here](../using-synced-realms/opening-a-synced-realm.md).
+Next we'll authenticate against our instance of the Realm Object Server and open up the default realm. We'll also add a [basic error handler to catch errors](https://docs.realm.io/platform/using-synced-realms/troubleshoot/errors#error-reporting) in case of a failure. You can find [more details on authentication here](../self-hosted/customize/authentication/) \(in case you'd like to use an alternate provider\). You can find some of the [specifics of opening a realm here](../using-synced-realms/opening-a-synced-realm.md).
 
 ```javascript
 const errorCallback = function errorCallback(message, isFatal, category, code) {
@@ -227,7 +229,7 @@ node src/loader
 
 Once it has completed, we can view the resulting data from Realm Studio. You'll find it within the `/default` realm.
 
-## Learn how to sync this data to your Mobile App
+## Learn how to sync this data with your Mobile App
 
 To demonstrate Realm Platform's synchronization capabilities, we will display the data we just loaded into our instance via a mobile app. If you decided to skip the previous section, it is not a problem as you can simply create new data from the mobile side.
 
@@ -264,10 +266,10 @@ If you are looking to use our cross-platform SDKs \(Xamarin or React Native\), w
 ## Learn how to integrate with a Web Application
 
 {% hint style="info" %}
-Looking for the quickest way to get started? [Just clone the repository here and follow the read me](https://github.com/realm/realm-server-side-samples/tree/master/17-RMP-walkthrough).
+Looking for the quickest way to get started? [Check out the code for the walkthrough here and follow the README](https://github.com/realm/realm-server-side-samples/tree/master/17-RMP-walkthrough).  
 {% endhint %}
 
-Since the Realm database is an embedded database, it cannot be embedded directly into a user's browser. However, we recognize that our developers have product offerings that span both mobile and web applications. To solve this, Realm Platform offers a GraphQL API which enables retrieving Realm data in a web browser or in other backend language environments unsupported with Realm SDKs currently. The API supports retrieving data or applying changes via HTTP requests and realtime [subscription](https://github.com/facebook/graphql/blob/master/rfcs/Subscriptions.md) events via a Websockets connection.
+Since the Realm database is an embedded database, it cannot be embedded directly into a user's browser. However, we recognize that our developers have product offerings that span both mobile and web applications. To solve this, Realm Platform offers a GraphQL API which enables retrieving Realm data in a web browser or in other backend language environments unsupported with Realm SDKs currently. The API supports retrieving data or applying changes via HTTP requests and realtime [subscription](https://github.com/facebook/graphql/blob/master/rfcs/Subscriptions.md) events via a Websocket connection.
 
 We're going to show you how to call the GraphQL API from a basic Javascript client using a few helpers and convenience APIs for the [Apollo Client](https://www.apollographql.com/client), a popular Javascript client that supports a variety of web frameworks as well as Node.js
 
