@@ -22,7 +22,9 @@ To get started, pick your platform and download the application:
 | ![](../.gitbook/assets/linux.svg) | [**Download for Linux**](https://studio-releases.realm.io/latest/download/linux-appimage) |
 | ![](../.gitbook/assets/windows.svg) | [**Download for Windows**](https://studio-releases.realm.io/latest/download/win-setup) |
 
+### Older Versions
 
+Need an older version of Realm Studio for compatibility? [You can find all versions available for download here](https://studio-releases.realm.io/).  
 
 
 
