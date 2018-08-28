@@ -216,7 +216,7 @@ The configuration ties together an authenticated user and a sync server URL. The
 
 ```csharp
 var user = User.Current;
-var serverURL = new Uri("/~/default", UriKind.Relative);
+var serverURL = new Uri("/default", UriKind.Relative);
 var configuration = new QueryBasedSyncConfiguration(serverURL, user);
 
 var realm = Realm.GetInstance(configuration);
@@ -338,7 +338,7 @@ var realm = new Realm(config);
 {% tab title=".Net" %}
 ```csharp
 var user = User.Current;
-var serverURL = new Uri("/~/default", UriKind.Relative);
+var serverURL = new Uri("/default", UriKind.Relative);
 var configuration = new QueryBasedSyncConfiguration(serverURL, user);
 
 var realm = Realm.GetInstance(configuration);
@@ -432,7 +432,7 @@ Realm.open(config)
 
 {% tab title=".Net" %}
 ```csharp
-var serverURL = new Uri("/~/default", UriKind.Relative);
+var serverURL = new Uri("/default", UriKind.Relative);
 var config = new QueryBasedSyncConfiguration(serverURL, user);
 try
 {
