@@ -204,7 +204,7 @@ subscription.addListener((sub, state) => {
 });
 ```
 
-If changes in the subscription's state is not importing,  it is possible to listen to changes to the results set:
+You can also listen to changes to the results set as usual:
 
 ```javascript
 let results = realm.objects('Person').filtered('age >= 18');
