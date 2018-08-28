@@ -181,7 +181,7 @@ query.addChangeListener(new OrderedRealmCollectionChangeListener<RealmResults<Pe
 ```javascript
 let results = realm.objects('Person').filtered('age >= 18');
 let subscription = results.subscribe();
-results.addListener((collection, changes) => {
+subscription.addListener((sub, state) => {
     switch (state) {
     case Realm.Sync.SubscriptionState.Creating
         // The subscription has not yet been written to the Realm
@@ -201,6 +201,18 @@ results.addListener((collection, changes) => {
         console.log('An error occurred: ', subscription.error);
         break;
     }
+});
+```
+
+If changes in the subscription's state is not importing,  it is possible to listen to changes to the results set:
+
+```javascript
+let results = realm.objects('Person').filtered('age >= 18');
+let subscription = results.subscribe();
+results.addListener((collection, changes) => {
+    // Called whenever the objects in the local Realm which match the query
+    // change, including when a subscription being added or removed changes
+    // which objects are included
 });
 ```
 {% endtab %}
