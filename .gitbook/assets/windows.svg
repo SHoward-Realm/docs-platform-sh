@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="41px" height="41px" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
-    <title>windows</title>
+<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Untitled</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="windows" fill="#1D2340" fill-rule="nonzero">
-            <path d="M0,5.77820455 L16.6268977,3.51379318 L16.6341659,19.5517818 L0.0151886364,19.6464219 L0,5.77820455 Z M16.6189773,21.3996705 L16.631883,37.4516364 L0.0129056818,35.1667716 L0.0119738636,21.2919989 L16.6189773,21.3996705 Z M18.6345466,3.21756818 L40.680433,7.10542736e-15 L40.680433,19.3478068 L18.6345466,19.5228256 L18.6345466,3.21756818 Z M40.685558,21.550625 L40.6803864,40.8113068 L18.6345,37.6997795 L18.6036102,21.5145636 L40.685558,21.550625 Z" id="Shape"></path>
-        </g>
+        <path d="M0,12.402 L35.687,7.5418 L35.7026,41.9648 L0.0326,42.16793 L0,12.402 Z M35.67,45.931 L35.6977,80.384 L0.0277,75.4799 L0.0257,45.6999 L35.67,45.931 Z M39.9961,6.906 L87.3141,6.21724894e-15 L87.3141,41.527 L39.9961,41.90265 L39.9961,6.906 Z M87.3251,46.255 L87.314,87.595 L39.996,80.9166 L39.9297,46.1776 L87.3251,46.255 Z" id="Shape" fill="#1D2340" fill-rule="nonzero"></path>
     </g>
 </svg>
