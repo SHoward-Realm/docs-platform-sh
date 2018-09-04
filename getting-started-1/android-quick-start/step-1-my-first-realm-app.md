@@ -6,6 +6,7 @@
 * JDK version 7.0 or higher
 * A recent version of the Android SDK \(typically included as part of the Android Studio installation\)
 * Android API Level 21 or higher \(Android 5.0 and above\)
+* You will need your Realm Cloud instance URL that was generated when you created your instance \(it can be found by logging in to the [cloud portal](https://cloud.realm.io/), and clicking the `Copy Instance URL` link\)
 
 ## Quick Start {#step-1-create-a-new-android-project}
 
