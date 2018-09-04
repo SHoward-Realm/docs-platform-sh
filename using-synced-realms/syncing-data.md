@@ -105,7 +105,8 @@ When you are using Query-based synchronization, the notification system is criti
 {% tab title="Swift" %}
 ```swift
 let results = realm.objects(Person.self).filter("age > 18")
-let subscriptionToken = results.subscribe().observe(\.state) { state in
+let subscription = results.subscribe()
+let subscriptionToken = subscription.observe(\.state) { state in
     switch state {
     case .creating:
         // The subscription has not yet been written to the Realm
