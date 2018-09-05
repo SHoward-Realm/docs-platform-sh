@@ -18,7 +18,7 @@ For development and test environments the hardware requirements can be drastical
 
 ## Dependencies 
 
-The Realm Components must be installed on a Linux server such as Ubuntu 16.04, there are a few dependencies that should be installed first such as Python, node.js, and npm - the exact details can be found [here]().  
+The Realm Components must be installed on a Linux server such as Ubuntu 16.04, there are a few dependencies that should be installed first such as Python, node.js, and npm - the exact details can be found [here](https://docs.realm.io/platform/self-hosted/installation).  
 
 ## Scaling out ROS components 
 
