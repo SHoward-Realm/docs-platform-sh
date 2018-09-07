@@ -103,17 +103,17 @@
     * [FAQs](https://support.realm.io/support/solutions/folders/36000104549)
   * [API](https://realm.io/docs/realm-object-server/latest/api/ros/)
 * [Guides](guides/README.md)
-  * [Server-side Code Samples](https://github.com/realm/realm-server-side-samples)
   * [The Realm Data Model](guides/the-realm-data-model.md)
-  * [Working with Realm's Data Connectors](https://docs.realm.io/platform/using-synced-realms/server-side-usage/data-integration)
+  * [Server-side Code Samples](https://github.com/realm/realm-server-side-samples)
   * [Integrate with a Message Queue](guides/integrate-with-a-message-queue.md)
   * [Convert a Local Realm to a Synced Realm](guides/convert-a-local-realm-to-a-synced-realm.md)
+  * [Working with Realm's Data Connectors](https://docs.realm.io/platform/using-synced-realms/server-side-usage/data-integration)
   * [Building a Field Worker Application in Swift](guides/building-a-field-worker-application-in-swift.md)
   * [Sample UI for Login](guides/sample-ui-for-login.md)
   * [Designing an Architecture with Multiple Realms](guides/designing-an-architecture-with-multiple-realms.md)
   * [Learn Realm Sync and Integrate with a Proxy](guides/learn-realm-sync-and-integrate-with-a-proxy.md)
-  * [White Papers](https://realm.io/resources)
   * [Firebase Authentication with Realm Cloud](guides/firebase-authentication-with-realm-cloud.md)
+  * [White Papers](https://realm.io/resources)
 
 ## Have a Question?
 
