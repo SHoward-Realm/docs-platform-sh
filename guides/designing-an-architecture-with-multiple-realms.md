@@ -1,7 +1,5 @@
 # Designing an Architecture with Multiple Realms
 
-Test 2
-
 {% hint style="warning" %}
 Multiple Realm architectures will become less common after the GA release of Query-based sync which will allow finer grain \(object-level\) permissions.
 {% endhint %}
