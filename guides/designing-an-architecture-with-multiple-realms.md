@@ -1,5 +1,7 @@
 # Designing an Architecture with Multiple Realms
 
+
+
 {% hint style="warning" %}
 Multiple Realm architectures will become less common after the GA release of Query-based sync which will allow finer grain \(object-level\) permissions.
 {% endhint %}
@@ -163,5 +165,5 @@ SyncUser.current?.retrievePermissions { permissions, error in
 
 The permission objects returned would each represent a Realm to which you has some kind of access rights. However, this does not include Realms for which you have permissions by virtue of a wildcard permission available to all users.
 
-Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3) Test3
+Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 
