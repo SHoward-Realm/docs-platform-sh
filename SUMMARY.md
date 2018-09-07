@@ -29,6 +29,7 @@
     * [Server-side Code Samples](https://github.com/realm/realm-server-side-samples)
   * [Access Control](using-synced-realms/access-control/README.md)
     * [Path-level permissions](using-synced-realms/access-control/path-level-permissions.md)
+    * [Fine-grained permissions](using-synced-realms/access-control/fine-grained-permissions.md)
   * [Monitoring Network Activity](using-synced-realms/monitoring-network-activity.md)
   * [Migrating Your Data](using-synced-realms/migrating-your-data.md)
   * [Troubleshoot](using-synced-realms/troubleshoot/README.md)

@@ -279,10 +279,6 @@ Revoking permissions can either be done by granting a permission value with an a
 
 ### Offering Permissions
 
-{% hint style="danger" %}
-This API is deprecated in v3.x
-{% endhint %}
-
 {% tabs %}
 {% tab title="Swift" %}
 Permission offers can be used to share Realms between users. You need not write any server code; permission offers are created and accepted entirely through the client APIs.
