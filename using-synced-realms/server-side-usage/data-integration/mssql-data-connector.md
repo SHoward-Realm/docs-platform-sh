@@ -7,7 +7,7 @@ This guide walks you through how to use Realm’s data adapter to sync data from
 * Realm Object Server 2.x \(or higher\) or Realm Cloud
 * MSSQL Server 2014 or newer 
 * The ability to enable Change Tracking and Snapshot Isolation on your MSSQL Server
-* A SQL User with admin privileges \(to run the adapter\)
+* A SQL User with sysadmin privileges \(to run the adapter\)
 
 ## Example: Setting up Microsoft SQL Server {#postgres}
 
