@@ -4,7 +4,7 @@ description: >-
   get started.
 ---
 
-# Getting Started
+# Realm Platform
 
 ## What is Realm Platform? {#what-is-realm-platform}
 
@@ -16,7 +16,7 @@ Want to take a deeper look? Read the [Realm Overview White Paper](https://www2.r
 
 ## Where do I start? {#where-do-i-start}
 
-The best way to get started is to try Realm Platform out for yourself!  The platform is offered as both a hosted cloud or a self-hosted plan.  Take a look below to learn how to try either option depending on your own requirements.  
+The best way to get started is to try Realm Platform out for yourself!  The platform is offered as both a hosted cloud or a self-hosted plan.  Take a look below to learn how to try either option depending on your own requirements.  After you have decided, [**we recommend heading over to our Getting Started section for a comprehensive walkthrough of all of the basics.**  ](getting-started-1/)\*\*\*\*
 
 ### [Sign-up for a free cloud account](https://cloud.realm.io/) {#sign-up-for-a-free-cloud-account}
 
@@ -24,25 +24,7 @@ Head over to our cloud page and sign up for a free cloud account which provides 
 
 ### [Sign-Up for Self-Hosted Standard Plan trial](https://realm.io/trial/self-hosted-standard-plan) {#sign-up-for-self-hosted-standard-plan-trial}
 
-For various reason, you may need to host your own server.  To learn about how to install, configure, and operate the self-hosted version see this [section](self-hosted/) in the documentation.  You'll likely want to start by [installing the server](self-hosted/installation/).  
+For various reason, you may need to host your own server.  To learn about how to install, configure, and operate the self-hosted version see this [section](self-hosted/) in the documentation.  
 
-### Pick your Platform
 
-We have created several tutorials to teach both the fundamentals and more advanced aspects to the platform. Choose your platform to get started:
-
-{% page-ref page="getting-started-1/ios-quick-start/" %}
-
-{% page-ref page="getting-started-1/android-quick-start/" %}
-
-{% hint style="warning" %}
-_**Javascript and .Net coming soon!**_
-{% endhint %}
-
-## What comes next? {#what-comes-next}
-
-**Want to learn more about Realm?**
-
-Learn how Realm Platform can help you design world-class apps and features.
-
-[Read the white paper](https://www2.realm.io/whitepaper/realm-overview-registration?_ga=2.266659790.1140662478.1513013122-2031688623.1501706764) or [Watch the webinar](https://www2.realm.io/webinar/realm-platform-2-overview-registration?_ga=2.97855199.1140662478.1513013122-2031688623.1501706764)
 

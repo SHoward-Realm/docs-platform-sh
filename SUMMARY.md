@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Getting Started](README.md)
+* [Realm Platform](README.md)
 * [Getting Started](getting-started-1/README.md)
   * [iOS Quick Start](getting-started-1/ios-quick-start/README.md)
     * [Step 1 - My First Realm App](getting-started-1/ios-quick-start/step-1-my-first-realm-app.md)
