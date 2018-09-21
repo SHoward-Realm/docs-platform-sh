@@ -616,7 +616,7 @@ const Book = {
 }
 ```
 
-We use a linking object in Author to return an array of all Book objects that are linked to that Author. While it will not show up in Studio - you will be able to access these Author.Book objects in your Swift/Kotlin models.
+We use a linking object in Author to return an array of all Book objects that are linked to that Author. While it will not show up in Studio - you will be able to access these Author.Book objects in your Swift/Kotlin/Java/JS/.NET models.
 
 Now lets insert some data:
 
