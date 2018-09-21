@@ -856,7 +856,7 @@ The EmployeeRoute.PK \(on the Realm side\) must be made up of two parts. For exa
 
 Updating an EmployeeRoute \(or a JOIN object\) is not possible because the PK is made up of two parts which reference the linked objects. If you update the other columns \(the referenced objects\), you would need to update the PK as well, but updating PKs is neither possible nor advisable. Instead it is recommend to delete the JOIN object and then re-insert with the new object relational mapping. 
 
-Deleting an Employee or a Route while any EmployeeRoute referencing them still exists causes an error. If you wish to do this please delete the JOIN object first and then delete the corresponding related object. MSSQL will through a FK constraint violation if you attempt to do this.
+Deleting an Employee or a Route while any EmployeeRoute referencing them still exists causes an error. If you wish to do this please delete the JOIN object first and then delete the corresponding related object. MSSQL will throw a FK constraint violation if you attempt to do this.
 
 ## Mapping and Renaming 
 
