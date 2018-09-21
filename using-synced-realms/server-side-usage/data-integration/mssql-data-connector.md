@@ -873,16 +873,18 @@ You can do this with the follow functions:
 ```javascript
    //from SQL to Realm 
    mapSQLServerTableName?: (name: string) => {
+      let out_name = name;
       if (name === 'UserData') {
          out_name = 'RealmUserData';
-         }
+      }
       return out_name;
    }
    //from Realm to SQL
    mapRealmClassName?: (class_name) => {
-   if (class_name === 'RealmUserData') {
+      let out_name = class_name;
+      if (class_name === 'RealmUserData') {
          out_name = 'UserData';
-         }
+      }
       return out_name;
    }
 ```
