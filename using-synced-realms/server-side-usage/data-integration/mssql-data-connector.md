@@ -936,7 +936,7 @@ If you wanted to rename the `name` column in SQL to be called `firstname` in rea
 
 ### Converting a SQL Value Type to a different Realm Value Type
 
-While integrating with your SQL server you may want to remap one of your existing SQL types to a new type for easier use in your mobile applications.  You can do this with the a pair of convert sibling functions.  
+While integrating with your SQL server you may want to remap one of your existing SQL types to a new type for easier use in your mobile applications.  You can do this with the pair of convert sibling functions.  
 
 For example, if your SQL schema looks like:
 
@@ -950,7 +950,7 @@ CONSTRAINT PK_Money PRIMARY KEY (MoneyId)
 );
 ```
 
-If you wanted to convert the `change` column in SQL from a `decimal` to a `string` in Realm.  You'll start by declaring your corresponding desired realm schema: 
+If you wanted to convert the `Change` column in SQL from a `decimal` to a `string` in Realm.  You'll start by declaring your corresponding desired realm schema: 
 
 ```javascript
 const Money = {
@@ -960,7 +960,7 @@ const Money = {
     properties: {
         RealmId: 'string',
         MoneyId: { type: 'int', optional: true },
-        change: 'string',
+        Change: 'string',
     }
 }
 ```
@@ -978,7 +978,7 @@ Then you'll implement these conversion functions in your loader and adapter scri
         }
         //performn the value conversion 
         if (table_name === 'Money') {
-            if (column_name === 'change') {
+            if (column_name === 'Change') {
                 console.log('BEFORE ' + 'TABLENAME: ' + table_name + 'COLUMNNAME: ' + column_name + 'VALUE: ' + value);
                 newVal = value.toString();
                 console.log('AFTER ' + newVal);
@@ -997,7 +997,7 @@ Then you'll implement these conversion functions in your loader and adapter scri
         }
         //performn the value conversion
         if (class_name === 'Money') {
-            if (property_name === 'change') {
+            if (property_name === 'Change') {
                 console.log('BEFORE ' + 'TABLENAME: ' + table_name + 'COLUMNNAME: ' + column_name + 'VALUE: ' + value);
                 newVal = parseFloat(value);
                 console.log('AFTER ' + newVal);
