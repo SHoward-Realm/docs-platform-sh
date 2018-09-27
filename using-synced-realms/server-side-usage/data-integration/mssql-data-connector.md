@@ -561,7 +561,7 @@ Let’s say your SQL Schema looks like so:
 CREATE TABLE dbo.Author
 (
 AuthorId INT NOT NULL IDENTITY(1,1),
-FullName     VARCHAR(255),
+FullName     VARCHAR(255) NOT NULL,
 RealmId VARCHAR(255),
 CONSTRAINT PK_Author PRIMARY KEY (AuthorId)
 );
@@ -569,7 +569,7 @@ CONSTRAINT PK_Author PRIMARY KEY (AuthorId)
 CREATE TABLE dbo.Book
 (
 BookId INT NOT NULL IDENTITY(1,1),
-Name VARCHAR(255),
+Name VARCHAR(255) NOT NULL,
 RealmId VARCHAR(255),
 Author   INT FOREIGN KEY REFERENCES Author(AuthorId),
 CONSTRAINT PK_Book PRIMARY KEY (BookId)
