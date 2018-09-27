@@ -471,7 +471,7 @@ When designing your schema for the Realm adapter to match the schema of your MSS
 
 ### **1 to 1 Relationship**
 
-This is the most straightforward relationship. In your SQL schema you have one table that has a foreign key column to another table thus forming a relationship. In the Realm data model relationships are defined by declaring a name of a Realm object as a property of a parent object as shown [here](mssql-data-connector.md#https-realm-io-docs-javascript-latest-to-one-relationships):
+This is the most straightforward relationship. In your SQL schema you have one table that has a foreign key column to another table thus forming a relationship. In the Realm data model relationships are defined by declaring a name of a Realm object as a property of a parent object as shown [here](https://realm.io/docs/javascript/latest/#to-one-relationships):
 
 Let’s say your SQL schema looked like this:
 
@@ -480,14 +480,14 @@ CREATE TABLE dbo.Passport
 (
 PassportId INT NOT NULL IDENTITY(1,1),
 RealmId VARCHAR(255),
-Country     VARCHAR(255),
+Country     VARCHAR(255) NOT NULL,
 CONSTRAINT PK_Passport PRIMARY KEY (PassportId)
 );
 
 CREATE TABLE dbo.Person
 (
 PersonId INT NOT NULL IDENTITY(1,1),
-Name VARCHAR(255),
+Name VARCHAR(255) NOT NULL,
 RealmId VARCHAR(255),
 PassportId INT FOREIGN KEY REFERENCES Passport(PassportId),
 CONSTRAINT PK_Person PRIMARY KEY (PersonId)
@@ -546,19 +546,6 @@ SET IDENTITY_INSERT Person OFF
 ```
 
 Now run the loader and it should then finish without errors and then run the adapter. If you take a look in Realm Studio you should see the Person objects populated with links to a Passport objects.
-
-```javascript
-const Money = {
-    name: 'Money',
-    primaryKey: 'RealmId',
-    sqlserverPrimaryKey: 'MoneyId',
-    properties: {
-        RealmId: 'string',
-        MoneyId: { type: 'int', optional: true },
-        change: 'string',
-    }
-}
-```
 
 ![1-1 Relationships in Realm Studio](https://lh5.googleusercontent.com/K7GFz8O1X_lrcVt8mJX41PxsboDSKysG1qCB_AtOLwLZpQqqYzMwy06xGjPty1gVIURGUlNxh9Sm7uJWDEb6bqIZLzRBlYbAIFV-XwyTbqMz1deHuS4VpcmBgmJU8PhSLKf373Ys)
 
