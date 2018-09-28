@@ -192,7 +192,7 @@ ubuntu@consul-01:~$ cd syncWorker1/
 ubuntu@consul-01:~/syncWorker1$ vi syncWorker.js
 ```
 
-Now take the [SyncWorker JS App](https://gist.github.com/ianpward/4b1d51f0c6b5c8eca086172af9f69a0e) and paste in the code, fill in any variables specific to your environment, then save the changes.
+Now take the [SyncWorker JS App](https://github.com/realm/realm-server-side-samples/blob/master/07-enterprise-architecture-manual-deployment/syncWorker.js) and paste in the code, fill in any variables specific to your environment, then save the changes.
 
 {% hint style="info" %}
 `SYNC_ADDRESS` is used by the proxy and other workers to connect to the worker, so this cannot be `127.0.0.1` or `0.0.0.0`, use the real address at which the worker is to be found on the network.
@@ -249,7 +249,7 @@ ubuntu@coreServices-01:~$ cd coreServices/
 ubuntu@coreServices-01:~/coreServices$ vi coreServices.js
 ```
 
-Now take the [CoreServices JS App](https://gist.github.com/mgeerling/6a1df6a00a1d6293d51fe2e9c094234a) and paste in the code, fill in any variables specific to your environment, then save the changes. 
+Now take the [CoreServices JS App](https://github.com/realm/realm-server-side-samples/blob/master/07-enterprise-architecture-manual-deployment/coreServices.js) and paste in the code, fill in any variables specific to your environment, then save the changes. 
 
 You will need to fill in the `advertiseAddress` with IP or DNS address of the NATed address of CoreServices if you are behind a NAT. The consulHost should be an IP or DNS address of the cluster of Consul hosts. Generally, you would use a Consul agent deployed on the localhost and point coreServices to `127.0.0.1` If you are unable to deploy a Consul Agent onto the coreServices host then you can use a load balancer round-robin scheme or a DNS name with all three Consul hosts. If you only place one IP in there then you will not have failover if one Consul host fails.  
 
