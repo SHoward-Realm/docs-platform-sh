@@ -747,8 +747,8 @@ CREATE TABLE dbo.Employee (
     CONSTRAINT PK_Employee PRIMARY KEY (EmployeeKey)
 )
 CREATE TABLE dbo.EmployeeRoute (
-    EmployeeKey int FOREIGN KEY REFERENCES Route(RouteKey) NOT NULL,
-    RouteKey int FOREIGN KEY REFERENCES Employee(EmployeeKey)NOT NULL
+    RouteKey int FOREIGN KEY REFERENCES Route(RouteKey) NOT NULL,
+    EmployeeKey int FOREIGN KEY REFERENCES Employee(EmployeeKey)NOT NULL
 )
 ALTER TABLE dbo.EmployeeRoute ADD CONSTRAINT PK_EMPLOYEE_ROUTE PRIMARY KEY (EmployeeKey, RouteKey); /* Compound PK */
 ```
