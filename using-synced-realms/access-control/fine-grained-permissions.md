@@ -211,22 +211,22 @@ let rolePermissions = realmPermissions.filter("role.name = 'my-role'").first;
 {% tab title="Java" %}
 ```java
 // Get the wrapper object for all Realm-level permissions
-RealmPermissions realmPermissions = realm.getPermissions();
+RealmPermissions realmPermissions = realm.getPermissions()
 
 // List all Realm-level permissions
-RealmList<Permission> allPermissions = realmPermissions.getPermissions();
+RealmList<Permission> allPermissions = realmPermissions.getPermissions()
 
 // Find permissions for a given role
 Permission rolePermissions = realmPermissions.getPermissions()
   .equalTo("role.name", "my-role")
-  .findFirst();
+  .findFirst()
 ```
 {% endtab %}
 
 {% tab title="Javascript" %}
 ```javascript
 // Get the global Realm-level permissions object
-let realmPermissions = realm.privileges();
+let realmPermissions = realm.permissions();
 
 // Find permissions for a given role
 let rolePermissions = realmPermissions.permissions
@@ -288,14 +288,14 @@ try! realm.write {
 ```java
 // Adding new permissions must be done within a write transaction
 realm.executeTransaction((Realm r) -> {
-  RealmPermissions realmPermissions = realm.getPermissions();
+  RealmPermissions realmPermissions = realm.getPermissions()
 
   // Grant read-only access at the Realm-level, which means
   // that users with this role can read all objects in the Realm
   // unless restricted by Class or Object level permissions.
-  Permission permissions = realmPermissions.findOrCreate("my-role");
-  permissions.setCanRead(true);
-  permissions.setCanQuery(true);
+  Permission permissions = realmPermissions.findOrCreate("my-role")
+  permissions.setCanRead(true)
+  permissions.setCanQuery(true)
  });
 ```
 {% endtab %}
@@ -304,7 +304,7 @@ realm.executeTransaction((Realm r) -> {
 ```javascript
 // Adding new permissions must be done within a write transaction
 realm.write(() => {
-  let realmPermissions = realm.privileges().permissions;
+  let realmPermissions = realm.permissions().permissions;
   
   // Grant read-only access at the Realm-level, which means
   // that users with this role can read all objects in the Realm
@@ -348,7 +348,7 @@ realm.Write(() =>
 {% endtab %}
 {% endtabs %}
 
-Modifying the Realm-level permissions for an existing role is done by finding the permission object for that role and modify it. This requires a write transaction:
+Modifying the Realm-level permissions for an existing role is done by finding the permission object for that role and modifying it. This requires a write transaction:
 
 {% tabs %}
 {% tab title="Swift" %}
@@ -360,8 +360,8 @@ try! realm.write {
   let permissions = realm.permissions.findOrCreate(forRoleNamed: "my-role")
 
   // Prevent `my-role` users from modifying any objects in the Realm.
-  permission.setCanUpdate(false);
-  permission.setCanDelete(false);    
+  permission.setCanUpdate(false)
+  permission.setCanDelete(false)   
 }
 ```
 {% endtab %}
@@ -392,7 +392,7 @@ realm.executeTransaction((Realm r) -> {
 ```javascript
 // Modifying permissions must be done within a write transaction
 realm.write(() => {
-  let realmPermissions = realm.privileges().permissions;
+  let realmPermissions = realm.permissions().permissions;
   
    // Find permissions for the specfic role
   let permission = realmPermissions.filtered('role.name', 'my-role')[0];
@@ -438,7 +438,11 @@ Just like Realm-level permissions,  Class-level permissions are exposed as Realm
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-// Comming soon
+// List the Class-level permissions for the given model class
+let classPermissions = realm.permissions(forType: Person.self);
+  
+  // Find Class-level permissions for a given role
+let rolePermissions = classPermissions.filter("role.name = 'my-role'").first
 ```
 {% endtab %}
 
@@ -452,28 +456,28 @@ Just like Realm-level permissions,  Class-level permissions are exposed as Realm
 ```java
 // Get the Class-level permissions object for the Person class
 ClassPermissions classPermissions = realm.getPermissions(Person.class);
+  
+// List the Class-level permissions for all roles
+RealmList<Permission> permissions = classPermissions.getPermissions();
 
 // Find Class-level permissions for a given role
 Permission rolePermissions = classPermissions.getPermissions().where()
   .equalTo("role.name", "my-role")
   .findFirst();
-  
-// List the Class-level permissions for all roles
-RealmList<Permission> permissions = classPermissions.getPermissions();
 ```
 {% endtab %}
 
 {% tab title="Javascript" %}
 ```javascript
 // Get the Class-level permissions object for the Person class
-let classPermissions = realm.privileges('Person');
+let classPermissions = realm.permissions('Person');
+
+// List the Class-level permissions for all roles
+let permissions = classPermissions.permissions;
 
 // Find Class-level permissions for a given role
 let rolePermissions = classPermissions.permissions
   .filtered(`role.name = 'my-role'`)[0];
-  
-// List the Class-level permissions for all roles
-let permissions = classPermissions.permissions;
 ```
 {% endtab %}
 
@@ -489,7 +493,15 @@ Adding Class-level permissions for a role is done by adding a new [Permission ob
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-// Comming soon
+// Adding new permissions must be done within a write transaction
+try! realm.write {
+
+  // Remove read-access for the Person class for users with the `my-role` role.
+  let permission = realm
+    .permissions(forType: Person.self)
+    .findOrCreate(forRoleNamed: "my-role")
+  permission.canRead = false
+});
 ```
 {% endtab %}
 
@@ -550,7 +562,18 @@ Modifying the Class-level permissions for an existing role is done by finding th
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-// Comming soon
+// Modifying permissions must be done within a write transaction
+try! realm.write {
+
+  // Find permissions for the role and change it
+  let permission = realm
+    .permissions(forType: Person.self)
+    .findOrCreate(forRoleNamed: "my-role")
+
+    // Prevent `my-role` users from modifying any Person objects.
+  permission.setCanUpdate(false)
+  permission.setCanDelete(false)
+});
 ```
 {% endtab %}
 
@@ -742,7 +765,17 @@ Adding Object-level permissions for a role is done adding a new [Permission obje
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-// Comming soon 
+// Adding new permissions must be done within a write transaction
+try! realm.write {
+
+  // Grant users with the `shared-objects` role access to read and modify
+  // this object
+  let person = getPerson();
+  let permissions = person.permissions.findOrCreate(forRoleNamed: "shared-objects);
+  permissions.canRead = true
+  permissions.canUpdate = true
+  permissions.canDelete = true
+}
 ```
 {% endtab %}
 
@@ -806,52 +839,26 @@ realm.write(() => {
 {% endtab %}
 {% endtabs %}
 
-Modifying the Object-level permissions for an existing role is done by finding the permission object for that role and modify it. This requires a write transaction:
+Modifying the Object-level permissions for an existing role is done by finding the permission object for that role and modifying it. This requires a write transaction:
 
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-// Comming soon 
-// FIXME: Update example 
-// Permissions must be modified inside a write transaction
+// Modifying permissions must be done within a write transaction
 try! realm.write {
-    // Get the permission user for the sync user that is currently logged in.
-    let user = realm.object(ofType: PermissionUser.self, forPrimaryKey: SyncUser.current!.identity!)!
+  let person = getPerson()
 
-    let person = getPerson()
-
-    // Create a new permission object for the user's private role and
-    // add it to the objects permissions
-    let permissions = person.permissions.findOrCreate(forRole: user.role)
-    permissions.canRead = true
-    permissions.canUpdate = true
-    permissions.canDelete = true
-    permissions.canSetPermissions = true
+  // Prevent `shared-objects` users from modifying this object.  
+  let permissions = person.permissions.findOrCreate(forRoleNamed: "shared-objects)
+  permissions.canUpdate = false
+  permissions.canDelete = false
 }
 ```
 {% endtab %}
 
 {% tab title="Objective-C" %}
 ```objectivec
-/// Comming soon 
-// FIXME Update example
-// Example of restricting the object to the user creating it.
- 
-// Permissions must be modified inside a write transaction
-[realm transactionWithBlock:^{
-    // Get the permission user for the sync user that is currently logged in.
-    RLMPermissionUser *user = [RLMPermissionUser userInRealm:realm withIdentity:RLMSyncUser.currentUser.identity];
-
-    Person *person = getPerson();
-
-    // Create a new permission object for the user's private role and
-    // add it to the objects permissions
-    RLMPermission *permission = [RLMPermission permissionForRoleNamed:readOnlyRole.name onObject:person realm:realm];
-    permissions.canRead = YES;
-    permissions.canUpdate = YES;
-    permissions.canDelete = YES;
-    permissions.canSetPermissions = YES;
-}];
+// Comming soon
 ```
 {% endtab %}
 
@@ -893,25 +900,6 @@ realm.write(() => {
 {% tab title=".Net" %}
 ```csharp
 // Comming soon
-// FIXME Update example
-// Example of restricting the object to the user creating it.
- 
-// Permissions must be modified inside a write transaction
-realm.Write(() =>
-{
-    // Get the permission user for the sync user that is currently logged in.
-    var user = PermissionUser.Get(realm, User.Current.Identity);
-
-    var person = realm.Find<Person>(someId);
-
-    // Create a new permission object for the user's private role and
-    // add it to the object's permissions
-    var permission = Permission.Get(user.Role, person);
-    permission.canRead = true;
-    permission.canUpdate = true;
-    permission.canDelete = true;
-    permission.canSetPermissions = true;
-}); 
 ```
 {% endtab %}
 {% endtabs %}
@@ -981,7 +969,15 @@ ObjectPrivileges privileges = realm.getPrivileges(person);
 
 {% tab title="Javascript" %}
 ```javascript
-// Not supported by JavaScript yet
+// Realm privileges
+let privileges = realm.privileges();
+
+// Class privileges for `Person`
+let classPrivileges = realm.privileges('Person');
+
+// Object privileges
+let person = getPerson();
+let objectPrivileges = realm.getPrivileges(person);
 ```
 {% endtab %}
 
@@ -1049,7 +1045,14 @@ if (privileges.canUpdate()) {
 
 {% tab title="Javascript" %}
 ```javascript
-// Not supported by JavaScript yet
+let person = getPerson();
+let objectPrivileges = realm.getPrivileges(person);
+
+if (privileges.canUpdate) {
+  showEditButton();
+} else {
+  hideEditButton();
+}
 ```
 {% endtab %}
 
@@ -1123,8 +1126,8 @@ See the API docs here:
 
 Specifically it means that:
 
-* A user cannot modify any Realm-level permissions unless they have the `setPermissions` privilege on the Class-level permission object for the `RealmPermissions` class.
-*  A user cannot modify any Class-level permissions unless they have the `setPermissions` privilege on the Class-level permission object for the `ClassPermissions` class.
+* A user cannot modify any Realm-level permissions unless they have the `setPermissions` privilege on the Class-level permission object for the `__Realm` class.
+*  A user cannot modify any Class-level permissions unless they have the `setPermissions` privilege on the Class-level permission object for the `__Class` class.
 
 This can be verified the following way:
 
@@ -1157,7 +1160,15 @@ classPrivs.canSetPermissions(); // Can modify Class-level permissions
 
 {% tab title="Javascript" %}
 ```javascript
-// Not currently supported in JavaScript
+// Check access to Realm-level permissions
+let realmPrivileges = realm.privileges(Realm.Permissions.Realm);
+realmPrivileges.canRead; // Can see Realm-level permissions
+realmPrivileges.canSetPermissions; // Can modify Realm-level permissions
+
+// Check access to Class-level permissions
+let classPrivileges = realm.privileges(Realm.Permissions.Class);
+classPrivileges.canRead(); // Can see Class-level permissions
+classPrivileges.canSetPermissions(); // Can modify Class-level permissions
 ```
 {% endtab %}
 
