@@ -12,7 +12,7 @@ JWT authentication is _disabled_ by default in Cloud as it requires configuratio
 
 To enable or disable go to the Settings for your instance in the cloud portal:
 
-![](../../.gitbook/assets/image%20%286%29.png)
+![](../../.gitbook/assets/image%20%287%29.png)
 
 {% hint style="info" %}
 Looking to get started quickly with JWT and Realm Cloud?  Check out our [guide for authentication with Firebase](../../guides/firebase-authentication-with-realm-cloud.md)
@@ -58,7 +58,7 @@ By default anonymous authentication is enabled with Cloud
 
 To enable or disable go to the Settings for your instance in the cloud portal:
 
-![](../../.gitbook/assets/image%20%281%29.png)
+![](../../.gitbook/assets/image%20%282%29.png)
 
 {% hint style="success" %}
 By default the `AnonymousAuthProvider` is **enabled** when creating a project via `ros init`.
@@ -106,7 +106,7 @@ By default Nickname authentication is enabled with Cloud
 
 To enable or disable go to the Settings for your instance in the cloud portal:
 
-![](../../.gitbook/assets/image%20%2820%29.png)
+![](../../.gitbook/assets/image%20%2821%29.png)
 
 {% hint style="warning" %}
 By default the Nickname provider is **enabled** when creating a project via `ros init`.
