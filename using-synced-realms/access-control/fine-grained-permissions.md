@@ -251,6 +251,7 @@ Adding Realm-level permissions for a role is done adding a new [Permission objec
 ```swift
 // Adding new permissions must be done within a write transaction
 try! realm.write {
+
   // Grant read-only access at the Realm-level, which means
   // that users with this role can read all objects in the Realm
   // unless restricted by Class or Object level permissions.  
@@ -288,19 +289,14 @@ try! realm.write {
 // Adding new permissions must be done within a write transaction
 realm.executeTransaction((Realm r) -> {
   RealmPermissions realmPermissions = realm.getPermissions();
-  
+
   // Grant read-only access at the Realm-level, which means
   // that users with this role can read all objects in the Realm
   // unless restricted by Class or Object level permissions.
-  Role role = realm.where(Role.class).equalTo("name", "my-role").findFirst();
-  Permission p = new Permission.Builder(role)
-    .canRead(true)
-    .canQuery(true)
-    .build();
-      
-  // Add it to the list of permissions for it to take affect.
-  realmPermissions.getPermissions().add(permission);  
-});
+  Permission permissions = realmPermissions.findOrCreate("my-role");
+  permissions.setCanRead(true);
+  permissions.setCanQuery(true);
+ });
 ```
 {% endtab %}
 
@@ -383,9 +379,7 @@ realm.executeTransaction((Realm r) -> {
   RealmPermissions realmPermissions = realm.getPermissions();
   
   // Find permissions for the specific role
-  Permission permission = realmPermissions.getPermissions().where()
-    .equalTo("role.name", "my-role")
-    .findFirst();
+  Permission permission = realmPermissions.findOrCreate("my-role");
   
   // Prevent `my-role` users from modifying any objects in the Realm.
   permission.setCanUpdate(false);
