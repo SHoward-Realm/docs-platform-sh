@@ -1167,8 +1167,8 @@ realmPrivileges.canSetPermissions; // Can modify Realm-level permissions
 
 // Check access to Class-level permissions
 let classPrivileges = realm.privileges(Realm.Permissions.Class);
-classPrivileges.canRead(); // Can see Class-level permissions
-classPrivileges.canSetPermissions(); // Can modify Class-level permissions
+classPrivileges.canRead; // Can see Class-level permissions
+classPrivileges.canSetPermissions; // Can modify Class-level permissions
 ```
 {% endtab %}
 
