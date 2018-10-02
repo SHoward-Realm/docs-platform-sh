@@ -194,7 +194,11 @@ Realm-level permissions apply globally to the Realm file and are modified throug
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-// Comming soon
+// List all Realm-level permissions
+let realmPermissions = realm.permissions;
+
+// Find Realm level permissions for a given role
+let rolePermissions = realmPermissions.filter("role.name = 'my-role'").first;
 ```
 {% endtab %}
 
@@ -206,16 +210,16 @@ Realm-level permissions apply globally to the Realm file and are modified throug
 
 {% tab title="Java" %}
 ```java
-// Get the global Realm-level permissions object
+// Get the wrapper object for all Realm-level permissions
 RealmPermissions realmPermissions = realm.getPermissions();
+
+// List all Realm-level permissions
+RealmList<Permission> allPermissions = realmPermissions.getPermissions();
 
 // Find permissions for a given role
 Permission rolePermissions = realmPermissions.getPermissions()
   .equalTo("role.name", "my-role")
   .findFirst();
-  
-// List all Realm-level permissions
-RealmList<Permission> allPermissions = realmPermissions.getPermissions();
 ```
 {% endtab %}
 
@@ -240,26 +244,19 @@ let allPermissions = realmPermissions.permissions;
 {% endtab %}
 {% endtabs %}
 
-Adding Realm-level permissions for a role is done adding a new [Permission object](fine-grained-permissions.md#granting-permissions) to the list of permissions. This requires a write transaction:
+Adding Realm-level permissions for a role is done adding a new [Permission object](fine-grained-permissions.md#granting-permissions) to the list of Realm-level permissions. This requires a write transaction:
 
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-// FIXME - Must match JS
-// Permissions must be modified inside a write transaction
+// Adding new permissions must be done within a write transaction
 try! realm.write {
-    // Create the role
-    let readOnlyRole = realm.create(PermissionRole.self, value: ["read-only"])
-     
-    // Add the user to the role
-    let user = getUser()
-    readOnlyRole.users.append(user)
-     
-    // Create a new permission object for the role and add it to the Realm
-    // permissions
-    let permission = realm.permissions.findOrCreate(forRole: readOnlyRole)
-    permission.canRead = true
-    permission.canQuery = true
+  // Grant read-only access at the Realm-level, which means
+  // that users with this role can read all objects in the Realm
+  // unless restricted by Class or Object level permissions.  
+  let permissions = realm.permissions.findOrCreate(forRoleNamed: "my-role");
+  permissions.canRead = true;
+  permissions.canQuery = true;
 }
 ```
 {% endtab %}
@@ -360,7 +357,16 @@ Modifying the Realm-level permissions for an existing role is done by finding th
 {% tabs %}
 {% tab title="Swift" %}
 ```swift
-// Comming soon
+// Modifying permissions must be done within a write transaction
+try! realm.write {
+
+  // Find permissions for the specific role
+  let permissions = realm.permissions.findOrCreate(forRoleNamed: "my-role")
+
+  // Prevent `my-role` users from modifying any objects in the Realm.
+  permission.setCanUpdate(false);
+  permission.setCanDelete(false);    
+}
 ```
 {% endtab %}
 
@@ -376,7 +382,7 @@ Modifying the Realm-level permissions for an existing role is done by finding th
 realm.executeTransaction((Realm r) -> {
   RealmPermissions realmPermissions = realm.getPermissions();
   
-  // Find permissions for the role and change it
+  // Find permissions for the specific role
   Permission permission = realmPermissions.getPermissions().where()
     .equalTo("role.name", "my-role")
     .findFirst();
@@ -394,7 +400,7 @@ realm.executeTransaction((Realm r) -> {
 realm.write(() => {
   let realmPermissions = realm.privileges().permissions;
   
-   // Find permissions for a specfic role
+   // Find permissions for the specfic role
   let permission = realmPermissions.filtered('role.name', 'my-role')[0];
   
   // Prevent `my-role` users from modifying any objects in the Realm.
