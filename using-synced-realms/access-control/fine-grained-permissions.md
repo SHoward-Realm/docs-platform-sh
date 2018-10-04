@@ -6,7 +6,7 @@ In addition to [path-level permissions](path-level-permissions.md), you can cont
 
 The fine-grained permission system is based on [role-based access control lists](https://en.wikipedia.org/wiki/Role-based_access_control) and as such, permissions are assigned to [roles](fine-grained-permissions.md#roles) and not users directly. This means that a users current privileges is the sum of all roles the user is given.
 
-The permission system recognizes three levels of permissions: [Realm](https://docs.realm.io/platform/using-synced-realms/access-control/fine-grained-permissions#foo), [Class](fine-grained-permissions.md#class-level), and [Object-level](fine-grained-permissions.md#object-level). The hierarchy works like this: If a user does not have higher-level `Read` access, they cannot see anything on the lower levels. For example, if a user lacks `Read` access at the Realm-level, they cannot see any data in the Realm, even if they have `Read` at the class or object-level. However, just because they have higher-level `Read` access does not mean they can see _everything_ on the lower level -- just that they can see anything at all. In this way, the app developer can decide for themselves what granularity they want for permissions in their data model.
+The permission system recognizes three levels of permissions: [Realm](fine-grained-permissions.md#realm-level-permissions), [Class](fine-grained-permissions.md#class-level-permissions), and [Object-level](fine-grained-permissions.md#object-level-permissions). The hierarchy works like this: If a user does not have higher-level `Read` access, they cannot see anything on the lower levels. For example, if a user lacks `Read` access at the Realm-level, they cannot see any data in the Realm, even if they have `Read` at the class or object-level. However, just because they have higher-level `Read` access does not mean they can see _everything_ on the lower level -- just that they can see anything at all. In this way, the app developer can decide for themselves what granularity they want for permissions in their data model.
 
 ![Overview of fine-grained permissions](../../.gitbook/assets/fine-grained-permissions.png)
 
@@ -32,9 +32,9 @@ A unique role is also automatically created for every user in the system. This r
 In a new Realm file, the `everyone` role has all permissions enabled.
 {% endhint %}
 
-When you as a developer are ready to integrate permissions in your app, you would usually define a new `administrator` role which has yourself as a member, and then reduce the privileges of the `everyone` role. Note that an `administrator` role is different than an `admin` user on the Realm ObjectServer. An 
+When you as a developer are ready to integrate permissions in your app, you would usually define a new `administrator` role which has yourself as a member, and then reduce the privileges of the `everyone` role. Note that an `administrator` role is different than an `admin` user on the Realm ObjectServer. 
 
-When assigning a role to a _User_, the user is added as a member of the _Role_ object instead of attaching the role to the user. Since the Role object is just a normal Realm object, it can found, queried and manipulated the same way as other objects:
+When assigning a role to a _User_, the user is added as a member of the _Role_ object instead of attaching the role to the user. Since the Role object is just a normal Realm object, it can be found, queried and manipulated the same way as other objects:
 
 {% tabs %}
 {% tab title="Swift" %}
@@ -172,7 +172,7 @@ let permission = realm.create(Realm.Permissions.Permission, {
 By itself, the _Permission_ object does nothing and the privileges described in the object are not enforced until the object has been added to an appropriate permission list at either the [Realm-level](fine-grained-permissions.md#realm-level-permissions), the [Class-level](fine-grained-permissions.md#class-level-permissions) or the [Object-level](fine-grained-permissions.md#class-level-permissions). See the respective subsections for details on how to do this.
 
 {% hint style="info" %}
-A single _Permission_ object can be used in multiple places at the same time.
+A single _Permission_ object can be used in multiple places at the same time. This can be useful if you easily want to update privileges across multiple objects at the same time.
 {% endhint %}
 
 The following privileges can be set when creating or modifying the _Permission_ object:
@@ -244,7 +244,7 @@ let allPermissions = realmPermissions.permissions;
 {% endtab %}
 {% endtabs %}
 
-Adding Realm-level permissions for a role is done adding a new [Permission object](fine-grained-permissions.md#granting-permissions) to the list of Realm-level permissions. This requires a write transaction:
+Adding Realm-level permissions for a role is done by adding a new [Permission object](fine-grained-permissions.md#granting-permissions) to the list of Realm-level permissions. This requires a write transaction:
 
 {% tabs %}
 {% tab title="Swift" %}
