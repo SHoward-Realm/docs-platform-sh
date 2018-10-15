@@ -462,6 +462,26 @@ You can now make changes on either the MSSQL or ROS side and see the changes syn
 
 Not what you were looking for? [Leave Feedback](https://realm3.typeform.com/to/A4guM3)
 
+### Running the adapter without a sysadmin
+
+In the event that you cannot or prefer not to use a sysadmin user, you may create a user that is granted select, insert, delete, update and change tracking privileges. You will need to grant these privileges for every table in the database.
+
+```sql
+create login foo with password = 'password';	
+create user foo for login foo with default_schema = dbo;
+
+alter database test set change_tracking = on;
+
+grant create database to foo;
+grant create table to foo;
+grant select on test.dbo.MapTable to foo;
+grant insert on test.dbo.MapTable to foo;
+grant alter on test.dbo.MapTable to foo;
+grant delete on test.dbo.MapTable to foo;
+grant update on test.dbo.MapTable to foo;
+grant view change tracking on test.dbo.MapTable to foo;
+```
+
 ## Relationships
 
 One of the first things you will need to add to support the Realm Adapter for MSSQL is a RealmId string field to each object you want to support in Realm. This will be used as the PrimaryKey for your Realm models on the Realm side. You will also need to add a RealmId column as a nvarchar\(128\) to each table that matches your classes in Realm. This will be auto-generated and loaded into SQL when the Realm loader is run - to improve performance generate these GUID values on the SQL side first. This is necessary to enable the linking of models and List relationships from Realm primary keys to SQL primary keys. Additionally, this will allow an offline mobile client to create objects without getting a primary key from the SQL Server. The adapter will then create a mapping of Realm object to a SQL row by creating a mapping of the primary keys. In the Realm models the actual primary key of the SQL server will be made optional in Realm \(even though it is required in SQL\) but designated in the Realm model with sqlserverPrimaryKey key. This is why it is important to designate an IDENTITY column which will automatically insert a Primary Key into a new row when the Realm adapter inserts a new object into SQL.  
