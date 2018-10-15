@@ -4,8 +4,12 @@
 
 In order to deploy Realm Object Server using Kubernetes, you must have a Kubernetes Cluster available to you. Fortunately, you can easily run Kubernetes on your workstation if you're looking for a quick start.
 
-### Preparing Kubernetes on MacOS
+### Preparing a Kubernetes Cluster
 
+Our cluster deployment utilizes Kubernetes. Before you get started, you'll need to create a cluster if you do not already have one.  
+
+{% tabs %}
+{% tab title="macOS" %}
 The easiest way to get started with Kubernetes is by using Docker for Mac. Start by downloading Docker for Mac [here](https://store.docker.com/editions/community/docker-ce-desktop-mac). Be sure to use the download link for "Get Docker CE for Mac \(edge\)." You will need to register or sign in to the Docker Store in order to download. Then, follow the provided install instructions.
 
 If you have not already done so, launch the Docker application that you downloaded. Then, open the preferences and enable Kubernetes in the "Kubernetes" tab. Click "Apply" and wait a few minutes while Kubernetes starts.
@@ -34,10 +38,32 @@ Server:
   OS/Arch:      linux/amd64
   Experimental: true
 ```
+{% endtab %}
+
+{% tab title="Azure" %}
+Most major cloud cloud providers offer some kind of managed Kubernetes service.  Microsoft Azure provides with via [Azure Kubernetes Service \(AKS\)](https://docs.microsoft.com/en-us/azure/aks/)
+
+Creating a cluster is easy with AKS.  You can use their [quickstart guide as a reference](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal). After you create the cluster, we recommend ensuring that you can connect via the `kubectl` CLI.  This is also explained in the quickstart guide. At the time of writing, you can do this from an Azure cloud shell with the following command: 
+
+```bash
+##input your cluster information for connection 
+az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+
+##verify connection by getting cluster information
+kubectl get nodes
+```
+{% endtab %}
+{% endtabs %}
 
 ### Helm CLI and tiller
 
-[Helm](https://helm.sh/) is required to use our preferred method of installing Realm Object Server, so you will need to install the commandline utillity. If you use macOS, you can use Homebrew to install it. Otherwise, refer to [Helm's documentation](https://docs.helm.sh/using_helm/#quickstart-guide).
+[Helm](https://helm.sh/) is required to use our preferred method of installing Realm Object Server, so you will need to install the commandline utillity. 
+
+{% tabs %}
+{% tab title="macOS" %}
+If you use macOS, you can use Homebrew to install it. Otherwise, refer to [Helm's documentation](https://docs.helm.sh/using_helm/#quickstart-guide).
+
+
 
 ```text
 brew install kubernetes-helm
@@ -52,6 +78,16 @@ helm init --upgrade --wait
 {% hint style="info" %}
 For production clusters, make sure you understand the security implcations of running Tiller in your cluster. You can read more [here](https://docs.helm.sh/using_helm/#securing-your-helm-installation).
 {% endhint %}
+{% endtab %}
+
+{% tab title="Azure" %}
+Using Helm and Tiller in Azure is easy, and you will [find the process documented here](https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm). We recommend using the Azure Cloud Shell which comes with the Helm CLI already installed.  After this, you will need to configure Helm which is detailed in the article linked above.
+
+{% hint style="info" %}
+If you are using an RBAC-enabled cluster, you will also need to create a service account to run tiller properly.  
+{% endhint %}
+{% endtab %}
+{% endtabs %}
 
 ### Optional: Install the Kubernetes Dashboard
 
@@ -100,7 +136,7 @@ sync:
 Once you have created an overrides file, you can use it when deploying:
 
 ```bash
-helm install realm-object-server -f overrides.yaml
+helm install realm/realm-object-server -f overrides.yaml
 ```
 
 When successful, you should see some output similar to this:
